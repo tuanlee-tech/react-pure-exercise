@@ -1,0 +1,77 @@
+#root {
+  width: 100%;
+  height: 100vh;
+  background-color: #0f1014;
+  overflow-y: auto;
+}
+
+.app-container {
+  display: flex;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #0f1014;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  padding-bottom: 0;
+}
+
+.sidebar h2 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #facc15;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar li a {
+  padding: 10px;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar li a:hover {
+  background-color: #334155;
+}
+
+.sidebar li a.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Content area */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.content h1 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 18px;
+  color: white;
+}
+
+.exercise-wrapper {
+  width: auto;
+  margin-bottom: 2rem;
+}
