@@ -6,7 +6,7 @@ import "./styles.css";
 const Day2 = () => {
   return (
     <>
-      <h2>JSX & Rendering Basics</h2>
+      <h2>Conditional & List Rendering</h2>
       <hr />
       <div className="exercise-wrapper">
         <p>Exercise 1: Exercise 1: User Dashboard</p>
