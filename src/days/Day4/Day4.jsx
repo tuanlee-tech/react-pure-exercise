@@ -3,6 +3,8 @@ import Alert from "./components/Alert";
 import { DataFetcher } from "./components/DataFetcher";
 import DataTable from "./components/DataTable";
 import Dropdown from "./components/Dropdown";
+import Form from "./components/Form";
+import InfiniteScrollList from "./components/InfiniteScrollList";
 import Modal from "./components/Modal";
 import { Wizard } from "./components/Wizard";
 import {
@@ -29,9 +31,32 @@ const users = [
   { name: "Jane", age: 25, status: "inactive" },
   { name: "Bob", age: 35, status: "active" },
 ];
+const countries = [
+  { value: "vn", label: "Việt Nam" },
+  { value: "us", label: "Hoa Kỳ" },
+  { value: "jp", label: "Nhật Bản" },
+];
 const Day4 = () => {
   const handleComplete = (formData) => {
     console.log(formData);
+  };
+  const handleSubmit = (data) => {
+    console.log("Form submitted:", data);
+    alert("Gửi thành công! Xem console để xem dữ liệu.");
+  };
+  // Giả lập API
+  const fakeApi = (page) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const items = Array.from({ length: 10 }, (_, i) => ({
+          id: (page - 1) * 10 + i + 1,
+          title: `Sản phẩm ${(page - 1) * 10 + i + 1}`,
+          body: `Mô tả chi tiết cho sản phẩm số ${(page - 1) * 10 + i + 1}.`,
+        }));
+        // Sau page 3 thì hết
+        resolve(page >= 3 ? [] : items);
+      }, 800);
+    });
   };
   return (
     <>
@@ -244,9 +269,77 @@ const Day4 = () => {
           }}
         </DataFetcher>
       </div>
-
+      <hr />
       <div className="exercise-wrapper">
         <p>Exercise 4: Form Builder (Mixed Patterns - Challenge)</p>
+        <Form onSubmit={handleSubmit}>
+          <Form.Field
+            name="email"
+            label="Email"
+            rules={{
+              required: "Email là bắt buộc",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Email không hợp lệ",
+              },
+            }}
+          >
+            {({ value, onChange, error }) => (
+              <>
+                <Form.Input
+                  name="email"
+                  type="email"
+                  value={value}
+                  onChange={onChange}
+                />
+                {error && (
+                  <span style={{ color: "red", fontSize: "0.875rem" }}>
+                    {error}
+                  </span>
+                )}
+              </>
+            )}
+          </Form.Field>
+
+          <Form.Field
+            name="country"
+            label="Quốc gia"
+            rules={{ required: true }}
+          >
+            {({ value, onChange }) => (
+              <Form.Select
+                name="country"
+                value={value}
+                onChange={onChange}
+                options={countries}
+              />
+            )}
+          </Form.Field>
+
+          <Form.Field
+            name="terms"
+            rules={{ required: "Bạn phải đồng ý điều khoản" }}
+          >
+            {({ value, onChange }) => (
+              <Form.Checkbox
+                name="terms"
+                checked={value}
+                onChange={onChange}
+                label="Tôi đồng ý với điều khoản sử dụng"
+              />
+            )}
+          </Form.Field>
+
+          <div style={{ marginTop: "1rem" }}>
+            <Form.Submit>Gửi</Form.Submit>
+            <Form.Reset>Xóa</Form.Reset>
+          </div>
+        </Form>
+      </div>
+      <hr />
+      <div className="exercise-wrapper">
+        <p>Exercise 5: Infinite Scroll List (Container/Presentational)</p>
+        <InfiniteScrollList fetchItems={fakeApi} />
       </div>
     </>
   );

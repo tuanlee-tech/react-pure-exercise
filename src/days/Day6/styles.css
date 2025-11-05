@@ -1,0 +1,303 @@
+/* Khối chính */
+.advanced-counter {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #e6edf3;
+}
+
+/* Hiển thị giá trị */
+.counter-value {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #58a6ff;
+}
+
+/* Nhóm nút điều khiển */
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.controls button {
+  background: #21262d;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controls button:hover {
+  background: #30363d;
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Ô nhập Step */
+.step-control {
+  margin: 15px 0;
+}
+
+.step-control label {
+  margin-right: 8px;
+  font-weight: 500;
+  color: #8b949e;
+}
+
+.step-control input {
+  width: 80px;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #e6edf3;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.step-control input:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+/* Lịch sử */
+.history {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.history h3 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #8b949e;
+}
+
+.history-list {
+  background: #0d1117;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  padding: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.history-list li {
+  list-style: none;
+  padding: 5px 8px;
+  border-bottom: 1px solid #21262d;
+  color: #c9d1d9;
+}
+
+.history-list li:last-child {
+  border-bottom: none;
+}
+
+.history-list li.current {
+  background: #21262d;
+  color: #58a6ff;
+  font-weight: 600;
+  border-left: 3px solid #58a6ff;
+  padding-left: 6px;
+}
+
+.todo-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  /* nền tối */
+  color: #e0e0e0;
+  /* chữ sáng */
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #2b2b2b;
+  color: #e0e0e0;
+}
+
+.todo-input input::placeholder {
+  color: #999;
+}
+
+.todo-input .btn {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-input .btn.add {
+  background-color: #4caf50;
+}
+
+.todo-input .btn.cancel {
+  background-color: #5e5e5e;
+}
+
+.todo-input .btn.update {
+  background-color: #0f68ec;
+}
+
+.todo-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.controls select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #2b2b2b;
+  color: #e0e0e0;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.todo-text {
+  flex: 1;
+}
+
+.priority {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #2b2b2b;
+  color: #e0e0e0;
+}
+
+.btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.edit {
+  background-color: #2196f3;
+  color: white;
+}
+
+.btn.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.actions .btn.toggle-all {
+  background-color: #ff9800;
+  color: white;
+}
+
+.actions .btn.clear-completed {
+  background-color: #9c27b0;
+  color: white;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+
+/* checkbox style cho dark mode */
+.todo-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4caf50;
+  /* màu checkbox khi checked */
+  cursor: pointer;
+}
+
+.todo-input .add:disabled {
+  background-color: #4b5a4c;
+  cursor: not-allowed;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  /* gạch ngang */
+  color: #888;
+  /* chữ mờ hơn */
+  opacity: 0.7;
+  /* nhẹ nhàng hơn */
+}
+
+/* Nếu muốn thay đổi background khi completed */
+.todo-item.completed {
+  background-color: #2a2a2a;
+  /* nền tối hơn một chút */
+}
+
+.todo-list button:disabled {
+  opacity: 0.5;
+}
