@@ -301,3 +301,412 @@ h1 {
 .todo-list button:disabled {
   opacity: 0.5;
 }
+
+
+.error{
+  text-align:left;
+  color: red; 
+  font-size: 0.875rem;
+}
+
+/* Container */
+.form-container {
+  background-color: #1e1e1e;
+  border: 1px solid #2e2e2e;
+  border-radius: 10px;
+  width: 400px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Progress bar */
+.progress-bar {
+  background-color: #333;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.progress {
+  background: linear-gradient(90deg, #00b4d8, #48cae4);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* Steps */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+h2 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #b0b0b0;
+  text-align: left;
+}
+
+input {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
+  border-radius: 5px;
+  padding: 10px;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #00b4d8;
+  outline: none;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.btn {
+  background-color: #00b4d8;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: #0096c7;
+}
+
+.btn.prev {
+  background-color: #444;
+}
+
+.btn.prev:hover {
+  background-color: #555;
+}
+
+.btn.submit {
+  background-color: #4cc9f0;
+}
+
+.btn.submit:hover {
+  background-color: #4895ef;
+}
+
+.quiz-container {
+  background: #1e1e2f;
+  border: 1px solid #2d2d44;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  width: 420px;
+  text-align: center;
+}
+
+.quiz-title {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.progress {
+  background: #2f3640;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #00a8ff, #0097e6);
+  height: 100%;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.question-box {
+  margin-bottom: 20px;
+  display: none;
+}
+.question-box.active{
+display: block;
+}
+.question-text {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #f5f6fa;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option {
+  background: #2d2d44;
+  color: #dcdde1;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.option:hover {
+  background: #353552;
+  border-color: #00a8ff;
+}
+
+.option.selected {
+  background: #00a8ff;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Khi đã nộp quiz */
+.option.correct {
+  background: #44bd32;
+  color: #fff;
+}
+
+.option.incorrect {
+  background: #e84118;
+  color: #fff;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  background: #0097e6;
+  color: #f5f6fa;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #00a8ff;
+}
+
+.result-box {
+  margin-top: 20px;
+}
+
+
+.restart {
+  margin-top: 10px;
+  background: #8c7ae6;
+}
+
+.restart:hover {
+  background: #9c88ff;
+}
+/* Dark mode theme */
+.expense-tracker {
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: sans-serif;
+  padding: 10px;
+  background-color: #1e1e2f;
+  color: #e0e0e0;
+}
+
+.expense-tracker h1,
+.expense-tracker h2 {
+  color: #ffffff;
+  text-align: center;
+}
+
+.expense-form,
+.filters,
+.statistics,
+.expense-list {
+  background: #2d2d44;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.expense-form form,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.expense-form input,
+.expense-form select,
+.filters input,
+.filters select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  flex: 1 1 150px;
+}
+
+.expense-form input::placeholder,
+.filters input::placeholder {
+  color: #aaa;
+}
+
+.expense-form button {
+  padding: 8px 16px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.expense-form button:hover {
+  background: #45a049;
+}
+
+.statistics p {
+  margin: 5px 0;
+}
+
+.category-bars {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+  background-color: #2c2c2c;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.expense-list table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #e0e0e0;
+}
+
+.expense-list th,
+.expense-list td {
+  padding: 8px;
+  border: 1px solid #333;
+  text-align: left;
+  color: #fff;
+}
+
+.expense-list th {
+  background: #2c2c2c;
+  color: #ffffff;
+}
+.expense-list tr:hover td {
+    background-color: #242424;
+}
+.expense-list td {
+  background: #1e1e1e;
+}
+
+.expense-list button {
+  margin-right: 5px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.expense-list button:first-child {
+  background: #2196f3;
+}
+
+.expense-list button:first-child:hover {
+  background: #1976d2;
+}
+
+.expense-list button:last-child {
+  background: #f44336;
+}
+
+.expense-list button:last-child:hover {
+  background: #d32f2f;
+}
+.category-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 1rem;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.bar-label {
+  min-width: 80px;
+  color: #ccc;
+}
+
+.bar-fill {
+  height: 24px;
+  background-color: #4caf50;
+  border-radius: 4px;
+  text-align: right;
+  padding-right: 5px;
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expense-tracker > *:not(.expense-form) {
+  transition: filter 0.3s ease;
+}
+
+.expense-tracker.editing > *:not(.expense-form) {
+  filter: blur(5px);
+  pointer-events: none; /* tránh click vào phần blur */
+  user-select: none;
+}
+.expense-input {
+  display: flex;
+  gap: 10px;
+}
+.btn.cancel {
+  background-color: #5e5e5e;
+}
+.btn.update {
+  background-color: #0f68ec;
+}
