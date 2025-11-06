@@ -1,4 +1,10 @@
 import { useRef, useState } from "react";
+const formatDate = (dateStr) => {
+  const d = new Date(dateStr);
+  return `${String(d.getMonth() + 1).padStart(2, "0")}/${String(
+    d.getDate()
+  ).padStart(2, "0")}/${d.getFullYear()}`;
+};
 
 //Exercise 5: Expense Tracker (Challenge)
 const categories = ["Ăn uống", "Di chuyển", "Giải trí", "Mua sắm", "Khác"];
@@ -39,6 +45,78 @@ function formatMoneyVN(amount) {
     return amount.toString();
   }
 }
+const initialData = [
+  {
+    id: 1,
+    description: "Cà phê sáng",
+    amount: 45000,
+    category: "Ăn uống",
+    date: "2025-11-01",
+  },
+  {
+    id: 2,
+    description: "Grab đi làm",
+    amount: 60000,
+    category: "Di chuyển",
+    date: "2025-11-02",
+  },
+  {
+    id: 3,
+    description: "Xem phim cuối tuần",
+    amount: 120000,
+    category: "Giải trí",
+    date: "2025-10-30",
+  },
+  {
+    id: 4,
+    description: "Mua áo sơ mi",
+    amount: 350000,
+    category: "Mua sắm",
+    date: "2025-11-03",
+  },
+  {
+    id: 5,
+    description: "Ăn tối với bạn",
+    amount: 200000,
+    category: "Ăn uống",
+    date: "2025-11-04",
+  },
+  {
+    id: 6,
+    description: "Netflix subscription",
+    amount: 180000,
+    category: "Giải trí",
+    date: "2025-10-25",
+  },
+  {
+    id: 7,
+    description: "Mua sách",
+    amount: 95000,
+    category: "Khác",
+    date: "2025-10-28",
+  },
+  {
+    id: 8,
+    description: "Bữa trưa công ty",
+    amount: 60000,
+    category: "Ăn uống",
+    date: "2025-11-05",
+  },
+  {
+    id: 9,
+    description: "Taxi sân bay",
+    amount: 250000,
+    category: "Di chuyển",
+    date: "2025-11-01",
+  },
+  {
+    id: 10,
+    description: "Tai nghe Bluetooth",
+    amount: 450000,
+    category: "Mua sắm",
+    date: "2025-10-29",
+  },
+];
 
 export default function ExpenseTracker() {
   // TODO:
@@ -66,7 +144,7 @@ export default function ExpenseTracker() {
   const rootRef = useRef(null);
   const [expenses, setExpenses] = useState(() => {
     const saved = localStorage.getItem("expenses");
-    return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) : initialData;
   });
 
   const [formData, setFormData] = useState(() => initialForm);
@@ -79,7 +157,10 @@ export default function ExpenseTracker() {
     minAmount: "",
     maxAmount: "",
   });
-
+  const [sortOption, setSortOption] = useState({
+    field: "date", // có thể là 'date' | 'amount' | 'category'
+    order: "desc", // 'asc' hoặc 'desc'
+  });
   const [editingId, setEditingId] = useState(null);
 
   // TODO: Implement các functions:
@@ -144,7 +225,55 @@ export default function ExpenseTracker() {
     });
   };
   const canSubmit = formData.description && formData.amount;
-  const expensesFiltered = expenses;
+  const handleFilter = (expense) => {
+    const { category, dateFrom, dateTo, maxAmount, minAmount, searchTerm } =
+      filters;
+    const filterSearch = searchTerm.toLocaleLowerCase().trim();
+    const expenseDate = new Date(expense.date);
+
+    if (category !== "all" && expense.category !== category) return false;
+    if (dateFrom && new Date(dateFrom) > expenseDate) return false;
+    if (dateTo && new Date(dateTo) < expenseDate) return false;
+    if (maxAmount && maxAmount < expense.amount) return false;
+    if (minAmount && minAmount > expense.amount) return false;
+    if (
+      filterSearch &&
+      !expense.description.toLocaleLowerCase().includes(filterSearch)
+    )
+      return false;
+    return true;
+  };
+  const handleChangeSort = (key) => {
+    let direction = "asc";
+    if (key === sortOption.field && sortOption.order === "asc") {
+      direction = "desc";
+    }
+
+    setSortOption({
+      field: key,
+      order: direction,
+    });
+  };
+  const handleSort = (a, b) => {
+    let { field, order } = sortOption;
+    let result = 0;
+    if (field === "date") result = new Date(a.date) - new Date(b.date);
+    if (field === "amount") result = a.amount - b.amount;
+
+    //So sánh theo thứ tự trong mảng `categories`
+    if (field === "category") {
+      const indexA = categories.indexOf(a.category);
+      const indexB = categories.indexOf(b.category);
+      result = indexA - indexB;
+    }
+
+    if (field === "description") {
+      result = a.description.localeCompare(b.description);
+    }
+    return order === "asc" ? result : -result;
+  };
+  const expensesFiltered = expenses.filter(handleFilter).sort(handleSort);
+
   const total = expensesFiltered.reduce(
     (acc, item) => (acc += Number(item.amount)),
     0
@@ -155,7 +284,7 @@ export default function ExpenseTracker() {
       .reduce((acc, expense) => (acc += Number(expense.amount)), 0);
     return { category, amount };
   });
-
+  console.log(sortOption);
   return (
     <div ref={rootRef}>
       <h1>Quản Lý Chi Tiêu</h1>
@@ -220,10 +349,9 @@ export default function ExpenseTracker() {
         {!editingId && (
           <>
             <div className="filters">
-              <h2>Bộ lọc</h2>
               <input
                 type="text"
-                placeholder="Tìm kiếm mô tả"
+                placeholder="Tìm kiếm theo mô tả"
                 value={filters.searchTerm}
                 name="searchTerm"
                 onChange={handleChangeFilters}
@@ -234,11 +362,11 @@ export default function ExpenseTracker() {
                 onChange={handleChangeFilters}
               >
                 <option value="all">Tất cả</option>
-                <option>Ăn uống</option>
-                <option>Di chuyển</option>
-                <option>Giải trí</option>
-                <option>Mua sắm</option>
-                <option>Khác</option>
+                <option value="Ăn uống">Ăn uống</option>
+                <option value="Di chuyển">Di chuyển</option>
+                <option value="Giải trí">Giải trí</option>
+                <option value="Mua sắm">Mua sắm</option>
+                <option value="Khác">Khác</option>
               </select>
               <input
                 type="date"
@@ -247,8 +375,8 @@ export default function ExpenseTracker() {
                 onChange={handleChangeFilters}
               />
               <input
-                type="dateTo"
-                name="dateFrom"
+                type="date"
+                name="dateTo"
                 value={filters.dateTo}
                 onChange={handleChangeFilters}
               />
@@ -300,10 +428,34 @@ export default function ExpenseTracker() {
           <table>
             <thead>
               <tr>
-                <th>Mô tả</th>
-                <th>Số tiền</th>
-                <th>Category</th>
-                <th>Ngày</th>
+                <th onClick={() => handleChangeSort("description")}>
+                  Mô tả{" "}
+                  {sortOption.field === "description" &&
+                  sortOption.order === "desc"
+                    ? " ▼ "
+                    : " ▲ "}
+                </th>
+                <th onClick={() => handleChangeSort("amount")}>
+                  Số tiền{" "}
+                  {sortOption.field === "amount" && sortOption.order === "desc"
+                    ? " ▼ "
+                    : " ▲ "}
+                </th>
+                <th onClick={() => handleChangeSort("category")}>
+                  Category{" "}
+                  {sortOption.field === "category" &&
+                  sortOption.order === "desc"
+                    ? " ▼ "
+                    : " ▲ "}
+                </th>
+                <th onClick={() => handleChangeSort("date")}>
+                  Ngày
+                  <br />
+                  (mm/dd/yyyy){" "}
+                  {sortOption.field === "date" && sortOption.order === "desc"
+                    ? " ▼ "
+                    : " ▲ "}
+                </th>
                 <th>Hành động</th>
               </tr>
             </thead>
@@ -314,7 +466,7 @@ export default function ExpenseTracker() {
                     <td>{expense.description}</td>
                     <td>{formatCurrency(expense.amount)}</td>
                     <td>{expense.category}</td>
-                    <td>{new Date("2025-11-05").toLocaleDateString()}</td>
+                    <td>{formatDate(expense.date)}</td>
                     <td>
                       <button onClick={() => startEditing(expense)}>Sửa</button>
                       <button onClick={() => deleteExpense(expense.id)}>
