@@ -1,5 +1,5 @@
 import { Code2 } from "lucide-react";
-import { styles } from "../assets/styles";
+import "../assets/styles.css";
 import ExerciseCard from "./ExerciseCard";
 
 const DayContent = ({ day }) => {
@@ -21,18 +21,18 @@ const DayContent = ({ day }) => {
   }));
 
   return (
-    <div style={styles.dayContent}>
-      <div style={styles.dayHeader}>
-        <div style={styles.dayHeaderContent}>
+    <div className="day-content">
+      <div className="day-header">
+        <div className="day-header-content">
           <Code2 size={32} color="#00D9FF" />
           <div>
-            <h1 style={styles.dayTitle}>Day {day}</h1>
-            <p style={styles.daySubtitle}>5 React exercises to master</p>
+            <h1 className="day-title">Day {day}</h1>
+            <p className="day-subtitle">5 React exercises to master</p>
           </div>
         </div>
       </div>
 
-      <div style={styles.exercisesList}>
+      <div className="exercises-list">
         {exercises.map((exercise) => (
           <ExerciseCard key={exercise.id} exercise={exercise} />
         ))}
@@ -40,4 +40,5 @@ const DayContent = ({ day }) => {
     </div>
   );
 };
+
 export default DayContent;

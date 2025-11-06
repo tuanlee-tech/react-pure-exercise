@@ -1,22 +1,21 @@
 import { Code2, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { styles } from "./assets/styles";
+import "./assets/styles.css";
 import DayContent from "./components/DayContent";
+import UIShowcase from "./pages/UIShowcase";
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [currentDay, setCurrentDay] = useState(1);
+  const [currentDay, setCurrentDay] = useState(null); // null = chưa chọn ngày
+  const [showUI, setShowUI] = useState(false); // true khi click UI List
   const [isMobile, setIsMobile] = useState(false);
 
+  // Responsive check
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      if (mobile) {
-        setIsSidebarOpen(false);
-      } else {
-        setIsSidebarOpen(true);
-      }
+      setIsSidebarOpen(!mobile);
     };
 
     checkMobile();
@@ -24,18 +23,25 @@ const App = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Click vào ngày
   const handleDayClick = (day) => {
     setCurrentDay(day);
-    if (isMobile) {
-      setIsSidebarOpen(false);
-    }
+    setShowUI(false);
+    if (isMobile) setIsSidebarOpen(false);
+  };
+
+  // Click vào UI List
+  const handleUIClick = () => {
+    setShowUI(true);
+    setCurrentDay(null);
+    if (isMobile) setIsSidebarOpen(false);
   };
 
   return (
-    <div style={styles.container}>
+    <div className="container">
       {/* Toggle Button */}
       <button
-        style={styles.toggleButton}
+        className="toggle-button"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
@@ -43,24 +49,23 @@ const App = () => {
 
       {/* Sidebar Overlay for Mobile */}
       {isMobile && isSidebarOpen && (
-        <div style={styles.overlay} onClick={() => setIsSidebarOpen(false)} />
+        <div className="overlay" onClick={() => setIsSidebarOpen(false)} />
       )}
 
       {/* Sidebar */}
       <aside
-        style={{
-          ...styles.sidebar,
-          ...(isSidebarOpen ? styles.sidebarOpen : styles.sidebarClosed),
-        }}
+        className={`sidebar ${
+          isSidebarOpen ? "sidebar-open" : "sidebar-closed"
+        }`}
       >
-        <div style={styles.sidebarHeader}>
-          <div style={styles.logoContainer}>
+        <div className="sidebar-header">
+          <div className="logo-container">
             <Code2 size={28} color="#00D9FF" />
-            <span style={styles.logo}>React 30 Days</span>
+            <span className="logo">React 30 Days</span>
           </div>
           {isMobile && (
             <button
-              style={styles.closeButton}
+              className="close-button"
               onClick={() => setIsSidebarOpen(false)}
             >
               <X size={24} />
@@ -68,29 +73,40 @@ const App = () => {
           )}
         </div>
 
-        <div style={styles.sidebarContent}>
-          <div style={styles.progressContainer}>
-            <div style={styles.progressHeader}>
-              <span style={styles.progressText}>Progress</span>
-              <span style={styles.progressPercent}>3%</span>
+        <div className="sidebar-content">
+          <div className="progress-container">
+            <div className="progress-header">
+              <span className="progress-text">Progress</span>
+              <span className="progress-percent">3%</span>
             </div>
-            <div style={styles.progressBar}>
-              <div style={styles.progressFill} />
+            <div className="progress-bar">
+              <div className="progress-fill" />
             </div>
           </div>
 
-          <nav style={styles.nav}>
+          <nav className="nav">
+            {/* UI List */}
+            <button
+              className={`nav-item ${showUI ? "nav-item-active" : ""}`}
+              onClick={handleUIClick}
+            >
+              <span className="nav-item-number">UI List</span>
+              {showUI && <div className="active-indicator" />}
+            </button>
+
+            {/* 30 Days */}
             {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => (
               <button
                 key={day}
-                style={{
-                  ...styles.navItem,
-                  ...(currentDay === day ? styles.navItemActive : {}),
-                }}
+                className={`nav-item ${
+                  currentDay === day && !showUI ? "nav-item-active" : ""
+                }`}
                 onClick={() => handleDayClick(day)}
               >
-                <span style={styles.navItemNumber}>Day {day}</span>
-                {currentDay === day && <div style={styles.activeIndicator} />}
+                <span className="nav-item-number">Day {day}</span>
+                {currentDay === day && !showUI && (
+                  <div className="active-indicator" />
+                )}
               </button>
             ))}
           </nav>
@@ -99,13 +115,13 @@ const App = () => {
 
       {/* Main Content */}
       <main
+        className="main"
         style={{
-          ...styles.main,
           marginLeft: isSidebarOpen ? "280px" : "0",
           width: isSidebarOpen ? "calc(100% - 280px)" : "100%",
         }}
       >
-        <DayContent day={currentDay} />
+        {showUI ? <UIShowcase /> : <DayContent day={currentDay} />}
       </main>
     </div>
   );

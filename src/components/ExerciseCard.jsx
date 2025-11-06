@@ -1,43 +1,38 @@
 import { ChevronDown, ChevronRight, Code, Eye } from "lucide-react";
 import { useState } from "react";
-import { styles } from "../assets/styles";
+import "../assets/styles.css";
 import ExerciseDemo from "./ExerciseDemo";
+
 const ExerciseCard = ({ exercise }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("demo");
 
   return (
-    <div style={styles.exerciseCard}>
-      <div style={styles.exerciseHeader} onClick={() => setIsOpen(!isOpen)}>
-        <div style={styles.exerciseHeaderLeft}>
-          <div style={styles.exerciseNumber}>{exercise.id}</div>
-          <h3 style={styles.exerciseTitle}>{exercise.title}</h3>
+    <div className="exercise-card">
+      <div className="exercise-header" onClick={() => setIsOpen(!isOpen)}>
+        <div className="exercise-header-left">
+          <div className="exercise-number">{exercise.id}</div>
+          <h3 className="exercise-title">{exercise.title}</h3>
         </div>
-        <div style={styles.expandIcon}>
+        <div className="expand-icon">
           {isOpen ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
         </div>
       </div>
 
-      <div style={styles.exerciseDescription}>{exercise.description}</div>
+      <div className="exercise-description">{exercise.description}</div>
 
       {isOpen && (
-        <div style={styles.solutionContainer}>
-          <div style={styles.tabsContainer}>
+        <div className="solution-container">
+          <div className="tabs-container">
             <button
-              style={{
-                ...styles.tab,
-                ...(activeTab === "demo" ? styles.tabActive : {}),
-              }}
+              className={`tab ${activeTab === "demo" ? "tab-active" : ""}`}
               onClick={() => setActiveTab("demo")}
             >
               <Eye size={16} />
               <span>Demo</span>
             </button>
             <button
-              style={{
-                ...styles.tab,
-                ...(activeTab === "code" ? styles.tabActive : {}),
-              }}
+              className={`tab ${activeTab === "code" ? "tab-active" : ""}`}
               onClick={() => setActiveTab("code")}
             >
               <Code size={16} />
@@ -45,16 +40,16 @@ const ExerciseCard = ({ exercise }) => {
             </button>
           </div>
 
-          <div style={styles.tabContent}>
+          <div className="tab-content">
             {activeTab === "demo" ? (
               <ExerciseDemo exerciseId={exercise.id} />
             ) : (
-              <div style={styles.codeContainer}>
-                <div style={styles.codeHeader}>
-                  <span style={styles.codeLang}>JavaScript</span>
+              <div className="code-container">
+                <div className="code-header">
+                  <span className="code-lang">JavaScript</span>
                 </div>
-                <pre style={styles.codeBlock}>
-                  <code style={styles.code}>{exercise.solution}</code>
+                <pre className="code-block">
+                  <code className="code">{exercise.solution}</code>
                 </pre>
               </div>
             )}
@@ -64,4 +59,5 @@ const ExerciseCard = ({ exercise }) => {
     </div>
   );
 };
+
 export default ExerciseCard;
