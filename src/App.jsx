@@ -1,12 +1,14 @@
 import { Code2, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import "./assets/styles.css";
-import DayContent from "./components/DayContent";
+import * as Days from "./pages/DayPages";
 import UIShowcase from "./pages/UIShowcase";
 
+const DAY_NUMBER = 30;
+const CURRENT_DAY = 1;
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [currentDay, setCurrentDay] = useState(null); // null = chưa chọn ngày
+  const [currentDay, setCurrentDay] = useState(CURRENT_DAY); // null = chưa chọn ngày
   const [showUI, setShowUI] = useState(false); // true khi click UI List
   const [isMobile, setIsMobile] = useState(false);
 
@@ -36,7 +38,8 @@ const App = () => {
     setCurrentDay(null);
     if (isMobile) setIsSidebarOpen(false);
   };
-
+  const processing = Number(100 * (CURRENT_DAY / DAY_NUMBER)).toFixed(2) + "%";
+  const SelectedDay = Days[`Day${currentDay ?? 1}`];
   return (
     <div className="container">
       {/* Toggle Button */}
@@ -61,7 +64,7 @@ const App = () => {
         <div className="sidebar-header">
           <div className="logo-container">
             <Code2 size={28} color="#00D9FF" />
-            <span className="logo">React 30 Days</span>
+            <span className="logo">React {DAY_NUMBER} Days</span>
           </div>
           {isMobile && (
             <button
@@ -77,10 +80,10 @@ const App = () => {
           <div className="progress-container">
             <div className="progress-header">
               <span className="progress-text">Progress</span>
-              <span className="progress-percent">3%</span>
+              <span className="progress-percent">{processing}</span>
             </div>
-            <div className="progress-bar">
-              <div className="progress-fill" />
+            <div className="progress-bar" style={{ "--progress": processing }}>
+              <div className="progress-fill"></div>
             </div>
           </div>
 
@@ -95,7 +98,7 @@ const App = () => {
             </button>
 
             {/* 30 Days */}
-            {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => (
+            {Array.from({ length: CURRENT_DAY }, (_, i) => i + 1).map((day) => (
               <button
                 key={day}
                 className={`nav-item ${
@@ -121,7 +124,7 @@ const App = () => {
           width: isSidebarOpen ? "calc(100% - 280px)" : "100%",
         }}
       >
-        {showUI ? <UIShowcase /> : <DayContent day={currentDay} />}
+        {showUI ? <UIShowcase /> : <SelectedDay />}
       </main>
     </div>
   );
