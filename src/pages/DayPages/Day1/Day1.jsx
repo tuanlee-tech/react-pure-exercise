@@ -1,8 +1,15 @@
+import "@ui/global.css";
 import { Code2 } from "lucide-react";
-import Exercise1 from "./components/Exercise1";
-import "./styles.css";
+import Exercise1 from "./components/Exercise1/Exercise1";
+import Exercise2 from "./components/Exercise2/Exercise2";
+import Exercise3 from "./components/Exercise3/Exercise3";
+import Exercise4 from "./components/Exercise4/Exercise4";
+
 const exercises = {
   1: Exercise1,
+  2: Exercise2,
+  3: Exercise3,
+  4: Exercise4,
 };
 
 const Day1 = () => {
@@ -16,12 +23,21 @@ const Day1 = () => {
             <p className="day-subtitle">JSX & Rendering Basics</p>
           </div>
         </div>
+        <section class="lesson-goal">
+          <h2>🎯 Mục tiêu hôm nay</h2>
+          <ul>
+            <li>Hiểu JSX là gì và cách hoạt động</li>
+            <li>Sử dụng JavaScript expressions trong JSX</li>
+            <li>Làm việc với Fragments</li>
+            <li>Tạo được UI components đơn giản</li>
+          </ul>
+        </section>
       </div>
 
       <div className="exercises-list">
-        {Array.from({ length: 1 }, (_, i) => {
+        {Array.from({ length: 4 }, (_, i) => {
           const Ex = exercises[i + 1];
-          return <Ex key={i} />;
+          return Ex ? <Ex key={i} /> : null;
         })}
       </div>
     </div>

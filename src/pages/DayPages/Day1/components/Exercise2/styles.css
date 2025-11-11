@@ -1,0 +1,144 @@
+/* ==================== WEATHER WIDGET - PREMIUM MODERN ==================== */
+.weather-widget-modern {
+  position: relative;
+  overflow: hidden;
+  width: 320px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  border: 1px solid #1e293b;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #e4e4e7;
+  text-align: center;
+}
+
+.weather-widget-modern:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 24px 60px rgba(0, 217, 255, 0.2);
+  border-color: #00D9FF;
+}
+
+/* Background theo thời tiết */
+.bg-sunny {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+}
+
+.bg-rainy {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+.bg-cloudy {
+  background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* City Name - Gradient Text */
+.weather-city {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  background: linear-gradient(135deg, #e4e4e7 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+/* Weather Icon - Big + Animation */
+.weather-icon-big {
+  font-size: 84px;
+  margin: 16px 0;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Sunny special: thêm nắng lấp lánh */
+.bg-sunny .weather-icon-big {
+  animation: float 6s ease-in-out infinite, shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 8px 16px rgba(255, 255, 0, 0.4));
+  }
+
+  50% {
+    filter: drop-shadow(0 12px 24px rgba(255, 255, 0, 0.8));
+  }
+}
+
+/* Temperature - Huge + Gradient */
+.weather-temperature {
+  font-size: 64px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+/* Details Grid */
+.weather-details {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e4e4e7;
+}
+
+/* Optional: thêm viền glow nhẹ */
+.weather-widget-modern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, transparent 30%, #00D9FF 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.weather-widget-modern:hover::before {
+  opacity: 0.6;
+}

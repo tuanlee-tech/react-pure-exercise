@@ -1,0 +1,219 @@
+/* ==================== PRODUCT CARD - MODERN & PREMIUM ==================== */
+.product-card-modern {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.7) 100%);
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: 300px;
+}
+
+.product-card-modern:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+  border-color: #00D9FF;
+}
+
+/* Image Container */
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.product-card-modern:hover .product-image {
+  transform: scale(1.08);
+}
+
+/* Gradient Overlay on Hover */
+.product-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(10, 14, 26, 0.8) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.product-card-modern:hover .product-image-overlay {
+  opacity: 1;
+}
+
+/* Discount Badge - Flash Sale Style */
+.discount-badge-premium {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: linear-gradient(135deg, #ff3b7c 0%, #ff6b9d 100%);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 59, 124, 0.4);
+  letter-spacing: 0.5px;
+  transform: rotate(-4deg);
+  animation: pulse-badge 2s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse-badge {
+
+  0%,
+  100% {
+    transform: rotate(-4deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(-4deg) scale(1.08);
+  }
+}
+
+/* Stock Dot Indicator */
+.stock-dot {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 12px;
+  height: 12px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+  border: 2px solid #0f172a;
+  z-index: 10;
+}
+
+.stock-dot.out {
+  background: #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+}
+
+/* Product Name - Gradient Text */
+.product-name-gradient {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 10px 0;
+  background: linear-gradient(135deg, #e4e4e7 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.3;
+}
+
+/* Price */
+.product-price-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.price-discounted {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.price-original {
+  font-size: 15px;
+  color: #64748b;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+/* Rating */
+.product-rating-modern {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rating-stars .filled {
+  color: #fbbf24;
+}
+
+.rating-stars .empty {
+  color: #334155;
+}
+
+.rating-value {
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.reviews-count {
+  color: #64748b;
+}
+
+/* Stock Status Pill */
+.stock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+}
+
+.stock-pill.in {
+  background: rgba(34, 197, 94, 0.15);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.stock-pill.out {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.stock-pill-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.stock-pill.out .stock-pill-dot {
+  background: #ef4444;
+}
+
+/* CTA Button */
+.product-cta-button {
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px rgba(0, 217, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.product-cta-button:hover {
+  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.5);
+}
