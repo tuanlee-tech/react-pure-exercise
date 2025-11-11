@@ -12,28 +12,25 @@ const exercises = {
   4: Exercise4,
 };
 
-const Day2 = () => {
+const Day3 = () => {
   return (
     <div className="day-content">
       <div className="day-header">
         <div className="day-header-content">
           <Code2 size={32} color="#00D9FF" />
           <div>
-            <h1 className="day-title">Ngày 2</h1>
-            <p className="day-subtitle">Conditional & List Rendering</p>
+            <h1 className="day-title">Ngày 3</h1>
+            <p className="day-subtitle">Components Fundamentals</p>
           </div>
         </div>
         <section className="lesson-goal">
           <h2>🎯 Mục tiêu hôm nay</h2>
           <ul>
-            <li>Render có điều kiện với nhiều cách khác nhau</li>
-            <li>
-              Render danh sách với <span class="code-badge">map()</span>
-            </li>
-            <li>
-              Hiểu và sử dụng <span class="code-badge">key</span> prop đúng cách
-            </li>
-            <li>Tránh anti-pattern: index as key</li>
+            <li>Hiểu sâu về Function Components</li>
+            <li>Mastering Props: passing data, prop types, default props</li>
+            <li>Props Destructuring cho code sạch hơn</li>
+            <li>Children prop và component composition</li>
+            <li>Prop Drilling: vấn đề và giải pháp cơ bản</li>
           </ul>
         </section>
       </div>
@@ -48,4 +45,4 @@ const Day2 = () => {
   );
 };
 
-export default Day2;
+export default Day3;

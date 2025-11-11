@@ -23,7 +23,7 @@ const Day1 = () => {
             <p className="day-subtitle">JSX & Rendering Basics</p>
           </div>
         </div>
-        <section class="lesson-goal">
+        <section className="lesson-goal">
           <h2>🎯 Mục tiêu hôm nay</h2>
           <ul>
             <li>Hiểu JSX là gì và cách hoạt động</li>

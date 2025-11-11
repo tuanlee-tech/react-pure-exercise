@@ -48,8 +48,8 @@ Gợi ý:
       <ExerciseCard.Demo>
         <div className="grid grid-cols-3">
           {products.map((product) => (
-            <div className="grid-item">
-              <ProductCard key={product.id} product={product} />
+            <div key={product.id} className="grid-item">
+              <ProductCard product={product} />
             </div>
           ))}
         </div>

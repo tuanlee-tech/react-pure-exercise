@@ -39,8 +39,8 @@ function WeatherWidget() {
       <ExerciseCard.Demo>
         <div className="grid grid-cols-3">
           {weathers.map((weather) => (
-            <div className="grid-item">
-              <WeatherWidget key={weather.city} weather={weather} />
+            <div key={weather.city} className="grid-item">
+              <WeatherWidget weather={weather} />
             </div>
           ))}
         </div>

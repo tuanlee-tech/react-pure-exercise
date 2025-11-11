@@ -1,0 +1,346 @@
+/* ==============================
+   DASHBOARD STYLE (Isolated)
+   Prefix: .dashboard-
+   ============================== */
+
+/* Container layout */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  color: #e4e4e7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 10;
+}
+
+.dashboard-sidebar .logo {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 24px 20px;
+  color: #00d9ff;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #1e293b;
+}
+
+.dashboard-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dashboard-nav-item:hover {
+  background: rgba(148, 163, 184, 0.1);
+  color: #e4e4e7;
+}
+
+.dashboard-nav-item.active {
+  background: rgba(0, 217, 255, 0.12);
+  color: #00d9ff;
+  font-weight: 600;
+}
+
+/* Main content */
+.dashboard-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(15, 23, 42, 0.6);
+  border-bottom: 1px solid #1e293b;
+  backdrop-filter: blur(4px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.dashboard-search-input {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  color: #e4e4e7;
+  padding: 8px 12px;
+  width: 240px;
+}
+
+.dashboard-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dashboard-notification-bell {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.dashboard-notification-bell:hover {
+  color: #00d9ff;
+}
+
+.dashboard-notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #00d9ff;
+  color: #0a0e1a;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 8px;
+}
+
+.dashboard-user-avatar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #e4e4e7;
+  transition: opacity 0.2s;
+}
+
+.dashboard-user-avatar:hover {
+  opacity: 0.9;
+}
+
+.dashboard-user-avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #334155;
+  object-fit: cover;
+}
+
+/* Dropdown menu */
+.dashboard-dropdown-menu {
+  position: absolute;
+  top: 70px;
+  right: 24px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.dashboard-dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.dashboard-dropdown-menu li {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #e4e4e7;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dashboard-dropdown-menu li:hover {
+  background: rgba(0, 217, 255, 0.1);
+  color: #00d9ff;
+}
+
+/* ========== NOTIFICATIONS (inside Modal) ========== */
+
+/* Container của danh sách thông báo */
+.dashboard-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 4px;
+  color: #cbd5e1; /* Màu chữ sáng hơn */
+  font-size: 14px;
+}
+
+/* Từng item thông báo */
+.dashboard-notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Icon trong mỗi thông báo */
+.dashboard-notification-icon {
+  font-size: 18px;
+  color: #00d9ff;
+  margin-top: 2px;
+}
+
+/* Nội dung thông báo */
+.dashboard-notification-text {
+  flex: 1;
+  line-height: 1.5;
+}
+
+/* Hiệu ứng hover */
+.dashboard-notification-item:hover {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  transform: translateY(-2px);
+}
+
+/* Tiêu đề modal */
+.ui-modal-header h3,
+.ui-modal-title,
+.dashboard-modal-title {
+  color: #00d9ff !important;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Footer trong modal */
+.ui-modal-footer button:first-child {
+  color: #94a3b8;
+}
+
+.ui-modal-footer button:last-child {
+  background: linear-gradient(135deg, #00d9ff, #00a3cc);
+  color: #0a0e1a;
+  font-weight: 600;
+  border: none;
+}
+
+
+/* Stats section */
+.dashboard-content {
+  padding: 32px 24px;
+}
+
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.dashboard-stat-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8));
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.dashboard-stat-card:hover {
+  border-color: #334155;
+  transform: translateY(-2px);
+}
+
+.dashboard-stat-icon {
+  font-size: 28px;
+  color: #00d9ff;
+}
+
+.dashboard-stat-info {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.dashboard-stat-title {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.dashboard-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e4e4e7;
+}
+
+.dashboard-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dashboard-trend-up {
+  color: #10b981;
+}
+
+.dashboard-trend-down {
+  color: #ef4444;
+}
+
+/* Recent activity */
+.dashboard-recent-activity {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.dashboard-recent-activity h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00d9ff;
+  margin-bottom: 12px;
+}
+
+.dashboard-recent-activity p {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* Footer */
+.dashboard-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #64748b;
+  border-top: 1px solid #1e293b;
+}
