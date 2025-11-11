@@ -1,6 +1,7 @@
 import { Code2, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import "./assets/styles.css";
+import ComingSoon from "./components/ComingSoon";
 import * as Days from "./pages/DayPages";
 import UIShowcase from "./pages/UIShowcase";
 
@@ -64,7 +65,7 @@ const App = () => {
         <div className="sidebar-header">
           <div className="logo-container">
             <Code2 size={28} color="#00D9FF" />
-            <span className="logo">React {DAY_NUMBER} Days</span>
+            <span className="logo">{DAY_NUMBER} Ngày ReactJS</span>
           </div>
           {isMobile && (
             <button
@@ -79,7 +80,7 @@ const App = () => {
         <div className="sidebar-content">
           <div className="progress-container">
             <div className="progress-header">
-              <span className="progress-text">Progress</span>
+              <span className="progress-text">Tiến độ</span>
               <span className="progress-percent">{processing}</span>
             </div>
             <div className="progress-bar" style={{ "--progress": processing }}>
@@ -93,12 +94,12 @@ const App = () => {
               className={`nav-item ${showUI ? "nav-item-active" : ""}`}
               onClick={handleUIClick}
             >
-              <span className="nav-item-number">UI List</span>
+              <span className="nav-item-number">Danh sách UI</span>
               {showUI && <div className="active-indicator" />}
             </button>
 
             {/* 30 Days */}
-            {Array.from({ length: CURRENT_DAY }, (_, i) => i + 1).map((day) => (
+            {Array.from({ length: DAY_NUMBER }, (_, i) => i + 1).map((day) => (
               <button
                 key={day}
                 className={`nav-item ${
@@ -106,7 +107,7 @@ const App = () => {
                 }`}
                 onClick={() => handleDayClick(day)}
               >
-                <span className="nav-item-number">Day {day}</span>
+                <span className="nav-item-number">Ngày {day}</span>
                 {currentDay === day && !showUI && (
                   <div className="active-indicator" />
                 )}
@@ -124,7 +125,13 @@ const App = () => {
           width: isSidebarOpen ? "calc(100% - 280px)" : "100%",
         }}
       >
-        {showUI ? <UIShowcase /> : <SelectedDay />}
+        {showUI ? (
+          <UIShowcase />
+        ) : SelectedDay ? (
+          <SelectedDay />
+        ) : (
+          <ComingSoon />
+        )}
       </main>
     </div>
   );

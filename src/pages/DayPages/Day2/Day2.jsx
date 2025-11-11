@@ -12,24 +12,28 @@ const exercises = {
   4: Exercise4,
 };
 
-const Day1 = () => {
+const Day2 = () => {
   return (
     <div className="day-content">
       <div className="day-header">
         <div className="day-header-content">
           <Code2 size={32} color="#00D9FF" />
           <div>
-            <h1 className="day-title">Ngày 1</h1>
-            <p className="day-subtitle">JSX & Rendering Basics</p>
+            <h1 className="day-title">Ngày 2</h1>
+            <p className="day-subtitle">Conditional & List Rendering</p>
           </div>
         </div>
         <section class="lesson-goal">
           <h2>🎯 Mục tiêu hôm nay</h2>
           <ul>
-            <li>Hiểu JSX là gì và cách hoạt động</li>
-            <li>Sử dụng JavaScript expressions trong JSX</li>
-            <li>Làm việc với Fragments</li>
-            <li>Tạo được UI components đơn giản</li>
+            <li>Render có điều kiện với nhiều cách khác nhau</li>
+            <li>
+              Render danh sách với <span class="code-badge">map()</span>
+            </li>
+            <li>
+              Hiểu và sử dụng <span class="code-badge">key</span> prop đúng cách
+            </li>
+            <li>Tránh anti-pattern: index as key</li>
           </ul>
         </section>
       </div>
@@ -44,4 +48,4 @@ const Day1 = () => {
   );
 };
 
-export default Day1;
+export default Day2;
