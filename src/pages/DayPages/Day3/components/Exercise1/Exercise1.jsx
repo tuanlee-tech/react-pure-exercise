@@ -1,6 +1,5 @@
 import ExerciseCard from "../../../../../components/ExerciseCard";
 import UserProfile from "./components/UserProfile";
-import UserDashboard from "./components/UserProfile";
 import { users } from "./data/users";
 import "./styles.css";
 export default function Exercise1() {

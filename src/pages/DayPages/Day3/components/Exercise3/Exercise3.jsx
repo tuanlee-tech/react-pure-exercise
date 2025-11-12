@@ -1,6 +1,5 @@
 import ExerciseCard from "../../../../../components/ExerciseCard";
 import Dashboard from "./components/Dashboard";
-import NotificationCenter from "./components/Dashboard";
 import "./styles.css";
 export default function Exercise3() {
   return (

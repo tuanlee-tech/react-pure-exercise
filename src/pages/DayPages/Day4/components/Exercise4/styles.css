@@ -1,0 +1,230 @@
+/* Form Wrapper */
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.form-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Form Title */
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  background: linear-gradient(135deg, #e4e4e7 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.form-label-required::after {
+  content: " *";
+  color: #00D9FF;
+}
+
+/* Input, Textarea, Select */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  color: #e4e4e7;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #64748b;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: #00D9FF;
+  box-shadow: 0 0 0 2px rgba(0, 217, 255, 0.2);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Checkbox */
+.form-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.form-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #00D9FF;
+  cursor: pointer;
+}
+
+.form-checkbox-label {
+  font-size: 14px;
+  color: #e4e4e7;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Error Message */
+.form-error {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-error::before {
+  content: "⚠️";
+  font-size: 12px;
+}
+
+/* Success Message */
+.form-success {
+  color: #51cf66;
+  font-size: 13px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-success::before {
+  content: "✅";
+}
+
+/* Button Group */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* Submit Button */
+.form-submit {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  color: #0a0e1a;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.form-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 217, 255, 0.3);
+}
+
+.form-submit:active {
+  transform: translateY(0);
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Reset Button */
+.form-reset {
+  padding: 12px 24px;
+  background: rgba(148, 163, 184, 0.1);
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-reset:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: #e4e4e7;
+  border-color: #475569;
+}
+
+/* Loading State */
+.form-submit-loading {
+  position: relative;
+  color: transparent;
+}
+
+.form-submit-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: #0a0e1a;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .form-card {
+    padding: 24px 16px;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .form-submit,
+  .form-reset {
+    flex: 1;
+  }
+}

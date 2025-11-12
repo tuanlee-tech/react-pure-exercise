@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { ChevronDown, ChevronRight, Code, Eye } from "lucide-react";
-import "../assets/styles.css";
 import { Highlight, themes } from "prism-react-renderer";
+import { useState } from "react";
+import "../assets/styles.css";
 
 const ExerciseCard = ({ children }) => {
-  console.log(children);
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("demo");
 

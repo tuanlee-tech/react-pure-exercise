@@ -1,6 +1,5 @@
 import ExerciseCard from "../../../../../components/ExerciseCard";
 import ProductGrid from "./components/ProductGrid";
-import ProductFilter from "./components/ProductGrid";
 import { products } from "./data/products";
 import "./styles.css";
 export default function Exercise2() {

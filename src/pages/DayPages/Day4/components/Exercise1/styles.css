@@ -1,0 +1,104 @@
+/* === Alert Component === */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 1.5;
+  background: rgba(15, 23, 42, 0.6);
+  color: #e4e4e7;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Alert Variants */
+.alert-info {
+  border-color: rgba(0, 217, 255, 0.3);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(0, 217, 255, 0.05));
+}
+
+.alert-success {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(16, 185, 129, 0.1));
+}
+
+.alert-warning {
+  border-color: rgba(234, 179, 8, 0.3);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(234, 179, 8, 0.1));
+}
+
+.alert-error {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(239, 68, 68, 0.1));
+}
+
+/* Icon */
+.alert-icon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Title & Description */
+.alert-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 4px;
+  color: #e4e4e7;
+}
+
+.alert-description {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Close Button */
+.alert-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.alert-close:hover {
+  color: #e4e4e7;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional – responsive layout tweak */
+@media (max-width: 640px) {
+  .alert {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .alert-close {
+    top: 12px;
+    right: 12px;
+  }
+}
