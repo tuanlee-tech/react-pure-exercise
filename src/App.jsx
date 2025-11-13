@@ -1,17 +1,42 @@
 import { Code2, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import "./assets/styles.css";
-import ComingSoon from "./components/ComingSoon";
-import * as Days from "./pages/DayPages";
-import UIShowcase from "./pages/UIShowcase";
+
+// Lazy load ComingSoon và UIShowcase
+const ComingSoon = lazy(() => import("./components/ComingSoon"));
+const UIShowcase = lazy(() => import("./pages/UIShowcase"));
 
 const DAY_NUMBER = 30;
-const CURRENT_DAY = 6;
+const CURRENT_DAY = 7;
+
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [currentDay, setCurrentDay] = useState(1); // null = chưa chọn ngày
-  const [showUI, setShowUI] = useState(false); // true khi click UI List
+  const [currentDay, setCurrentDay] = useState(1);
+  const [showUI, setShowUI] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Component cho từng ngày (lazy import động)
+  const [SelectedDay, setSelectedDay] = useState(() =>
+    lazy(() => import(`./pages/DayPages/Day1/Day1`))
+  );
+
+  // Khi đổi ngày → lazy load file tương ứng
+  useEffect(() => {
+    if (currentDay) {
+      const loadDay = async () => {
+        try {
+          const module = await import(
+            `./pages/DayPages/Day${currentDay}/Day${currentDay}.jsx`
+          );
+          setSelectedDay(() => module.default);
+        } catch (err) {
+          console.warn(`Ngày ${currentDay} chưa có file.`);
+          setSelectedDay(null);
+        }
+      };
+      loadDay();
+    }
+  }, [currentDay]);
 
   // Responsive check
   useEffect(() => {
@@ -20,7 +45,6 @@ const App = () => {
       setIsMobile(mobile);
       setIsSidebarOpen(!mobile);
     };
-
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -39,8 +63,9 @@ const App = () => {
     setCurrentDay(null);
     if (isMobile) setIsSidebarOpen(false);
   };
+
   const processing = Number(100 * (CURRENT_DAY / DAY_NUMBER)).toFixed(2) + "%";
-  const SelectedDay = Days[`Day${currentDay ?? 1}`];
+
   return (
     <div className="container">
       {/* Toggle Button */}
@@ -125,13 +150,15 @@ const App = () => {
           width: isSidebarOpen ? "calc(100% - 280px)" : "100%",
         }}
       >
-        {showUI ? (
-          <UIShowcase />
-        ) : SelectedDay ? (
-          <SelectedDay />
-        ) : (
-          <ComingSoon />
-        )}
+        <Suspense fallback={<div className="loading">Đang tải...</div>}>
+          {showUI ? (
+            <UIShowcase />
+          ) : SelectedDay ? (
+            <SelectedDay />
+          ) : (
+            <ComingSoon />
+          )}
+        </Suspense>
       </main>
     </div>
   );

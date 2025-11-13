@@ -1,0 +1,92 @@
+/* QuizApp.css */
+.quizapp-app {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0a0e1a;
+  color: #e4e4e7;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.quizapp-card {
+  background: rgba(15,23,42,0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+}
+
+.quizapp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,217,255,0.4);
+}
+
+.quizapp-card-header {
+  margin-bottom: 1rem;
+}
+
+.quizapp-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.quizapp-card-subtitle {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.quizapp-timer {
+  font-weight: 600;
+  color: #00D9FF;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.quizapp-progress-container {
+  background-color: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 10px;
+  margin-bottom: 1rem;
+}
+
+.quizapp-progress-bar {
+  height: 100%;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  transition: width 0.3s ease-in-out;
+}
+
+.quizapp-question {
+  margin-bottom: 1rem;
+}
+
+.quizapp-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quizapp-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.quizapp-result {
+  text-align: center;
+}
+
+.quizapp-result h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.quizapp-option-button {
+  justify-content: flex-start;
+  text-align: left;
+}

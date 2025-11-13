@@ -1,24 +1,3 @@
-import ExerciseCard from "../../../../../components/ExerciseCard";
-
-import ExpenseTracker from "./components/ExpenseTracker";
-import "./styles.css";
-export default function Exercise5() {
-  return (
-    <ExerciseCard>
-      <ExerciseCard.Header order={5} title="Expense Tracker (Challenge)" />
-
-      <ExerciseCard.Description>
-        {`
-
-`}
-      </ExerciseCard.Description>
-
-      <ExerciseCard.Demo>
-        <ExpenseTracker />
-      </ExerciseCard.Demo>
-
-      <ExerciseCard.Code>
-        {`
 import { useRef, useState } from "react";
 import { Button, Input, Select, Card } from "@ui";
 
@@ -69,17 +48,17 @@ const initialData = [
 
 const formatDate = (d) => {
   const date = new Date(d);
-  return \`\${String(date.getMonth() + 1).padStart(2, "0")}/\${String(
+  return `${String(date.getMonth() + 1).padStart(2, "0")}/${String(
     date.getDate()
-  ).padStart(2, "0")}/\${date.getFullYear()}\`;
+  ).padStart(2, "0")}/${date.getFullYear()}`;
 };
 const formatCurrency = (n) =>
   Number(n).toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 const formatMoneyVN = (amount) => {
   if (amount >= 1_000_000_000)
-    return \`\${(amount / 1_000_000_000).toFixed(1)} Tỷ\`;
-  if (amount >= 1_000_000) return \`\${(amount / 1_000_000).toFixed(1)} Triệu\`;
-  if (amount >= 1_000) return \`\${(amount / 1_000).toFixed(1)}K\`;
+    return `${(amount / 1_000_000_000).toFixed(1)} Tỷ`;
+  if (amount >= 1_000_000) return `${(amount / 1_000_000).toFixed(1)} Triệu`;
+  if (amount >= 1_000) return `${(amount / 1_000).toFixed(1)}K`;
   return amount;
 };
 
@@ -320,7 +299,7 @@ export default function ExpenseTracker() {
                       <span className="bar-label">{s.category}</span>
                       <div
                         className="bar-fill"
-                        style={{ "--width": \`\${(s.amount / total) * 100}%\` }}
+                        style={{ "--width": `${(s.amount / total) * 100}%` }}
                       >
                         {formatMoneyVN(s.amount)}
                       </div>
@@ -385,11 +364,5 @@ export default function ExpenseTracker() {
         </table>
       </div>
     </div>
-  );
-}
-
-`}
-      </ExerciseCard.Code>
-    </ExerciseCard>
   );
 }

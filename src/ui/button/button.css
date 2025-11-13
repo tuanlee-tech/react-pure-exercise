@@ -12,6 +12,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   outline: none;
+  min-width: max-content;
 }
 
 .ui-button:disabled {
