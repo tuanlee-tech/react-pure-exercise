@@ -1,0 +1,89 @@
+/* ==================== REGISTRATION FORM - PREMIUM MODERN ==================== */
+.registration-container {
+  max-width: 480px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.registration-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  transition: all 0.4s ease;
+}
+
+.registration-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 217, 255, 0.25);
+  border-color: #00D9FF;
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 32px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 100%;
+}
+
+.error-text {
+  color: #fca5a5;
+  font-size: 13px;
+  margin: 6px 0 0 0;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 12px;
+  position: relative;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-footer {
+  margin-top: 24px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.login-link {
+  color: #00D9FF;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}

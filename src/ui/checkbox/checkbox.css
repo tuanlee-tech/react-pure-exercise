@@ -21,6 +21,7 @@
   position: relative;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  padding: 0;
 }
 
 .ui-checkbox-input:hover:not(:disabled) {

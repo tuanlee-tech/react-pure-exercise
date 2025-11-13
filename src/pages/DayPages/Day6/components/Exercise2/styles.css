@@ -1,0 +1,144 @@
+/* styles.css - TodoApp with @ui (No inline style) */
+.todo-app-wrapper {
+  background: #0a0e1a;
+  padding: 2rem 1rem;
+}
+
+.todo-app-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.todo-app-card {
+  border: 1px solid rgba(0, 217, 255, 0.3);
+}
+
+.todo-app-input-area {
+  margin-bottom: 2rem;
+}
+
+.todo-app-input-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.todo-app-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.todo-app-filter-select {
+  flex: 1;
+  min-width: 140px;
+}
+
+.todo-app-list {
+  margin-bottom: 2rem;
+}
+
+.todo-app-list-empty {
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  padding: 2rem;
+}
+
+.todo-app-item {
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.todo-app-item--high {
+  border-left-color: #ef4444;
+}
+
+.todo-app-item--medium {
+  border-left-color: #f59e0b;
+}
+
+.todo-app-item--low {
+  border-left-color: #22c55e;
+}
+
+.todo-app-item-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.todo-app-item-text {
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+.todo-app-item-text--completed {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.todo-app-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-app-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.todo-app-stats {
+  background: rgba(0, 217, 255, 0.08);
+}
+
+.todo-app-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  gap: 1rem;
+}
+
+.todo-app-stat-number {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.todo-app-stat-label {
+  margin: 0.25rem 0 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .todo-app-wrapper {
+    padding: 1rem 0.5rem;
+  }
+
+  .todo-app-input-actions,
+  .todo-app-filters,
+  .todo-app-actions {
+    justify-content: center;
+  }
+
+  .todo-app-item-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .todo-app-item-text {
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+
+  .todo-app-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

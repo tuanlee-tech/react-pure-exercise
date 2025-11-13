@@ -35,9 +35,9 @@ const Day1 = () => {
       </div>
 
       <div className="exercises-list">
-        {Array.from({ length: 4 }, (_, i) => {
-          const Ex = exercises[i + 1];
-          return Ex ? <Ex key={i} /> : null;
+        {Object.keys(exercises).map((day) => {
+          const Ex = exercises[day];
+          return Ex ? <Ex key={day} /> : null;
         })}
       </div>
     </div>

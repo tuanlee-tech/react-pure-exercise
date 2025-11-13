@@ -28,10 +28,11 @@ const Day2 = () => {
           <ul>
             <li>Render có điều kiện với nhiều cách khác nhau</li>
             <li>
-              Render danh sách với <span class="code-badge">map()</span>
+              Render danh sách với <span className="code-badge">map()</span>
             </li>
             <li>
-              Hiểu và sử dụng <span class="code-badge">key</span> prop đúng cách
+              Hiểu và sử dụng <span className="code-badge">key</span> prop đúng
+              cách
             </li>
             <li>Tránh anti-pattern: index as key</li>
           </ul>
@@ -39,9 +40,9 @@ const Day2 = () => {
       </div>
 
       <div className="exercises-list">
-        {Array.from({ length: 4 }, (_, i) => {
-          const Ex = exercises[i + 1];
-          return Ex ? <Ex key={i} /> : null;
+        {Object.keys(exercises).map((day) => {
+          const Ex = exercises[day];
+          return Ex ? <Ex key={day} /> : null;
         })}
       </div>
     </div>

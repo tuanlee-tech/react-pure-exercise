@@ -172,7 +172,7 @@ export default function ExpenseTracker() {
   // - exportData
   // - importData
   const addExpense = (prev, expense) => {
-    return [...prev, { ...expense, id: new Date().getTime() }];
+    return [...prev, { ...expense, id: Date.now() }];
   };
   const updateExpense = (prev, expense) => {
     const { id: expenseId, ...updateData } = expense;

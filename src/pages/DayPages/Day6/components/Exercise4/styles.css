@@ -1,0 +1,205 @@
+/* ====================== QUIZ APP – CHỈ DÙNG COMPONENT CÓ SẴN ====================== */
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.quiz-title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+/* Thanh progress tự tạo */
+.quiz-progress-wrapper {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  padding: 16px;
+}
+
+.quiz-progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.quiz-progress-bar {
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00D9FF 0%, #00A3CC 100%);
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Timer */
+.quiz-timer {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00D9FF;
+  background: rgba(0, 217, 255, 0.1);
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  animation: timerPulse 2s infinite;
+}
+
+/* Card câu hỏi */
+.quiz-question-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%);
+  border-radius: 16px;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-question-card:hover {
+  border-color: #334155;
+  box-shadow: 0 12px 40px rgba(0, 217, 255, 0.15);
+}
+
+.quiz-question-header {
+  padding: 24px 32px 16px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.quiz-question-number {
+  font-size: 14px;
+  color: #00D9FF;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.quiz-question-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e4e4e7;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Options */
+.quiz-options {
+  list-style: none;
+  padding: 24px 32px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quiz-option {
+  padding: 16px 20px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 15px;
+  color: #e4e4e7;
+  position: relative;
+}
+
+.quiz-option:hover {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: #334155;
+}
+
+.quiz-option.selected {
+  background: rgba(0, 217, 255, 0.15);
+  border-color: #00D9FF;
+  color: #00D9FF;
+  font-weight: 600;
+}
+
+.quiz-option.correct {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+  color: #86efac;
+}
+
+.quiz-option.incorrect {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.quiz-option::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.quiz-option.correct::after {
+  content: "✅";
+  opacity: 1;
+}
+
+.quiz-option.incorrect::after {
+  content: "❌";
+  opacity: 1;
+}
+
+/* Controls */
+.quiz-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* Result */
+.quiz-result {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.quiz-result-score {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 16px 0;
+}
+
+@keyframes timerPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}

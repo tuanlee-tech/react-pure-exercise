@@ -1,0 +1,196 @@
+/* ==================== DYNAMIC GREETING - PREMIUM MODERN ==================== */
+.dynamic-greeting-modern {
+  position: relative;
+
+  padding: 48px 32px;
+  border-radius: 24px;
+  border: 1px solid #1e293b;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #fff;
+}
+
+.dynamic-greeting-modern:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 32px 80px rgba(0, 217, 255, 0.25);
+  border-color: #00D9FF;
+}
+
+/* Background theo thời gian */
+.bg-morning {
+  background: linear-gradient(135deg, #ff9a56 0%, #ff6b9d 100%);
+}
+
+.bg-afternoon {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+}
+
+.bg-evening {
+  background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+}
+
+.bg-night {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+}
+
+/* Viền phát sáng khi hover */
+.dynamic-greeting-modern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 3px;
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dynamic-greeting-modern:hover::before {
+  opacity: 0.8;
+}
+
+/* Icon + Greeting Header */
+.greeting-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.greeting-icon-big {
+  font-size: 78px;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+  animation: float-gentle 8s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(3deg);
+  }
+}
+
+/* Đặc biệt: mặt trời quay nhẹ */
+.bg-afternoon .greeting-icon-big {
+  animation: float-gentle 8s ease-in-out infinite, sun-spin 20s linear infinite;
+}
+
+@keyframes sun-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tên người dùng + lời chào */
+.greeting-text-big {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #e4e4e7 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.user-name-highlight {
+  background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+/* Giờ hiện tại */
+.current-time-display {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 12px 0 24px;
+  letter-spacing: 1px;
+}
+
+/* Quote */
+.motivational-quote-premium {
+  font-size: 15px;
+  line-height: 1.6;
+  color: white;
+  font-style: italic;
+  padding: 20px;
+  background: rgba(30, 41, 59, 0.4);
+  border-radius: 16px;
+  border-left: 4px solid #00D9FF;
+  position: relative;
+}
+
+.motivational-quote-premium::before {
+  content: '“';
+  font-size: 48px;
+  color: #00D9FF;
+  opacity: 0.3;
+  position: absolute;
+  top: -10px;
+  left: 16px;
+}
+
+.motivational-quote-premium::after {
+  content: '”';
+  font-size: 48px;
+  color: #00D9FF;
+  opacity: 0.3;
+  position: absolute;
+  bottom: -20px;
+  right: 16px;
+}
+
+/* Quốc kỳ VN nhỏ */
+.flag-vn {
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.time {
+  font-size: 16px;
+  color: white;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+  margin: 20px 0;
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.time:hover {
+  color: #e4e4e7;
+  border-color: #334155;
+  background: rgba(30, 41, 59, 0.6);
+
+}
+
+.now-time .time {
+  color: #00D9FF;
+  font-weight: 600;
+}

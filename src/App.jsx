@@ -6,7 +6,7 @@ import * as Days from "./pages/DayPages";
 import UIShowcase from "./pages/UIShowcase";
 
 const DAY_NUMBER = 30;
-const CURRENT_DAY = 4;
+const CURRENT_DAY = 6;
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [currentDay, setCurrentDay] = useState(1); // null = chưa chọn ngày
