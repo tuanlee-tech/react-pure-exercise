@@ -1,6 +1,6 @@
 // QuizApp.jsx
-import { useReducer, useEffect } from "react";
-import { Card, Button } from "@ui";
+import { Button, Card } from "@ui";
+import { useEffect, useReducer } from "react";
 
 const QUIZ_ACTIONS = {
   START_QUIZ: "START_QUIZ",
@@ -68,12 +68,13 @@ function quizReducer(state, action) {
         ...state,
         currentQuestionIndex: Math.max(state.currentQuestionIndex - 1, 0),
       };
-    case QUIZ_ACTIONS.SUBMIT_QUIZ:
+    case QUIZ_ACTIONS.SUBMIT_QUIZ: {
       const score = quizQuestions.reduce(
         (acc, q) => acc + (state.answers[q.id] === q.correctAnswer ? 1 : 0),
         0
       );
       return { ...state, status: "finished", score, endTime: Date.now() };
+    }
     case QUIZ_ACTIONS.RESTART_QUIZ:
       return {
         status: "idle",
