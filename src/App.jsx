@@ -7,7 +7,7 @@ const ComingSoon = lazy(() => import("./components/ComingSoon"));
 const UIShowcase = lazy(() => import("./pages/UIShowcase"));
 
 const DAY_NUMBER = 30;
-const CURRENT_DAY = 7;
+const CURRENT_DAY = 8;
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -30,6 +30,7 @@ const App = () => {
           );
           setSelectedDay(() => module.default);
         } catch (err) {
+          console.log("App Error :", err);
           console.warn(`Ngày ${currentDay} chưa có file.`);
           setSelectedDay(null);
         }
