@@ -43,13 +43,13 @@ export default function ProductStats({ products }) {
   }, [products]); // Chỉ tính lại khi products thay đổi
 
   return (
-    <div className="product-stats">
+    <div className="product-stats-column">
       <h2 className="stats-title">📊 Thống kê</h2>
 
-      <div className="stats-grid">
+      <div className="stats-grid-container">
         {/* Total Products */}
         <div className="stat-card">
-          <div className="stat-icon">📦</div>
+          <div className="stats-icon">📦</div>
           <div className="stat-content">
             <div className="stat-value">{stats.total}</div>
             <div className="stat-label">Sản phẩm</div>
@@ -58,7 +58,7 @@ export default function ProductStats({ products }) {
 
         {/* Average Price */}
         <div className="stat-card">
-          <div className="stat-icon">💰</div>
+          <div className="stats-icon">💰</div>
           <div className="stat-content">
             <div className="stat-value">${Math.round(stats.averagePrice)}</div>
             <div className="stat-label">Giá TB</div>
@@ -67,7 +67,7 @@ export default function ProductStats({ products }) {
 
         {/* Average Rating */}
         <div className="stat-card">
-          <div className="stat-icon">⭐</div>
+          <div className="stats-icon">⭐</div>
           <div className="stat-content">
             <div className="stat-value">{stats.averageRating.toFixed(1)}</div>
             <div className="stat-label">Đánh giá TB</div>
@@ -76,7 +76,7 @@ export default function ProductStats({ products }) {
 
         {/* In Stock */}
         <div className="stat-card">
-          <div className="stat-icon">✅</div>
+          <div className="stats-icon">✅</div>
           <div className="stat-content">
             <div className="stat-value">{stats.inStockCount}</div>
             <div className="stat-label">Còn hàng</div>
@@ -85,7 +85,7 @@ export default function ProductStats({ products }) {
 
         {/* Price Range */}
         <div className="stat-card full-width">
-          <div className="stat-icon">💵</div>
+          <div className="stats-icon">💵</div>
           <div className="stat-content">
             <div className="stat-value">
               ${stats.minPrice} - ${stats.maxPrice}

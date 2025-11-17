@@ -389,7 +389,7 @@ function CartApp() {
       {/* Header */}
       <header className="app-header">
         <h1 className="app-title">
-          <span className="title-gradient">🛒 CyberCart</span>
+          <span className="title-gradient">🛒 Cart</span>
         </h1>
         <p className="app-subtitle">
           E-commerce Shopping Cart với Normalized State

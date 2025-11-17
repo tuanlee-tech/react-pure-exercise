@@ -391,13 +391,18 @@ function ChatRoom({ roomId, currentUserId, roomName }) {
     const now = new Date();
     const diff = now - date;
 
-    if (diff < 60000) return "Vừa xong";
-    if (diff < 3600000) return \`\${Math.floor(diff / 60000)} phút trước\`;
+    // 1000ms = 1s 
+    // 1000 ms x 60 = 60000 = 1 phút
+
+    if (diff < 60000) return "Vừa xong";  // < 1 phút
+    if (diff < 3600000) return \`\${Math.floor(diff / 60000)} phút trước\`; // < 1 giờ
+    // < 24 giờ
     if (diff < 86400000)
       return date.toLocaleTimeString("vi-VN", {
         hour: "2-digit",
         minute: "2-digit",
       });
+    // > 24 giờ, hiển thị ngày
     return date.toLocaleDateString("vi-VN", {
       day: "2-digit",
       month: "2-digit",
@@ -643,7 +648,7 @@ function ChatApp() {
       {/* App Header */}
       <header className="app-header">
         <h1 className="app-title">
-          <span className="title-gradient">💬 CyberChat</span>
+          <span className="title-gradient">💬 Chat</span>
         </h1>
         <p className="app-subtitle">Real-time Chat với State Colocation</p>
       </header>

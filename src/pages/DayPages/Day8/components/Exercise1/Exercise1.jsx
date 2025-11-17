@@ -94,7 +94,6 @@ import './ProductFilter.css';
 /**
  * MULTI-FILTER PRODUCT LIST
  * Demonstrates: Lifting State Up, Derived State, useMemo optimization
- * Design: CyberSlate/Neon Ocean - Dark theme với cyan gradient
  */
 
 // Mock data - Danh sách sản phẩm mẫu
@@ -324,7 +323,7 @@ function ProductList({ products }) {
             <div className="product-rating">
               <span className="rating-stars">
                 {'⭐'.repeat(Math.floor(product.rating))}
-                {product.rating % 1 !== 0 && '✨'}
+                {product.rating % 1 !== 0 && '✨ (half-star)'}
               </span>
               <span className="rating-value">{product.rating.toFixed(1)}</span>
             </div>
