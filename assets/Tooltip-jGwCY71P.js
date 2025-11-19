@@ -1,0 +1,1 @@
+import{j as t}from"./index-ChQCCl6s.js";import"./tooltip-C23XKqX0.js";const e=({children:o,content:i})=>t.jsxs("div",{className:"ui-tooltip-wrapper",children:[o,t.jsx("div",{className:"ui-tooltip-content",children:i})]});export{e as T};
