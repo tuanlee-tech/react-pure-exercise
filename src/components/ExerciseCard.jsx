@@ -5,14 +5,14 @@ import "../assets/styles.css";
 
 const ExerciseCard = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("demo");
+  const demo = children.find((child) => child.type === ExerciseCard.Demo);
+  const code = children.find((child) => child.type === ExerciseCard.Code);
+  const [activeTab, setActiveTab] = useState(() => (demo ? "demo" : "code"));
 
   const header = children.find((child) => child.type === ExerciseCard.Header);
   const description = children.find(
     (child) => child.type === ExerciseCard.Description
   );
-  const demo = children.find((child) => child.type === ExerciseCard.Demo);
-  const code = children.find((child) => child.type === ExerciseCard.Code);
 
   return (
     <div className="exercise-card">
@@ -28,13 +28,15 @@ const ExerciseCard = ({ children }) => {
           <div className="exercise-description">{description}</div>
 
           <div className="tabs-container">
-            <button
-              className={`tab ${activeTab === "demo" ? "tab-active" : ""}`}
-              onClick={() => setActiveTab("demo")}
-            >
-              <Eye size={16} />
-              <span>Demo</span>
-            </button>
+            {demo && (
+              <button
+                className={`tab ${activeTab === "demo" ? "tab-active" : ""}`}
+                onClick={() => setActiveTab("demo")}
+              >
+                <Eye size={16} />
+                <span>Demo</span>
+              </button>
+            )}
             <button
               className={`tab ${activeTab === "code" ? "tab-active" : ""}`}
               onClick={() => setActiveTab("code")}

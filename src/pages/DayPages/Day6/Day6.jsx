@@ -5,6 +5,7 @@ import Exercise2 from "./components/Exercise2/Exercise2";
 import Exercise3 from "./components/Exercise3/Exercise3";
 import Exercise4 from "./components/Exercise4/Exercise4";
 import Exercise5 from "./components/Exercise5/Exercise5";
+import HomeWork from "./components/HomeWork";
 
 const exercises = {
   1: Exercise1,
@@ -42,6 +43,9 @@ const Day6 = () => {
           const Ex = exercises[day];
           return Ex ? <Ex key={day} /> : null;
         })}
+      </div>
+      <div className="exercises-list mt-1">
+        <HomeWork />
       </div>
     </div>
   );
