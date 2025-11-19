@@ -72,7 +72,8 @@ export default function HomeWork() {
 ### **1. News Feed với Auto-Refresh**
 // News Feed với Auto-Refresh
 
-function NewsFeed() {
+import React, { useState, useEffect, useRef } from 'react';
+export default function NewsFeed() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState('all');
@@ -83,20 +84,24 @@ function NewsFeed() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Mock fetch articles
+  const pullRef = useRef(null);
+  const startY = useRef(0);
+  const pulling = useRef(false);
+  const [pullDistance, setPullDistance] = useState(0);
+
   const fetchArticles = async () => {
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     const mockArticles = Array.from({ length: 10 }, (_, i) => ({
       id: Date.now() + i,
       title: \`Breaking News \${i + 1}\`,
       description: 'Lorem ipsum dolor sit amet...',
       category: ['tech', 'sports', 'politics'][i % 3],
       timestamp: new Date().toISOString(),
-      image: \`https://picsum.photos/seed/\${Date.now() + i}/400/200\`
+      image: \`https://picsum.photos/seed/\${Date.now() + i}/400/200\`,
     }));
-    
+
     setArticles(mockArticles);
     setLoading(false);
   };
@@ -106,36 +111,84 @@ function NewsFeed() {
     fetchArticles();
   }, [category]);
 
-  // Auto-refresh every 60s
+  // Auto Refresh
   useEffect(() => {
     if (!autoRefresh) return;
-    
-    const interval = setInterval(() => {
-      fetchArticles();
-    }, 60000);
-    
+    const interval = setInterval(fetchArticles, 60000);
     return () => clearInterval(interval);
   }, [autoRefresh, category]);
 
-  // Save read articles to localStorage
+  // Save read articles
   useEffect(() => {
     localStorage.setItem('read-articles', JSON.stringify(readArticles));
   }, [readArticles]);
 
-  // Mark as read
   const markAsRead = (id) => {
-    setReadArticles(prev => [...prev, id]);
+    setReadArticles((prev) => [...prev, id]);
   };
 
-  // Filter articles
-  const filteredArticles = articles.filter(article => {
+  // Pull-to-refresh listeners
+  useEffect(() => {
+    const el = pullRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e) => {
+      if (el.scrollTop === 0) {
+        startY.current = e.touches[0].clientY;
+        pulling.current = true;
+      }
+    };
+
+    const onTouchMove = (e) => {
+      if (!pulling.current) return;
+
+      const delta = e.touches[0].clientY - startY.current;
+      if (delta > 0) {
+        setPullDistance(delta > 120 ? 120 : delta);
+      }
+    };
+
+    const onTouchEnd = () => {
+      if (pullDistance > 80) fetchArticles();
+      pulling.current = false;
+      setPullDistance(0);
+    };
+
+    el.addEventListener('touchstart', onTouchStart);
+    el.addEventListener('touchmove', onTouchMove);
+    el.addEventListener('touchend', onTouchEnd);
+
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [pullDistance]);
+
+  const filteredArticles = articles.filter((article) => {
     const matchCategory = category === 'all' || article.category === category;
     const matchSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase());
     return matchCategory && matchSearch;
   });
 
   return (
-    <div className="news-feed">
+    <div
+      ref={pullRef}
+      className="news-feed"
+      style={{ overflowY: 'auto', height: '100vh' }}
+    >
+      {/* Pull to refresh indicator */}
+      <div
+        style={{
+          height: pullDistance,
+          background: '#e0f7fa',
+          textAlign: 'center',
+          transition: pulling.current ? 'none' : '0.2s',
+        }}
+      >
+        {pullDistance > 40 ? '↻ Release to refresh' : '↓ Pull to refresh'}
+      </div>
+
       {/* Controls */}
       <div className="controls">
         <input
@@ -144,7 +197,7 @@ function NewsFeed() {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search articles..."
         />
-        
+
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="all">All</option>
           <option value="tech">Tech</option>
@@ -166,9 +219,9 @@ function NewsFeed() {
 
       {/* Articles */}
       {loading && <div>Loading...</div>}
-      
+
       <div className="articles-grid">
-        {filteredArticles.map(article => (
+        {filteredArticles.map((article) => (
           <div
             key={article.id}
             className={\`article-card \${readArticles.includes(article.id) ? 'read' : ''}\`}
@@ -185,16 +238,26 @@ function NewsFeed() {
     </div>
   );
 }
+
 ### **2. Pomodoro Timer**
 // Pomodoro Timer
+import React, { useState, useEffect, useRef } from 'react';
 
-function PomodoroTimer() {
+export default function PomodoroTimer() {
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isWorkSession, setIsWorkSession] = useState(true);
   const [sessions, setSessions] = useState([]);
-  const audioRef = useRef(new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBiiP1vLTgjMGI3bG8N+VQQsVYrTp64xgGwxNo+LvxpZOFxVhveXsvnMkCCqQ1fPTgjEGJXjI8N+RQQsUYrHp6oxjHg1No+LvxpZPFBVhu+XsvnQlCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+Xsw3ElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+XswnElCCuR1fPThDEGJnnI8N6RQQYWYZ7p6o5kHg5PpuLvxpZLEhJfu+Xsw='));
+
+  const audioRef = useRef(null);
+
+  // Tạo audio 1 lần
+  useEffect(() => {
+    audioRef.current = new Audio(
+      "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YRAAAAAA//8AAP//AAD//wAA//8AAP//AAD//wAA"
+    );
+  }, []);
 
   // Timer logic
   useEffect(() => {
@@ -203,14 +266,17 @@ function PomodoroTimer() {
     const interval = setInterval(() => {
       if (seconds === 0) {
         if (minutes === 0) {
-          // Session complete
-          audioRef.current.play();
-          
+          // Play sound
+          if (audioRef.current) {
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch((e) => console.log("Audio blocked:", e));
+          }
+
           const session = {
-            type: isWorkSession ? 'Work' : 'Break',
-            completedAt: new Date().toISOString()
+            type: isWorkSession ? "Work" : "Break",
+            completedAt: new Date().toISOString(),
           };
-          setSessions(prev => [...prev, session]);
+          setSessions((prev) => [...prev, session]);
 
           // Switch session
           if (isWorkSession) {
@@ -220,20 +286,34 @@ function PomodoroTimer() {
             setMinutes(25);
             setIsWorkSession(true);
           }
+          setSeconds(0);
           setIsActive(false);
         } else {
-          setMinutes(minutes - 1);
+          setMinutes((m) => m - 1);
           setSeconds(59);
         }
       } else {
-        setSeconds(seconds - 1);
+        setSeconds((s) => s - 1);
       }
     }, 1000);
 
     return () => clearInterval(interval);
   }, [isActive, minutes, seconds, isWorkSession]);
 
-  const toggleTimer = () => setIsActive(!isActive);
+  // Unblock audio bằng thao tác người dùng
+  const toggleTimer = () => {
+    if (!isActive && audioRef.current) {
+      audioRef.current.play()
+        .then(() => {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+        })
+        .catch(() => {});
+    }
+
+    setIsActive(!isActive);
+  };
+
   const resetTimer = () => {
     setIsActive(false);
     setMinutes(25);
@@ -250,16 +330,14 @@ function PomodoroTimer() {
 
   return (
     <div className="pomodoro">
-      <h1>{isWorkSession ? '🍅 Work Time' : '☕ Break Time'}</h1>
-      
+      <h1>{isWorkSession ? "🍅 Work Time" : "☕ Break Time"}</h1>
+
       <div className="timer-display">
-        {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+        {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
       </div>
 
       <div className="controls">
-        <button onClick={toggleTimer}>
-          {isActive ? '⏸️ Pause' : '▶️ Start'}
-        </button>
+        <button onClick={toggleTimer}>{isActive ? "⏸️ Pause" : "▶️ Start"}</button>
         <button onClick={resetTimer}>🔄 Reset</button>
         {!isWorkSession && <button onClick={skipBreak}>⏭️ Skip Break</button>}
       </div>
@@ -275,6 +353,7 @@ function PomodoroTimer() {
     </div>
   );
 }
+
 ### **3. Live Notification Center**
 // Live Notification Center
 
