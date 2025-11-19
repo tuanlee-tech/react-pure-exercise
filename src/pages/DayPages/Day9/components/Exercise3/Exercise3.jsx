@@ -324,7 +324,16 @@ function StockTicker() {
                   <div
                     key={stock.symbol}
                     className={\`stock-item \${isSelected ? "selected" : ""}\`}
-                    onClick={() => setSelectedStock(stock.symbol)}
+                    onClick={() => {
+                      setSelectedStock(stock.symbol);
+                      setPriceHistory([
+                        {
+                          time: new Date().toLocaleTimeString(),
+                          price: stock.price,
+                          timestamp: Date.now(),
+                        },
+                      ]);
+                    }}
                   >
                     <div className="stock-item-left">
                       <div className="stock-symbol">{stock.symbol}</div>

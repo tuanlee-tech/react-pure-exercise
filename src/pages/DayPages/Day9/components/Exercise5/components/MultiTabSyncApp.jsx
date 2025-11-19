@@ -5,7 +5,7 @@ function MultiTabSyncApp() {
   const [messages, setMessages] = useState([]);
   const [activeUsers, setActiveUsers] = useState(1);
   const [tabId] = useState(
-    () => `tab-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    () => `tab-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`
   );
   const [messageInput, setMessageInput] = useState("");
   const [tabColor] = useState(() => {
