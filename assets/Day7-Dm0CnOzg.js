@@ -1,4 +1,4 @@
-import{r as I,j as e,C as re}from"./index-DpTKp3y9.js";/* empty css               */import{E as v}from"./ExerciseCard-C7OLhylv.js";import{C as u,B as g,I as M,S as Q,M as R}from"./tooltip-36DA9At9.js";import{T as oe}from"./Tooltip-34L7SEgt.js";const ce=[{id:1,name:"Áo thun",price:15e4,image:"👕"},{id:2,name:"Quần jean",price:35e4,image:"👖"},{id:3,name:"Giày thể thao",price:5e5,image:"👟"},{id:4,name:"Túi xách",price:25e4,image:"👜"}],F={GIAM10:10,GIAM50K:5e4,FREESHIP:0},L=t=>new Intl.NumberFormat("vi-VN").format(t),j={ADD_ITEM:"ADD_ITEM",REMOVE_ITEM:"REMOVE_ITEM",UPDATE_QUANTITY:"UPDATE_QUANTITY",APPLY_COUPON:"APPLY_COUPON",REMOVE_COUPON:"REMOVE_COUPON"},_={add:t=>({type:j.ADD_ITEM,payload:t}),updateQuantity:(t,a)=>({type:j.UPDATE_QUANTITY,payload:{id:t,quantity:a}}),remove:t=>({type:j.REMOVE_ITEM,payload:t}),applyCoupon:t=>({type:j.APPLY_COUPON,payload:t}),removeCoupon:()=>({type:j.REMOVE_COUPON})};function de(t,a){switch(a.type){case j.ADD_ITEM:{const{id:n}=a.payload,i=t.items.some(r=>r.id===n);return{...t,shipping:3e4,items:i?t.items.map(r=>r.id===n?{...r,quantity:r.quantity+1}:r):[...t.items,{...a.payload,quantity:1}]}}case j.UPDATE_QUANTITY:{const{id:n,quantity:i}=a.payload;return i<=0?{...t,items:t.items.filter(r=>r.id!==n),shipping:t.items.length===1?0:t.shipping,coupon:t.items.length===1?null:t.coupon}:{...t,items:t.items.map(r=>r.id===n?{...r,quantity:i}:r)}}case j.REMOVE_ITEM:{const n=t.items.filter(i=>i.id!==a.payload);return{...t,items:n,shipping:n.length===0?0:3e4,coupon:n.length===0?null:t.coupon}}case j.APPLY_COUPON:return{...t,coupon:a.payload};case j.REMOVE_COUPON:return{...t,coupon:null};default:return t}}function le(){const[t,a]=I.useReducer(de,{items:[],coupon:null,shipping:0}),[n,i]=I.useState(""),[r,c]=I.useState(!1),m=t.items.reduce((l,C)=>l+=C.price*C.quantity,0),T=(l=>{const{coupon:C}=t;if(C==="FREESHIP"||!C)return 0;const A=F[C],q=C==="GIAM10"?l*(A/100):A;return Math.min(q,l)})(m),x=t.shipping,b=t.coupon==="FREESHIP",s=m+(b?0:x)-T,d=()=>{const l=n.trim().toUpperCase();if(!l){c(!1),a(_.removeCoupon());return}l in F?(c(!1),a(_.applyCoupon(l))):(c(!0),a(_.applyCoupon(null)))},S=l=>{const C=l.target.value.trim().toUpperCase();i(C),C===""&&(c(!1),a(_.removeCoupon()))};return e.jsxs("div",{className:"shopping-cart",children:[e.jsx("h1",{children:"🛒 Giỏ Hàng"}),e.jsxs("div",{className:"products",children:[e.jsx("h2",{children:"Sản phẩm"}),e.jsx("div",{className:"product-grid",children:ce.map(l=>e.jsxs(u,{className:"product-card",children:[e.jsxs(u.Content,{children:[e.jsx("span",{className:"product-icon",children:l.image}),e.jsx("h3",{children:l.name}),e.jsxs("p",{children:[L(l.price),"đ"]})]}),e.jsx(u.Footer,{children:e.jsx(g,{variant:"primary",size:"md",onClick:()=>a(_.add(l)),children:"Thêm vào giỏ"})})]},l.id))})]}),e.jsxs("div",{className:"cart-items",children:[e.jsxs("h2",{children:["Giỏ hàng (",t.items.length," sản phẩm)"]}),t.items.map(l=>e.jsxs("div",{className:"cart-item",children:[e.jsx("span",{className:"product-icon",children:l.image}),e.jsxs("div",{children:[e.jsx("h3",{children:l.name}),e.jsxs("p",{children:[L(l.price),"đ"]})]}),e.jsxs("div",{children:[e.jsx("h3",{children:"Số lượng"}),e.jsxs("div",{className:"quantity-controls",children:[e.jsx(g,{variant:"ghost",size:"sm",onClick:()=>a(l.quantity>1?_.updateQuantity(l.id,l.quantity-1):_.remove(l.id)),children:"-"}),e.jsx("span",{children:l.quantity}),e.jsx(g,{variant:"ghost",size:"sm",onClick:()=>a(_.updateQuantity(l.id,l.quantity+1)),children:"+"})]})]}),e.jsxs("div",{className:"sub-total",children:[e.jsx("h3",{children:"Tạm tính"}),e.jsxs("p",{children:[L(l.quantity*l.price),"đ"]})]}),e.jsx(g,{variant:"danger",size:"sm",onClick:()=>a(_.remove(l.id)),children:"❌"})]},l.id))]}),e.jsxs("div",{className:"coupon-section",children:[e.jsxs("div",{className:"coupon-input",children:[e.jsx(M,{placeholder:"Nhập mã giảm giá",value:n,onChange:S}),e.jsx(g,{variant:"secondary",onClick:d,children:"Áp dụng"})]}),t.coupon&&e.jsxs("div",{className:"applied-coupon",children:["Đã áp dụng: ",e.jsx("strong",{children:t.coupon})," ",e.jsx(g,{variant:"ghost",size:"sm",onClick:()=>{i(""),a(_.removeCoupon())},children:"Xóa"})]}),r&&e.jsx("span",{className:"error",children:"Mã khuyến mãi không tồn tại"})]}),e.jsxs(u,{className:"cart-summary",children:[e.jsxs(u.Content,{children:[e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Tạm tính:"}),e.jsxs("span",{children:[L(m),"đ"]})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Giảm giá:"}),e.jsxs("span",{children:[T>0&&"- ",L(T),"đ"]})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Vận chuyển:"}),e.jsx("span",{children:b?"Miễn phí":L(x)+"đ"})]}),e.jsxs("div",{className:"summary-row total",children:[e.jsx("span",{children:"Tổng cộng:"}),e.jsxs("span",{children:[L(Math.max(s,0)),"đ"]})]})]}),e.jsx(u.Footer,{children:e.jsx(g,{className:"checkout-btn",variant:"primary",size:"lg",children:"Thanh toán"})})]})]})}function ue(){return e.jsxs(v,{children:[e.jsx(v.Header,{order:1,title:"Shopping Cart với useReducer"}),e.jsx(v.Description,{children:`
+import{r as S,j as e,C as re}from"./index-DWyDx9Oi.js";/* empty css               */import{E as T}from"./ExerciseCard-B6SIPsBu.js";import{C as u,B as N,I as M,S as G,M as D}from"./tooltip-CJ0FpFPo.js";import{T as oe}from"./Tooltip-DALTOr4A.js";const ce=[{id:1,name:"Áo thun",price:15e4,image:"👕"},{id:2,name:"Quần jean",price:35e4,image:"👖"},{id:3,name:"Giày thể thao",price:5e5,image:"👟"},{id:4,name:"Túi xách",price:25e4,image:"👜"}],F={GIAM10:10,GIAM50K:5e4,FREESHIP:0},L=t=>new Intl.NumberFormat("vi-VN").format(t),R={ADD_ITEM:"ADD_ITEM",REMOVE_ITEM:"REMOVE_ITEM",UPDATE_QUANTITY:"UPDATE_QUANTITY",APPLY_COUPON:"APPLY_COUPON",REMOVE_COUPON:"REMOVE_COUPON"},k={add:t=>({type:R.ADD_ITEM,payload:t}),updateQuantity:(t,a)=>({type:R.UPDATE_QUANTITY,payload:{id:t,quantity:a}}),remove:t=>({type:R.REMOVE_ITEM,payload:t}),applyCoupon:t=>({type:R.APPLY_COUPON,payload:t}),removeCoupon:()=>({type:R.REMOVE_COUPON})};function le(t,a){switch(a.type){case R.ADD_ITEM:{const{id:n}=a.payload,i=t.items.some(r=>r.id===n);return{...t,shipping:3e4,items:i?t.items.map(r=>r.id===n?{...r,quantity:r.quantity+1}:r):[...t.items,{...a.payload,quantity:1}]}}case R.UPDATE_QUANTITY:{const{id:n,quantity:i}=a.payload;return i<=0?{...t,items:t.items.filter(r=>r.id!==n),shipping:t.items.length===1?0:t.shipping,coupon:t.items.length===1?null:t.coupon}:{...t,items:t.items.map(r=>r.id===n?{...r,quantity:i}:r)}}case R.REMOVE_ITEM:{const n=t.items.filter(i=>i.id!==a.payload);return{...t,items:n,shipping:n.length===0?0:3e4,coupon:n.length===0?null:t.coupon}}case R.APPLY_COUPON:return{...t,coupon:a.payload};case R.REMOVE_COUPON:return{...t,coupon:null};default:return t}}function de(){const[t,a]=S.useReducer(le,{items:[],coupon:null,shipping:0}),[n,i]=S.useState(""),[r,c]=S.useState(!1),m=t.items.reduce((d,E)=>d+=E.price*E.quantity,0),g=(d=>{const{coupon:E}=t;if(E==="FREESHIP"||!E)return 0;const I=F[E],q=E==="GIAM10"?d*(I/100):I;return Math.min(q,d)})(m),O=t.shipping,b=t.coupon==="FREESHIP",s=m+(b?0:O)-g,l=()=>{const d=n.trim().toUpperCase();if(!d){c(!1),a(k.removeCoupon());return}d in F?(c(!1),a(k.applyCoupon(d))):(c(!0),a(k.applyCoupon(null)))},C=d=>{const E=d.target.value.trim().toUpperCase();i(E),E===""&&(c(!1),a(k.removeCoupon()))};return e.jsxs("div",{className:"shopping-cart",children:[e.jsx("h1",{children:"🛒 Giỏ Hàng"}),e.jsxs("div",{className:"products",children:[e.jsx("h2",{children:"Sản phẩm"}),e.jsx("div",{className:"product-grid",children:ce.map(d=>e.jsxs(u,{className:"product-card",children:[e.jsxs(u.Content,{children:[e.jsx("span",{className:"product-icon",children:d.image}),e.jsx("h3",{children:d.name}),e.jsxs("p",{children:[L(d.price),"đ"]})]}),e.jsx(u.Footer,{children:e.jsx(N,{variant:"primary",size:"md",onClick:()=>a(k.add(d)),children:"Thêm vào giỏ"})})]},d.id))})]}),e.jsxs("div",{className:"cart-items",children:[e.jsxs("h2",{children:["Giỏ hàng (",t.items.length," sản phẩm)"]}),t.items.map(d=>e.jsxs("div",{className:"cart-item",children:[e.jsx("span",{className:"product-icon",children:d.image}),e.jsxs("div",{children:[e.jsx("h3",{children:d.name}),e.jsxs("p",{children:[L(d.price),"đ"]})]}),e.jsxs("div",{children:[e.jsx("h3",{children:"Số lượng"}),e.jsxs("div",{className:"quantity-controls",children:[e.jsx(N,{variant:"ghost",size:"sm",onClick:()=>a(d.quantity>1?k.updateQuantity(d.id,d.quantity-1):k.remove(d.id)),children:"-"}),e.jsx("span",{children:d.quantity}),e.jsx(N,{variant:"ghost",size:"sm",onClick:()=>a(k.updateQuantity(d.id,d.quantity+1)),children:"+"})]})]}),e.jsxs("div",{className:"sub-total",children:[e.jsx("h3",{children:"Tạm tính"}),e.jsxs("p",{children:[L(d.quantity*d.price),"đ"]})]}),e.jsx(N,{variant:"danger",size:"sm",onClick:()=>a(k.remove(d.id)),children:"❌"})]},d.id))]}),e.jsxs("div",{className:"coupon-section",children:[e.jsxs("div",{className:"coupon-input",children:[e.jsx(M,{placeholder:"Nhập mã giảm giá",value:n,onChange:C}),e.jsx(N,{variant:"secondary",onClick:l,children:"Áp dụng"})]}),t.coupon&&e.jsxs("div",{className:"applied-coupon",children:["Đã áp dụng: ",e.jsx("strong",{children:t.coupon})," ",e.jsx(N,{variant:"ghost",size:"sm",onClick:()=>{i(""),a(k.removeCoupon())},children:"Xóa"})]}),r&&e.jsx("span",{className:"error",children:"Mã khuyến mãi không tồn tại"})]}),e.jsxs(u,{className:"cart-summary",children:[e.jsxs(u.Content,{children:[e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Tạm tính:"}),e.jsxs("span",{children:[L(m),"đ"]})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Giảm giá:"}),e.jsxs("span",{children:[g>0&&"- ",L(g),"đ"]})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Vận chuyển:"}),e.jsx("span",{children:b?"Miễn phí":L(O)+"đ"})]}),e.jsxs("div",{className:"summary-row total",children:[e.jsx("span",{children:"Tổng cộng:"}),e.jsxs("span",{children:[L(Math.max(s,0)),"đ"]})]})]}),e.jsx(u.Footer,{children:e.jsx(N,{className:"checkout-btn",variant:"primary",size:"lg",children:"Thanh toán"})})]})]})}function ue(){return e.jsxs(T,{children:[e.jsx(T.Header,{order:1,title:"Shopping Cart với useReducer"}),e.jsx(T.Description,{children:`
 // TODO: Implement shopping cart với useReducer
 
 const CART_ACTIONS = {
@@ -111,7 +111,7 @@ function ShoppingCart() {
   );
 }
 
-`}),e.jsx(v.Demo,{children:e.jsx(le,{})}),e.jsx(v.Code,{children:`
+`}),e.jsx(T.Demo,{children:e.jsx(de,{})}),e.jsx(T.Code,{children:`
 import { Button, Card, Input } from "@ui";
 import { useReducer, useState } from "react";
 
@@ -404,7 +404,7 @@ export default function ShoppingCart() {
   );
 }
 
-`})]})}const f={LOGIN_START:"LOGIN_START",LOGIN_SUCCESS:"LOGIN_SUCCESS",LOGIN_FAILURE:"LOGIN_FAILURE",LOGOUT:"LOGOUT",REFRESH_TOKEN:"REFRESH_TOKEN",UPDATE_PROFILE:"UPDATE_PROFILE"},pe=async({email:t,password:a})=>{try{if(t==="tuan@example.com"&&a==="123456")return await new Promise((i,r)=>setTimeout(()=>{Math.random()<.7?i({user:{id:"id1",name:"Tuan Le",email:t,avatar:"https://i.pravatar.cc/100?u=demo"},token:"SUPER_SECRET_TOKEN"}):r(new Error("Email hoặc mật khẩu không đúng"))},3e3));throw new Error("Email hoặc mật khẩu không đúng")}catch(n){throw console.error(n.message),n}};function me(t,a){switch(a.type){case f.LOGIN_START:return{...t,isLoading:!0,error:null};case f.LOGIN_SUCCESS:{const{token:n,user:i}=a.payload;return{...t,user:i,isAuthenticated:!0,isLoading:!1,token:n}}case f.LOGIN_FAILURE:return{...t,user:null,isAuthenticated:!1,isLoading:!1,error:a.payload,token:null};case f.LOGOUT:return{...t,user:null,isAuthenticated:!1,token:null};case f.REFRESH_TOKEN:return{...t,token:a.payload};case f.UPDATE_PROFILE:return{...t,user:{...t.user,...a.payload}};default:return t}}const he={user:null,isAuthenticated:!1,isLoading:!1,error:null,token:null};function Te(t){try{const a=localStorage.getItem("auth");if(a){const{user:n,token:i}=JSON.parse(a);return{...t,user:n,token:i,isAuthenticated:!0}}return t}catch(a){return console.error(a.message),t}}function ge(){const[t,a]=I.useReducer(me,he,Te),[n,i]=I.useState({email:"",password:""}),r=async()=>{a({type:f.LOGIN_START});try{const d={email:n.email.trim(),password:n.password.trim()},S=await pe(d);a({type:f.LOGIN_SUCCESS,payload:S}),localStorage.setItem("auth",JSON.stringify(S))}catch(d){a({type:f.LOGIN_FAILURE,payload:d.message})}},c=()=>{a({type:f.LOGOUT}),localStorage.removeItem("auth")},m=()=>{a({type:f.UPDATE_PROFILE,payload:{name:"John Doe",email:"johndoe@example.com"}})},{user:h,isAuthenticated:T,isLoading:x,error:b,token:s}=t;return e.jsxs("div",{className:"auth-app",children:[!T&&e.jsxs(u,{className:"auth-card",children:[e.jsxs(u.Header,{children:[e.jsx(u.Title,{children:"Đăng nhập"}),e.jsx(u.Subtitle,{children:"Account : "}),e.jsx(u.Subtitle,{children:"tuan@example.com | 123456"})]}),e.jsx(u.Content,{children:e.jsxs("div",{className:"form-fields",children:[e.jsx(M,{label:"Email",placeholder:"you@example.com",name:"email",value:n.email,onChange:d=>i(S=>({...S,email:d.target.value}))}),e.jsx(M,{label:"Mật khẩu",type:"password",placeholder:"••••••••",name:"password",value:n.password,onChange:d=>i(S=>({...S,password:d.target.value}))}),x&&e.jsx("div",{className:"auth-progress-bar"}),b&&e.jsx("div",{className:"error-message",children:b||"Email hoặc mật khẩu không đúng"})]})}),e.jsx(u.Footer,{children:e.jsx(g,{disabled:x,onClick:r,variant:"primary",size:"lg",children:"Đăng nhập"})})]}),T&&h&&e.jsxs(u,{className:"auth-card",children:[e.jsxs(u.Header,{children:[e.jsx(u.Title,{children:"Bảng điều khiển"}),e.jsxs(u.Subtitle,{children:["Xin chào, ",h.name]})]}),e.jsx(u.Content,{children:e.jsxs("div",{className:"user-section",children:[e.jsx("img",{src:h.avatar,alt:h.name,className:"user-avatar"}),e.jsx("p",{children:h.email})]})}),e.jsxs(u.Footer,{className:"text-center",children:[e.jsx(g,{onClick:m,variant:"secondary",className:"me-1",children:"Cập nhật hồ sơ"}),e.jsx(g,{onClick:c,variant:"danger",children:"Đăng xuất"})]})]})]})}function Ne(){return e.jsxs(v,{children:[e.jsx(v.Header,{order:2,title:"User Authentication Flow"}),e.jsx(v.Description,{children:`
+`})]})}const _={LOGIN_START:"LOGIN_START",LOGIN_SUCCESS:"LOGIN_SUCCESS",LOGIN_FAILURE:"LOGIN_FAILURE",LOGOUT:"LOGOUT",REFRESH_TOKEN:"REFRESH_TOKEN",UPDATE_PROFILE:"UPDATE_PROFILE"},pe=async({email:t,password:a})=>{try{if(t==="tuan@example.com"&&a==="123456")return await new Promise((i,r)=>setTimeout(()=>{Math.random()<.7?i({user:{id:"id1",name:"Tuan Le",email:t,avatar:"https://i.pravatar.cc/100?u=demo"},token:"SUPER_SECRET_TOKEN"}):r(new Error("Email hoặc mật khẩu không đúng"))},3e3));throw new Error("Email hoặc mật khẩu không đúng")}catch(n){throw console.error(n.message),n}};function me(t,a){switch(a.type){case _.LOGIN_START:return{...t,isLoading:!0,error:null};case _.LOGIN_SUCCESS:{const{token:n,user:i}=a.payload;return{...t,user:i,isAuthenticated:!0,isLoading:!1,token:n}}case _.LOGIN_FAILURE:return{...t,user:null,isAuthenticated:!1,isLoading:!1,error:a.payload,token:null};case _.LOGOUT:return{...t,user:null,isAuthenticated:!1,token:null};case _.REFRESH_TOKEN:return{...t,token:a.payload};case _.UPDATE_PROFILE:return{...t,user:{...t.user,...a.payload}};default:return t}}const he={user:null,isAuthenticated:!1,isLoading:!1,error:null,token:null};function Te(t){try{const a=localStorage.getItem("auth");if(a){const{user:n,token:i}=JSON.parse(a);return{...t,user:n,token:i,isAuthenticated:!0}}return t}catch(a){return console.error(a.message),t}}function ge(){const[t,a]=S.useReducer(me,he,Te),[n,i]=S.useState({email:"",password:""}),r=async()=>{a({type:_.LOGIN_START});try{const l={email:n.email.trim(),password:n.password.trim()},C=await pe(l);a({type:_.LOGIN_SUCCESS,payload:C}),localStorage.setItem("auth",JSON.stringify(C))}catch(l){a({type:_.LOGIN_FAILURE,payload:l.message})}},c=()=>{a({type:_.LOGOUT}),localStorage.removeItem("auth")},m=()=>{a({type:_.UPDATE_PROFILE,payload:{name:"John Doe",email:"johndoe@example.com"}})},{user:h,isAuthenticated:g,isLoading:O,error:b,token:s}=t;return e.jsxs("div",{className:"auth-app",children:[!g&&e.jsxs(u,{className:"auth-card",children:[e.jsxs(u.Header,{children:[e.jsx(u.Title,{children:"Đăng nhập"}),e.jsx(u.Subtitle,{children:"Account : "}),e.jsx(u.Subtitle,{children:"tuan@example.com | 123456"})]}),e.jsx(u.Content,{children:e.jsxs("div",{className:"form-fields",children:[e.jsx(M,{label:"Email",placeholder:"you@example.com",name:"email",value:n.email,onChange:l=>i(C=>({...C,email:l.target.value}))}),e.jsx(M,{label:"Mật khẩu",type:"password",placeholder:"••••••••",name:"password",value:n.password,onChange:l=>i(C=>({...C,password:l.target.value}))}),O&&e.jsx("div",{className:"auth-progress-bar"}),b&&e.jsx("div",{className:"error-message",children:b||"Email hoặc mật khẩu không đúng"})]})}),e.jsx(u.Footer,{children:e.jsx(N,{disabled:O,onClick:r,variant:"primary",size:"lg",children:"Đăng nhập"})})]}),g&&h&&e.jsxs(u,{className:"auth-card",children:[e.jsxs(u.Header,{children:[e.jsx(u.Title,{children:"Bảng điều khiển"}),e.jsxs(u.Subtitle,{children:["Xin chào, ",h.name]})]}),e.jsx(u.Content,{children:e.jsxs("div",{className:"user-section",children:[e.jsx("img",{src:h.avatar,alt:h.name,className:"user-avatar"}),e.jsx("p",{children:h.email})]})}),e.jsxs(u.Footer,{className:"text-center",children:[e.jsx(N,{onClick:m,variant:"secondary",className:"me-1",children:"Cập nhật hồ sơ"}),e.jsx(N,{onClick:c,variant:"danger",children:"Đăng xuất"})]})]})]})}function Ne(){return e.jsxs(T,{children:[e.jsx(T.Header,{order:2,title:"User Authentication Flow"}),e.jsx(T.Description,{children:`
 // TODO: Implement authentication state machine
 
 const AUTH_ACTIONS = {
@@ -472,7 +472,7 @@ function AuthApp() {
   );
 }
 
-`}),e.jsx(v.Demo,{children:e.jsx(ge,{})}),e.jsx(v.Code,{children:`
+`}),e.jsx(T.Demo,{children:e.jsx(ge,{})}),e.jsx(T.Code,{children:`
 // AuthApp.jsx — UI only
 import { Card, Button, Input } from "@ui";
 import { useReducer, useState } from "react";
@@ -742,7 +742,7 @@ export default function AuthApp() {
   );
 }
 
-`})]})}const O={START_QUIZ:"START_QUIZ",ANSWER_QUESTION:"ANSWER_QUESTION",NEXT_QUESTION:"NEXT_QUESTION",PREV_QUESTION:"PREV_QUESTION",SUBMIT_QUIZ:"SUBMIT_QUIZ",RESTART_QUIZ:"RESTART_QUIZ",TICK:"TICK"},D=[{id:1,question:"React được phát triển bởi công ty nào?",options:["Google","Facebook","Microsoft","Apple"],correctAnswer:1},{id:2,question:"Hook nào dùng để quản lý state?",options:["useEffect","useState","useContext","useMemo"],correctAnswer:1},{id:3,question:"JSX là viết tắt của gì?",options:["JavaScript XML","Java Syntax Extension","JavaScript Extension","JSON XML"],correctAnswer:0}];function ve(t,a){switch(a.type){case O.START_QUIZ:return{...t,status:"active",startTime:Date.now(),timeRemaining:300,currentQuestionIndex:0,answers:{},score:null};case O.ANSWER_QUESTION:return{...t,answers:{...t.answers,[a.questionId]:a.answerIndex}};case O.NEXT_QUESTION:return{...t,currentQuestionIndex:Math.min(t.currentQuestionIndex+1,D.length-1)};case O.PREV_QUESTION:return{...t,currentQuestionIndex:Math.max(t.currentQuestionIndex-1,0)};case O.SUBMIT_QUIZ:{const n=D.reduce((i,r)=>i+(t.answers[r.id]===r.correctAnswer?1:0),0);return{...t,status:"finished",score:n,endTime:Date.now()}}case O.RESTART_QUIZ:return{status:"idle",currentQuestionIndex:0,answers:{},timeRemaining:300,score:null,startTime:null,endTime:null};case O.TICK:if(t.timeRemaining<=1){const n=D.reduce((i,r)=>i+(t.answers[r.id]===r.correctAnswer?1:0),0);return{...t,status:"finished",score:n,timeRemaining:0,endTime:Date.now()}}return{...t,timeRemaining:t.timeRemaining-1};default:return t}}function Ce(){const[t,a]=I.useReducer(ve,{status:"idle",currentQuestionIndex:0,answers:{},timeRemaining:300,score:null,startTime:null,endTime:null});I.useEffect(()=>{if(t.status==="active"&&t.timeRemaining>0){const c=setInterval(()=>a({type:O.TICK}),1e3);return()=>clearInterval(c)}},[t.status,t.timeRemaining]);const n=D[t.currentQuestionIndex],i=(t.currentQuestionIndex+1)/D.length*100,r=c=>`${Math.floor(c/60)}:${(c%60).toString().padStart(2,"0")}`;return e.jsxs("div",{className:"quizapp-app",children:[t.status==="idle"&&e.jsxs(u,{className:"quizapp-card",children:[e.jsxs(u.Header,{className:"quizapp-card-header",children:[e.jsx(u.Title,{className:"quizapp-card-title",children:"Quiz React"}),e.jsxs(u.Subtitle,{className:"quizapp-card-subtitle",children:["Tổng ",D.length," câu hỏi, 5 phút"]})]}),e.jsx(u.Content,{children:e.jsx(g,{variant:"primary",size:"lg",onClick:()=>a({type:O.START_QUIZ}),children:"Bắt đầu"})})]}),t.status==="active"&&e.jsxs(u,{className:"quizapp-card",children:[e.jsx(u.Header,{className:"quizapp-card-header",children:e.jsxs("div",{className:"quizapp-timer",children:["Thời gian còn lại: ",r(t.timeRemaining)]})}),e.jsxs(u.Content,{children:[e.jsx("div",{className:"quizapp-progress-container",children:e.jsx("div",{className:"quizapp-progress-bar",style:{width:`${i}%`}})}),e.jsx("div",{className:"quizapp-question",children:n.question}),e.jsx("div",{className:"quizapp-options",children:n.options.map((c,m)=>e.jsx(g,{variant:t.answers[n.id]===m?"secondary":"ghost",size:"md",className:"quizapp-option-button",onClick:()=>a({type:O.ANSWER_QUESTION,questionId:n.id,answerIndex:m}),children:c},m))})]}),e.jsxs(u.Footer,{className:"quizapp-navigation",children:[e.jsx(g,{variant:"ghost",size:"md",onClick:()=>a({type:O.PREV_QUESTION}),disabled:t.currentQuestionIndex===0,children:"Previous"}),t.currentQuestionIndex<D.length-1?e.jsx(g,{variant:"primary",size:"md",onClick:()=>a({type:O.NEXT_QUESTION}),children:"Next"}):e.jsx(g,{variant:"primary",size:"md",onClick:()=>a({type:O.SUBMIT_QUIZ}),children:"Submit"})]})]}),t.status==="finished"&&e.jsxs(u,{className:"quizapp-card",children:[e.jsxs(u.Header,{className:"quizapp-card-header",children:[e.jsx(u.Title,{className:"quizapp-card-title",children:"Kết quả"}),e.jsxs(u.Subtitle,{className:"quizapp-card-subtitle",children:["Bạn đạt ",t.score,"/",D.length," điểm"]})]}),e.jsx(u.Content,{children:D.map(c=>e.jsxs("div",{className:"quizapp-question",children:[e.jsx("div",{children:c.question}),e.jsx("div",{className:"quizapp-options",children:c.options.map((m,h)=>e.jsx(g,{variant:c.correctAnswer===h?"primary":t.answers[c.id]===h?"secondary":"ghost",size:"md",className:"quizapp-option-button",disabled:!0,children:m},h))})]},c.id))}),e.jsx(u.Footer,{className:"quizapp-navigation",children:e.jsx(g,{variant:"primary",size:"md",onClick:()=>a({type:O.RESTART_QUIZ}),children:"Restart"})})]})]})}function Ie(){return e.jsxs(v,{children:[e.jsx(v.Header,{order:3,title:"Quiz App với Timer"}),e.jsx(v.Description,{children:`
+`})]})}const x={START_QUIZ:"START_QUIZ",ANSWER_QUESTION:"ANSWER_QUESTION",NEXT_QUESTION:"NEXT_QUESTION",PREV_QUESTION:"PREV_QUESTION",SUBMIT_QUIZ:"SUBMIT_QUIZ",RESTART_QUIZ:"RESTART_QUIZ",TICK:"TICK"},j=[{id:1,question:"React được phát triển bởi công ty nào?",options:["Google","Facebook","Microsoft","Apple"],correctAnswer:1},{id:2,question:"Hook nào dùng để quản lý state?",options:["useEffect","useState","useContext","useMemo"],correctAnswer:1},{id:3,question:"JSX là viết tắt của gì?",options:["JavaScript XML","Java Syntax Extension","JavaScript Extension","JSON XML"],correctAnswer:0}];function ve(t,a){switch(a.type){case x.START_QUIZ:return{...t,status:"active",startTime:Date.now(),timeRemaining:300,currentQuestionIndex:0,answers:{},score:null};case x.ANSWER_QUESTION:return{...t,answers:{...t.answers,[a.questionId]:a.answerIndex}};case x.NEXT_QUESTION:return{...t,currentQuestionIndex:Math.min(t.currentQuestionIndex+1,j.length-1)};case x.PREV_QUESTION:return{...t,currentQuestionIndex:Math.max(t.currentQuestionIndex-1,0)};case x.SUBMIT_QUIZ:{const n=j.reduce((i,r)=>i+(t.answers[r.id]===r.correctAnswer?1:0),0);return{...t,status:"finished",score:n,endTime:Date.now()}}case x.RESTART_QUIZ:return{status:"idle",currentQuestionIndex:0,answers:{},timeRemaining:300,score:null,startTime:null,endTime:null};case x.TICK:if(t.timeRemaining<=1){const n=j.reduce((i,r)=>i+(t.answers[r.id]===r.correctAnswer?1:0),0);return{...t,status:"finished",score:n,timeRemaining:0,endTime:Date.now()}}return{...t,timeRemaining:t.timeRemaining-1};default:return t}}function Ee(){const[t,a]=S.useReducer(ve,{status:"idle",currentQuestionIndex:0,answers:{},timeRemaining:300,score:null,startTime:null,endTime:null});S.useEffect(()=>{if(t.status==="active"&&t.timeRemaining>0){const c=setInterval(()=>a({type:x.TICK}),1e3);return()=>clearInterval(c)}},[t.status,t.timeRemaining]);const n=j[t.currentQuestionIndex],i=(t.currentQuestionIndex+1)/j.length*100,r=c=>`${Math.floor(c/60)}:${(c%60).toString().padStart(2,"0")}`;return e.jsxs("div",{className:"quizapp-app",children:[t.status==="idle"&&e.jsxs(u,{className:"quizapp-card",children:[e.jsxs(u.Header,{className:"quizapp-card-header",children:[e.jsx(u.Title,{className:"quizapp-card-title",children:"Quiz React"}),e.jsxs(u.Subtitle,{className:"quizapp-card-subtitle",children:["Tổng ",j.length," câu hỏi, 5 phút"]})]}),e.jsx(u.Content,{children:e.jsx(N,{variant:"primary",size:"lg",onClick:()=>a({type:x.START_QUIZ}),children:"Bắt đầu"})})]}),t.status==="active"&&e.jsxs(u,{className:"quizapp-card",children:[e.jsx(u.Header,{className:"quizapp-card-header",children:e.jsxs("div",{className:"quizapp-timer",children:["Thời gian còn lại: ",r(t.timeRemaining)]})}),e.jsxs(u.Content,{children:[e.jsx("div",{className:"quizapp-progress-container",children:e.jsx("div",{className:"quizapp-progress-bar",style:{width:`${i}%`}})}),e.jsx("div",{className:"quizapp-question",children:n.question}),e.jsx("div",{className:"quizapp-options",children:n.options.map((c,m)=>e.jsx(N,{variant:t.answers[n.id]===m?"secondary":"ghost",size:"md",className:"quizapp-option-button",onClick:()=>a({type:x.ANSWER_QUESTION,questionId:n.id,answerIndex:m}),children:c},m))})]}),e.jsxs(u.Footer,{className:"quizapp-navigation",children:[e.jsx(N,{variant:"ghost",size:"md",onClick:()=>a({type:x.PREV_QUESTION}),disabled:t.currentQuestionIndex===0,children:"Previous"}),t.currentQuestionIndex<j.length-1?e.jsx(N,{variant:"primary",size:"md",onClick:()=>a({type:x.NEXT_QUESTION}),children:"Next"}):e.jsx(N,{variant:"primary",size:"md",onClick:()=>a({type:x.SUBMIT_QUIZ}),children:"Submit"})]})]}),t.status==="finished"&&e.jsxs(u,{className:"quizapp-card",children:[e.jsxs(u.Header,{className:"quizapp-card-header",children:[e.jsx(u.Title,{className:"quizapp-card-title",children:"Kết quả"}),e.jsxs(u.Subtitle,{className:"quizapp-card-subtitle",children:["Bạn đạt ",t.score,"/",j.length," điểm"]})]}),e.jsx(u.Content,{children:j.map(c=>e.jsxs("div",{className:"quizapp-question",children:[e.jsx("div",{children:c.question}),e.jsx("div",{className:"quizapp-options",children:c.options.map((m,h)=>e.jsx(N,{variant:c.correctAnswer===h?"primary":t.answers[c.id]===h?"secondary":"ghost",size:"md",className:"quizapp-option-button",disabled:!0,children:m},h))})]},c.id))}),e.jsx(u.Footer,{className:"quizapp-navigation",children:e.jsx(N,{variant:"primary",size:"md",onClick:()=>a({type:x.RESTART_QUIZ}),children:"Restart"})})]})]})}function Se(){return e.jsxs(T,{children:[e.jsx(T.Header,{order:3,title:"Quiz App với Timer"}),e.jsx(T.Description,{children:`
 // TODO: Implement quiz app với useReducer
 
 const QUIZ_ACTIONS = {
@@ -881,7 +881,7 @@ function QuizApp() {
 }
 
 
-`}),e.jsx(v.Demo,{children:e.jsx(Ce,{})}),e.jsx(v.Code,{children:`
+`}),e.jsx(T.Demo,{children:e.jsx(Ee,{})}),e.jsx(T.Code,{children:`
 // QuizApp.jsx
 import { Button, Card } from "@ui";
 import { useEffect, useReducer } from "react";
@@ -1158,7 +1158,7 @@ export default function QuizApp() {
   );
 }
 
-`})]})}const P={ADD_TASK:"ADD_TASK",MOVE_TASK:"MOVE_TASK",UPDATE_TASK:"UPDATE_TASK",DELETE_TASK:"DELETE_TASK",ADD_COLUMN:"ADD_COLUMN",DELETE_COLUMN:"DELETE_COLUMN"},Se={columns:{todo:{id:"todo",title:"Cần làm",taskIds:[]},inProgress:{id:"inProgress",title:"Đang làm",taskIds:[]},done:{id:"done",title:"Hoàn thành",taskIds:[]}},tasks:{},columnOrder:["todo","inProgress","done"]};function Ee(t,a){switch(a.type){case P.ADD_TASK:{const{columnId:n,task:i}=a.payload,r=`task-${Date.now()}`;return{...t,tasks:{...t.tasks,[r]:{id:r,columnId:n,...i}},columns:{...t.columns,[n]:{...t.columns[n],taskIds:[...t.columns[n].taskIds,r]}}}}case P.MOVE_TASK:{const{source:n,destination:i}=a.payload;if(!i||n.columnId===i.columnId&&n.index===i.index)return t;const r=t.columns[n.columnId],c=t.columns[i.columnId],m=Array.from(r.taskIds),h=n.columnId===i.columnId?m:Array.from(c.taskIds),[T]=m.splice(n.index,1);return h.splice(i.index,0,T),{...t,tasks:{...t.tasks,[T]:{...t.tasks[T],columnId:i.columnId}},columns:{...t.columns,[n.columnId]:{...r,taskIds:m},[i.columnId]:{...c,taskIds:h}}}}case P.UPDATE_TASK:{const{taskId:n,updates:i}=a.payload,r=t.tasks[n],c=r.columnId,m=i.columnId||c;let h={...t};return m!==c&&(h={...h,columns:{...h.columns,[c]:{...h.columns[c],taskIds:h.columns[c].taskIds.filter(T=>T!==n)},[m]:{...h.columns[m],taskIds:[...h.columns[m].taskIds,n]}}}),{...h,tasks:{...h.tasks,[n]:{...r,...i}}}}case P.DELETE_TASK:{const{taskId:n,columnId:i}=a.payload;return{...t,tasks:Object.fromEntries(Object.entries(t.tasks).filter(([r])=>r!==n)),columns:{...t.columns,[i]:{...t.columns[i],taskIds:t.columns[i].taskIds.filter(r=>r!==n)}}}}case P.ADD_COLUMN:{const{id:n,title:i}=a.payload;return{...t,columns:{...t.columns,[n]:{id:n,title:i,taskIds:[]}},columnOrder:[...t.columnOrder,n]}}case P.DELETE_COLUMN:{const{columnId:n,targetColumnId:i}=a.payload,r=t.columns[n],c=t.columnOrder.filter(m=>m!==n);return{...t,columns:{...t.columns,[i]:{...t.columns[i],taskIds:[...t.columns[i].taskIds,...r.taskIds]}},columnOrder:c}}default:return t}}function ye(){const[t,a]=I.useReducer(Ee,Se),[n,i]=I.useState(""),[r,c]=I.useState(""),[m,h]=I.useState(""),[T,x]=I.useState(!1),[b,s]=I.useState(!1),[d,S]=I.useState(!1),[l,C]=I.useState(""),[A,q]=I.useState(null),[w,H]=I.useState({columnId:null,index:null}),V=I.useRef(null),Z=Object.values(t.tasks).filter(o=>{const N=o.content.toLowerCase().includes(n.toLowerCase()),k=!r||o.priority===r,E=!m||o.assignee===m;return N&&k&&E}),$=(o,N,k)=>{V.current={columnId:N,index:k},o.dataTransfer.effectAllowed="move"},X=(o,N)=>{H({columnId:o,index:N})},W=()=>{H({columnId:null,index:null})},G=o=>{o.preventDefault()},K=(o,N,k)=>{o.preventDefault();const E=V.current;if(!E)return;const U={columnId:N,index:k??t.columns[N].taskIds.length};a({type:P.MOVE_TASK,payload:{source:E,destination:U}}),V.current=null,H({columnId:null,index:null})},J=o=>{C(o),x(!0)},ee=o=>{q(o),s(!0)},te=()=>S(!0),ae=o=>{o.preventDefault();const N=o.target;a({type:P.ADD_TASK,payload:{columnId:l,task:{content:N.content.value,priority:N.priority.value,assignee:N.assignee.value||"Chưa giao"}}}),x(!1),N.reset()},se=o=>{o.preventDefault();const N=o.target;a({type:P.UPDATE_TASK,payload:{taskId:A.id,updates:{content:N.content.value,priority:N.priority.value,assignee:N.assignee.value||"Chưa giao",columnId:N.columnId.value}}}),s(!1)},ne=o=>{o.preventDefault();const N=`column-${Date.now()}`;a({type:P.ADD_COLUMN,payload:{id:N,title:o.target.title.value}}),S(!1),o.target.reset()},ie=o=>{if(t.columnOrder.length<=1)return;const N=t.columnOrder.find(k=>k!==o)||t.columnOrder[0];a({type:P.DELETE_COLUMN,payload:{columnId:o,targetColumnId:N}})};return e.jsxs("div",{className:"kanban-board",children:[e.jsx("h1",{className:"kanban-title",children:"Kanban Board"}),e.jsxs("div",{className:"kanban-header",children:[e.jsxs("div",{className:"kanban-controls",children:[e.jsx("input",{type:"text",placeholder:"Tìm kiếm task...",className:"kanban-search",value:n,onChange:o=>i(o.target.value)}),e.jsx(Q,{value:r,onChange:o=>c(o.target.value),options:[{value:"",label:"Tất cả ưu tiên"},{value:"high",label:"Cao"},{value:"medium",label:"Trung bình"},{value:"low",label:"Thấp"}]}),e.jsx(Q,{value:m,onChange:o=>h(o.target.value),options:[{value:"",label:"Tất cả người"},...Array.from(new Set(Object.values(t.tasks).map(o=>o.assignee))).filter(Boolean).map(o=>({value:o,label:o}))]})]}),e.jsx(g,{variant:"primary",size:"lg",onClick:te,children:"+ Thêm cột"})]}),e.jsx("div",{className:"kanban-columns",children:t.columnOrder.map(o=>{const N=t.columns[o],k=N.taskIds.map(E=>t.tasks[E]).filter(E=>E&&Z.some(U=>U.id===E.id));return e.jsxs("div",{className:"kanban-column",onDragOver:G,onDrop:E=>K(E,o),children:[e.jsxs("div",{className:"kanban-column-header",children:[e.jsx("h2",{className:"kanban-column-title",children:N.title}),e.jsx(oe,{content:"Xóa cột",children:e.jsx(g,{variant:"ghost",size:"sm",onClick:()=>ie(o),disabled:t.columnOrder.length<=1,children:"Delete"})})]}),e.jsxs("div",{className:"kanban-tasks",children:[k.map((E,U)=>{const B=w.columnId===o&&w.index===U;return e.jsxs("div",{children:[B&&e.jsx("div",{className:"drop-preview"}),e.jsxs("div",{draggable:!0,onDragStart:z=>$(z,o,U),onDragEnter:()=>X(o,U),onDragLeave:W,onDragOver:G,onDrop:z=>K(z,o,U),className:`kanban-task-card ${B?"drag-over":""}`,children:[e.jsx("div",{className:"kanban-task-content",children:E.content}),e.jsxs("div",{className:"kanban-task-meta",children:[e.jsx("span",{className:`kanban-task-priority priority-${E.priority}`,children:E.priority}),e.jsx("span",{className:"kanban-task-assignee",children:E.assignee})]}),e.jsxs("div",{className:"kanban-task-actions",children:[e.jsx(g,{variant:"ghost",size:"sm",onClick:()=>ee(E),children:"Edit"}),e.jsx(g,{variant:"danger",size:"sm",onClick:()=>a({type:P.DELETE_TASK,payload:{taskId:E.id,columnId:o}}),children:"Delete"})]})]})]},E.id)}),w.columnId===o&&w.index===k.length&&e.jsx("div",{className:"drop-preview"})]}),e.jsx("div",{className:"kanban-add-task",onClick:()=>J(o),children:"+ Thêm task mới"})]},o)})}),e.jsxs(R,{isOpen:T,onClose:()=>x(!1),children:[e.jsx(R.Header,{onClose:()=>x(!1),children:"Thêm Task"}),e.jsx(R.Body,{children:e.jsxs("form",{onSubmit:ae,className:"modal-form",children:[e.jsx(M,{label:"Nội dung",name:"content",placeholder:"Nhập nội dung...",required:!0}),e.jsx(Q,{label:"Độ ưu tiên",name:"priority",options:[{value:"high",label:"Cao"},{value:"medium",label:"Trung bình"},{value:"low",label:"Thấp"}],defaultValue:"medium"}),e.jsx(M,{label:"Người thực hiện",name:"assignee",placeholder:"Tên..."}),e.jsxs("div",{className:"modal-actions",children:[e.jsx(g,{variant:"ghost",onClick:()=>x(!1),children:"Hủy"}),e.jsx(g,{variant:"primary",type:"submit",children:"Thêm"})]})]})})]}),e.jsxs(R,{isOpen:b,onClose:()=>s(!1),children:[e.jsx(R.Header,{onClose:()=>s(!1),children:"Sửa Task"}),e.jsx(R.Body,{children:A&&e.jsxs("form",{onSubmit:se,className:"modal-form",children:[e.jsx(M,{label:"Nội dung",name:"content",defaultValue:A.content,required:!0}),e.jsx(Q,{label:"Độ ưu tiên",name:"priority",options:[{value:"high",label:"Cao"},{value:"medium",label:"Trung bình"},{value:"low",label:"Thấp"}],defaultValue:A.priority}),e.jsx(M,{label:"Người thực hiện",name:"assignee",defaultValue:A.assignee}),e.jsx(Q,{label:"Chuyển đến cột",name:"columnId",options:t.columnOrder.map(o=>({value:o,label:t.columns[o].title})),defaultValue:A.columnId}),e.jsxs("div",{className:"modal-actions",children:[e.jsx(g,{variant:"ghost",onClick:()=>s(!1),children:"Hủy"}),e.jsx(g,{variant:"primary",type:"submit",children:"Cập nhật"})]})]})})]}),e.jsxs(R,{isOpen:d,onClose:()=>S(!1),children:[e.jsx(R.Header,{onClose:()=>S(!1),children:"Thêm Cột"}),e.jsx(R.Body,{children:e.jsxs("form",{onSubmit:ne,className:"modal-form",children:[e.jsx(M,{label:"Tên cột",name:"title",placeholder:"VD: Review...",required:!0}),e.jsxs("div",{className:"modal-actions",children:[e.jsx(g,{variant:"ghost",onClick:()=>S(!1),children:"Hủy"}),e.jsx(g,{variant:"primary",type:"submit",children:"Thêm"})]})]})})]})]})}function Ae(){return e.jsxs(v,{children:[e.jsx(v.Header,{order:4,title:"Kanban Board"}),e.jsx(v.Description,{children:`
+`})]})}const P={ADD_TASK:"ADD_TASK",MOVE_TASK:"MOVE_TASK",UPDATE_TASK:"UPDATE_TASK",DELETE_TASK:"DELETE_TASK",ADD_COLUMN:"ADD_COLUMN",DELETE_COLUMN:"DELETE_COLUMN"},Ce={columns:{todo:{id:"todo",title:"Cần làm",taskIds:[]},inProgress:{id:"inProgress",title:"Đang làm",taskIds:[]},done:{id:"done",title:"Hoàn thành",taskIds:[]}},tasks:{},columnOrder:["todo","inProgress","done"]};function ye(t,a){switch(a.type){case P.ADD_TASK:{const{columnId:n,task:i}=a.payload,r=`task-${Date.now()}`;return{...t,tasks:{...t.tasks,[r]:{id:r,columnId:n,...i}},columns:{...t.columns,[n]:{...t.columns[n],taskIds:[...t.columns[n].taskIds,r]}}}}case P.MOVE_TASK:{const{source:n,destination:i}=a.payload;if(!i||n.columnId===i.columnId&&n.index===i.index)return t;const r=t.columns[n.columnId],c=t.columns[i.columnId],m=Array.from(r.taskIds),h=n.columnId===i.columnId?m:Array.from(c.taskIds),[g]=m.splice(n.index,1);return h.splice(i.index,0,g),{...t,tasks:{...t.tasks,[g]:{...t.tasks[g],columnId:i.columnId}},columns:{...t.columns,[n.columnId]:{...r,taskIds:m},[i.columnId]:{...c,taskIds:h}}}}case P.UPDATE_TASK:{const{taskId:n,updates:i}=a.payload,r=t.tasks[n],c=r.columnId,m=i.columnId||c;let h={...t};return m!==c&&(h={...h,columns:{...h.columns,[c]:{...h.columns[c],taskIds:h.columns[c].taskIds.filter(g=>g!==n)},[m]:{...h.columns[m],taskIds:[...h.columns[m].taskIds,n]}}}),{...h,tasks:{...h.tasks,[n]:{...r,...i}}}}case P.DELETE_TASK:{const{taskId:n,columnId:i}=a.payload;return{...t,tasks:Object.fromEntries(Object.entries(t.tasks).filter(([r])=>r!==n)),columns:{...t.columns,[i]:{...t.columns[i],taskIds:t.columns[i].taskIds.filter(r=>r!==n)}}}}case P.ADD_COLUMN:{const{id:n,title:i}=a.payload;return{...t,columns:{...t.columns,[n]:{id:n,title:i,taskIds:[]}},columnOrder:[...t.columnOrder,n]}}case P.DELETE_COLUMN:{const{columnId:n,targetColumnId:i}=a.payload,r=t.columns[n],c=t.columnOrder.filter(m=>m!==n);return{...t,columns:{...t.columns,[i]:{...t.columns[i],taskIds:[...t.columns[i].taskIds,...r.taskIds]}},columnOrder:c}}default:return t}}function Ae(){const[t,a]=S.useReducer(ye,Ce),[n,i]=S.useState(""),[r,c]=S.useState(""),[m,h]=S.useState(""),[g,O]=S.useState(!1),[b,s]=S.useState(!1),[l,C]=S.useState(!1),[d,E]=S.useState(""),[I,q]=S.useState(null),[w,V]=S.useState({columnId:null,index:null}),H=S.useRef(null),X=Object.values(t.tasks).filter(o=>{const v=o.content.toLowerCase().includes(n.toLowerCase()),f=!r||o.priority===r,y=!m||o.assignee===m;return v&&f&&y}),Z=(o,v,f)=>{H.current={columnId:v,index:f},o.dataTransfer.effectAllowed="move"},$=(o,v)=>{V({columnId:o,index:v})},W=()=>{V({columnId:null,index:null})},K=o=>{o.preventDefault()},B=(o,v,f)=>{o.preventDefault();const y=H.current;if(!y)return;const U={columnId:v,index:f??t.columns[v].taskIds.length};a({type:P.MOVE_TASK,payload:{source:y,destination:U}}),H.current=null,V({columnId:null,index:null})},J=o=>{E(o),O(!0)},ee=o=>{q(o),s(!0)},te=()=>C(!0),ae=o=>{o.preventDefault();const v=o.target;a({type:P.ADD_TASK,payload:{columnId:d,task:{content:v.content.value,priority:v.priority.value,assignee:v.assignee.value||"Chưa giao"}}}),O(!1),v.reset()},se=o=>{o.preventDefault();const v=o.target;a({type:P.UPDATE_TASK,payload:{taskId:I.id,updates:{content:v.content.value,priority:v.priority.value,assignee:v.assignee.value||"Chưa giao",columnId:v.columnId.value}}}),s(!1)},ne=o=>{o.preventDefault();const v=`column-${Date.now()}`;a({type:P.ADD_COLUMN,payload:{id:v,title:o.target.title.value}}),C(!1),o.target.reset()},ie=o=>{if(t.columnOrder.length<=1)return;const v=t.columnOrder.find(f=>f!==o)||t.columnOrder[0];a({type:P.DELETE_COLUMN,payload:{columnId:o,targetColumnId:v}})};return e.jsxs("div",{className:"kanban-board",children:[e.jsx("h1",{className:"kanban-title",children:"Kanban Board"}),e.jsxs("div",{className:"kanban-header",children:[e.jsxs("div",{className:"kanban-controls",children:[e.jsx("input",{type:"text",placeholder:"Tìm kiếm task...",className:"kanban-search",value:n,onChange:o=>i(o.target.value)}),e.jsx(G,{value:r,onChange:o=>c(o.target.value),options:[{value:"",label:"Tất cả ưu tiên"},{value:"high",label:"Cao"},{value:"medium",label:"Trung bình"},{value:"low",label:"Thấp"}]}),e.jsx(G,{value:m,onChange:o=>h(o.target.value),options:[{value:"",label:"Tất cả người"},...Array.from(new Set(Object.values(t.tasks).map(o=>o.assignee))).filter(Boolean).map(o=>({value:o,label:o}))]})]}),e.jsx(N,{variant:"primary",size:"lg",onClick:te,children:"+ Thêm cột"})]}),e.jsx("div",{className:"kanban-columns",children:t.columnOrder.map(o=>{const v=t.columns[o],f=v.taskIds.map(y=>t.tasks[y]).filter(y=>y&&X.some(U=>U.id===y.id));return e.jsxs("div",{className:"kanban-column",onDragOver:K,onDrop:y=>B(y,o),children:[e.jsxs("div",{className:"kanban-column-header",children:[e.jsx("h2",{className:"kanban-column-title",children:v.title}),e.jsx(oe,{content:"Xóa cột",children:e.jsx(N,{variant:"ghost",size:"sm",onClick:()=>ie(o),disabled:t.columnOrder.length<=1,children:"Delete"})})]}),e.jsxs("div",{className:"kanban-tasks",children:[f.map((y,U)=>{const z=w.columnId===o&&w.index===U;return e.jsxs("div",{children:[z&&e.jsx("div",{className:"drop-preview"}),e.jsxs("div",{draggable:!0,onDragStart:Q=>Z(Q,o,U),onDragEnter:()=>$(o,U),onDragLeave:W,onDragOver:K,onDrop:Q=>B(Q,o,U),className:`kanban-task-card ${z?"drag-over":""}`,children:[e.jsx("div",{className:"kanban-task-content",children:y.content}),e.jsxs("div",{className:"kanban-task-meta",children:[e.jsx("span",{className:`kanban-task-priority priority-${y.priority}`,children:y.priority}),e.jsx("span",{className:"kanban-task-assignee",children:y.assignee})]}),e.jsxs("div",{className:"kanban-task-actions",children:[e.jsx(N,{variant:"ghost",size:"sm",onClick:()=>ee(y),children:"Edit"}),e.jsx(N,{variant:"danger",size:"sm",onClick:()=>a({type:P.DELETE_TASK,payload:{taskId:y.id,columnId:o}}),children:"Delete"})]})]})]},y.id)}),w.columnId===o&&w.index===f.length&&e.jsx("div",{className:"drop-preview"})]}),e.jsx("div",{className:"kanban-add-task",onClick:()=>J(o),children:"+ Thêm task mới"})]},o)})}),e.jsxs(D,{isOpen:g,onClose:()=>O(!1),children:[e.jsx(D.Header,{onClose:()=>O(!1),children:"Thêm Task"}),e.jsx(D.Body,{children:e.jsxs("form",{onSubmit:ae,className:"modal-form",children:[e.jsx(M,{label:"Nội dung",name:"content",placeholder:"Nhập nội dung...",required:!0}),e.jsx(G,{label:"Độ ưu tiên",name:"priority",options:[{value:"high",label:"Cao"},{value:"medium",label:"Trung bình"},{value:"low",label:"Thấp"}],defaultValue:"medium"}),e.jsx(M,{label:"Người thực hiện",name:"assignee",placeholder:"Tên..."}),e.jsxs("div",{className:"modal-actions",children:[e.jsx(N,{variant:"ghost",onClick:()=>O(!1),children:"Hủy"}),e.jsx(N,{variant:"primary",type:"submit",children:"Thêm"})]})]})})]}),e.jsxs(D,{isOpen:b,onClose:()=>s(!1),children:[e.jsx(D.Header,{onClose:()=>s(!1),children:"Sửa Task"}),e.jsx(D.Body,{children:I&&e.jsxs("form",{onSubmit:se,className:"modal-form",children:[e.jsx(M,{label:"Nội dung",name:"content",defaultValue:I.content,required:!0}),e.jsx(G,{label:"Độ ưu tiên",name:"priority",options:[{value:"high",label:"Cao"},{value:"medium",label:"Trung bình"},{value:"low",label:"Thấp"}],defaultValue:I.priority}),e.jsx(M,{label:"Người thực hiện",name:"assignee",defaultValue:I.assignee}),e.jsx(G,{label:"Chuyển đến cột",name:"columnId",options:t.columnOrder.map(o=>({value:o,label:t.columns[o].title})),defaultValue:I.columnId}),e.jsxs("div",{className:"modal-actions",children:[e.jsx(N,{variant:"ghost",onClick:()=>s(!1),children:"Hủy"}),e.jsx(N,{variant:"primary",type:"submit",children:"Cập nhật"})]})]})})]}),e.jsxs(D,{isOpen:l,onClose:()=>C(!1),children:[e.jsx(D.Header,{onClose:()=>C(!1),children:"Thêm Cột"}),e.jsx(D.Body,{children:e.jsxs("form",{onSubmit:ne,className:"modal-form",children:[e.jsx(M,{label:"Tên cột",name:"title",placeholder:"VD: Review...",required:!0}),e.jsxs("div",{className:"modal-actions",children:[e.jsx(N,{variant:"ghost",onClick:()=>C(!1),children:"Hủy"}),e.jsx(N,{variant:"primary",type:"submit",children:"Thêm"})]})]})})]})]})}function Ie(){return e.jsxs(T,{children:[e.jsx(T.Header,{order:4,title:"Kanban Board"}),e.jsx(T.Description,{children:`
 // TODO: Implement Kanban board với drag & drop
 
 const KANBAN_ACTIONS = {
@@ -1250,7 +1250,7 @@ function KanbanBoard() {
   );
 }
 
-`}),e.jsx(v.Demo,{children:e.jsx(ye,{})}),e.jsx(v.Code,{children:`
+`}),e.jsx(T.Demo,{children:e.jsx(Ae,{})}),e.jsx(T.Code,{children:`
 // KanbanBoard.jsx
 import { Button, Input, Modal, Select, Tooltip } from "@ui";
 import { useReducer, useRef, useState } from "react";
@@ -1832,7 +1832,7 @@ export default function KanbanBoard() {
   );
 }
 
-`})]})}const p={SET_STEP:"SET_STEP",NEXT_STEP:"NEXT_STEP",PREV_STEP:"PREV_STEP",UPDATE_CART:"UPDATE_CART",UPDATE_SHIPPING:"UPDATE_SHIPPING",UPDATE_PAYMENT:"UPDATE_PAYMENT",APPLY_PROMO:"APPLY_PROMO",PLACE_ORDER:"PLACE_ORDER",SET_ERRORS:"SET_ERRORS",CALCULATE_TOTALS:"CALCULATE_TOTALS",SET_PROCESSING:"SET_PROCESSING"},y={CART:0,SHIPPING:1,PAYMENT:2,REVIEW:3,CONFIRMATION:4},xe={SAVE10:.1,SAVE20:.2,FREESHIP:0};function Oe(t,a){switch(a.type){case p.SET_STEP:return{...t,currentStep:a.payload};case p.NEXT_STEP:return{...t,currentStep:Math.min(t.currentStep+1,y.CONFIRMATION),errors:{}};case p.PREV_STEP:return{...t,currentStep:Math.max(t.currentStep-1,y.CART),errors:{}};case p.UPDATE_CART:{const{itemId:n,quantity:i}=a.payload;let r=[...t.cart.items];return i===0?r=r.filter(c=>c.id!==n):r=r.map(c=>c.id===n?{...c,quantity:i}:c),{...t,cart:{...t.cart,items:r}}}case p.UPDATE_SHIPPING:return{...t,shipping:{...t.shipping,...a.payload}};case p.UPDATE_PAYMENT:return{...t,payment:{...t.payment,...a.payload}};case p.APPLY_PROMO:{const n=a.payload.toUpperCase(),i=xe[n];return i!==void 0?{...t,promoCode:{code:n,discount:i},errors:{...t.errors,promo:null}}:{...t,errors:{...t.errors,promo:"Mã giảm giá không hợp lệ"}}}case p.CALCULATE_TOTALS:{const n=t.cart.items.reduce((h,T)=>h+T.price*T.quantity,0);let i=0;t.shipping.method==="standard"?i=3e4:t.shipping.method==="express"&&(i=5e4),t.promoCode.code==="FREESHIP"&&(i=0);const r=Math.round(n*.1),c=Math.round(n*t.promoCode.discount),m=n+i+r-c;return{...t,cart:{...t.cart,subtotal:n,shipping:i,tax:r,discount:c,total:m}}}case p.SET_ERRORS:return{...t,errors:a.payload};case p.SET_PROCESSING:return{...t,isProcessing:a.payload};case p.PLACE_ORDER:{const n="ORD"+Date.now();return{...t,orderNumber:n,isProcessing:!1,currentStep:y.CONFIRMATION}}default:return t}}function Pe(){const[t,a]=I.useReducer(Oe,{currentStep:y.CART,cart:{items:[{id:1,name:"iPhone 15 Pro Max",price:2999e4,quantity:1},{id:2,name:"AirPods Pro 2",price:649e4,quantity:2},{id:3,name:"Apple Watch Series 9",price:1099e4,quantity:1}],subtotal:0,shipping:0,tax:0,discount:0,total:0},shipping:{fullName:"",address:"",city:"",zipCode:"",phone:"",method:"standard"},payment:{method:"card",cardNumber:"",cardName:"",expiryDate:"",cvv:""},promoCode:{code:"",discount:0},errors:{},isProcessing:!1,orderNumber:null});I.useEffect(()=>{a({type:p.CALCULATE_TOTALS})},[t.cart.items,t.shipping.method,t.promoCode]);const n=["Giỏ hàng","Thông tin giao hàng","Thanh toán","Xác nhận","Hoàn tất"],i=()=>{const s={};return t.cart.items.length===0&&(s.cart="Giỏ hàng trống. Vui lòng thêm sản phẩm."),s},r=()=>{const s={},{fullName:d,address:S,city:l,zipCode:C,phone:A}=t.shipping;return d.trim()||(s.fullName="Vui lòng nhập họ tên"),S.trim()||(s.address="Vui lòng nhập địa chỉ"),l.trim()||(s.city="Vui lòng nhập thành phố"),C.trim()||(s.zipCode="Vui lòng nhập mã bưu điện"),A.trim()||(s.phone="Vui lòng nhập số điện thoại"),A&&!/^0\d{9,10}$/.test(A)&&(s.phone="Số điện thoại không hợp lệ (VD: 0901234567)"),C&&!/^\d{5,6}$/.test(C)&&(s.zipCode="Mã bưu điện không hợp lệ (5-6 chữ số)"),s},c=()=>{const s={},{method:d,cardNumber:S,cardName:l,expiryDate:C,cvv:A}=t.payment;if(d==="card"){if(S.trim()?/^\d{16}$/.test(S.replace(/\s/g,""))||(s.cardNumber="Số thẻ phải có 16 chữ số"):s.cardNumber="Vui lòng nhập số thẻ",l.trim()||(s.cardName="Vui lòng nhập tên trên thẻ"),!C.trim())s.expiryDate="Vui lòng nhập ngày hết hạn";else if(!/^\d{2}\/\d{2}$/.test(C))s.expiryDate="Định dạng: MM/YY";else{const[q,w]=C.split("/");new Date(2e3+parseInt(w),parseInt(q)-1)<new Date&&(s.expiryDate="Thẻ đã hết hạn")}A.trim()?/^\d{3,4}$/.test(A)||(s.cvv="CVV phải có 3-4 chữ số"):s.cvv="Vui lòng nhập CVV"}return s},m=()=>{let s={};t.currentStep===y.CART?s=i():t.currentStep===y.SHIPPING?s=r():t.currentStep===y.PAYMENT&&(s=c()),Object.keys(s).length>0?a({type:p.SET_ERRORS,payload:s}):a({type:p.NEXT_STEP})},h=async()=>{a({type:p.SET_PROCESSING,payload:!0}),await new Promise(s=>setTimeout(s,2e3)),a({type:p.PLACE_ORDER})},T=s=>new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND"}).format(s),x=(s,d)=>{d>=0&&a({type:p.UPDATE_CART,payload:{itemId:s,quantity:d}})},b=s=>{s.preventDefault();const d=s.target.promoInput.value;a({type:p.APPLY_PROMO,payload:d})};return e.jsxs("div",{className:"checkout-container",children:[e.jsx("h1",{className:"checkout-title",children:"Thanh Toán"}),e.jsxs("div",{className:"steps-progress",children:[e.jsx("div",{className:"steps-line"}),n.map((s,d)=>e.jsxs("div",{className:"step-item",children:[e.jsx("div",{className:`step-circle ${d<=t.currentStep?"active":""} ${d<t.currentStep?"completed":""}`,children:d<t.currentStep?"✓":d+1}),e.jsx("div",{className:`step-label ${d===t.currentStep?"active":""}`,children:s})]},d))]}),e.jsxs("div",{className:"checkout-body",children:[e.jsxs("div",{className:"main-content",children:[t.currentStep===y.CART&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Giỏ hàng của bạn"}),t.errors.cart&&e.jsx("p",{className:"error-text",children:t.errors.cart}),t.cart.items.map(s=>e.jsxs("div",{className:"cart-item",children:[e.jsxs("div",{className:"item-wrapper",children:[e.jsxs("div",{className:"item-info",children:[e.jsx("h3",{children:s.name}),e.jsx("p",{className:"price",children:T(s.price)})]}),e.jsxs("div",{className:"quantity-controls",children:[e.jsx("button",{onClick:()=>x(s.id,s.quantity-1),className:"qty-btn",children:"-"}),e.jsx("span",{className:"qty-display",children:s.quantity}),e.jsx("button",{onClick:()=>x(s.id,s.quantity+1),className:"qty-btn",children:"+"}),e.jsx("button",{onClick:()=>x(s.id,0),className:"remove-btn",children:"Xóa"})]})]}),e.jsx("div",{className:"item-total",children:T(s.price*s.quantity)})]},s.id)),e.jsxs("form",{onSubmit:b,className:"promo-form",children:[e.jsxs("div",{className:"promo-input-group",children:[e.jsx("input",{name:"promoInput",type:"text",placeholder:"Nhập mã giảm giá",className:"promo-input"}),e.jsx("button",{type:"submit",className:"promo-btn",children:"Áp dụng"})]}),t.errors.promo&&e.jsx("p",{className:"error-text",children:t.errors.promo}),t.promoCode.code&&e.jsxs("p",{className:"success-text",children:["✓ Đã áp dụng mã: ",t.promoCode.code]})]}),e.jsx("p",{className:"promo-hint",children:"Mã khuyến mãi: SAVE10 (10%), SAVE20 (20%), FREESHIP (miễn phí ship)"})]}),t.currentStep===y.SHIPPING&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Thông tin giao hàng"}),e.jsxs("div",{className:"form-group",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Họ và tên ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.fullName,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{fullName:s.target.value}}),className:t.errors.fullName?"input-error":"input"}),t.errors.fullName&&e.jsx("p",{className:"error-text",children:t.errors.fullName})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Địa chỉ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.address,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{address:s.target.value}}),className:t.errors.address?"input-error":"input"}),t.errors.address&&e.jsx("p",{className:"error-text",children:t.errors.address})]}),e.jsxs("div",{className:"input-row",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Thành phố ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.city,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{city:s.target.value}}),className:t.errors.city?"input-error":"input"}),t.errors.city&&e.jsx("p",{className:"error-text",children:t.errors.city})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Mã bưu điện ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.zipCode,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{zipCode:s.target.value}}),className:t.errors.zipCode?"input-error":"input"}),t.errors.zipCode&&e.jsx("p",{className:"error-text",children:t.errors.zipCode})]})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Số điện thoại ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"tel",value:t.shipping.phone,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{phone:s.target.value}}),className:t.errors.phone?"input-error":"input"}),t.errors.phone&&e.jsx("p",{className:"error-text",children:t.errors.phone})]}),e.jsxs("div",{className:"shipping-options",children:[e.jsx("label",{className:"option-label",children:"Phương thức vận chuyển"}),e.jsxs("label",{className:`shipping-option ${t.shipping.method==="standard"?"selected":""}`,children:[e.jsxs("div",{children:[e.jsx("input",{type:"radio",name:"shippingMethod",value:"standard",checked:t.shipping.method==="standard",onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Giao hàng tiêu chuẩn"}),e.jsx("div",{className:"option-desc",children:"3-5 ngày làm việc"})]}),e.jsx("span",{className:"option-price",children:"30.000₫"})]}),e.jsxs("label",{className:`shipping-option ${t.shipping.method==="express"?"selected":""}`,children:[e.jsxs("div",{children:[e.jsx("input",{type:"radio",name:"shippingMethod",value:"express",checked:t.shipping.method==="express",onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Giao hàng nhanh"}),e.jsx("div",{className:"option-desc",children:"1-2 ngày làm việc"})]}),e.jsx("span",{className:"option-price",children:"50.000₫"})]})]})]})]}),t.currentStep===y.PAYMENT&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Phương thức thanh toán"}),e.jsxs("div",{className:"payment-methods",children:[e.jsxs("label",{className:`payment-option ${t.payment.method==="card"?"selected":""}`,children:[e.jsx("input",{type:"radio",name:"paymentMethod",value:"card",checked:t.payment.method==="card",onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Thẻ tín dụng/ghi nợ"})]}),e.jsxs("label",{className:`payment-option ${t.payment.method==="momo"?"selected":""}`,children:[e.jsx("input",{type:"radio",name:"paymentMethod",value:"momo",checked:t.payment.method==="momo",onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Ví MoMo"})]}),e.jsxs("label",{className:`payment-option ${t.payment.method==="cod"?"selected":""}`,children:[e.jsx("input",{type:"radio",name:"paymentMethod",value:"cod",checked:t.payment.method==="cod",onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Thanh toán khi nhận hàng (COD)"})]})]}),t.payment.method==="card"&&e.jsxs("div",{className:"card-form",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Số thẻ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.cardNumber,onChange:s=>{const d=s.target.value.replace(/\s/g,"").replace(/\D/g,"");a({type:p.UPDATE_PAYMENT,payload:{cardNumber:d}})},placeholder:"1234 5678 9012 3456",maxLength:"16",className:t.errors.cardNumber?"input-error":"input"}),t.errors.cardNumber&&e.jsx("p",{className:"error-text",children:t.errors.cardNumber})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Tên trên thẻ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.cardName,onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{cardName:s.target.value.toUpperCase()}}),placeholder:"NGUYEN VAN A",className:t.errors.cardName?"input-error":"input"}),t.errors.cardName&&e.jsx("p",{className:"error-text",children:t.errors.cardName})]}),e.jsxs("div",{className:"input-row",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Ngày hết hạn ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.expiryDate,onChange:s=>{let d=s.target.value.replace(/\D/g,"");d.length>=2&&(d=d.slice(0,2)+"/"+d.slice(2,4)),a({type:p.UPDATE_PAYMENT,payload:{expiryDate:d}})},placeholder:"MM/YY",maxLength:"5",className:t.errors.expiryDate?"input-error":"input"}),t.errors.expiryDate&&e.jsx("p",{className:"error-text",children:t.errors.expiryDate})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["CVV ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.cvv,onChange:s=>{const d=s.target.value.replace(/\D/g,"");a({type:p.UPDATE_PAYMENT,payload:{cvv:d}})},placeholder:"123",maxLength:"4",className:t.errors.cvv?"input-error":"input"}),t.errors.cvv&&e.jsx("p",{className:"error-text",children:t.errors.cvv})]})]})]}),t.payment.method==="momo"&&e.jsx("div",{className:"payment-info momo-info",children:e.jsx("p",{children:"Bạn sẽ được chuyển đến ứng dụng MoMo để hoàn tất thanh toán."})}),t.payment.method==="cod"&&e.jsxs("div",{className:"payment-info cod-info",children:[e.jsx("p",{children:"Bạn sẽ thanh toán bằng tiền mặt khi nhận hàng."}),e.jsx("p",{className:"note",children:"Lưu ý: Vui lòng kiểm tra kỹ sản phẩm trước khi thanh toán."})]})]}),t.currentStep===y.REVIEW&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Xác nhận đơn hàng"}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{children:"Thông tin giao hàng"}),e.jsxs("p",{children:[e.jsx("strong",{children:"Người nhận:"})," ",t.shipping.fullName]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Địa chỉ:"})," ",t.shipping.address]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Thành phố:"})," ",t.shipping.city,","," ",t.shipping.zipCode]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Điện thoại:"})," ",t.shipping.phone]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Phương thức vận chuyển:"})," ",t.shipping.method==="standard"?"Giao hàng tiêu chuẩn (3-5 ngày)":"Giao hàng nhanh (1-2 ngày)"]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{children:"Phương thức thanh toán"}),e.jsxs("p",{children:[t.payment.method==="card"&&"Thẻ tín dụng/ghi nợ",t.payment.method==="momo"&&"Ví MoMo",t.payment.method==="cod"&&"Thanh toán khi nhận hàng (COD)"]}),t.payment.method==="card"&&e.jsxs("p",{children:[e.jsx("strong",{children:"Số thẻ:"})," **** **** ****"," ",t.payment.cardNumber.slice(-4)]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{children:"Sản phẩm"}),t.cart.items.map(s=>e.jsxs("div",{className:"review-item",children:[e.jsxs("div",{children:[e.jsx("strong",{children:s.name}),e.jsxs("div",{className:"item-desc",children:[T(s.price)," × ",s.quantity]})]}),e.jsx("div",{className:"item-total",children:T(s.price*s.quantity)})]},s.id))]}),e.jsx("div",{className:"agreement-box",children:e.jsx("p",{children:"✓ Bằng cách đặt hàng, bạn đồng ý với Điều khoản sử dụng và Chính sách bảo mật của chúng tôi."})})]}),t.currentStep===y.CONFIRMATION&&e.jsxs("div",{className:"confirmation-card",children:[e.jsx("div",{className:"success-icon",children:"✓"}),e.jsx("h2",{className:"success-title",children:"Đặt hàng thành công!"}),e.jsxs("p",{className:"order-number",children:["Mã đơn hàng: ",e.jsx("strong",{children:t.orderNumber})]}),e.jsx("p",{className:"thank-you",children:"Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ gửi email xác nhận đến bạn sớm nhất."}),e.jsxs("p",{className:"delivery-info",children:["Đơn hàng của bạn sẽ được giao trong"," ",t.shipping.method==="standard"?"3-5":"1-2"," ngày làm việc."]}),e.jsxs("div",{className:"order-details",children:[e.jsx("h3",{children:"Chi tiết đơn hàng"}),e.jsxs("p",{children:[e.jsx("strong",{children:"Tổng tiền:"})," ",T(t.cart.total)]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Địa chỉ giao hàng:"})," ",t.shipping.address,","," ",t.shipping.city]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Số điện thoại:"})," ",t.shipping.phone]})]}),e.jsx("button",{onClick:()=>window.location.reload(),className:"continue-shopping-btn",children:"Tiếp tục mua sắm"})]}),t.currentStep<y.CONFIRMATION&&e.jsxs("div",{className:"navigation-buttons",children:[t.currentStep>y.CART&&e.jsx("button",{onClick:()=>a({type:p.PREV_STEP}),className:"back-btn",children:"← Quay lại"}),e.jsx("button",{onClick:t.currentStep===y.REVIEW?h:m,disabled:t.isProcessing,className:`next-btn ${t.isProcessing?"disabled":""}`,children:t.isProcessing?"Đang xử lý...":t.currentStep===y.REVIEW?"✓ Đặt hàng":"Tiếp tục →"})]})]}),t.currentStep<y.CONFIRMATION&&e.jsxs("div",{className:"order-summary",children:[e.jsx("h3",{children:"Tóm tắt đơn hàng"}),e.jsx("div",{className:"summary-header",children:e.jsxs("p",{children:[t.cart.items.length," sản phẩm"]})}),e.jsxs("div",{className:"summary-details",children:[e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Tạm tính:"}),e.jsx("span",{children:T(t.cart.subtotal)})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Phí vận chuyển:"}),e.jsx("span",{children:T(t.cart.shipping)})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Thuế VAT (10%):"}),e.jsx("span",{children:T(t.cart.tax)})]}),t.cart.discount>0&&e.jsxs("div",{className:"summary-row discount",children:[e.jsxs("span",{children:["Giảm giá (",t.promoCode.code,"):"]}),e.jsxs("span",{children:["-",T(t.cart.discount)]})]})]}),e.jsxs("div",{className:"summary-total",children:[e.jsx("span",{children:"Tổng cộng:"}),e.jsx("span",{className:"total-price",children:T(t.cart.total)})]}),e.jsx("div",{className:"security-note",children:"Giao dịch được bảo mật và mã hóa"})]})]})]})}function fe(){return e.jsxs(v,{children:[e.jsx(v.Header,{order:5,title:"Multi-Step Checkout (Challenge)"}),e.jsx(v.Description,{children:`
+`})]})}const p={SET_STEP:"SET_STEP",NEXT_STEP:"NEXT_STEP",PREV_STEP:"PREV_STEP",UPDATE_CART:"UPDATE_CART",UPDATE_SHIPPING:"UPDATE_SHIPPING",UPDATE_PAYMENT:"UPDATE_PAYMENT",APPLY_PROMO:"APPLY_PROMO",PLACE_ORDER:"PLACE_ORDER",SET_ERRORS:"SET_ERRORS",CALCULATE_TOTALS:"CALCULATE_TOTALS",SET_PROCESSING:"SET_PROCESSING"},A={CART:0,SHIPPING:1,PAYMENT:2,REVIEW:3,CONFIRMATION:4},Oe={SAVE10:.1,SAVE20:.2,FREESHIP:0};function xe(t,a){switch(a.type){case p.SET_STEP:return{...t,currentStep:a.payload};case p.NEXT_STEP:return{...t,currentStep:Math.min(t.currentStep+1,A.CONFIRMATION),errors:{}};case p.PREV_STEP:return{...t,currentStep:Math.max(t.currentStep-1,A.CART),errors:{}};case p.UPDATE_CART:{const{itemId:n,quantity:i}=a.payload;let r=[...t.cart.items];return i===0?r=r.filter(c=>c.id!==n):r=r.map(c=>c.id===n?{...c,quantity:i}:c),{...t,cart:{...t.cart,items:r}}}case p.UPDATE_SHIPPING:return{...t,shipping:{...t.shipping,...a.payload}};case p.UPDATE_PAYMENT:return{...t,payment:{...t.payment,...a.payload}};case p.APPLY_PROMO:{const n=a.payload.toUpperCase(),i=Oe[n];return i!==void 0?{...t,promoCode:{code:n,discount:i},errors:{...t.errors,promo:null}}:{...t,errors:{...t.errors,promo:"Mã giảm giá không hợp lệ"}}}case p.CALCULATE_TOTALS:{const n=t.cart.items.reduce((h,g)=>h+g.price*g.quantity,0);let i=0;t.shipping.method==="standard"?i=3e4:t.shipping.method==="express"&&(i=5e4),t.promoCode.code==="FREESHIP"&&(i=0);const r=Math.round(n*.1),c=Math.round(n*t.promoCode.discount),m=n+i+r-c;return{...t,cart:{...t.cart,subtotal:n,shipping:i,tax:r,discount:c,total:m}}}case p.SET_ERRORS:return{...t,errors:a.payload};case p.SET_PROCESSING:return{...t,isProcessing:a.payload};case p.PLACE_ORDER:{const n="ORD"+Date.now();return{...t,orderNumber:n,isProcessing:!1,currentStep:A.CONFIRMATION}}default:return t}}function Pe(){const[t,a]=S.useReducer(xe,{currentStep:A.CART,cart:{items:[{id:1,name:"iPhone 15 Pro Max",price:2999e4,quantity:1},{id:2,name:"AirPods Pro 2",price:649e4,quantity:2},{id:3,name:"Apple Watch Series 9",price:1099e4,quantity:1}],subtotal:0,shipping:0,tax:0,discount:0,total:0},shipping:{fullName:"",address:"",city:"",zipCode:"",phone:"",method:"standard"},payment:{method:"card",cardNumber:"",cardName:"",expiryDate:"",cvv:""},promoCode:{code:"",discount:0},errors:{},isProcessing:!1,orderNumber:null});S.useEffect(()=>{a({type:p.CALCULATE_TOTALS})},[t.cart.items,t.shipping.method,t.promoCode]);const n=["Giỏ hàng","Thông tin giao hàng","Thanh toán","Xác nhận","Hoàn tất"],i=()=>{const s={};return t.cart.items.length===0&&(s.cart="Giỏ hàng trống. Vui lòng thêm sản phẩm."),s},r=()=>{const s={},{fullName:l,address:C,city:d,zipCode:E,phone:I}=t.shipping;return l.trim()||(s.fullName="Vui lòng nhập họ tên"),C.trim()||(s.address="Vui lòng nhập địa chỉ"),d.trim()||(s.city="Vui lòng nhập thành phố"),E.trim()||(s.zipCode="Vui lòng nhập mã bưu điện"),I.trim()||(s.phone="Vui lòng nhập số điện thoại"),I&&!/^0\d{9,10}$/.test(I)&&(s.phone="Số điện thoại không hợp lệ (VD: 0901234567)"),E&&!/^\d{5,6}$/.test(E)&&(s.zipCode="Mã bưu điện không hợp lệ (5-6 chữ số)"),s},c=()=>{const s={},{method:l,cardNumber:C,cardName:d,expiryDate:E,cvv:I}=t.payment;if(l==="card"){if(C.trim()?/^\d{16}$/.test(C.replace(/\s/g,""))||(s.cardNumber="Số thẻ phải có 16 chữ số"):s.cardNumber="Vui lòng nhập số thẻ",d.trim()||(s.cardName="Vui lòng nhập tên trên thẻ"),!E.trim())s.expiryDate="Vui lòng nhập ngày hết hạn";else if(!/^\d{2}\/\d{2}$/.test(E))s.expiryDate="Định dạng: MM/YY";else{const[q,w]=E.split("/");new Date(2e3+parseInt(w),parseInt(q)-1)<new Date&&(s.expiryDate="Thẻ đã hết hạn")}I.trim()?/^\d{3,4}$/.test(I)||(s.cvv="CVV phải có 3-4 chữ số"):s.cvv="Vui lòng nhập CVV"}return s},m=()=>{let s={};t.currentStep===A.CART?s=i():t.currentStep===A.SHIPPING?s=r():t.currentStep===A.PAYMENT&&(s=c()),Object.keys(s).length>0?a({type:p.SET_ERRORS,payload:s}):a({type:p.NEXT_STEP})},h=async()=>{a({type:p.SET_PROCESSING,payload:!0}),await new Promise(s=>setTimeout(s,2e3)),a({type:p.PLACE_ORDER})},g=s=>new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND"}).format(s),O=(s,l)=>{l>=0&&a({type:p.UPDATE_CART,payload:{itemId:s,quantity:l}})},b=s=>{s.preventDefault();const l=s.target.promoInput.value;a({type:p.APPLY_PROMO,payload:l})};return e.jsxs("div",{className:"checkout-container",children:[e.jsx("h1",{className:"checkout-title",children:"Thanh Toán"}),e.jsxs("div",{className:"steps-progress",children:[e.jsx("div",{className:"steps-line"}),n.map((s,l)=>e.jsxs("div",{className:"step-item",children:[e.jsx("div",{className:`step-circle ${l<=t.currentStep?"active":""} ${l<t.currentStep?"completed":""}`,children:l<t.currentStep?"✓":l+1}),e.jsx("div",{className:`step-label ${l===t.currentStep?"active":""}`,children:s})]},l))]}),e.jsxs("div",{className:"checkout-body",children:[e.jsxs("div",{className:"main-content",children:[t.currentStep===A.CART&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Giỏ hàng của bạn"}),t.errors.cart&&e.jsx("p",{className:"error-text",children:t.errors.cart}),t.cart.items.map(s=>e.jsxs("div",{className:"cart-item",children:[e.jsxs("div",{className:"item-wrapper",children:[e.jsxs("div",{className:"item-info",children:[e.jsx("h3",{children:s.name}),e.jsx("p",{className:"price",children:g(s.price)})]}),e.jsxs("div",{className:"quantity-controls",children:[e.jsx("button",{onClick:()=>O(s.id,s.quantity-1),className:"qty-btn",children:"-"}),e.jsx("span",{className:"qty-display",children:s.quantity}),e.jsx("button",{onClick:()=>O(s.id,s.quantity+1),className:"qty-btn",children:"+"}),e.jsx("button",{onClick:()=>O(s.id,0),className:"remove-btn",children:"Xóa"})]})]}),e.jsx("div",{className:"item-total",children:g(s.price*s.quantity)})]},s.id)),e.jsxs("form",{onSubmit:b,className:"promo-form",children:[e.jsxs("div",{className:"promo-input-group",children:[e.jsx("input",{name:"promoInput",type:"text",placeholder:"Nhập mã giảm giá",className:"promo-input"}),e.jsx("button",{type:"submit",className:"promo-btn",children:"Áp dụng"})]}),t.errors.promo&&e.jsx("p",{className:"error-text",children:t.errors.promo}),t.promoCode.code&&e.jsxs("p",{className:"success-text",children:["✓ Đã áp dụng mã: ",t.promoCode.code]})]}),e.jsx("p",{className:"promo-hint",children:"Mã khuyến mãi: SAVE10 (10%), SAVE20 (20%), FREESHIP (miễn phí ship)"})]}),t.currentStep===A.SHIPPING&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Thông tin giao hàng"}),e.jsxs("div",{className:"form-group",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Họ và tên ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.fullName,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{fullName:s.target.value}}),className:t.errors.fullName?"input-error":"input"}),t.errors.fullName&&e.jsx("p",{className:"error-text",children:t.errors.fullName})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Địa chỉ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.address,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{address:s.target.value}}),className:t.errors.address?"input-error":"input"}),t.errors.address&&e.jsx("p",{className:"error-text",children:t.errors.address})]}),e.jsxs("div",{className:"input-row",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Thành phố ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.city,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{city:s.target.value}}),className:t.errors.city?"input-error":"input"}),t.errors.city&&e.jsx("p",{className:"error-text",children:t.errors.city})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Mã bưu điện ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.shipping.zipCode,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{zipCode:s.target.value}}),className:t.errors.zipCode?"input-error":"input"}),t.errors.zipCode&&e.jsx("p",{className:"error-text",children:t.errors.zipCode})]})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Số điện thoại ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"tel",value:t.shipping.phone,onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{phone:s.target.value}}),className:t.errors.phone?"input-error":"input"}),t.errors.phone&&e.jsx("p",{className:"error-text",children:t.errors.phone})]}),e.jsxs("div",{className:"shipping-options",children:[e.jsx("label",{className:"option-label",children:"Phương thức vận chuyển"}),e.jsxs("label",{className:`shipping-option ${t.shipping.method==="standard"?"selected":""}`,children:[e.jsxs("div",{children:[e.jsx("input",{type:"radio",name:"shippingMethod",value:"standard",checked:t.shipping.method==="standard",onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Giao hàng tiêu chuẩn"}),e.jsx("div",{className:"option-desc",children:"3-5 ngày làm việc"})]}),e.jsx("span",{className:"option-price",children:"30.000₫"})]}),e.jsxs("label",{className:`shipping-option ${t.shipping.method==="express"?"selected":""}`,children:[e.jsxs("div",{children:[e.jsx("input",{type:"radio",name:"shippingMethod",value:"express",checked:t.shipping.method==="express",onChange:s=>a({type:p.UPDATE_SHIPPING,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Giao hàng nhanh"}),e.jsx("div",{className:"option-desc",children:"1-2 ngày làm việc"})]}),e.jsx("span",{className:"option-price",children:"50.000₫"})]})]})]})]}),t.currentStep===A.PAYMENT&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Phương thức thanh toán"}),e.jsxs("div",{className:"payment-methods",children:[e.jsxs("label",{className:`payment-option ${t.payment.method==="card"?"selected":""}`,children:[e.jsx("input",{type:"radio",name:"paymentMethod",value:"card",checked:t.payment.method==="card",onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Thẻ tín dụng/ghi nợ"})]}),e.jsxs("label",{className:`payment-option ${t.payment.method==="momo"?"selected":""}`,children:[e.jsx("input",{type:"radio",name:"paymentMethod",value:"momo",checked:t.payment.method==="momo",onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Ví MoMo"})]}),e.jsxs("label",{className:`payment-option ${t.payment.method==="cod"?"selected":""}`,children:[e.jsx("input",{type:"radio",name:"paymentMethod",value:"cod",checked:t.payment.method==="cod",onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{method:s.target.value}})}),e.jsx("strong",{children:"Thanh toán khi nhận hàng (COD)"})]})]}),t.payment.method==="card"&&e.jsxs("div",{className:"card-form",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Số thẻ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.cardNumber,onChange:s=>{const l=s.target.value.replace(/\s/g,"").replace(/\D/g,"");a({type:p.UPDATE_PAYMENT,payload:{cardNumber:l}})},placeholder:"1234 5678 9012 3456",maxLength:"16",className:t.errors.cardNumber?"input-error":"input"}),t.errors.cardNumber&&e.jsx("p",{className:"error-text",children:t.errors.cardNumber})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Tên trên thẻ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.cardName,onChange:s=>a({type:p.UPDATE_PAYMENT,payload:{cardName:s.target.value.toUpperCase()}}),placeholder:"NGUYEN VAN A",className:t.errors.cardName?"input-error":"input"}),t.errors.cardName&&e.jsx("p",{className:"error-text",children:t.errors.cardName})]}),e.jsxs("div",{className:"input-row",children:[e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["Ngày hết hạn ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.expiryDate,onChange:s=>{let l=s.target.value.replace(/\D/g,"");l.length>=2&&(l=l.slice(0,2)+"/"+l.slice(2,4)),a({type:p.UPDATE_PAYMENT,payload:{expiryDate:l}})},placeholder:"MM/YY",maxLength:"5",className:t.errors.expiryDate?"input-error":"input"}),t.errors.expiryDate&&e.jsx("p",{className:"error-text",children:t.errors.expiryDate})]}),e.jsxs("div",{className:"input-wrapper",children:[e.jsxs("label",{children:["CVV ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:t.payment.cvv,onChange:s=>{const l=s.target.value.replace(/\D/g,"");a({type:p.UPDATE_PAYMENT,payload:{cvv:l}})},placeholder:"123",maxLength:"4",className:t.errors.cvv?"input-error":"input"}),t.errors.cvv&&e.jsx("p",{className:"error-text",children:t.errors.cvv})]})]})]}),t.payment.method==="momo"&&e.jsx("div",{className:"payment-info momo-info",children:e.jsx("p",{children:"Bạn sẽ được chuyển đến ứng dụng MoMo để hoàn tất thanh toán."})}),t.payment.method==="cod"&&e.jsxs("div",{className:"payment-info cod-info",children:[e.jsx("p",{children:"Bạn sẽ thanh toán bằng tiền mặt khi nhận hàng."}),e.jsx("p",{className:"note",children:"Lưu ý: Vui lòng kiểm tra kỹ sản phẩm trước khi thanh toán."})]})]}),t.currentStep===A.REVIEW&&e.jsxs("div",{className:"step-card",children:[e.jsx("h2",{children:"Xác nhận đơn hàng"}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{children:"Thông tin giao hàng"}),e.jsxs("p",{children:[e.jsx("strong",{children:"Người nhận:"})," ",t.shipping.fullName]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Địa chỉ:"})," ",t.shipping.address]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Thành phố:"})," ",t.shipping.city,","," ",t.shipping.zipCode]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Điện thoại:"})," ",t.shipping.phone]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Phương thức vận chuyển:"})," ",t.shipping.method==="standard"?"Giao hàng tiêu chuẩn (3-5 ngày)":"Giao hàng nhanh (1-2 ngày)"]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{children:"Phương thức thanh toán"}),e.jsxs("p",{children:[t.payment.method==="card"&&"Thẻ tín dụng/ghi nợ",t.payment.method==="momo"&&"Ví MoMo",t.payment.method==="cod"&&"Thanh toán khi nhận hàng (COD)"]}),t.payment.method==="card"&&e.jsxs("p",{children:[e.jsx("strong",{children:"Số thẻ:"})," **** **** ****"," ",t.payment.cardNumber.slice(-4)]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{children:"Sản phẩm"}),t.cart.items.map(s=>e.jsxs("div",{className:"review-item",children:[e.jsxs("div",{children:[e.jsx("strong",{children:s.name}),e.jsxs("div",{className:"item-desc",children:[g(s.price)," × ",s.quantity]})]}),e.jsx("div",{className:"item-total",children:g(s.price*s.quantity)})]},s.id))]}),e.jsx("div",{className:"agreement-box",children:e.jsx("p",{children:"✓ Bằng cách đặt hàng, bạn đồng ý với Điều khoản sử dụng và Chính sách bảo mật của chúng tôi."})})]}),t.currentStep===A.CONFIRMATION&&e.jsxs("div",{className:"confirmation-card",children:[e.jsx("div",{className:"success-icon",children:"✓"}),e.jsx("h2",{className:"success-title",children:"Đặt hàng thành công!"}),e.jsxs("p",{className:"order-number",children:["Mã đơn hàng: ",e.jsx("strong",{children:t.orderNumber})]}),e.jsx("p",{className:"thank-you",children:"Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ gửi email xác nhận đến bạn sớm nhất."}),e.jsxs("p",{className:"delivery-info",children:["Đơn hàng của bạn sẽ được giao trong"," ",t.shipping.method==="standard"?"3-5":"1-2"," ngày làm việc."]}),e.jsxs("div",{className:"order-details",children:[e.jsx("h3",{children:"Chi tiết đơn hàng"}),e.jsxs("p",{children:[e.jsx("strong",{children:"Tổng tiền:"})," ",g(t.cart.total)]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Địa chỉ giao hàng:"})," ",t.shipping.address,","," ",t.shipping.city]}),e.jsxs("p",{children:[e.jsx("strong",{children:"Số điện thoại:"})," ",t.shipping.phone]})]}),e.jsx("button",{onClick:()=>window.location.reload(),className:"continue-shopping-btn",children:"Tiếp tục mua sắm"})]}),t.currentStep<A.CONFIRMATION&&e.jsxs("div",{className:"navigation-buttons",children:[t.currentStep>A.CART&&e.jsx("button",{onClick:()=>a({type:p.PREV_STEP}),className:"back-btn",children:"← Quay lại"}),e.jsx("button",{onClick:t.currentStep===A.REVIEW?h:m,disabled:t.isProcessing,className:`next-btn ${t.isProcessing?"disabled":""}`,children:t.isProcessing?"Đang xử lý...":t.currentStep===A.REVIEW?"✓ Đặt hàng":"Tiếp tục →"})]})]}),t.currentStep<A.CONFIRMATION&&e.jsxs("div",{className:"order-summary",children:[e.jsx("h3",{children:"Tóm tắt đơn hàng"}),e.jsx("div",{className:"summary-header",children:e.jsxs("p",{children:[t.cart.items.length," sản phẩm"]})}),e.jsxs("div",{className:"summary-details",children:[e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Tạm tính:"}),e.jsx("span",{children:g(t.cart.subtotal)})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Phí vận chuyển:"}),e.jsx("span",{children:g(t.cart.shipping)})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Thuế VAT (10%):"}),e.jsx("span",{children:g(t.cart.tax)})]}),t.cart.discount>0&&e.jsxs("div",{className:"summary-row discount",children:[e.jsxs("span",{children:["Giảm giá (",t.promoCode.code,"):"]}),e.jsxs("span",{children:["-",g(t.cart.discount)]})]})]}),e.jsxs("div",{className:"summary-total",children:[e.jsx("span",{children:"Tổng cộng:"}),e.jsx("span",{className:"total-price",children:g(t.cart.total)})]}),e.jsx("div",{className:"security-note",children:"Giao dịch được bảo mật và mã hóa"})]})]})]})}function _e(){return e.jsxs(T,{children:[e.jsx(T.Header,{order:5,title:"Multi-Step Checkout (Challenge)"}),e.jsx(T.Description,{children:`
 // TODO: Implement checkout flow với validation
 
 const CHECKOUT_ACTIONS = {
@@ -2059,7 +2059,7 @@ function CheckoutFlow() {
   );
 }
 
-`}),e.jsx(v.Demo,{children:e.jsx(Pe,{})}),e.jsx(v.Code,{children:`
+`}),e.jsx(T.Demo,{children:e.jsx(Pe,{})}),e.jsx(T.Code,{children:`
 // CheckoutFlow.jsx
 import { useEffect, useReducer } from "react";
 
@@ -3011,4 +3011,776 @@ function CheckoutFlow() {
 
 export default CheckoutFlow;
 
-`})]})}const Y={1:ue,2:Ne,3:Ie,4:Ae,5:fe},De=()=>e.jsxs("div",{className:"day-content",children:[e.jsxs("div",{className:"day-header",children:[e.jsxs("div",{className:"day-header-content",children:[e.jsx(re,{size:32,color:"#00D9FF"}),e.jsxs("div",{children:[e.jsx("h1",{className:"day-title",children:"Ngày 7"}),e.jsx("p",{className:"day-subtitle",children:"useReducer - Complex State Logic"})]})]}),e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"🎯 Mục tiêu hôm nay"}),e.jsxs("ul",{children:[e.jsx("li",{children:"Hiểu useReducer và khi nào dùng"}),e.jsx("li",{children:"Reducer pattern và Redux-like state management"}),e.jsx("li",{children:"Action types và action creators"}),e.jsx("li",{children:"So sánh useReducer vs useState"}),e.jsx("li",{children:"Complex state logic patterns"}),e.jsx("li",{children:"Best practices và optimization"})]})]})]}),e.jsx("div",{className:"exercises-list",children:Object.keys(Y).map(t=>{const a=Y[t];return a?e.jsx(a,{},t):null})})]});export{De as default};
+`})]})}function fe(){return e.jsxs(T,{children:[e.jsx(T.Header,{order:"#",title:"Home Work"}),e.jsx(T.Description,{children:`
+1. Task Manager App
+Quản lý tasks với categories, priorities, và deadlines:
+
+// Features:
+// - Multiple task lists (Personal, Work, Shopping)
+// - Priority levels (Low, Medium, High, Urgent)
+// - Due dates với reminders
+// - Subtasks
+// - Tags
+// - Search và filters
+// - Sort options
+// - Archive completed tasks
+// - Statistics dashboard
+
+2. Expense Tracker với Categories
+Tracking chi tiêu chi tiết:
+
+// Features:
+// - Multiple categories và subcategories
+// - Recurring expenses
+// - Budget limits per category
+// - Monthly/yearly views
+// - Charts và statistics
+// - Export reports
+// - Multi-currency support
+// - Receipt attachments (optional)
+
+3. Blog Post Editor
+Rich text editor với preview:
+
+// Features:
+// - Draft/Published status
+// - Auto-save drafts
+// - Version history
+// - Tags và categories
+// - Featured image
+// - SEO metadata
+// - Preview mode
+// - Publish scheduling
+// - Comment management
+
+4. Music Player
+Audio player với playlist:
+
+// Features:
+// - Play/Pause/Stop/Next/Previous
+// - Playlist management
+// - Shuffle và repeat modes
+// - Volume control
+// - Progress bar với seeking
+// - Now playing info
+// - Favorites
+// - Search songs
+// - Create custom playlists
+
+5. Game: Tic Tac Toe với AI (Challenge)
+// Features:
+// - 2 player mode
+// - vs Computer (AI)
+// - Move history với time travel
+// - Highlight winning line
+// - Game statistics
+// - Difficulty levels (Easy, Medium, Hard)
+// - Undo move
+// - Board size options (3x3, 4x4, 5x5)
+
+
+`}),e.jsx(T.Code,{children:`
+
+// ==========================================
+// GIẢI BÀI TẬP VỀ NHÀ - NGÀY 7: useReducer
+// ==========================================
+
+// 1️⃣ TASK MANAGER APP
+// Cốt lõi: Complex state với nested updates, multiple filters
+
+const TASK_ACTIONS = {
+  ADD_TASK: 'ADD_TASK',
+  TOGGLE_TASK: 'TOGGLE_TASK',
+  DELETE_TASK: 'DELETE_TASK',
+  SET_PRIORITY: 'SET_PRIORITY',
+  ADD_SUBTASK: 'ADD_SUBTASK',
+  SET_FILTER: 'SET_FILTER'
+};
+
+function taskReducer(state, action) {
+  switch (action.type) {
+    case TASK_ACTIONS.ADD_TASK:
+      return {
+        ...state,
+        tasks: [...state.tasks, {
+          id: Date.now(),
+          text: action.payload.text,
+          category: action.payload.category,
+          priority: action.payload.priority || 'medium',
+          completed: false,
+          subtasks: [],
+          tags: action.payload.tags || [],
+          dueDate: action.payload.dueDate
+        }]
+      };
+    
+    case TASK_ACTIONS.TOGGLE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map(task =>
+          task.id === action.payload
+            ? { ...task, completed: !task.completed }
+            : task
+        )
+      };
+    
+    case TASK_ACTIONS.SET_PRIORITY:
+      return {
+        ...state,
+        tasks: state.tasks.map(task =>
+          task.id === action.payload.id
+            ? { ...task, priority: action.payload.priority }
+            : task
+        )
+      };
+    
+    case TASK_ACTIONS.ADD_SUBTASK:
+      return {
+        ...state,
+        tasks: state.tasks.map(task =>
+          task.id === action.payload.taskId
+            ? {
+                ...task,
+                subtasks: [...task.subtasks, {
+                  id: Date.now(),
+                  text: action.payload.text,
+                  completed: false
+                }]
+              }
+            : task
+        )
+      };
+    
+    case TASK_ACTIONS.SET_FILTER:
+      return { ...state, filters: { ...state.filters, ...action.payload } };
+    
+    default:
+      return state;
+  }
+}
+
+function TaskManager() {
+  const [state, dispatch] = useReducer(taskReducer, {
+    tasks: [],
+    filters: { category: 'all', priority: 'all', status: 'all' }
+  });
+
+  // DERIVED STATE - Filtered tasks
+  const filteredTasks = state.tasks.filter(task => {
+    if (state.filters.category !== 'all' && task.category !== state.filters.category) return false;
+    if (state.filters.priority !== 'all' && task.priority !== state.filters.priority) return false;
+    if (state.filters.status === 'completed' && !task.completed) return false;
+    if (state.filters.status === 'active' && task.completed) return false;
+    return true;
+  });
+
+  // DERIVED STATE - Statistics
+  const stats = {
+    total: state.tasks.length,
+    completed: state.tasks.filter(t => t.completed).length,
+    byPriority: state.tasks.reduce((acc, task) => {
+      acc[task.priority] = (acc[task.priority] || 0) + 1;
+      return acc;
+    }, {}),
+    overdue: state.tasks.filter(t => !t.completed && t.dueDate && new Date(t.dueDate) < new Date()).length
+  };
+
+  return (
+    <div>
+      <h1>Task Manager - {stats.completed}/{stats.total} completed</h1>
+      {/* Filters, task list, add form */}
+    </div>
+  );
+}
+
+// ==========================================
+// 2️⃣ EXPENSE TRACKER
+// Cốt lõi: Computed totals, category budgets, complex calculations
+
+const EXPENSE_ACTIONS = {
+  ADD_EXPENSE: 'ADD_EXPENSE',
+  DELETE_EXPENSE: 'DELETE_EXPENSE',
+  UPDATE_EXPENSE: 'UPDATE_EXPENSE',
+  SET_BUDGET: 'SET_BUDGET'
+};
+
+function expenseReducer(state, action) {
+  switch (action.type) {
+    case EXPENSE_ACTIONS.ADD_EXPENSE:
+      return {
+        ...state,
+        expenses: [...state.expenses, {
+          id: Date.now(),
+          amount: action.payload.amount,
+          category: action.payload.category,
+          description: action.payload.description,
+          date: action.payload.date || new Date().toISOString(),
+          recurring: action.payload.recurring || false
+        }]
+      };
+    
+    case EXPENSE_ACTIONS.DELETE_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses.filter(e => e.id !== action.payload)
+      };
+    
+    case EXPENSE_ACTIONS.SET_BUDGET:
+      return {
+        ...state,
+        budgets: {
+          ...state.budgets,
+          [action.payload.category]: action.payload.amount
+        }
+      };
+    
+    default:
+      return state;
+  }
+}
+
+function ExpenseTracker() {
+  const [state, dispatch] = useReducer(expenseReducer, {
+    expenses: [],
+    budgets: { food: 5000000, transport: 2000000, entertainment: 3000000 }
+  });
+
+  // DERIVED STATE - Total by category (KHÔNG LƯU trong state!)
+  const totalByCategory = state.expenses.reduce((acc, expense) => {
+    acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
+    return acc;
+  }, {});
+
+  // DERIVED STATE - Budget status
+  const budgetStatus = Object.keys(state.budgets).map(category => {
+    const spent = totalByCategory[category] || 0;
+    const budget = state.budgets[category];
+    return {
+      category,
+      budget,
+      spent,
+      remaining: budget - spent,
+      percentage: (spent / budget) * 100,
+      isOverBudget: spent > budget
+    };
+  });
+
+  // DERIVED STATE - Monthly totals
+  const monthlyTotal = state.expenses
+    .filter(e => new Date(e.date).getMonth() === new Date().getMonth())
+    .reduce((sum, e) => sum + e.amount, 0);
+
+  return (
+    <div>
+      <h1>Expense Tracker - {monthlyTotal.toLocaleString()}đ this month</h1>
+      {budgetStatus.map(item => (
+        <div key={item.category}>
+          <h3>{item.category}</h3>
+          <progress value={item.percentage} max="100" />
+          <p>{item.spent.toLocaleString()} / {item.budget.toLocaleString()}đ</p>
+          {item.isOverBudget && <span style={{color: 'red'}}>⚠️ Over budget!</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ==========================================
+// 3️⃣ BLOG POST EDITOR
+// Cốt lõi: Multi-step state machine, auto-save, version history
+
+const POST_ACTIONS = {
+  UPDATE_FIELD: 'UPDATE_FIELD',
+  SAVE_DRAFT: 'SAVE_DRAFT',
+  PUBLISH: 'PUBLISH',
+  UNPUBLISH: 'UNPUBLISH',
+  ADD_TAG: 'ADD_TAG',
+  REMOVE_TAG: 'REMOVE_TAG',
+  SET_STATUS: 'SET_STATUS'
+};
+
+function postReducer(state, action) {
+  switch (action.type) {
+    case POST_ACTIONS.UPDATE_FIELD:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          [action.payload.field]: action.payload.value
+        },
+        isDirty: true, // Có thay đổi chưa save
+        lastModified: Date.now()
+      };
+    
+    case POST_ACTIONS.SAVE_DRAFT:
+      return {
+        ...state,
+        savedPost: { ...state.post },
+        isDirty: false,
+        lastSaved: Date.now(),
+        versions: [...state.versions, { 
+          ...state.post, 
+          savedAt: Date.now() 
+        }]
+      };
+    
+    case POST_ACTIONS.PUBLISH:
+      return {
+        ...state,
+        post: { ...state.post, status: 'published', publishedAt: Date.now() },
+        isDirty: false
+      };
+    
+    case POST_ACTIONS.ADD_TAG:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          tags: [...state.post.tags, action.payload]
+        }
+      };
+    
+    case POST_ACTIONS.REMOVE_TAG:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          tags: state.post.tags.filter(t => t !== action.payload)
+        }
+      };
+    
+    default:
+      return state;
+  }
+}
+
+function BlogEditor() {
+  const [state, dispatch] = useReducer(postReducer, {
+    post: {
+      title: '',
+      content: '',
+      excerpt: '',
+      featuredImage: null,
+      tags: [],
+      category: '',
+      status: 'draft', // draft | published
+      publishedAt: null,
+      seo: { metaTitle: '', metaDescription: '' }
+    },
+    savedPost: null,
+    isDirty: false,
+    lastSaved: null,
+    lastModified: null,
+    versions: []
+  });
+
+  // Auto-save every 30s if dirty
+  useEffect(() => {
+    if (state.isDirty) {
+      const timer = setTimeout(() => {
+        dispatch({ type: POST_ACTIONS.SAVE_DRAFT });
+        console.log('Auto-saved!');
+      }, 30000);
+      return () => clearTimeout(timer);
+    }
+  }, [state.isDirty, state.lastModified]);
+
+  // DERIVED STATE - Word count
+  const wordCount = state.post.content.split(/\\s+/).filter(Boolean).length;
+  const readingTime = Math.ceil(wordCount / 200); // 200 words/min
+
+  return (
+    <div>
+      <h1>Blog Editor</h1>
+      <span>{state.post.status === 'published' ? '✅ Published' : '📝 Draft'}</span>
+      <span>{state.isDirty ? '• Unsaved changes' : '✓ Saved'}</span>
+      
+      <input 
+        value={state.post.title}
+        onChange={(e) => dispatch({
+          type: POST_ACTIONS.UPDATE_FIELD,
+          payload: { field: 'title', value: e.target.value }
+        })}
+        placeholder="Post title..."
+      />
+      
+      <textarea 
+        value={state.post.content}
+        onChange={(e) => dispatch({
+          type: POST_ACTIONS.UPDATE_FIELD,
+          payload: { field: 'content', value: e.target.value }
+        })}
+        placeholder="Write your post..."
+      />
+      
+      <div>
+        <p>Words: {wordCount} | Reading time: ~{readingTime} min</p>
+        <p>Versions: {state.versions.length}</p>
+      </div>
+
+      <button onClick={() => dispatch({ type: POST_ACTIONS.SAVE_DRAFT })}>
+        Save Draft
+      </button>
+      <button onClick={() => dispatch({ type: POST_ACTIONS.PUBLISH })}>
+        Publish
+      </button>
+    </div>
+  );
+}
+
+// ==========================================
+// 4️⃣ MUSIC PLAYER
+// Cốt lõi: State machine (idle/playing/paused), playlist management
+
+const PLAYER_ACTIONS = {
+  PLAY: 'PLAY',
+  PAUSE: 'PAUSE',
+  NEXT: 'NEXT',
+  PREVIOUS: 'PREVIOUS',
+  SET_VOLUME: 'SET_VOLUME',
+  SEEK: 'SEEK',
+  TOGGLE_SHUFFLE: 'TOGGLE_SHUFFLE',
+  TOGGLE_REPEAT: 'TOGGLE_REPEAT',
+  ADD_TO_PLAYLIST: 'ADD_TO_PLAYLIST',
+  REMOVE_FROM_PLAYLIST: 'REMOVE_FROM_PLAYLIST',
+  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'
+};
+
+function playerReducer(state, action) {
+  switch (action.type) {
+    case PLAYER_ACTIONS.PLAY:
+      return {
+        ...state,
+        isPlaying: true,
+        currentTrackId: action.payload || state.currentTrackId
+      };
+    
+    case PLAYER_ACTIONS.PAUSE:
+      return { ...state, isPlaying: false };
+    
+    case PLAYER_ACTIONS.NEXT:
+      const currentIndex = state.playlist.indexOf(state.currentTrackId);
+      const nextIndex = state.shuffle 
+        ? Math.floor(Math.random() * state.playlist.length)
+        : (currentIndex + 1) % state.playlist.length;
+      return {
+        ...state,
+        currentTrackId: state.playlist[nextIndex],
+        isPlaying: true
+      };
+    
+    case PLAYER_ACTIONS.PREVIOUS:
+      const prevIndex = state.playlist.indexOf(state.currentTrackId);
+      const newIndex = prevIndex === 0 ? state.playlist.length - 1 : prevIndex - 1;
+      return {
+        ...state,
+        currentTrackId: state.playlist[newIndex],
+        isPlaying: true
+      };
+    
+    case PLAYER_ACTIONS.SET_VOLUME:
+      return { ...state, volume: action.payload };
+    
+    case PLAYER_ACTIONS.TOGGLE_SHUFFLE:
+      return { ...state, shuffle: !state.shuffle };
+    
+    case PLAYER_ACTIONS.TOGGLE_REPEAT:
+      return { ...state, repeat: !state.repeat };
+    
+    case PLAYER_ACTIONS.TOGGLE_FAVORITE:
+      return {
+        ...state,
+        favorites: state.favorites.includes(action.payload)
+          ? state.favorites.filter(id => id !== action.payload)
+          : [...state.favorites, action.payload]
+      };
+    
+    default:
+      return state;
+  }
+}
+
+function MusicPlayer() {
+  const [state, dispatch] = useReducer(playerReducer, {
+    tracks: {
+      1: { id: 1, title: 'Song 1', artist: 'Artist A', duration: 180 },
+      2: { id: 2, title: 'Song 2', artist: 'Artist B', duration: 240 },
+      3: { id: 3, title: 'Song 3', artist: 'Artist C', duration: 200 }
+    },
+    playlist: [1, 2, 3],
+    currentTrackId: 1,
+    isPlaying: false,
+    volume: 50,
+    shuffle: false,
+    repeat: false,
+    favorites: []
+  });
+
+  const currentTrack = state.tracks[state.currentTrackId];
+  const isFavorite = state.favorites.includes(state.currentTrackId);
+
+  return (
+    <div className="music-player">
+      <h1>🎵 Music Player</h1>
+      
+      {/* Now Playing */}
+      <div className="now-playing">
+        <h2>{currentTrack.title}</h2>
+        <p>{currentTrack.artist}</p>
+        <button onClick={() => dispatch({ type: PLAYER_ACTIONS.TOGGLE_FAVORITE, payload: currentTrack.id })}>
+          {isFavorite ? '❤️' : '🤍'}
+        </button>
+      </div>
+
+      {/* Controls */}
+      <div className="controls">
+        <button onClick={() => dispatch({ type: PLAYER_ACTIONS.PREVIOUS })}>⏮️</button>
+        <button onClick={() => dispatch({ 
+          type: state.isPlaying ? PLAYER_ACTIONS.PAUSE : PLAYER_ACTIONS.PLAY 
+        })}>
+          {state.isPlaying ? '⏸️' : '▶️'}
+        </button>
+        <button onClick={() => dispatch({ type: PLAYER_ACTIONS.NEXT })}>⏭️</button>
+        <button onClick={() => dispatch({ type: PLAYER_ACTIONS.TOGGLE_SHUFFLE })}>
+          🔀 {state.shuffle ? 'ON' : 'OFF'}
+        </button>
+        <button onClick={() => dispatch({ type: PLAYER_ACTIONS.TOGGLE_REPEAT })}>
+          🔁 {state.repeat ? 'ON' : 'OFF'}
+        </button>
+      </div>
+
+      {/* Volume */}
+      <input 
+        type="range" 
+        min="0" 
+        max="100" 
+        value={state.volume}
+        onChange={(e) => dispatch({ 
+          type: PLAYER_ACTIONS.SET_VOLUME, 
+          payload: parseInt(e.target.value) 
+        })}
+      />
+      <span>🔊 {state.volume}%</span>
+
+      {/* Playlist */}
+      <div className="playlist">
+        <h3>Playlist ({state.playlist.length} songs)</h3>
+        {state.playlist.map(trackId => {
+          const track = state.tracks[trackId];
+          return (
+            <div 
+              key={trackId} 
+              className={trackId === state.currentTrackId ? 'active' : ''}
+              onClick={() => dispatch({ type: PLAYER_ACTIONS.PLAY, payload: trackId })}
+            >
+              {track.title} - {track.artist}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// 5️⃣ TIC TAC TOE WITH AI (CHALLENGE)
+// Cốt lõi: Game state machine, move history, minimax algorithm
+
+const GAME_ACTIONS = {
+  MAKE_MOVE: 'MAKE_MOVE',
+  JUMP_TO_MOVE: 'JUMP_TO_MOVE',
+  RESET_GAME: 'RESET_GAME',
+  SET_MODE: 'SET_MODE' // vs Player | vs Computer
+};
+
+function gameReducer(state, action) {
+  switch (action.type) {
+    case GAME_ACTIONS.MAKE_MOVE:
+      const { index, player } = action.payload;
+      const newBoard = [...state.currentBoard];
+      
+      if (newBoard[index] || state.winner) return state;
+      
+      newBoard[index] = player;
+      const winner = calculateWinner(newBoard);
+      
+      return {
+        ...state,
+        history: [...state.history, { board: newBoard, move: index }],
+        currentBoard: newBoard,
+        currentPlayer: player === 'X' ? 'O' : 'X',
+        winner,
+        moveCount: state.moveCount + 1
+      };
+    
+    case GAME_ACTIONS.JUMP_TO_MOVE:
+      const move = state.history[action.payload];
+      return {
+        ...state,
+        currentBoard: move.board,
+        currentPlayer: action.payload % 2 === 0 ? 'X' : 'O',
+        winner: calculateWinner(move.board),
+        moveCount: action.payload
+      };
+    
+    case GAME_ACTIONS.RESET_GAME:
+      return {
+        ...state,
+        history: [{ board: Array(9).fill(null), move: null }],
+        currentBoard: Array(9).fill(null),
+        currentPlayer: 'X',
+        winner: null,
+        moveCount: 0
+      };
+    
+    default:
+      return state;
+  }
+}
+
+function calculateWinner(board) {
+  const lines = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
+    [0, 4, 8], [2, 4, 6] // diagonals
+  ];
+  
+  for (let [a, b, c] of lines) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return { winner: board[a], line: [a, b, c] };
+    }
+  }
+  
+  return board.every(cell => cell) ? { winner: 'Draw' } : null;
+}
+
+function TicTacToe() {
+  const [state, dispatch] = useReducer(gameReducer, {
+    history: [{ board: Array(9).fill(null), move: null }],
+    currentBoard: Array(9).fill(null),
+    currentPlayer: 'X',
+    winner: null,
+    moveCount: 0,
+    mode: 'pvp' // pvp | vsAI
+  });
+
+  const handleClick = (index) => {
+    dispatch({ 
+      type: GAME_ACTIONS.MAKE_MOVE, 
+      payload: { index, player: state.currentPlayer } 
+    });
+  };
+
+  // AI move (simple random)
+  useEffect(() => {
+    if (state.mode === 'vsAI' && state.currentPlayer === 'O' && !state.winner) {
+      setTimeout(() => {
+        const availableMoves = state.currentBoard
+          .map((cell, i) => cell === null ? i : null)
+          .filter(i => i !== null);
+        
+        if (availableMoves.length > 0) {
+          const randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+          dispatch({ 
+            type: GAME_ACTIONS.MAKE_MOVE, 
+            payload: { index: randomMove, player: 'O' } 
+          });
+        }
+      }, 500);
+    }
+  }, [state.currentPlayer, state.mode, state.winner]);
+
+  return (
+    <div className="tic-tac-toe">
+      <h1>Tic Tac Toe</h1>
+      
+      <div className="status">
+        {state.winner 
+          ? state.winner.winner === 'Draw' 
+            ? 'Draw!' 
+            : \`Winner: \${state.winner.winner}\` 
+          : \`Next player: \${state.currentPlayer}\`}
+      </div>
+
+      {/* Board */}
+      <div className="board">
+        {state.currentBoard.map((cell, index) => (
+          <button 
+            key={index}
+            onClick={() => handleClick(index)}
+            disabled={cell || state.winner}
+            className={state.winner?.line?.includes(index) ? 'winning-cell' : ''}
+          >
+            {cell}
+          </button>
+        ))}
+      </div>
+
+      {/* History */}
+      <div className="history">
+        <h3>Move History</h3>
+        <button onClick={() => dispatch({ type: GAME_ACTIONS.RESET_GAME })}>
+          New Game
+        </button>
+        {state.history.map((_, index) => (
+          <button 
+            key={index}
+            onClick={() => dispatch({ type: GAME_ACTIONS.JUMP_TO_MOVE, payload: index })}
+          >
+            {index === 0 ? 'Game start' : \`Move #\${index}\`}
+          </button>
+        ))}
+      </div>
+
+      {/* Statistics */}
+      <div className="stats">
+        <p>Total moves: {state.moveCount}</p>
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// 📝 KEY PATTERNS SUMMARY
+// ==========================================
+
+/*
+1. REDUCER PATTERN:
+   - Pure function (state, action) => newState
+   - Immutable updates với spread operator
+   - Switch case cho action types
+   - Default case return state
+
+2. ACTION TYPES:
+   - Constants để tránh typo
+   - Descriptive names (VERB_NOUN)
+   - Payload cho data
+
+3. COMPLEX STATE:
+   - Nested objects/arrays
+   - Multiple related sub-values
+   - State machine patterns (idle/playing/paused)
+
+4. DERIVED STATE:
+   - Calculate từ state, KHÔNG lưu
+   - Use useMemo nếu expensive
+   - Examples: totals, filters, statistics
+
+5. STATE TRANSITIONS:
+   - Next state depends on previous
+   - Multiple fields update together
+   - History/undo functionality
+
+6. IMMUTABLE UPDATES:
+   - Arrays: map, filter, concat, slice
+   - Objects: spread operator
+   - Nested: spread multiple levels
+
+KEY TAKEAWAY:
+- useReducer = Centralized state logic
+- Reducer = Pure + Predictable
+- Actions = What happened
+- Derived = Don't duplicate state
+- Immutability = Always new references
+
+`})]})}const Y={1:ue,2:Ne,3:Se,4:Ie,5:_e},Ue=()=>e.jsxs("div",{className:"day-content",children:[e.jsxs("div",{className:"day-header",children:[e.jsxs("div",{className:"day-header-content",children:[e.jsx(re,{size:32,color:"#00D9FF"}),e.jsxs("div",{children:[e.jsx("h1",{className:"day-title",children:"Ngày 7"}),e.jsx("p",{className:"day-subtitle",children:"useReducer - Complex State Logic"})]})]}),e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"🎯 Mục tiêu hôm nay"}),e.jsxs("ul",{children:[e.jsx("li",{children:"Hiểu useReducer và khi nào dùng"}),e.jsx("li",{children:"Reducer pattern và Redux-like state management"}),e.jsx("li",{children:"Action types và action creators"}),e.jsx("li",{children:"So sánh useReducer vs useState"}),e.jsx("li",{children:"Complex state logic patterns"}),e.jsx("li",{children:"Best practices và optimization"})]})]})]}),e.jsx("div",{className:"exercises-list",children:Object.keys(Y).map(t=>{const a=Y[t];return a?e.jsx(a,{},t):null})}),e.jsx("div",{className:"exercises-list mt-1",children:e.jsx(fe,{})})]});export{Ue as default};

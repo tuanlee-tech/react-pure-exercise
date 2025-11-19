@@ -1,4 +1,4 @@
-import{r as i,j as e,C as G}from"./index-DpTKp3y9.js";/* empty css               */import{E as y}from"./ExerciseCard-C7OLhylv.js";const H=[{id:1,name:'MacBook Pro 16"',category:"electronics",price:2499,rating:4.8,inStock:!0,image:"💻"},{id:2,name:"iPhone 15 Pro Max",category:"electronics",price:1199,rating:4.7,inStock:!0,image:"📱"},{id:3,name:"iPad Air M2",category:"electronics",price:599,rating:4.6,inStock:!0,image:"📱"},{id:4,name:"Sony WH-1000XM5",category:"electronics",price:399,rating:4.9,inStock:!0,image:"🎧"},{id:5,name:"Samsung 4K Monitor",category:"electronics",price:499,rating:4.5,inStock:!1,image:"🖥️"},{id:6,name:"Herman Miller Chair",category:"furniture",price:1495,rating:4.8,inStock:!0,image:"🪑"},{id:7,name:"Standing Desk Pro",category:"furniture",price:799,rating:4.6,inStock:!0,image:"🪑"},{id:8,name:"Bookshelf Oak Wood",category:"furniture",price:349,rating:4.4,inStock:!0,image:"📚"},{id:9,name:"Office Desk Lamp",category:"furniture",price:89,rating:4.3,inStock:!0,image:"💡"},{id:10,name:"Nike Air Max 2024",category:"clothing",price:180,rating:4.5,inStock:!0,image:"👟"},{id:11,name:"Levi's Denim Jacket",category:"clothing",price:120,rating:4.6,inStock:!0,image:"🧥"},{id:12,name:"Adidas Running Shoes",category:"clothing",price:150,rating:4.7,inStock:!1,image:"👟"},{id:13,name:"Patagonia Backpack",category:"clothing",price:89,rating:4.8,inStock:!0,image:"🎒"},{id:14,name:"Wireless Keyboard",category:"electronics",price:129,rating:4.4,inStock:!0,image:"⌨️"},{id:15,name:"Gaming Mouse RGB",category:"electronics",price:79,rating:4.6,inStock:!0,image:"🖱️"},{id:16,name:"Coffee Table Modern",category:"furniture",price:299,rating:4.5,inStock:!0,image:"🪑"},{id:17,name:"Wool Winter Coat",category:"clothing",price:250,rating:4.7,inStock:!0,image:"🧥"},{id:18,name:"Mechanical Watch",category:"accessories",price:450,rating:4.9,inStock:!0,image:"⌚"},{id:19,name:"Leather Wallet",category:"accessories",price:85,rating:4.5,inStock:!0,image:"💼"},{id:20,name:"Sunglasses Polarized",category:"accessories",price:199,rating:4.6,inStock:!1,image:"🕶️"}],$=[{value:"all",label:"Tất cả danh mục"},{value:"electronics",label:"📱 Điện tử"},{value:"furniture",label:"🪑 Nội thất"},{value:"clothing",label:"👕 Thời trang"},{value:"accessories",label:"⌚ Phụ kiện"}];function z({filters:a,onFilterChange:t}){const n=i.useCallback((s,N)=>{t(v=>({...v,[s]:N}))},[t]),r=i.useCallback(()=>{t({category:"all",minPrice:"",maxPrice:"",minRating:0,inStockOnly:!1,search:""})},[t]);return e.jsxs("div",{className:"product-filters",children:[e.jsxs("div",{className:"filters-header",children:[e.jsx("h2",{className:"filters-title",children:"🔍 Bộ lọc"}),e.jsx("button",{onClick:r,className:"btn-reset",children:"🔄 Reset"})]}),e.jsxs("div",{className:"filters-grid",children:[e.jsxs("div",{className:"filter-group full-width",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"🔎"}),"Tìm kiếm sản phẩm"]}),e.jsx("input",{type:"text",value:a.search,onChange:s=>n("search",s.target.value),placeholder:"Nhập tên sản phẩm...",className:"filter-input"})]}),e.jsxs("div",{className:"filter-group",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"📁"}),"Danh mục"]}),e.jsx("select",{value:a.category,onChange:s=>n("category",s.target.value),className:"filter-select",children:$.map(s=>e.jsx("option",{value:s.value,children:s.label},s.value))})]}),e.jsxs("div",{className:"filter-group",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"💰"}),"Giá từ"]}),e.jsx("input",{type:"number",value:a.minPrice,onChange:s=>n("minPrice",s.target.value),placeholder:"0",min:"0",className:"filter-input"})]}),e.jsxs("div",{className:"filter-group",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"💵"}),"Giá đến"]}),e.jsx("input",{type:"number",value:a.maxPrice,onChange:s=>n("maxPrice",s.target.value),placeholder:"9999",min:"0",className:"filter-input"})]}),e.jsxs("div",{className:"filter-group full-width",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"⭐"}),"Đánh giá tối thiểu: ",a.minRating," sao"]}),e.jsx("input",{type:"range",value:a.minRating,onChange:s=>n("minRating",parseFloat(s.target.value)),min:"0",max:"5",step:"0.5",className:"filter-range"}),e.jsxs("div",{className:"rating-labels",children:[e.jsx("span",{children:"0⭐"}),e.jsx("span",{children:"2.5⭐"}),e.jsx("span",{children:"5⭐"})]})]}),e.jsx("div",{className:"filter-group full-width",children:e.jsxs("label",{className:"filter-checkbox",children:[e.jsx("input",{type:"checkbox",checked:a.inStockOnly,onChange:s=>n("inStockOnly",s.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{className:"checkbox-label",children:"📦 Chỉ hiển thị sản phẩm còn hàng"})]})})]})]})}function B({products:a}){return a.length===0?e.jsxs("div",{className:"empty-state",children:[e.jsx("div",{className:"empty-icon",children:"🔍"}),e.jsx("h3",{children:"Không tìm thấy sản phẩm"}),e.jsx("p",{children:"Thử thay đổi bộ lọc để xem nhiều sản phẩm hơn"})]}):e.jsx("div",{className:"product-list",children:a.map(t=>e.jsxs("div",{className:"product-card",children:[!t.inStock&&e.jsx("div",{className:"stock-badge out-of-stock",children:"Hết hàng"}),t.inStock&&e.jsx("div",{className:"stock-badge in-stock",children:"Còn hàng"}),e.jsx("div",{className:"product-image",children:e.jsx("span",{className:"product-emoji",children:t.image})}),e.jsxs("div",{className:"product-info",children:[e.jsx("h3",{className:"product-name",children:t.name}),e.jsx("div",{className:"product-category",children:$.find(n=>n.value===t.category)?.label||t.category}),e.jsxs("div",{className:"product-rating",children:[e.jsxs("span",{className:"rating-stars",children:["⭐".repeat(Math.floor(t.rating)),t.rating%1!==0&&"✨"]}),e.jsx("span",{className:"rating-value",children:t.rating.toFixed(1)})]}),e.jsxs("div",{className:"product-price",children:["$",t.price.toLocaleString()]}),e.jsx("button",{className:"btn-add-cart",disabled:!t.inStock,children:t.inStock?"🛒 Thêm vào giỏ":"❌ Hết hàng"})]})]},t.id))})}function q({products:a}){const t=i.useMemo(()=>{console.log("📊 Calculating stats...");const n=a.length,r=n>0?a.reduce((l,u)=>l+u.price,0)/n:0,s=n>0?a.reduce((l,u)=>l+u.rating,0)/n:0,N=a.filter(l=>l.inStock).length,v=n>0?Math.max(...a.map(l=>l.price)):0,f=n>0?Math.min(...a.map(l=>l.price)):0;return{total:n,averagePrice:r,averageRating:s,inStockCount:N,maxPrice:v,minPrice:f}},[a]);return e.jsxs("div",{className:"product-stats-column",children:[e.jsx("h2",{className:"stats-title",children:"📊 Thống kê"}),e.jsxs("div",{className:"stats-grid-container",children:[e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"📦"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-value",children:t.total}),e.jsx("div",{className:"stat-label",children:"Sản phẩm"})]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"💰"}),e.jsxs("div",{className:"stat-content",children:[e.jsxs("div",{className:"stat-value",children:["$",Math.round(t.averagePrice)]}),e.jsx("div",{className:"stat-label",children:"Giá TB"})]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"⭐"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-value",children:t.averageRating.toFixed(1)}),e.jsx("div",{className:"stat-label",children:"Đánh giá TB"})]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"✅"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-value",children:t.inStockCount}),e.jsx("div",{className:"stat-label",children:"Còn hàng"})]})]}),e.jsxs("div",{className:"stat-card full-width",children:[e.jsx("div",{className:"stats-icon",children:"💵"}),e.jsxs("div",{className:"stat-content",children:[e.jsxs("div",{className:"stat-value",children:["$",t.minPrice," - $",t.maxPrice]}),e.jsx("div",{className:"stat-label",children:"Khoảng giá"})]})]})]})]})}function W(){const[a]=i.useState(H),[t,n]=i.useState({category:"all",minPrice:"",maxPrice:"",minRating:0,inStockOnly:!1,search:""}),r=i.useMemo(()=>(console.log("🔄 Filtering products..."),a.filter(s=>{if(t.category!=="all"&&s.category!==t.category||t.minPrice&&s.price<parseFloat(t.minPrice)||t.maxPrice&&s.price>parseFloat(t.maxPrice)||s.rating<t.minRating||t.inStockOnly&&!s.inStock)return!1;if(t.search){const N=t.search.toLowerCase();return s.name.toLowerCase().includes(N)}return!0})),[a,t]);return e.jsxs("div",{className:"product-page",children:[e.jsxs("div",{className:"page-header",children:[e.jsx("h1",{className:"page-title",children:e.jsx("span",{className:"title-gradient",children:"Product Catalog"})}),e.jsx("p",{className:"page-description",children:"Khám phá bộ sưu tập sản phẩm với bộ lọc thông minh"})]}),e.jsxs("div",{className:"page-layout",children:[e.jsxs("aside",{className:"page-sidebar",children:[e.jsx(z,{filters:t,onFilterChange:n}),e.jsx(q,{products:r})]}),e.jsxs("main",{className:"page-content",children:[e.jsx("div",{className:"result-header",children:e.jsxs("h2",{className:"result-title",children:["Tìm thấy ",r.length," sản phẩm"]})}),e.jsx(B,{products:r})]})]})]})}function K(){return e.jsxs(y,{children:[e.jsx(y.Header,{order:1,title:"Multi-Filter Product List"}),e.jsx(y.Description,{children:`
+import{r as i,j as e,C as V}from"./index-DWyDx9Oi.js";/* empty css               */import{E as b}from"./ExerciseCard-B6SIPsBu.js";const G=[{id:1,name:'MacBook Pro 16"',category:"electronics",price:2499,rating:4.8,inStock:!0,image:"💻"},{id:2,name:"iPhone 15 Pro Max",category:"electronics",price:1199,rating:4.7,inStock:!0,image:"📱"},{id:3,name:"iPad Air M2",category:"electronics",price:599,rating:4.6,inStock:!0,image:"📱"},{id:4,name:"Sony WH-1000XM5",category:"electronics",price:399,rating:4.9,inStock:!0,image:"🎧"},{id:5,name:"Samsung 4K Monitor",category:"electronics",price:499,rating:4.5,inStock:!1,image:"🖥️"},{id:6,name:"Herman Miller Chair",category:"furniture",price:1495,rating:4.8,inStock:!0,image:"🪑"},{id:7,name:"Standing Desk Pro",category:"furniture",price:799,rating:4.6,inStock:!0,image:"🪑"},{id:8,name:"Bookshelf Oak Wood",category:"furniture",price:349,rating:4.4,inStock:!0,image:"📚"},{id:9,name:"Office Desk Lamp",category:"furniture",price:89,rating:4.3,inStock:!0,image:"💡"},{id:10,name:"Nike Air Max 2024",category:"clothing",price:180,rating:4.5,inStock:!0,image:"👟"},{id:11,name:"Levi's Denim Jacket",category:"clothing",price:120,rating:4.6,inStock:!0,image:"🧥"},{id:12,name:"Adidas Running Shoes",category:"clothing",price:150,rating:4.7,inStock:!1,image:"👟"},{id:13,name:"Patagonia Backpack",category:"clothing",price:89,rating:4.8,inStock:!0,image:"🎒"},{id:14,name:"Wireless Keyboard",category:"electronics",price:129,rating:4.4,inStock:!0,image:"⌨️"},{id:15,name:"Gaming Mouse RGB",category:"electronics",price:79,rating:4.6,inStock:!0,image:"🖱️"},{id:16,name:"Coffee Table Modern",category:"furniture",price:299,rating:4.5,inStock:!0,image:"🪑"},{id:17,name:"Wool Winter Coat",category:"clothing",price:250,rating:4.7,inStock:!0,image:"🧥"},{id:18,name:"Mechanical Watch",category:"accessories",price:450,rating:4.9,inStock:!0,image:"⌚"},{id:19,name:"Leather Wallet",category:"accessories",price:85,rating:4.5,inStock:!0,image:"💼"},{id:20,name:"Sunglasses Polarized",category:"accessories",price:199,rating:4.6,inStock:!1,image:"🕶️"}],U=[{value:"all",label:"Tất cả danh mục"},{value:"electronics",label:"📱 Điện tử"},{value:"furniture",label:"🪑 Nội thất"},{value:"clothing",label:"👕 Thời trang"},{value:"accessories",label:"⌚ Phụ kiện"}];function B({filters:t,onFilterChange:s}){const n=i.useCallback((a,N)=>{s(v=>({...v,[a]:N}))},[s]),r=i.useCallback(()=>{s({category:"all",minPrice:"",maxPrice:"",minRating:0,inStockOnly:!1,search:""})},[s]);return e.jsxs("div",{className:"product-filters",children:[e.jsxs("div",{className:"filters-header",children:[e.jsx("h2",{className:"filters-title",children:"🔍 Bộ lọc"}),e.jsx("button",{onClick:r,className:"btn-reset",children:"🔄 Reset"})]}),e.jsxs("div",{className:"filters-grid",children:[e.jsxs("div",{className:"filter-group full-width",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"🔎"}),"Tìm kiếm sản phẩm"]}),e.jsx("input",{type:"text",value:t.search,onChange:a=>n("search",a.target.value),placeholder:"Nhập tên sản phẩm...",className:"filter-input"})]}),e.jsxs("div",{className:"filter-group",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"📁"}),"Danh mục"]}),e.jsx("select",{value:t.category,onChange:a=>n("category",a.target.value),className:"filter-select",children:U.map(a=>e.jsx("option",{value:a.value,children:a.label},a.value))})]}),e.jsxs("div",{className:"filter-group",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"💰"}),"Giá từ"]}),e.jsx("input",{type:"number",value:t.minPrice,onChange:a=>n("minPrice",a.target.value),placeholder:"0",min:"0",className:"filter-input"})]}),e.jsxs("div",{className:"filter-group",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"💵"}),"Giá đến"]}),e.jsx("input",{type:"number",value:t.maxPrice,onChange:a=>n("maxPrice",a.target.value),placeholder:"9999",min:"0",className:"filter-input"})]}),e.jsxs("div",{className:"filter-group full-width",children:[e.jsxs("label",{className:"filter-label",children:[e.jsx("span",{className:"label-icon",children:"⭐"}),"Đánh giá tối thiểu: ",t.minRating," sao"]}),e.jsx("input",{type:"range",value:t.minRating,onChange:a=>n("minRating",parseFloat(a.target.value)),min:"0",max:"5",step:"0.5",className:"filter-range"}),e.jsxs("div",{className:"rating-labels",children:[e.jsx("span",{children:"0⭐"}),e.jsx("span",{children:"2.5⭐"}),e.jsx("span",{children:"5⭐"})]})]}),e.jsx("div",{className:"filter-group full-width",children:e.jsxs("label",{className:"filter-checkbox",children:[e.jsx("input",{type:"checkbox",checked:t.inStockOnly,onChange:a=>n("inStockOnly",a.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{className:"checkbox-label",children:"📦 Chỉ hiển thị sản phẩm còn hàng"})]})})]})]})}function q({products:t}){return t.length===0?e.jsxs("div",{className:"empty-state",children:[e.jsx("div",{className:"empty-icon",children:"🔍"}),e.jsx("h3",{children:"Không tìm thấy sản phẩm"}),e.jsx("p",{children:"Thử thay đổi bộ lọc để xem nhiều sản phẩm hơn"})]}):e.jsx("div",{className:"product-list",children:t.map(s=>e.jsxs("div",{className:"product-card",children:[!s.inStock&&e.jsx("div",{className:"stock-badge out-of-stock",children:"Hết hàng"}),s.inStock&&e.jsx("div",{className:"stock-badge in-stock",children:"Còn hàng"}),e.jsx("div",{className:"product-image",children:e.jsx("span",{className:"product-emoji",children:s.image})}),e.jsxs("div",{className:"product-info",children:[e.jsx("h3",{className:"product-name",children:s.name}),e.jsx("div",{className:"product-category",children:U.find(n=>n.value===s.category)?.label||s.category}),e.jsxs("div",{className:"product-rating",children:[e.jsxs("span",{className:"rating-stars",children:["⭐".repeat(Math.floor(s.rating)),s.rating%1!==0&&"✨"]}),e.jsx("span",{className:"rating-value",children:s.rating.toFixed(1)})]}),e.jsxs("div",{className:"product-price",children:["$",s.price.toLocaleString()]}),e.jsx("button",{className:"btn-add-cart",disabled:!s.inStock,children:s.inStock?"🛒 Thêm vào giỏ":"❌ Hết hàng"})]})]},s.id))})}function H({products:t}){const s=i.useMemo(()=>{console.log("📊 Calculating stats...");const n=t.length,r=n>0?t.reduce((o,u)=>o+u.price,0)/n:0,a=n>0?t.reduce((o,u)=>o+u.rating,0)/n:0,N=t.filter(o=>o.inStock).length,v=n>0?Math.max(...t.map(o=>o.price)):0,f=n>0?Math.min(...t.map(o=>o.price)):0;return{total:n,averagePrice:r,averageRating:a,inStockCount:N,maxPrice:v,minPrice:f}},[t]);return e.jsxs("div",{className:"product-stats-column",children:[e.jsx("h2",{className:"stats-title",children:"📊 Thống kê"}),e.jsxs("div",{className:"stats-grid-container",children:[e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"📦"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-value",children:s.total}),e.jsx("div",{className:"stat-label",children:"Sản phẩm"})]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"💰"}),e.jsxs("div",{className:"stat-content",children:[e.jsxs("div",{className:"stat-value",children:["$",Math.round(s.averagePrice)]}),e.jsx("div",{className:"stat-label",children:"Giá TB"})]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"⭐"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-value",children:s.averageRating.toFixed(1)}),e.jsx("div",{className:"stat-label",children:"Đánh giá TB"})]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stats-icon",children:"✅"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-value",children:s.inStockCount}),e.jsx("div",{className:"stat-label",children:"Còn hàng"})]})]}),e.jsxs("div",{className:"stat-card full-width",children:[e.jsx("div",{className:"stats-icon",children:"💵"}),e.jsxs("div",{className:"stat-content",children:[e.jsxs("div",{className:"stat-value",children:["$",s.minPrice," - $",s.maxPrice]}),e.jsx("div",{className:"stat-label",children:"Khoảng giá"})]})]})]})]})}function W(){const[t]=i.useState(G),[s,n]=i.useState({category:"all",minPrice:"",maxPrice:"",minRating:0,inStockOnly:!1,search:""}),r=i.useMemo(()=>(console.log("🔄 Filtering products..."),t.filter(a=>{if(s.category!=="all"&&a.category!==s.category||s.minPrice&&a.price<parseFloat(s.minPrice)||s.maxPrice&&a.price>parseFloat(s.maxPrice)||a.rating<s.minRating||s.inStockOnly&&!a.inStock)return!1;if(s.search){const N=s.search.toLowerCase();return a.name.toLowerCase().includes(N)}return!0})),[t,s]);return e.jsxs("div",{className:"product-page",children:[e.jsxs("div",{className:"page-header",children:[e.jsx("h1",{className:"page-title",children:e.jsx("span",{className:"title-gradient",children:"Product Catalog"})}),e.jsx("p",{className:"page-description",children:"Khám phá bộ sưu tập sản phẩm với bộ lọc thông minh"})]}),e.jsxs("div",{className:"page-layout",children:[e.jsxs("aside",{className:"page-sidebar",children:[e.jsx(B,{filters:s,onFilterChange:n}),e.jsx(H,{products:r})]}),e.jsxs("main",{className:"page-content",children:[e.jsx("div",{className:"result-header",children:e.jsxs("h2",{className:"result-title",children:["Tìm thấy ",r.length," sản phẩm"]})}),e.jsx(q,{products:r})]})]})]})}function K(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:1,title:"Multi-Filter Product List"}),e.jsx(b.Description,{children:`
 // TODO: Implement product filtering với lifting state up
 
 function ProductFilters({ filters, onFilterChange }) {
@@ -70,7 +70,7 @@ function ProductPage() {
   );
 }
 
-`}),e.jsx(y.Demo,{children:e.jsx(W,{})}),e.jsx(y.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(W,{})}),e.jsx(b.Code,{children:`
 import React, { useState, useMemo, useCallback } from 'react';
 import './ProductFilter.css';
 
@@ -537,7 +537,7 @@ function ProductPage() {
 }
 
 export default ProductPage;
-`})]})}function Q(){const[a,t]=i.useState({products:{1:{id:1,name:"Áo thun Premium",price:15e4,image:"👕",stock:10,category:"clothing"},2:{id:2,name:"Quần jean Slim",price:35e4,image:"👖",stock:5,category:"clothing"},3:{id:3,name:"Giày sneaker",price:5e5,image:"👟",stock:3,category:"shoes"},4:{id:4,name:"Túi xách nữ",price:25e4,image:"👜",stock:8,category:"accessories"},5:{id:5,name:"Mũ lưỡi trai",price:8e4,image:"🧢",stock:15,category:"accessories"},6:{id:6,name:"Đồng hồ nam",price:45e4,image:"⌚",stock:6,category:"accessories"},7:{id:7,name:"Áo khoác dạ",price:6e5,image:"🧥",stock:4,category:"clothing"},8:{id:8,name:"Giày boot",price:55e4,image:"🥾",stock:7,category:"shoes"}},cart:{},coupons:{GIAM10:{code:"GIAM10",discount:10,type:"percent",description:"Giảm 10%"},GIAM20:{code:"GIAM20",discount:20,type:"percent",description:"Giảm 20%"},GIAM50K:{code:"GIAM50K",discount:5e4,type:"fixed",description:"Giảm 50.000đ"},GIAM100K:{code:"GIAM100K",discount:1e5,type:"fixed",description:"Giảm 100.000đ"},FREESHIP:{code:"FREESHIP",discount:0,type:"freeship",description:"Miễn phí ship"}},appliedCoupon:null,shippingMethod:"standard"}),n=i.useCallback(h=>{t(m=>{const x=m.products[h],P=m.cart[h]||0;return P>=x.stock?(alert(`❌ Không đủ hàng! Chỉ còn ${x.stock} sản phẩm.`),m):{...m,cart:{...m.cart,[h]:P+1}}})},[]),r=i.useCallback(h=>{t(m=>{const x={...m.cart};return delete x[h],{...m,cart:x}})},[]),s=i.useCallback((h,m)=>{t(x=>{const P=x.products[h];if(m<0)return x;if(m===0){const c={...x.cart};return delete c[h],{...x,cart:c}}return m>P.stock?(alert(`❌ Không đủ hàng! Chỉ còn ${P.stock} sản phẩm.`),x):{...x,cart:{...x.cart,[h]:m}}})},[]),N=i.useCallback(h=>{const m=h.toUpperCase().trim();if(!m){alert("❌ Vui lòng nhập mã giảm giá");return}t(x=>x.coupons[m]?{...x,appliedCoupon:m}:(alert(`❌ Mã "${m}" không hợp lệ!`),x))},[]),v=i.useCallback(()=>{t(h=>({...h,appliedCoupon:null}))},[]),f=i.useCallback(h=>{t(m=>({...m,shippingMethod:h}))},[]),l=i.useCallback(()=>{window.confirm("🗑️ Xóa toàn bộ giỏ hàng?")&&t(h=>({...h,cart:{},appliedCoupon:null}))},[]),u=i.useMemo(()=>(console.log("🔄 Denormalizing cart..."),Object.entries(a.cart).map(([h,m])=>{const x=a.products[h];return{...x,quantity:m,itemTotal:x.price*m}})),[a.cart,a.products]),d=i.useMemo(()=>(console.log("💰 Calculating subtotal..."),u.reduce((h,m)=>h+m.itemTotal,0)),[u]),g=i.useMemo(()=>{if(console.log("🎟️ Calculating discount..."),!a.appliedCoupon)return 0;const h=a.coupons[a.appliedCoupon];return h.type==="percent"?Math.round(d*(h.discount/100)):h.type==="fixed"?Math.min(h.discount,d):0},[d,a.appliedCoupon,a.coupons]),j=i.useMemo(()=>(console.log("🚚 Calculating shipping..."),a.appliedCoupon==="FREESHIP"||d>=5e5?0:a.shippingMethod==="standard"?3e4:5e4),[d,a.shippingMethod,a.appliedCoupon]),k=i.useMemo(()=>(console.log("📊 Calculating tax..."),Math.round(d*.1)),[d]),w=i.useMemo(()=>(console.log("💵 Calculating total..."),d+j+k-g),[d,j,k,g]),M=i.useMemo(()=>u.reduce((h,m)=>h+m.quantity,0),[u]),D=i.useMemo(()=>{let h=g;if(j===0&&d>0){const m=a.shippingMethod==="standard"?3e4:5e4;h+=m}return h},[g,j,d,a.shippingMethod]);return e.jsxs("div",{className:"cart-app",children:[e.jsxs("header",{className:"app-header",children:[e.jsx("h1",{className:"app-title",children:e.jsx("span",{className:"title-gradient",children:"🛒 Cart"})}),e.jsx("p",{className:"app-subtitle",children:"E-commerce Shopping Cart với Normalized State"})]}),e.jsxs("div",{className:"app-layout",children:[e.jsxs("div",{className:"catalog-section",children:[e.jsxs("div",{className:"section-header",children:[e.jsx("h2",{className:"section-title",children:"📦 Sản phẩm"}),e.jsxs("div",{className:"product-count",children:[Object.keys(a.products).length," sản phẩm"]})]}),e.jsx(X,{products:a.products,cart:a.cart,onAddToCart:n})]}),e.jsx("div",{className:"cart-section",children:e.jsx(_,{cartItems:u,state:a,onUpdateQuantity:s,onRemoveFromCart:r,onApplyCoupon:N,onRemoveCoupon:v,onChangeShipping:f,onClearCart:l,subtotal:d,discount:g,shippingCost:j,tax:k,total:w,itemCount:M,savedAmount:D})})]})]})}function X({products:a,cart:t,onAddToCart:n}){return e.jsx("div",{className:"product-catalog",children:Object.values(a).map(r=>{const s=t[r.id]||0,N=s<r.stock;return e.jsxs("div",{className:"catalog-card",children:[e.jsx("div",{className:"catalog-image",children:r.image}),e.jsxs("div",{className:"catalog-info",children:[e.jsx("h3",{className:"catalog-name",children:r.name}),e.jsxs("div",{className:"catalog-price",children:[r.price.toLocaleString("vi-VN"),"đ"]}),e.jsxs("div",{className:"catalog-stock",children:["📦 Còn ",r.stock," sản phẩm"]}),s>0&&e.jsxs("div",{className:"in-cart-badge",children:["🛒 Đã có ",s," trong giỏ"]})]}),e.jsx("button",{className:"btn-add",onClick:()=>n(r.id),disabled:!N,children:N?"➕ Thêm":"❌ Hết"})]},r.id)})})}function _({cartItems:a,state:t,onUpdateQuantity:n,onRemoveFromCart:r,onApplyCoupon:s,onRemoveCoupon:N,onChangeShipping:v,onClearCart:f,subtotal:l,discount:u,shippingCost:d,tax:g,total:j,itemCount:k,savedAmount:w}){const[M,D]=i.useState(""),h=m=>{m.preventDefault(),s(M),D("")};return a.length===0?e.jsxs("div",{className:"cart-container",children:[e.jsx("div",{className:"section-header",children:e.jsx("h2",{className:"section-title",children:"🛒 Giỏ hàng"})}),e.jsxs("div",{className:"empty-cart",children:[e.jsx("div",{className:"empty-icon",children:"🛒"}),e.jsx("h3",{children:"Giỏ hàng trống"}),e.jsx("p",{children:"Thêm sản phẩm từ danh mục bên trái"})]}),e.jsx(F,{coupons:t.coupons})]}):e.jsxs("div",{className:"cart-container",children:[e.jsxs("div",{className:"section-header",children:[e.jsxs("h2",{className:"section-title",children:["🛒 Giỏ hàng (",k,")"]}),e.jsx("button",{className:"btn-clear",onClick:f,children:"🗑️ Xóa tất cả"})]}),e.jsx("div",{className:"cart-items",children:a.map(m=>e.jsxs("div",{className:"cart-item",children:[e.jsx("div",{className:"item-image",children:m.image}),e.jsxs("div",{className:"item-info",children:[e.jsx("h4",{className:"item-name",children:m.name}),e.jsxs("div",{className:"item-price",children:[m.price.toLocaleString("vi-VN"),"đ"]})]}),e.jsxs("div",{className:"quantity-controls",children:[e.jsx("button",{className:"qty-btn",onClick:()=>n(m.id,m.quantity-1),children:"-"}),e.jsx("input",{type:"number",className:"qty-input",value:m.quantity,onChange:x=>{const P=parseInt(x.target.value)||0;n(m.id,P)},min:"0",max:m.stock}),e.jsx("button",{className:"qty-btn",onClick:()=>n(m.id,m.quantity+1),disabled:m.quantity>=m.stock,children:"+"})]}),e.jsxs("div",{className:"item-total",children:[m.itemTotal.toLocaleString("vi-VN"),"đ"]}),e.jsx("button",{className:"btn-remove",onClick:()=>r(m.id),title:"Xóa",children:"❌"})]},m.id))}),e.jsxs("div",{className:"coupon-section",children:[e.jsx("h3",{className:"coupon-title",children:"🎟️ Mã giảm giá"}),t.appliedCoupon?e.jsxs("div",{className:"applied-coupon",children:[e.jsxs("div",{className:"coupon-info",children:[e.jsx("span",{className:"coupon-code",children:t.appliedCoupon}),e.jsx("span",{className:"coupon-desc",children:t.coupons[t.appliedCoupon].description})]}),e.jsx("button",{className:"btn-remove-coupon",onClick:N,children:"❌"})]}):e.jsxs("form",{className:"coupon-form",onSubmit:h,children:[e.jsx("input",{type:"text",className:"coupon-input",placeholder:"Nhập mã giảm giá...",value:M,onChange:m=>D(m.target.value.toUpperCase())}),e.jsx("button",{type:"submit",className:"btn-apply",children:"Áp dụng"})]})]}),e.jsxs("div",{className:"shipping-section",children:[e.jsx("h3",{className:"shipping-title",children:"🚚 Phương thức vận chuyển"}),e.jsxs("div",{className:"shipping-options",children:[e.jsxs("label",{className:`shipping-option ${t.shippingMethod==="standard"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"shipping",value:"standard",checked:t.shippingMethod==="standard",onChange:m=>v(m.target.value)}),e.jsxs("div",{className:"option-content",children:[e.jsx("div",{className:"option-name",children:"🚚 Giao hàng tiêu chuẩn"}),e.jsx("div",{className:"option-desc",children:"3-5 ngày"})]}),e.jsx("div",{className:"option-price",children:"30.000đ"})]}),e.jsxs("label",{className:`shipping-option ${t.shippingMethod==="express"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"shipping",value:"express",checked:t.shippingMethod==="express",onChange:m=>v(m.target.value)}),e.jsxs("div",{className:"option-content",children:[e.jsx("div",{className:"option-name",children:"⚡ Giao hàng nhanh"}),e.jsx("div",{className:"option-desc",children:"1-2 ngày"})]}),e.jsx("div",{className:"option-price",children:"50.000đ"})]})]}),l>=5e5&&e.jsx("div",{className:"free-ship-notice",children:"✨ Miễn phí ship cho đơn ≥ 500.000đ"})]}),e.jsxs("div",{className:"order-summary",children:[e.jsx("h3",{className:"summary-title",children:"💰 Tổng đơn hàng"}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Tạm tính"}),e.jsxs("span",{children:[l.toLocaleString("vi-VN"),"đ"]})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Phí vận chuyển"}),e.jsx("span",{className:d===0?"free":"",children:d===0?"Miễn phí":`${d.toLocaleString("vi-VN")}đ`})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Thuế VAT (10%)"}),e.jsxs("span",{children:[g.toLocaleString("vi-VN"),"đ"]})]}),u>0&&e.jsxs("div",{className:"summary-row discount",children:[e.jsx("span",{children:"Giảm giá"}),e.jsxs("span",{children:["-",u.toLocaleString("vi-VN"),"đ"]})]}),e.jsx("div",{className:"summary-divider"}),e.jsxs("div",{className:"summary-row total",children:[e.jsx("span",{children:"Tổng cộng"}),e.jsxs("span",{className:"total-amount",children:[j.toLocaleString("vi-VN"),"đ"]})]}),w>0&&e.jsxs("div",{className:"saved-amount",children:["🎉 Bạn tiết kiệm được ",w.toLocaleString("vi-VN"),"đ"]}),e.jsx("button",{className:"btn-checkout",children:"🛍️ Thanh toán"})]}),!t.appliedCoupon&&e.jsx(F,{coupons:t.coupons})]})}function F({coupons:a}){return e.jsxs("div",{className:"coupon-list",children:[e.jsx("h3",{className:"coupon-list-title",children:"💎 Mã giảm giá khả dụng"}),e.jsx("div",{className:"coupon-grid",children:Object.values(a).map(t=>e.jsxs("div",{className:"coupon-badge",children:[e.jsx("div",{className:"coupon-code-badge",children:t.code}),e.jsx("div",{className:"coupon-desc-badge",children:t.description})]},t.code))})]})}function Z(){return e.jsxs(y,{children:[e.jsx(y.Header,{order:2,title:"E-commerce Cart với Normalized State"}),e.jsx(y.Description,{children:`
+`})]})}function Q(){const[t,s]=i.useState({products:{1:{id:1,name:"Áo thun Premium",price:15e4,image:"👕",stock:10,category:"clothing"},2:{id:2,name:"Quần jean Slim",price:35e4,image:"👖",stock:5,category:"clothing"},3:{id:3,name:"Giày sneaker",price:5e5,image:"👟",stock:3,category:"shoes"},4:{id:4,name:"Túi xách nữ",price:25e4,image:"👜",stock:8,category:"accessories"},5:{id:5,name:"Mũ lưỡi trai",price:8e4,image:"🧢",stock:15,category:"accessories"},6:{id:6,name:"Đồng hồ nam",price:45e4,image:"⌚",stock:6,category:"accessories"},7:{id:7,name:"Áo khoác dạ",price:6e5,image:"🧥",stock:4,category:"clothing"},8:{id:8,name:"Giày boot",price:55e4,image:"🥾",stock:7,category:"shoes"}},cart:{},coupons:{GIAM10:{code:"GIAM10",discount:10,type:"percent",description:"Giảm 10%"},GIAM20:{code:"GIAM20",discount:20,type:"percent",description:"Giảm 20%"},GIAM50K:{code:"GIAM50K",discount:5e4,type:"fixed",description:"Giảm 50.000đ"},GIAM100K:{code:"GIAM100K",discount:1e5,type:"fixed",description:"Giảm 100.000đ"},FREESHIP:{code:"FREESHIP",discount:0,type:"freeship",description:"Miễn phí ship"}},appliedCoupon:null,shippingMethod:"standard"}),n=i.useCallback(h=>{s(m=>{const x=m.products[h],M=m.cart[h]||0;return M>=x.stock?(alert(`❌ Không đủ hàng! Chỉ còn ${x.stock} sản phẩm.`),m):{...m,cart:{...m.cart,[h]:M+1}}})},[]),r=i.useCallback(h=>{s(m=>{const x={...m.cart};return delete x[h],{...m,cart:x}})},[]),a=i.useCallback((h,m)=>{s(x=>{const M=x.products[h];if(m<0)return x;if(m===0){const l={...x.cart};return delete l[h],{...x,cart:l}}return m>M.stock?(alert(`❌ Không đủ hàng! Chỉ còn ${M.stock} sản phẩm.`),x):{...x,cart:{...x.cart,[h]:m}}})},[]),N=i.useCallback(h=>{const m=h.toUpperCase().trim();if(!m){alert("❌ Vui lòng nhập mã giảm giá");return}s(x=>x.coupons[m]?{...x,appliedCoupon:m}:(alert(`❌ Mã "${m}" không hợp lệ!`),x))},[]),v=i.useCallback(()=>{s(h=>({...h,appliedCoupon:null}))},[]),f=i.useCallback(h=>{s(m=>({...m,shippingMethod:h}))},[]),o=i.useCallback(()=>{window.confirm("🗑️ Xóa toàn bộ giỏ hàng?")&&s(h=>({...h,cart:{},appliedCoupon:null}))},[]),u=i.useMemo(()=>(console.log("🔄 Denormalizing cart..."),Object.entries(t.cart).map(([h,m])=>{const x=t.products[h];return{...x,quantity:m,itemTotal:x.price*m}})),[t.cart,t.products]),d=i.useMemo(()=>(console.log("💰 Calculating subtotal..."),u.reduce((h,m)=>h+m.itemTotal,0)),[u]),g=i.useMemo(()=>{if(console.log("🎟️ Calculating discount..."),!t.appliedCoupon)return 0;const h=t.coupons[t.appliedCoupon];return h.type==="percent"?Math.round(d*(h.discount/100)):h.type==="fixed"?Math.min(h.discount,d):0},[d,t.appliedCoupon,t.coupons]),C=i.useMemo(()=>(console.log("🚚 Calculating shipping..."),t.appliedCoupon==="FREESHIP"||d>=5e5?0:t.shippingMethod==="standard"?3e4:5e4),[d,t.shippingMethod,t.appliedCoupon]),k=i.useMemo(()=>(console.log("📊 Calculating tax..."),Math.round(d*.1)),[d]),w=i.useMemo(()=>(console.log("💵 Calculating total..."),d+C+k-g),[d,C,k,g]),I=i.useMemo(()=>u.reduce((h,m)=>h+m.quantity,0),[u]),P=i.useMemo(()=>{let h=g;if(C===0&&d>0){const m=t.shippingMethod==="standard"?3e4:5e4;h+=m}return h},[g,C,d,t.shippingMethod]);return e.jsxs("div",{className:"cart-app",children:[e.jsxs("header",{className:"app-header",children:[e.jsx("h1",{className:"app-title",children:e.jsx("span",{className:"title-gradient",children:"🛒 Cart"})}),e.jsx("p",{className:"app-subtitle",children:"E-commerce Shopping Cart với Normalized State"})]}),e.jsxs("div",{className:"app-layout",children:[e.jsxs("div",{className:"catalog-section",children:[e.jsxs("div",{className:"section-header",children:[e.jsx("h2",{className:"section-title",children:"📦 Sản phẩm"}),e.jsxs("div",{className:"product-count",children:[Object.keys(t.products).length," sản phẩm"]})]}),e.jsx(X,{products:t.products,cart:t.cart,onAddToCart:n})]}),e.jsx("div",{className:"cart-section",children:e.jsx(_,{cartItems:u,state:t,onUpdateQuantity:a,onRemoveFromCart:r,onApplyCoupon:N,onRemoveCoupon:v,onChangeShipping:f,onClearCart:o,subtotal:d,discount:g,shippingCost:C,tax:k,total:w,itemCount:I,savedAmount:P})})]})]})}function X({products:t,cart:s,onAddToCart:n}){return e.jsx("div",{className:"product-catalog",children:Object.values(t).map(r=>{const a=s[r.id]||0,N=a<r.stock;return e.jsxs("div",{className:"catalog-card",children:[e.jsx("div",{className:"catalog-image",children:r.image}),e.jsxs("div",{className:"catalog-info",children:[e.jsx("h3",{className:"catalog-name",children:r.name}),e.jsxs("div",{className:"catalog-price",children:[r.price.toLocaleString("vi-VN"),"đ"]}),e.jsxs("div",{className:"catalog-stock",children:["📦 Còn ",r.stock," sản phẩm"]}),a>0&&e.jsxs("div",{className:"in-cart-badge",children:["🛒 Đã có ",a," trong giỏ"]})]}),e.jsx("button",{className:"btn-add",onClick:()=>n(r.id),disabled:!N,children:N?"➕ Thêm":"❌ Hết"})]},r.id)})})}function _({cartItems:t,state:s,onUpdateQuantity:n,onRemoveFromCart:r,onApplyCoupon:a,onRemoveCoupon:N,onChangeShipping:v,onClearCart:f,subtotal:o,discount:u,shippingCost:d,tax:g,total:C,itemCount:k,savedAmount:w}){const[I,P]=i.useState(""),h=m=>{m.preventDefault(),a(I),P("")};return t.length===0?e.jsxs("div",{className:"cart-container",children:[e.jsx("div",{className:"section-header",children:e.jsx("h2",{className:"section-title",children:"🛒 Giỏ hàng"})}),e.jsxs("div",{className:"empty-cart",children:[e.jsx("div",{className:"empty-icon",children:"🛒"}),e.jsx("h3",{children:"Giỏ hàng trống"}),e.jsx("p",{children:"Thêm sản phẩm từ danh mục bên trái"})]}),e.jsx(L,{coupons:s.coupons})]}):e.jsxs("div",{className:"cart-container",children:[e.jsxs("div",{className:"section-header",children:[e.jsxs("h2",{className:"section-title",children:["🛒 Giỏ hàng (",k,")"]}),e.jsx("button",{className:"btn-clear",onClick:f,children:"🗑️ Xóa tất cả"})]}),e.jsx("div",{className:"cart-items",children:t.map(m=>e.jsxs("div",{className:"cart-item",children:[e.jsx("div",{className:"item-image",children:m.image}),e.jsxs("div",{className:"item-info",children:[e.jsx("h4",{className:"item-name",children:m.name}),e.jsxs("div",{className:"item-price",children:[m.price.toLocaleString("vi-VN"),"đ"]})]}),e.jsxs("div",{className:"quantity-controls",children:[e.jsx("button",{className:"qty-btn",onClick:()=>n(m.id,m.quantity-1),children:"-"}),e.jsx("input",{type:"number",className:"qty-input",value:m.quantity,onChange:x=>{const M=parseInt(x.target.value)||0;n(m.id,M)},min:"0",max:m.stock}),e.jsx("button",{className:"qty-btn",onClick:()=>n(m.id,m.quantity+1),disabled:m.quantity>=m.stock,children:"+"})]}),e.jsxs("div",{className:"item-total",children:[m.itemTotal.toLocaleString("vi-VN"),"đ"]}),e.jsx("button",{className:"btn-remove",onClick:()=>r(m.id),title:"Xóa",children:"❌"})]},m.id))}),e.jsxs("div",{className:"coupon-section",children:[e.jsx("h3",{className:"coupon-title",children:"🎟️ Mã giảm giá"}),s.appliedCoupon?e.jsxs("div",{className:"applied-coupon",children:[e.jsxs("div",{className:"coupon-info",children:[e.jsx("span",{className:"coupon-code",children:s.appliedCoupon}),e.jsx("span",{className:"coupon-desc",children:s.coupons[s.appliedCoupon].description})]}),e.jsx("button",{className:"btn-remove-coupon",onClick:N,children:"❌"})]}):e.jsxs("form",{className:"coupon-form",onSubmit:h,children:[e.jsx("input",{type:"text",className:"coupon-input",placeholder:"Nhập mã giảm giá...",value:I,onChange:m=>P(m.target.value.toUpperCase())}),e.jsx("button",{type:"submit",className:"btn-apply",children:"Áp dụng"})]})]}),e.jsxs("div",{className:"shipping-section",children:[e.jsx("h3",{className:"shipping-title",children:"🚚 Phương thức vận chuyển"}),e.jsxs("div",{className:"shipping-options",children:[e.jsxs("label",{className:`shipping-option ${s.shippingMethod==="standard"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"shipping",value:"standard",checked:s.shippingMethod==="standard",onChange:m=>v(m.target.value)}),e.jsxs("div",{className:"option-content",children:[e.jsx("div",{className:"option-name",children:"🚚 Giao hàng tiêu chuẩn"}),e.jsx("div",{className:"option-desc",children:"3-5 ngày"})]}),e.jsx("div",{className:"option-price",children:"30.000đ"})]}),e.jsxs("label",{className:`shipping-option ${s.shippingMethod==="express"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"shipping",value:"express",checked:s.shippingMethod==="express",onChange:m=>v(m.target.value)}),e.jsxs("div",{className:"option-content",children:[e.jsx("div",{className:"option-name",children:"⚡ Giao hàng nhanh"}),e.jsx("div",{className:"option-desc",children:"1-2 ngày"})]}),e.jsx("div",{className:"option-price",children:"50.000đ"})]})]}),o>=5e5&&e.jsx("div",{className:"free-ship-notice",children:"✨ Miễn phí ship cho đơn ≥ 500.000đ"})]}),e.jsxs("div",{className:"order-summary",children:[e.jsx("h3",{className:"summary-title",children:"💰 Tổng đơn hàng"}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Tạm tính"}),e.jsxs("span",{children:[o.toLocaleString("vi-VN"),"đ"]})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Phí vận chuyển"}),e.jsx("span",{className:d===0?"free":"",children:d===0?"Miễn phí":`${d.toLocaleString("vi-VN")}đ`})]}),e.jsxs("div",{className:"summary-row",children:[e.jsx("span",{children:"Thuế VAT (10%)"}),e.jsxs("span",{children:[g.toLocaleString("vi-VN"),"đ"]})]}),u>0&&e.jsxs("div",{className:"summary-row discount",children:[e.jsx("span",{children:"Giảm giá"}),e.jsxs("span",{children:["-",u.toLocaleString("vi-VN"),"đ"]})]}),e.jsx("div",{className:"summary-divider"}),e.jsxs("div",{className:"summary-row total",children:[e.jsx("span",{children:"Tổng cộng"}),e.jsxs("span",{className:"total-amount",children:[C.toLocaleString("vi-VN"),"đ"]})]}),w>0&&e.jsxs("div",{className:"saved-amount",children:["🎉 Bạn tiết kiệm được ",w.toLocaleString("vi-VN"),"đ"]}),e.jsx("button",{className:"btn-checkout",children:"🛍️ Thanh toán"})]}),!s.appliedCoupon&&e.jsx(L,{coupons:s.coupons})]})}function L({coupons:t}){return e.jsxs("div",{className:"coupon-list",children:[e.jsx("h3",{className:"coupon-list-title",children:"💎 Mã giảm giá khả dụng"}),e.jsx("div",{className:"coupon-grid",children:Object.values(t).map(s=>e.jsxs("div",{className:"coupon-badge",children:[e.jsx("div",{className:"coupon-code-badge",children:s.code}),e.jsx("div",{className:"coupon-desc-badge",children:s.description})]},s.code))})]})}function J(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:2,title:"E-commerce Cart với Normalized State"}),e.jsx(b.Description,{children:`
 // TODO: Implement shopping cart với normalized structure
 
 function CartApp() {
@@ -644,7 +644,7 @@ function CartApp() {
   );
 }
 
-`}),e.jsx(y.Demo,{children:e.jsx(Q,{})}),e.jsx(y.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(Q,{})}),e.jsx(b.Code,{children:`
 import { useCallback, useMemo, useState } from "react";
 
 /**
@@ -1399,7 +1399,7 @@ function CouponList({ coupons }) {
 
 export default CartApp;
 
-`})]})}const R={1:{id:1,name:"Bạn",avatar:"😎",color:"#00D9FF"},2:{id:2,name:"Alice",avatar:"👩",color:"#22c55e"},3:{id:3,name:"Bob",avatar:"👨",color:"#f59e0b"},4:{id:4,name:"Charlie",avatar:"🧑",color:"#8b5cf6"}},Y=[{id:1,name:"💬 General",description:"Thảo luận chung",unread:0},{id:2,name:"🎮 Gaming",description:"Trò chuyện về game",unread:2},{id:3,name:"💻 Tech Talk",description:"Công nghệ & lập trình",unread:5},{id:4,name:"🎵 Music",description:"Âm nhạc & nghệ thuật",unread:0},{id:5,name:"🏃 Fitness",description:"Thể thao & sức khỏe",unread:1}],J=a=>({1:[{id:1,userId:2,text:"Chào mọi người! 👋",timestamp:Date.now()-36e5,replyTo:null,edited:!1},{id:2,userId:3,text:"Hi Alice! Hôm nay thế nào?",timestamp:Date.now()-3e6,replyTo:null,edited:!1},{id:3,userId:2,text:"Tốt lắm, cảm ơn! 😊",timestamp:Date.now()-2e6,replyTo:2,edited:!1}],2:[{id:4,userId:4,text:"Ai chơi Valorant không? 🎮",timestamp:Date.now()-18e5,replyTo:null,edited:!1},{id:5,userId:3,text:"Có đó! Rank bao nhiêu?",timestamp:Date.now()-12e5,replyTo:4,edited:!1}],3:[{id:6,userId:2,text:"React 19 ra rồi nè! 🚀",timestamp:Date.now()-9e5,replyTo:null,edited:!1},{id:7,userId:3,text:"Server Components quá tuyệt",timestamp:Date.now()-6e5,replyTo:6,edited:!1},{id:8,userId:4,text:"useReducer vs useState ai win?",timestamp:Date.now()-3e5,replyTo:null,edited:!1},{id:9,userId:2,text:"useReducer cho complex state!",timestamp:Date.now()-12e4,replyTo:8,edited:!1},{id:10,userId:3,text:"Đúng rồi, nhất là với normalized state",timestamp:Date.now()-6e4,replyTo:9,edited:!1}],4:[{id:11,userId:4,text:"Nghe album mới của Taylor Swift chưa? 🎵",timestamp:Date.now()-72e5,replyTo:null,edited:!1}],5:[{id:12,userId:2,text:"Ai đi gym sáng mai không? 🏋️",timestamp:Date.now()-18e5,replyTo:null,edited:!1}]})[a]||[];function ee({roomId:a,currentUserId:t,roomName:n}){const[r,s]=i.useState(()=>J(a)),[N,v]=i.useState(""),[f,l]=i.useState(null),[u,d]=i.useState(null),[g,j]=i.useState({}),k=i.useRef(null),w=i.useRef({});i.useEffect(()=>{k.current?.scrollIntoView({behavior:"smooth"})},[r]),i.useEffect(()=>()=>{Object.values(w.current).forEach(clearTimeout)},[]);const M=i.useCallback(()=>{const o=N.trim();if(o){if(u)s(b=>b.map(S=>S.id===u.id?{...S,text:o,edited:!0}:S)),d(null);else{const b={id:Date.now(),userId:t,text:o,timestamp:Date.now(),replyTo:f?.id||null,edited:!1};s(S=>[...S,b]),l(null)}v("")}},[N,t,f,u]),D=i.useCallback(o=>{window.confirm("🗑️ Xóa tin nhắn này?")&&s(b=>b.filter(S=>S.id!==o))},[]),h=i.useCallback(o=>{d(o),v(o.text),l(null)},[]),m=i.useCallback(o=>{l(o),d(null)},[]),x=i.useCallback(()=>{l(null),d(null),v("")},[]),P=i.useCallback(o=>{const b=o.target.value;if(v(b),b.length>0&&Math.random()>.7){const S=[2,3,4][Math.floor(Math.random()*3)];j(T=>({...T,[S]:!0})),w.current[S]&&clearTimeout(w.current[S]),w.current[S]=setTimeout(()=>{j(T=>{const I={...T};return delete I[S],I})},3e3)}},[]),c=i.useCallback(o=>{const b=new Date(o),T=new Date-b;return T<6e4?"Vừa xong":T<36e5?`${Math.floor(T/6e4)} phút trước`:T<864e5?b.toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"}):b.toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit"})},[]),p=i.useCallback(o=>r.find(b=>b.id===o),[r]),C=i.useMemo(()=>Object.keys(g).map(o=>R[o]?.name).filter(Boolean),[g]);return e.jsxs("div",{className:"chat-room",children:[e.jsx("div",{className:"room-header",children:e.jsxs("div",{className:"room-info",children:[e.jsx("h2",{className:"room-name",children:n}),e.jsxs("div",{className:"online-status",children:[e.jsx("span",{className:"status-dot"}),Object.keys(R).length," thành viên online"]})]})}),e.jsxs("div",{className:"messages-container",children:[r.length===0?e.jsxs("div",{className:"empty-messages",children:[e.jsx("div",{className:"empty-icon",children:"💬"}),e.jsx("p",{children:"Chưa có tin nhắn. Hãy bắt đầu cuộc trò chuyện!"})]}):r.map((o,b)=>{const S=R[o.userId],T=o.userId===t,I=b===0||r[b-1].userId!==o.userId,O=o.replyTo?p(o.replyTo):null;return e.jsxs("div",{className:`message ${T?"own":""} ${I?"":"compact"}`,children:[I&&!T&&e.jsx("div",{className:"message-avatar",style:{color:S.color},children:S.avatar}),e.jsxs("div",{className:"message-content",children:[I&&!T&&e.jsx("div",{className:"message-author",style:{color:S.color},children:S.name}),O&&e.jsxs("div",{className:"message-reply",children:[e.jsx("div",{className:"reply-icon",children:"↩️"}),e.jsxs("div",{className:"reply-content",children:[e.jsx("div",{className:"reply-author",children:R[O.userId]?.name}),e.jsx("div",{className:"reply-text",children:O.text})]})]}),e.jsxs("div",{className:"message-bubble",children:[e.jsx("div",{className:"message-text",children:o.text}),o.edited&&e.jsx("span",{className:"edited-badge",children:"đã chỉnh sửa"})]}),e.jsxs("div",{className:"message-meta",children:[e.jsx("span",{className:"message-time",children:c(o.timestamp)}),T&&e.jsxs("div",{className:"message-actions",children:[e.jsx("button",{className:"action-btn",onClick:()=>h(o),title:"Chỉnh sửa",children:"✏️"}),e.jsx("button",{className:"action-btn",onClick:()=>D(o.id),title:"Xóa",children:"🗑️"})]}),!T&&e.jsx("button",{className:"action-btn reply-btn",onClick:()=>m(o),title:"Trả lời",children:"↩️"})]})]})]},o.id)}),C.length>0&&e.jsxs("div",{className:"typing-indicator",children:[e.jsx("div",{className:"typing-avatar",children:"✍️"}),e.jsxs("div",{className:"typing-text",children:[C.join(", ")," đang nhập",e.jsxs("span",{className:"typing-dots",children:[e.jsx("span",{children:"."}),e.jsx("span",{children:"."}),e.jsx("span",{children:"."})]})]})]}),e.jsx("div",{ref:k})]}),e.jsxs("div",{className:"input-area",children:[(f||u)&&e.jsxs("div",{className:"action-preview",children:[e.jsx("div",{className:"preview-icon",children:u?"✏️":"↩️"}),e.jsxs("div",{className:"preview-content",children:[e.jsx("div",{className:"preview-label",children:u?"Chỉnh sửa tin nhắn":`Trả lời ${R[f.userId]?.name}`}),e.jsx("div",{className:"preview-text",children:u?u.text:f.text})]}),e.jsx("button",{className:"preview-close",onClick:x,children:"✕"})]}),e.jsxs("div",{className:"input-box",children:[e.jsx("input",{type:"text",className:"message-input",placeholder:"Nhập tin nhắn...",value:N,onChange:P,onKeyUp:o=>{o.key==="Enter"&&!o.shiftKey&&(o.preventDefault(),M())}}),e.jsx("button",{className:"send-button",onClick:M,disabled:!N.trim(),children:u?"💾":"📤"})]})]})]})}function ae(){const[a,t]=i.useState(Y),[n,r]=i.useState(1),[s]=i.useState(1),N=i.useCallback(l=>{r(l),t(u=>u.map(d=>d.id===l?{...d,unread:0}:d))},[]),v=i.useMemo(()=>a.find(l=>l.id===n),[a,n]),f=i.useMemo(()=>a.reduce((l,u)=>l+u.unread,0),[a]);return e.jsxs("div",{className:"chat-app",children:[e.jsxs("header",{className:"app-header",children:[e.jsx("h1",{className:"app-title",children:e.jsx("span",{className:"title-gradient",children:"💬 Chat"})}),e.jsx("p",{className:"app-subtitle",children:"Real-time Chat với State Colocation"})]}),e.jsxs("div",{className:"app-chat-layout",children:[e.jsxs("div",{className:"sidebar-chatapp",children:[e.jsxs("div",{className:"sidebar-header",children:[e.jsx("h2",{className:"sidebar-title",children:"📁 Rooms"}),f>0&&e.jsx("div",{className:"total-unread",children:f})]}),e.jsx("div",{className:"rooms-list",children:a.map(l=>e.jsxs("div",{className:`room-item ${l.id===n?"active":""}`,onClick:()=>N(l.id),children:[e.jsxs("div",{className:"room-item-content",children:[e.jsx("div",{className:"room-item-name",children:l.name}),e.jsx("div",{className:"room-item-desc",children:l.description})]}),l.unread>0&&e.jsx("div",{className:"unread-badge",children:l.unread})]},l.id))}),e.jsxs("div",{className:"user-profile",children:[e.jsx("div",{className:"profile-avatar",style:{color:R[s].color},children:R[s].avatar}),e.jsxs("div",{className:"profile-info",children:[e.jsx("div",{className:"profile-name",children:R[s].name}),e.jsx("div",{className:"profile-status",children:"🟢 Online"})]})]})]}),e.jsx("div",{className:"main-chatapp",children:e.jsx(ee,{roomId:n,currentUserId:s,roomName:v?.name||""},n)})]})]})}function te(){return e.jsxs(y,{children:[e.jsx(y.Header,{order:3,title:"Real-time Chat với State Colocation"}),e.jsx(y.Description,{children:`
+`})]})}const E={1:{id:1,name:"Bạn",avatar:"😎",color:"#00D9FF"},2:{id:2,name:"Alice",avatar:"👩",color:"#22c55e"},3:{id:3,name:"Bob",avatar:"👨",color:"#f59e0b"},4:{id:4,name:"Charlie",avatar:"🧑",color:"#8b5cf6"}},Z=[{id:1,name:"💬 General",description:"Thảo luận chung",unread:0},{id:2,name:"🎮 Gaming",description:"Trò chuyện về game",unread:2},{id:3,name:"💻 Tech Talk",description:"Công nghệ & lập trình",unread:5},{id:4,name:"🎵 Music",description:"Âm nhạc & nghệ thuật",unread:0},{id:5,name:"🏃 Fitness",description:"Thể thao & sức khỏe",unread:1}],Y=t=>({1:[{id:1,userId:2,text:"Chào mọi người! 👋",timestamp:Date.now()-36e5,replyTo:null,edited:!1},{id:2,userId:3,text:"Hi Alice! Hôm nay thế nào?",timestamp:Date.now()-3e6,replyTo:null,edited:!1},{id:3,userId:2,text:"Tốt lắm, cảm ơn! 😊",timestamp:Date.now()-2e6,replyTo:2,edited:!1}],2:[{id:4,userId:4,text:"Ai chơi Valorant không? 🎮",timestamp:Date.now()-18e5,replyTo:null,edited:!1},{id:5,userId:3,text:"Có đó! Rank bao nhiêu?",timestamp:Date.now()-12e5,replyTo:4,edited:!1}],3:[{id:6,userId:2,text:"React 19 ra rồi nè! 🚀",timestamp:Date.now()-9e5,replyTo:null,edited:!1},{id:7,userId:3,text:"Server Components quá tuyệt",timestamp:Date.now()-6e5,replyTo:6,edited:!1},{id:8,userId:4,text:"useReducer vs useState ai win?",timestamp:Date.now()-3e5,replyTo:null,edited:!1},{id:9,userId:2,text:"useReducer cho complex state!",timestamp:Date.now()-12e4,replyTo:8,edited:!1},{id:10,userId:3,text:"Đúng rồi, nhất là với normalized state",timestamp:Date.now()-6e4,replyTo:9,edited:!1}],4:[{id:11,userId:4,text:"Nghe album mới của Taylor Swift chưa? 🎵",timestamp:Date.now()-72e5,replyTo:null,edited:!1}],5:[{id:12,userId:2,text:"Ai đi gym sáng mai không? 🏋️",timestamp:Date.now()-18e5,replyTo:null,edited:!1}]})[t]||[];function ee({roomId:t,currentUserId:s,roomName:n}){const[r,a]=i.useState(()=>Y(t)),[N,v]=i.useState(""),[f,o]=i.useState(null),[u,d]=i.useState(null),[g,C]=i.useState({}),k=i.useRef(null),w=i.useRef({});i.useEffect(()=>{k.current?.scrollIntoView({behavior:"smooth"})},[r]),i.useEffect(()=>()=>{Object.values(w.current).forEach(clearTimeout)},[]);const I=i.useCallback(()=>{const c=N.trim();if(c){if(u)a(j=>j.map(S=>S.id===u.id?{...S,text:c,edited:!0}:S)),d(null);else{const j={id:Date.now(),userId:s,text:c,timestamp:Date.now(),replyTo:f?.id||null,edited:!1};a(S=>[...S,j]),o(null)}v("")}},[N,s,f,u]),P=i.useCallback(c=>{window.confirm("🗑️ Xóa tin nhắn này?")&&a(j=>j.filter(S=>S.id!==c))},[]),h=i.useCallback(c=>{d(c),v(c.text),o(null)},[]),m=i.useCallback(c=>{o(c),d(null)},[]),x=i.useCallback(()=>{o(null),d(null),v("")},[]),M=i.useCallback(c=>{const j=c.target.value;if(v(j),j.length>0&&Math.random()>.7){const S=[2,3,4][Math.floor(Math.random()*3)];C(T=>({...T,[S]:!0})),w.current[S]&&clearTimeout(w.current[S]),w.current[S]=setTimeout(()=>{C(T=>{const D={...T};return delete D[S],D})},3e3)}},[]),l=i.useCallback(c=>{const j=new Date(c),T=new Date-j;return T<6e4?"Vừa xong":T<36e5?`${Math.floor(T/6e4)} phút trước`:T<864e5?j.toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"}):j.toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit"})},[]),p=i.useCallback(c=>r.find(j=>j.id===c),[r]),y=i.useMemo(()=>Object.keys(g).map(c=>E[c]?.name).filter(Boolean),[g]);return e.jsxs("div",{className:"chat-room",children:[e.jsx("div",{className:"room-header",children:e.jsxs("div",{className:"room-info",children:[e.jsx("h2",{className:"room-name",children:n}),e.jsxs("div",{className:"online-status",children:[e.jsx("span",{className:"status-dot"}),Object.keys(E).length," thành viên online"]})]})}),e.jsxs("div",{className:"messages-container",children:[r.length===0?e.jsxs("div",{className:"empty-messages",children:[e.jsx("div",{className:"empty-icon",children:"💬"}),e.jsx("p",{children:"Chưa có tin nhắn. Hãy bắt đầu cuộc trò chuyện!"})]}):r.map((c,j)=>{const S=E[c.userId],T=c.userId===s,D=j===0||r[j-1].userId!==c.userId,R=c.replyTo?p(c.replyTo):null;return e.jsxs("div",{className:`message ${T?"own":""} ${D?"":"compact"}`,children:[D&&!T&&e.jsx("div",{className:"message-avatar",style:{color:S.color},children:S.avatar}),e.jsxs("div",{className:"message-content",children:[D&&!T&&e.jsx("div",{className:"message-author",style:{color:S.color},children:S.name}),R&&e.jsxs("div",{className:"message-reply",children:[e.jsx("div",{className:"reply-icon",children:"↩️"}),e.jsxs("div",{className:"reply-content",children:[e.jsx("div",{className:"reply-author",children:E[R.userId]?.name}),e.jsx("div",{className:"reply-text",children:R.text})]})]}),e.jsxs("div",{className:"message-bubble",children:[e.jsx("div",{className:"message-text",children:c.text}),c.edited&&e.jsx("span",{className:"edited-badge",children:"đã chỉnh sửa"})]}),e.jsxs("div",{className:"message-meta",children:[e.jsx("span",{className:"message-time",children:l(c.timestamp)}),T&&e.jsxs("div",{className:"message-actions",children:[e.jsx("button",{className:"action-btn",onClick:()=>h(c),title:"Chỉnh sửa",children:"✏️"}),e.jsx("button",{className:"action-btn",onClick:()=>P(c.id),title:"Xóa",children:"🗑️"})]}),!T&&e.jsx("button",{className:"action-btn reply-btn",onClick:()=>m(c),title:"Trả lời",children:"↩️"})]})]})]},c.id)}),y.length>0&&e.jsxs("div",{className:"typing-indicator",children:[e.jsx("div",{className:"typing-avatar",children:"✍️"}),e.jsxs("div",{className:"typing-text",children:[y.join(", ")," đang nhập",e.jsxs("span",{className:"typing-dots",children:[e.jsx("span",{children:"."}),e.jsx("span",{children:"."}),e.jsx("span",{children:"."})]})]})]}),e.jsx("div",{ref:k})]}),e.jsxs("div",{className:"input-area",children:[(f||u)&&e.jsxs("div",{className:"action-preview",children:[e.jsx("div",{className:"preview-icon",children:u?"✏️":"↩️"}),e.jsxs("div",{className:"preview-content",children:[e.jsx("div",{className:"preview-label",children:u?"Chỉnh sửa tin nhắn":`Trả lời ${E[f.userId]?.name}`}),e.jsx("div",{className:"preview-text",children:u?u.text:f.text})]}),e.jsx("button",{className:"preview-close",onClick:x,children:"✕"})]}),e.jsxs("div",{className:"input-box",children:[e.jsx("input",{type:"text",className:"message-input",placeholder:"Nhập tin nhắn...",value:N,onChange:M,onKeyUp:c=>{c.key==="Enter"&&!c.shiftKey&&(c.preventDefault(),I())}}),e.jsx("button",{className:"send-button",onClick:I,disabled:!N.trim(),children:u?"💾":"📤"})]})]})]})}function te(){const[t,s]=i.useState(Z),[n,r]=i.useState(1),[a]=i.useState(1),N=i.useCallback(o=>{r(o),s(u=>u.map(d=>d.id===o?{...d,unread:0}:d))},[]),v=i.useMemo(()=>t.find(o=>o.id===n),[t,n]),f=i.useMemo(()=>t.reduce((o,u)=>o+u.unread,0),[t]);return e.jsxs("div",{className:"chat-app",children:[e.jsxs("header",{className:"app-header",children:[e.jsx("h1",{className:"app-title",children:e.jsx("span",{className:"title-gradient",children:"💬 Chat"})}),e.jsx("p",{className:"app-subtitle",children:"Real-time Chat với State Colocation"})]}),e.jsxs("div",{className:"app-chat-layout",children:[e.jsxs("div",{className:"sidebar-chatapp",children:[e.jsxs("div",{className:"sidebar-header",children:[e.jsx("h2",{className:"sidebar-title",children:"📁 Rooms"}),f>0&&e.jsx("div",{className:"total-unread",children:f})]}),e.jsx("div",{className:"rooms-list",children:t.map(o=>e.jsxs("div",{className:`room-item ${o.id===n?"active":""}`,onClick:()=>N(o.id),children:[e.jsxs("div",{className:"room-item-content",children:[e.jsx("div",{className:"room-item-name",children:o.name}),e.jsx("div",{className:"room-item-desc",children:o.description})]}),o.unread>0&&e.jsx("div",{className:"unread-badge",children:o.unread})]},o.id))}),e.jsxs("div",{className:"user-profile",children:[e.jsx("div",{className:"profile-avatar",style:{color:E[a].color},children:E[a].avatar}),e.jsxs("div",{className:"profile-info",children:[e.jsx("div",{className:"profile-name",children:E[a].name}),e.jsx("div",{className:"profile-status",children:"🟢 Online"})]})]})]}),e.jsx("div",{className:"main-chatapp",children:e.jsx(ee,{roomId:n,currentUserId:a,roomName:v?.name||""},n)})]})]})}function se(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:3,title:"Real-time Chat với State Colocation"}),e.jsx(b.Description,{children:`
 // TODO: Implement chat app với proper state placement
 
 function ChatRoom({ roomId, currentUserId }) {
@@ -1490,7 +1490,7 @@ function ChatApp() {
   );
 }
 
-`}),e.jsx(y.Demo,{children:e.jsx(ae,{})}),e.jsx(y.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(te,{})}),e.jsx(b.Code,{children:`
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 /**
@@ -2096,7 +2096,7 @@ function ChatApp() {
 
 export default ChatApp;
 
-`})]})}const se=a=>{const n={week:7,month:30,year:12}[a],r=[];for(let s=0;s<n;s++)r.push({label:a==="year"?`T${s+1}`:`${s+1}`,value:Math.floor(Math.random()*5e7)+1e7});return r},ie=()=>({total:Math.floor(Math.random()*1e4)+5e3,active:Math.floor(Math.random()*5e3)+2e3,new:Math.floor(Math.random()*500)+100,growth:(Math.random()*30+5).toFixed(1)}),ne=()=>{const a=["pending","processing","completed","cancelled"],t=["iPhone 15","MacBook Pro","AirPods","iPad Air","Apple Watch"];return Array.from({length:10},(n,r)=>({id:`ORD${Date.now()-r*1e5}`,product:t[Math.floor(Math.random()*t.length)],customer:`Khách hàng ${r+1}`,amount:Math.floor(Math.random()*5e7)+1e6,status:a[Math.floor(Math.random()*a.length)],timestamp:Date.now()-Math.random()*864e5*7}))},re=()=>[{name:"iPhone 15 Pro Max",icon:"📱"},{name:"MacBook Pro M3",icon:"💻"},{name:"AirPods Pro",icon:"🎧"},{name:"iPad Air M2",icon:"📱"},{name:"Apple Watch Ultra",icon:"⌚"}].map(t=>({...t,sales:Math.floor(Math.random()*1e3)+100,revenue:Math.floor(Math.random()*5e8)+5e7}));function le(){const[a,t]=i.useState("week"),[n,r]=i.useState([]),[s,N]=i.useState(!1);i.useEffect(()=>{N(!0);const l=setTimeout(()=>{r(se(a)),N(!1)},500);return()=>clearTimeout(l)},[a]);const v=i.useMemo(()=>{if(console.log("📊 Calculating sales stats..."),n.length===0)return{total:0,average:0,highest:0,growth:0};const l=n.reduce((j,k)=>j+k.value,0),u=l/n.length,d=Math.max(...n.map(j=>j.value)),g=n.length>1?((n[n.length-1].value-n[0].value)/n[0].value*100).toFixed(1):0;return{total:l,average:u,highest:d,growth:g}},[n]),f=l=>new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND"}).format(l);return e.jsxs("div",{className:"widget sales-widget",children:[e.jsxs("div",{className:"widget-header",children:[e.jsx("h3",{className:"widget-title",children:"💰 Doanh thu"}),e.jsxs("div",{className:"period-selector",children:[e.jsx("button",{className:`period-btn ${a==="week"?"active":""}`,onClick:()=>t("week"),children:"Tuần"}),e.jsx("button",{className:`period-btn ${a==="month"?"active":""}`,onClick:()=>t("month"),children:"Tháng"}),e.jsx("button",{className:`period-btn ${a==="year"?"active":""}`,onClick:()=>t("year"),children:"Năm"})]})]}),s?e.jsxs("div",{className:"widget-loading",children:[e.jsx("div",{className:"spinner"}),e.jsx("p",{children:"Đang tải dữ liệu..."})]}):e.jsxs(e.Fragment,{children:[e.jsxs("div",{className:"stats-grid",children:[e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Tổng"}),e.jsx("div",{className:"stat-value",children:f(v.total)})]}),e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Trung bình"}),e.jsx("div",{className:"stat-value",children:f(v.average)})]}),e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Cao nhất"}),e.jsx("div",{className:"stat-value",children:f(v.highest)})]}),e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Tăng trưởng"}),e.jsxs("div",{className:`stat-value ${v.growth>=0?"positive":"negative"}`,children:[v.growth>=0?"↗":"↘"," ",Math.abs(v.growth),"%"]})]})]}),e.jsx("div",{className:"chart-container",children:n.map((l,u)=>{const d=Math.max(...n.map(j=>j.value)),g=l.value/d*100;return e.jsxs("div",{className:"chart-bar-wrapper",children:[e.jsx("div",{className:"chart-bar",style:{height:`${g}%`},children:e.jsx("div",{className:"bar-tooltip",children:f(l.value)})}),e.jsx("div",{className:"chart-label",children:l.label})]},u)})})]})]})}function ce(){const[a,t]=i.useState(null),[n,r]=i.useState(!0),[s,N]=i.useState(0);i.useEffect(()=>{r(!0);const u=setTimeout(()=>{t(ie()),r(!1)},300);return()=>clearTimeout(u)},[s]);const v=i.useMemo(()=>a?a.total-a.active:0,[a]),f=i.useMemo(()=>a?(a.active/a.total*100).toFixed(1):0,[a]),l=()=>{N(u=>u+1)};return e.jsxs("div",{className:"widget user-stats-widget",children:[e.jsxs("div",{className:"widget-header",children:[e.jsx("h3",{className:"widget-title",children:"👥 Người dùng"}),e.jsx("button",{className:"refresh-btn",onClick:l,disabled:n,children:"🔄"})]}),n?e.jsx("div",{className:"widget-loading",children:e.jsx("div",{className:"spinner"})}):e.jsxs(e.Fragment,{children:[e.jsx("div",{className:"user-stats-main",children:e.jsxs("div",{className:"main-stat",children:[e.jsx("div",{className:"main-stat-value",children:a.total.toLocaleString()}),e.jsx("div",{className:"main-stat-label",children:"Tổng người dùng"})]})}),e.jsxs("div",{className:"progress-section",children:[e.jsxs("div",{className:"progress-header",children:[e.jsx("span",{children:"Hoạt động"}),e.jsxs("span",{className:"progress-value",children:[f,"%"]})]}),e.jsx("div",{className:"progress-bar",children:e.jsx("div",{className:"progress-fill",style:{width:`${f}%`}})})]}),e.jsxs("div",{className:"user-stats-grid",children:[e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon active",children:"✅"}),e.jsxs("div",{className:"stat-info",children:[e.jsx("div",{className:"stat-value",children:a.active.toLocaleString()}),e.jsx("div",{className:"stat-label",children:"Hoạt động"})]})]}),e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon inactive",children:"💤"}),e.jsxs("div",{className:"stat-info",children:[e.jsx("div",{className:"stat-value",children:v.toLocaleString()}),e.jsx("div",{className:"stat-label",children:"Không hoạt động"})]})]}),e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon new",children:"🆕"}),e.jsxs("div",{className:"stat-info",children:[e.jsx("div",{className:"stat-value",children:a.new.toLocaleString()}),e.jsx("div",{className:"stat-label",children:"Mới (7 ngày)"})]})]}),e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon growth",children:"📈"}),e.jsxs("div",{className:"stat-info",children:[e.jsxs("div",{className:"stat-value",children:["+",a.growth,"%"]}),e.jsx("div",{className:"stat-label",children:"Tăng trưởng"})]})]})]})]})]})}function oe(){const[a,t]=i.useState([]),[n,r]=i.useState(!0),[s,N]=i.useState("all");i.useEffect(()=>{r(!0);const d=setTimeout(()=>{t(ne()),r(!1)},400);return()=>clearTimeout(d)},[]);const v=i.useMemo(()=>(console.log("🔄 Filtering orders..."),s==="all"?a:a.filter(d=>d.status===s)),[a,s]),f=i.useMemo(()=>{const d=a.length,g=a.filter(w=>w.status==="pending").length,j=a.filter(w=>w.status==="completed").length,k=a.filter(w=>w.status==="completed").reduce((w,M)=>w+M.amount,0);return{total:d,pending:g,completed:j,totalRevenue:k}},[a]),l=d=>{const g={pending:{label:"Chờ xử lý",icon:"⏳",class:"pending"},processing:{label:"Đang xử lý",icon:"⚙️",class:"processing"},completed:{label:"Hoàn thành",icon:"✅",class:"completed"},cancelled:{label:"Đã hủy",icon:"❌",class:"cancelled"}};return g[d]||g.pending},u=d=>{const g=new Date(d),k=new Date-g;return k<36e5?`${Math.floor(k/6e4)} phút trước`:k<864e5?`${Math.floor(k/36e5)} giờ trước`:`${Math.floor(k/864e5)} ngày trước`};return e.jsxs("div",{className:"widget orders-widget",children:[e.jsx("div",{className:"widget-header",children:e.jsx("h3",{className:"widget-title",children:"📦 Đơn hàng gần đây"})}),e.jsxs("div",{className:"order-stats",children:[e.jsxs("div",{className:"order-stat",children:[e.jsx("span",{className:"stat-label",children:"Tổng:"}),e.jsx("span",{className:"stat-value",children:f.total})]}),e.jsxs("div",{className:"order-stat",children:[e.jsx("span",{className:"stat-label",children:"Chờ:"}),e.jsx("span",{className:"stat-value pending",children:f.pending})]}),e.jsxs("div",{className:"order-stat",children:[e.jsx("span",{className:"stat-label",children:"Hoàn thành:"}),e.jsx("span",{className:"stat-value completed",children:f.completed})]})]}),e.jsx("div",{className:"filter-buttons",children:["all","pending","processing","completed","cancelled"].map(d=>e.jsx("button",{className:`filter-btn ${s===d?"active":""}`,onClick:()=>N(d),children:d==="all"?"Tất cả":l(d).label},d))}),n?e.jsx("div",{className:"widget-loading",children:e.jsx("div",{className:"spinner"})}):e.jsx("div",{className:"orders-list",children:v.length===0?e.jsx("div",{className:"empty-state",children:e.jsx("p",{children:"Không có đơn hàng"})}):v.map(d=>{const g=l(d.status);return e.jsxs("div",{className:"order-item",children:[e.jsxs("div",{className:"order-main",children:[e.jsxs("div",{className:"order-id",children:["#",d.id]}),e.jsx("div",{className:"order-product",children:d.product}),e.jsx("div",{className:"order-customer",children:d.customer})]}),e.jsxs("div",{className:"order-details",children:[e.jsxs("div",{className:"order-amount",children:[d.amount.toLocaleString("vi-VN"),"đ"]}),e.jsxs("div",{className:`order-status ${g.class}`,children:[g.icon," ",g.label]})]}),e.jsx("div",{className:"order-time",children:u(d.timestamp)})]},d.id)})})]})}function de(){const[a,t]=i.useState([]),[n,r]=i.useState(!0),[s,N]=i.useState("sales");i.useEffect(()=>{r(!0);const l=setTimeout(()=>{t(re()),r(!1)},350);return()=>clearTimeout(l)},[]);const v=i.useMemo(()=>(console.log("🔄 Sorting products..."),[...a].sort((l,u)=>s==="sales"?u.sales-l.sales:u.revenue-l.revenue)),[a,s]),f=i.useMemo(()=>v.length===0?0:Math.max(...s==="sales"?v.map(l=>l.sales):v.map(l=>l.revenue)),[v,s]);return e.jsxs("div",{className:"widget products-widget",children:[e.jsxs("div",{className:"widget-header",children:[e.jsx("h3",{className:"widget-title",children:"🏆 Sản phẩm bán chạy"}),e.jsxs("div",{className:"sort-selector",children:[e.jsx("button",{className:`sort-btn ${s==="sales"?"active":""}`,onClick:()=>N("sales"),children:"Số lượng"}),e.jsx("button",{className:`sort-btn ${s==="revenue"?"active":""}`,onClick:()=>N("revenue"),children:"Doanh thu"})]})]}),n?e.jsx("div",{className:"widget-loading",children:e.jsx("div",{className:"spinner"})}):e.jsx("div",{className:"products-list",children:v.map((l,u)=>{const g=(s==="sales"?l.sales:l.revenue)/f*100;return e.jsxs("div",{className:"product-item",children:[e.jsxs("div",{className:"product-rank",children:["#",u+1]}),e.jsx("div",{className:"product-icon",children:l.icon}),e.jsxs("div",{className:"product-info",children:[e.jsx("div",{className:"product-name",children:l.name}),e.jsx("div",{className:"product-bar",children:e.jsx("div",{className:"product-bar-fill",style:{width:`${g}%`}})}),e.jsxs("div",{className:"product-stats",children:[e.jsxs("span",{children:[l.sales.toLocaleString()," bán"]}),e.jsxs("span",{className:"product-revenue",children:[(l.revenue/1e6).toFixed(1),"M"]})]})]})]},u)})})]})}function me(){const[a,t]=i.useState("grid"),[n,r]=i.useState("dark");return e.jsxs("div",{className:`dashboard ${n}`,children:[e.jsxs("header",{className:"dashboard-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"dashboard-title",children:e.jsx("span",{className:"title-gradient",children:"📊 CyberDash"})}),e.jsx("p",{className:"dashboard-subtitle",children:"Analytics Dashboard với State Optimization"})]}),e.jsxs("div",{className:"header-controls",children:[e.jsxs("div",{className:"control-group",children:[e.jsx("button",{className:`control-btn ${a==="grid"?"active":""}`,onClick:()=>t("grid"),title:"Grid Layout",children:"▦"}),e.jsx("button",{className:`control-btn ${a==="list"?"active":""}`,onClick:()=>t("list"),title:"List Layout",children:"☰"})]}),e.jsx("button",{className:"theme-toggle",onClick:()=>r(n==="dark"?"light":"dark"),children:n==="dark"?"☀️":"🌙"})]})]}),e.jsxs("div",{className:`widgets-container ${a}`,children:[e.jsx(le,{}),e.jsx(ce,{}),e.jsx(oe,{}),e.jsx(de,{})]})]})}function ue(){return e.jsxs(y,{children:[e.jsx(y.Header,{order:4,title:"Dashboard với Multiple Widgets"}),e.jsx(y.Description,{children:`
+`})]})}const ae=t=>{const n={week:7,month:30,year:12}[t],r=[];for(let a=0;a<n;a++)r.push({label:t==="year"?`T${a+1}`:`${a+1}`,value:Math.floor(Math.random()*5e7)+1e7});return r},ie=()=>({total:Math.floor(Math.random()*1e4)+5e3,active:Math.floor(Math.random()*5e3)+2e3,new:Math.floor(Math.random()*500)+100,growth:(Math.random()*30+5).toFixed(1)}),ne=()=>{const t=["pending","processing","completed","cancelled"],s=["iPhone 15","MacBook Pro","AirPods","iPad Air","Apple Watch"];return Array.from({length:10},(n,r)=>({id:`ORD${Date.now()-r*1e5}`,product:s[Math.floor(Math.random()*s.length)],customer:`Khách hàng ${r+1}`,amount:Math.floor(Math.random()*5e7)+1e6,status:t[Math.floor(Math.random()*t.length)],timestamp:Date.now()-Math.random()*864e5*7}))},re=()=>[{name:"iPhone 15 Pro Max",icon:"📱"},{name:"MacBook Pro M3",icon:"💻"},{name:"AirPods Pro",icon:"🎧"},{name:"iPad Air M2",icon:"📱"},{name:"Apple Watch Ultra",icon:"⌚"}].map(s=>({...s,sales:Math.floor(Math.random()*1e3)+100,revenue:Math.floor(Math.random()*5e8)+5e7}));function oe(){const[t,s]=i.useState("week"),[n,r]=i.useState([]),[a,N]=i.useState(!1);i.useEffect(()=>{N(!0);const o=setTimeout(()=>{r(ae(t)),N(!1)},500);return()=>clearTimeout(o)},[t]);const v=i.useMemo(()=>{if(console.log("📊 Calculating sales stats..."),n.length===0)return{total:0,average:0,highest:0,growth:0};const o=n.reduce((C,k)=>C+k.value,0),u=o/n.length,d=Math.max(...n.map(C=>C.value)),g=n.length>1?((n[n.length-1].value-n[0].value)/n[0].value*100).toFixed(1):0;return{total:o,average:u,highest:d,growth:g}},[n]),f=o=>new Intl.NumberFormat("vi-VN",{style:"currency",currency:"VND"}).format(o);return e.jsxs("div",{className:"widget sales-widget",children:[e.jsxs("div",{className:"widget-header",children:[e.jsx("h3",{className:"widget-title",children:"💰 Doanh thu"}),e.jsxs("div",{className:"period-selector",children:[e.jsx("button",{className:`period-btn ${t==="week"?"active":""}`,onClick:()=>s("week"),children:"Tuần"}),e.jsx("button",{className:`period-btn ${t==="month"?"active":""}`,onClick:()=>s("month"),children:"Tháng"}),e.jsx("button",{className:`period-btn ${t==="year"?"active":""}`,onClick:()=>s("year"),children:"Năm"})]})]}),a?e.jsxs("div",{className:"widget-loading",children:[e.jsx("div",{className:"spinner"}),e.jsx("p",{children:"Đang tải dữ liệu..."})]}):e.jsxs(e.Fragment,{children:[e.jsxs("div",{className:"stats-grid",children:[e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Tổng"}),e.jsx("div",{className:"stat-value",children:f(v.total)})]}),e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Trung bình"}),e.jsx("div",{className:"stat-value",children:f(v.average)})]}),e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Cao nhất"}),e.jsx("div",{className:"stat-value",children:f(v.highest)})]}),e.jsxs("div",{className:"stat-mini",children:[e.jsx("div",{className:"stat-label",children:"Tăng trưởng"}),e.jsxs("div",{className:`stat-value ${v.growth>=0?"positive":"negative"}`,children:[v.growth>=0?"↗":"↘"," ",Math.abs(v.growth),"%"]})]})]}),e.jsx("div",{className:"chart-container",children:n.map((o,u)=>{const d=Math.max(...n.map(C=>C.value)),g=o.value/d*100;return e.jsxs("div",{className:"chart-bar-wrapper",children:[e.jsx("div",{className:"chart-bar",style:{height:`${g}%`},children:e.jsx("div",{className:"bar-tooltip",children:f(o.value)})}),e.jsx("div",{className:"chart-label",children:o.label})]},u)})})]})]})}function le(){const[t,s]=i.useState(null),[n,r]=i.useState(!0),[a,N]=i.useState(0);i.useEffect(()=>{r(!0);const u=setTimeout(()=>{s(ie()),r(!1)},300);return()=>clearTimeout(u)},[a]);const v=i.useMemo(()=>t?t.total-t.active:0,[t]),f=i.useMemo(()=>t?(t.active/t.total*100).toFixed(1):0,[t]),o=()=>{N(u=>u+1)};return e.jsxs("div",{className:"widget user-stats-widget",children:[e.jsxs("div",{className:"widget-header",children:[e.jsx("h3",{className:"widget-title",children:"👥 Người dùng"}),e.jsx("button",{className:"refresh-btn",onClick:o,disabled:n,children:"🔄"})]}),n?e.jsx("div",{className:"widget-loading",children:e.jsx("div",{className:"spinner"})}):e.jsxs(e.Fragment,{children:[e.jsx("div",{className:"user-stats-main",children:e.jsxs("div",{className:"main-stat",children:[e.jsx("div",{className:"main-stat-value",children:t.total.toLocaleString()}),e.jsx("div",{className:"main-stat-label",children:"Tổng người dùng"})]})}),e.jsxs("div",{className:"progress-section",children:[e.jsxs("div",{className:"progress-header",children:[e.jsx("span",{children:"Hoạt động"}),e.jsxs("span",{className:"progress-value",children:[f,"%"]})]}),e.jsx("div",{className:"progress-bar",children:e.jsx("div",{className:"progress-fill",style:{width:`${f}%`}})})]}),e.jsxs("div",{className:"user-stats-grid",children:[e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon active",children:"✅"}),e.jsxs("div",{className:"stat-info",children:[e.jsx("div",{className:"stat-value",children:t.active.toLocaleString()}),e.jsx("div",{className:"stat-label",children:"Hoạt động"})]})]}),e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon inactive",children:"💤"}),e.jsxs("div",{className:"stat-info",children:[e.jsx("div",{className:"stat-value",children:v.toLocaleString()}),e.jsx("div",{className:"stat-label",children:"Không hoạt động"})]})]}),e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon new",children:"🆕"}),e.jsxs("div",{className:"stat-info",children:[e.jsx("div",{className:"stat-value",children:t.new.toLocaleString()}),e.jsx("div",{className:"stat-label",children:"Mới (7 ngày)"})]})]}),e.jsxs("div",{className:"user-stat-item",children:[e.jsx("div",{className:"stat-icon growth",children:"📈"}),e.jsxs("div",{className:"stat-info",children:[e.jsxs("div",{className:"stat-value",children:["+",t.growth,"%"]}),e.jsx("div",{className:"stat-label",children:"Tăng trưởng"})]})]})]})]})]})}function ce(){const[t,s]=i.useState([]),[n,r]=i.useState(!0),[a,N]=i.useState("all");i.useEffect(()=>{r(!0);const d=setTimeout(()=>{s(ne()),r(!1)},400);return()=>clearTimeout(d)},[]);const v=i.useMemo(()=>(console.log("🔄 Filtering orders..."),a==="all"?t:t.filter(d=>d.status===a)),[t,a]),f=i.useMemo(()=>{const d=t.length,g=t.filter(w=>w.status==="pending").length,C=t.filter(w=>w.status==="completed").length,k=t.filter(w=>w.status==="completed").reduce((w,I)=>w+I.amount,0);return{total:d,pending:g,completed:C,totalRevenue:k}},[t]),o=d=>{const g={pending:{label:"Chờ xử lý",icon:"⏳",class:"pending"},processing:{label:"Đang xử lý",icon:"⚙️",class:"processing"},completed:{label:"Hoàn thành",icon:"✅",class:"completed"},cancelled:{label:"Đã hủy",icon:"❌",class:"cancelled"}};return g[d]||g.pending},u=d=>{const g=new Date(d),k=new Date-g;return k<36e5?`${Math.floor(k/6e4)} phút trước`:k<864e5?`${Math.floor(k/36e5)} giờ trước`:`${Math.floor(k/864e5)} ngày trước`};return e.jsxs("div",{className:"widget orders-widget",children:[e.jsx("div",{className:"widget-header",children:e.jsx("h3",{className:"widget-title",children:"📦 Đơn hàng gần đây"})}),e.jsxs("div",{className:"order-stats",children:[e.jsxs("div",{className:"order-stat",children:[e.jsx("span",{className:"stat-label",children:"Tổng:"}),e.jsx("span",{className:"stat-value",children:f.total})]}),e.jsxs("div",{className:"order-stat",children:[e.jsx("span",{className:"stat-label",children:"Chờ:"}),e.jsx("span",{className:"stat-value pending",children:f.pending})]}),e.jsxs("div",{className:"order-stat",children:[e.jsx("span",{className:"stat-label",children:"Hoàn thành:"}),e.jsx("span",{className:"stat-value completed",children:f.completed})]})]}),e.jsx("div",{className:"filter-buttons",children:["all","pending","processing","completed","cancelled"].map(d=>e.jsx("button",{className:`filter-btn ${a===d?"active":""}`,onClick:()=>N(d),children:d==="all"?"Tất cả":o(d).label},d))}),n?e.jsx("div",{className:"widget-loading",children:e.jsx("div",{className:"spinner"})}):e.jsx("div",{className:"orders-list",children:v.length===0?e.jsx("div",{className:"empty-state",children:e.jsx("p",{children:"Không có đơn hàng"})}):v.map(d=>{const g=o(d.status);return e.jsxs("div",{className:"order-item",children:[e.jsxs("div",{className:"order-main",children:[e.jsxs("div",{className:"order-id",children:["#",d.id]}),e.jsx("div",{className:"order-product",children:d.product}),e.jsx("div",{className:"order-customer",children:d.customer})]}),e.jsxs("div",{className:"order-details",children:[e.jsxs("div",{className:"order-amount",children:[d.amount.toLocaleString("vi-VN"),"đ"]}),e.jsxs("div",{className:`order-status ${g.class}`,children:[g.icon," ",g.label]})]}),e.jsx("div",{className:"order-time",children:u(d.timestamp)})]},d.id)})})]})}function de(){const[t,s]=i.useState([]),[n,r]=i.useState(!0),[a,N]=i.useState("sales");i.useEffect(()=>{r(!0);const o=setTimeout(()=>{s(re()),r(!1)},350);return()=>clearTimeout(o)},[]);const v=i.useMemo(()=>(console.log("🔄 Sorting products..."),[...t].sort((o,u)=>a==="sales"?u.sales-o.sales:u.revenue-o.revenue)),[t,a]),f=i.useMemo(()=>v.length===0?0:Math.max(...a==="sales"?v.map(o=>o.sales):v.map(o=>o.revenue)),[v,a]);return e.jsxs("div",{className:"widget products-widget",children:[e.jsxs("div",{className:"widget-header",children:[e.jsx("h3",{className:"widget-title",children:"🏆 Sản phẩm bán chạy"}),e.jsxs("div",{className:"sort-selector",children:[e.jsx("button",{className:`sort-btn ${a==="sales"?"active":""}`,onClick:()=>N("sales"),children:"Số lượng"}),e.jsx("button",{className:`sort-btn ${a==="revenue"?"active":""}`,onClick:()=>N("revenue"),children:"Doanh thu"})]})]}),n?e.jsx("div",{className:"widget-loading",children:e.jsx("div",{className:"spinner"})}):e.jsx("div",{className:"products-list",children:v.map((o,u)=>{const g=(a==="sales"?o.sales:o.revenue)/f*100;return e.jsxs("div",{className:"product-item",children:[e.jsxs("div",{className:"product-rank",children:["#",u+1]}),e.jsx("div",{className:"product-icon",children:o.icon}),e.jsxs("div",{className:"product-info",children:[e.jsx("div",{className:"product-name",children:o.name}),e.jsx("div",{className:"product-bar",children:e.jsx("div",{className:"product-bar-fill",style:{width:`${g}%`}})}),e.jsxs("div",{className:"product-stats",children:[e.jsxs("span",{children:[o.sales.toLocaleString()," bán"]}),e.jsxs("span",{className:"product-revenue",children:[(o.revenue/1e6).toFixed(1),"M"]})]})]})]},u)})})]})}function me(){const[t,s]=i.useState("grid"),[n,r]=i.useState("dark");return e.jsxs("div",{className:`dashboard ${n}`,children:[e.jsxs("header",{className:"dashboard-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"dashboard-title",children:e.jsx("span",{className:"title-gradient",children:"📊 CyberDash"})}),e.jsx("p",{className:"dashboard-subtitle",children:"Analytics Dashboard với State Optimization"})]}),e.jsxs("div",{className:"header-controls",children:[e.jsxs("div",{className:"control-group",children:[e.jsx("button",{className:`control-btn ${t==="grid"?"active":""}`,onClick:()=>s("grid"),title:"Grid Layout",children:"▦"}),e.jsx("button",{className:`control-btn ${t==="list"?"active":""}`,onClick:()=>s("list"),title:"List Layout",children:"☰"})]}),e.jsx("button",{className:"theme-toggle",onClick:()=>r(n==="dark"?"light":"dark"),children:n==="dark"?"☀️":"🌙"})]})]}),e.jsxs("div",{className:`widgets-container ${t}`,children:[e.jsx(oe,{}),e.jsx(le,{}),e.jsx(ce,{}),e.jsx(de,{})]})]})}function ue(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:4,title:"Dashboard với Multiple Widgets"}),e.jsx(b.Description,{children:`
 // TODO: Implement dashboard với state optimization
 
 // Widget có independent state
@@ -2158,7 +2158,7 @@ function Dashboard() {
   );
 }
 
-`}),e.jsx(y.Demo,{children:e.jsx(me,{})}),e.jsx(y.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(me,{})}),e.jsx(b.Code,{children:`
 import { useEffect, useMemo, useState } from "react";
 /**
  * DASHBOARD với MULTIPLE WIDGETS
@@ -2789,9 +2789,9 @@ function Dashboard() {
 
 export default Dashboard;
 
-`})]})}const E=["account","profile","preferences","review"],pe={account:"1. Tài khoản",profile:"2. Thông tin",preferences:"3. Tùy chọn",review:"4. Xác nhận"},U=[{value:"",label:"Chọn giới tính"},{value:"male",label:"Nam"},{value:"female",label:"Nữ"},{value:"other",label:"Khác"}],V=[{value:"vi",label:"🇻🇳 Tiếng Việt"},{value:"en",label:"🇺🇸 English"},{value:"ja",label:"🇯🇵 日本語"},{value:"ko",label:"🇰🇷 한국어"}];function he(){const[a,t]=i.useState(0),[n,r]=i.useState({account:{email:"",username:"",password:"",confirmPassword:""},profile:{firstName:"",lastName:"",birthDate:"",gender:"",phone:"",address:"",city:"",zipCode:""},preferences:{newsletter:!1,notifications:{email:!0,sms:!1,push:!0},theme:"dark",language:"vi"}}),[s,N]=i.useState({}),[v,f]=i.useState({}),l=i.useCallback(()=>{const c={},{email:p,username:C,password:o,confirmPassword:b}=n.account;return p?/\S+@\S+\.\S+/.test(p)||(c.email="Email không hợp lệ"):c.email="Email là bắt buộc",C?C.length<3?c.username="Username phải có ít nhất 3 ký tự":/^[a-zA-Z0-9_]+$/.test(C)||(c.username="Username chỉ chứa chữ, số và dấu gạch dưới"):c.username="Username là bắt buộc",o?o.length<6?c.password="Mật khẩu phải có ít nhất 6 ký tự":/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(o)||(c.password="Mật khẩu phải có chữ hoa, chữ thường và số"):c.password="Mật khẩu là bắt buộc",b?o!==b&&(c.confirmPassword="Mật khẩu không khớp"):c.confirmPassword="Vui lòng xác nhận mật khẩu",c},[n.account]),u=i.useCallback(()=>{const c={},{firstName:p,lastName:C,birthDate:o,gender:b,phone:S,zipCode:T}=n.profile;if(p?p.length<2&&(c.firstName="Tên phải có ít nhất 2 ký tự"):c.firstName="Tên là bắt buộc",C?C.length<2&&(c.lastName="Họ phải có ít nhất 2 ký tự"):c.lastName="Họ là bắt buộc",!o)c.birthDate="Ngày sinh là bắt buộc";else{const I=new Date,O=new Date(o),A=I.getFullYear()-O.getFullYear();A<13&&(c.birthDate="Bạn phải từ 13 tuổi trở lên"),A>120&&(c.birthDate="Ngày sinh không hợp lệ")}return b||(c.gender="Vui lòng chọn giới tính"),S&&!/^0\d{9,10}$/.test(S)&&(c.phone="Số điện thoại không hợp lệ (VD: 0901234567)"),T&&!/^\d{5,6}$/.test(T)&&(c.zipCode="Mã bưu điện phải có 5-6 chữ số"),c},[n.profile]),d=i.useCallback(()=>({}),[]),g=i.useMemo(()=>(console.log("🔍 Running validations..."),{account:l(),profile:u(),preferences:d()}),[l,u,d]),j=i.useMemo(()=>{const c=E[a];if(c==="review")return!0;const p=g[c];return N(p),Object.keys(p).length===0},[a,g]),k=i.useMemo(()=>{console.log("📊 Calculating completion...");let c=0,p=0;return Object.entries(n.account).forEach(([C,o])=>{c++,o&&o.trim()!==""&&p++}),Object.entries(n.profile).forEach(([C,o])=>{c++,o&&o.trim()!==""&&p++}),c+=4,n.preferences.newsletter&&p++,n.preferences.theme&&p++,n.preferences.language&&p++,p++,Math.round(p/c*100)},[n]),w=i.useMemo(()=>Object.keys(g).every(c=>Object.keys(g[c]).length===0),[g]),M=i.useCallback((c,p,C)=>{r(o=>({...o,[c]:{...o[c],[p]:C}})),f(o=>({...o,[`${c}.${p}`]:!0}))},[]),D=i.useCallback((c,p,C,o)=>{r(b=>({...b,[c]:{...b[c],[p]:{...b[c][p],[C]:o}}}))},[]),h=i.useCallback(()=>{if(j&&a<E.length-1)t(c=>c+1),N({});else if(!j){const c=E[a];N(g[c])}},[j,a,g]),m=i.useCallback(()=>{a>0&&(t(c=>c-1),N({}))},[a]),x=i.useCallback(async()=>{console.log("🚀 Submitting form...",n),await new Promise(c=>setTimeout(c,1500)),alert(`✅ Đăng ký thành công!
+`})]})}const O=["account","profile","preferences","review"],pe={account:"1. Tài khoản",profile:"2. Thông tin",preferences:"3. Tùy chọn",review:"4. Xác nhận"},z=[{value:"",label:"Chọn giới tính"},{value:"male",label:"Nam"},{value:"female",label:"Nữ"},{value:"other",label:"Khác"}],$=[{value:"vi",label:"🇻🇳 Tiếng Việt"},{value:"en",label:"🇺🇸 English"},{value:"ja",label:"🇯🇵 日本語"},{value:"ko",label:"🇰🇷 한국어"}];function he(){const[t,s]=i.useState(0),[n,r]=i.useState({account:{email:"",username:"",password:"",confirmPassword:""},profile:{firstName:"",lastName:"",birthDate:"",gender:"",phone:"",address:"",city:"",zipCode:""},preferences:{newsletter:!1,notifications:{email:!0,sms:!1,push:!0},theme:"dark",language:"vi"}}),[a,N]=i.useState({}),[v,f]=i.useState({}),o=i.useCallback(()=>{const l={},{email:p,username:y,password:c,confirmPassword:j}=n.account;return p?/\S+@\S+\.\S+/.test(p)||(l.email="Email không hợp lệ"):l.email="Email là bắt buộc",y?y.length<3?l.username="Username phải có ít nhất 3 ký tự":/^[a-zA-Z0-9_]+$/.test(y)||(l.username="Username chỉ chứa chữ, số và dấu gạch dưới"):l.username="Username là bắt buộc",c?c.length<6?l.password="Mật khẩu phải có ít nhất 6 ký tự":/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(c)||(l.password="Mật khẩu phải có chữ hoa, chữ thường và số"):l.password="Mật khẩu là bắt buộc",j?c!==j&&(l.confirmPassword="Mật khẩu không khớp"):l.confirmPassword="Vui lòng xác nhận mật khẩu",l},[n.account]),u=i.useCallback(()=>{const l={},{firstName:p,lastName:y,birthDate:c,gender:j,phone:S,zipCode:T}=n.profile;if(p?p.length<2&&(l.firstName="Tên phải có ít nhất 2 ký tự"):l.firstName="Tên là bắt buộc",y?y.length<2&&(l.lastName="Họ phải có ít nhất 2 ký tự"):l.lastName="Họ là bắt buộc",!c)l.birthDate="Ngày sinh là bắt buộc";else{const D=new Date,R=new Date(c),A=D.getFullYear()-R.getFullYear();A<13&&(l.birthDate="Bạn phải từ 13 tuổi trở lên"),A>120&&(l.birthDate="Ngày sinh không hợp lệ")}return j||(l.gender="Vui lòng chọn giới tính"),S&&!/^0\d{9,10}$/.test(S)&&(l.phone="Số điện thoại không hợp lệ (VD: 0901234567)"),T&&!/^\d{5,6}$/.test(T)&&(l.zipCode="Mã bưu điện phải có 5-6 chữ số"),l},[n.profile]),d=i.useCallback(()=>({}),[]),g=i.useMemo(()=>(console.log("🔍 Running validations..."),{account:o(),profile:u(),preferences:d()}),[o,u,d]),C=i.useMemo(()=>{const l=O[t];if(l==="review")return!0;const p=g[l];return N(p),Object.keys(p).length===0},[t,g]),k=i.useMemo(()=>{console.log("📊 Calculating completion...");let l=0,p=0;return Object.entries(n.account).forEach(([y,c])=>{l++,c&&c.trim()!==""&&p++}),Object.entries(n.profile).forEach(([y,c])=>{l++,c&&c.trim()!==""&&p++}),l+=4,n.preferences.newsletter&&p++,n.preferences.theme&&p++,n.preferences.language&&p++,p++,Math.round(p/l*100)},[n]),w=i.useMemo(()=>Object.keys(g).every(l=>Object.keys(g[l]).length===0),[g]),I=i.useCallback((l,p,y)=>{r(c=>({...c,[l]:{...c[l],[p]:y}})),f(c=>({...c,[`${l}.${p}`]:!0}))},[]),P=i.useCallback((l,p,y,c)=>{r(j=>({...j,[l]:{...j[l],[p]:{...j[l][p],[y]:c}}}))},[]),h=i.useCallback(()=>{if(C&&t<O.length-1)s(l=>l+1),N({});else if(!C){const l=O[t];N(g[l])}},[C,t,g]),m=i.useCallback(()=>{t>0&&(s(l=>l-1),N({}))},[t]),x=i.useCallback(async()=>{console.log("🚀 Submitting form...",n),await new Promise(l=>setTimeout(l,1500)),alert(`✅ Đăng ký thành công!
 
-Thông tin đã được lưu.`)},[n]),P=()=>{switch(E[a]){case"account":return e.jsx(ve,{data:n.account,errors:s,touched:v,onUpdate:(p,C)=>M("account",p,C)});case"profile":return e.jsx(ge,{data:n.profile,errors:s,touched:v,onUpdate:(p,C)=>M("profile",p,C)});case"preferences":return e.jsx(Ne,{data:n.preferences,onUpdate:(p,C)=>M("preferences",p,C),onUpdateNested:(p,C,o)=>D("preferences",p,C,o)});case"review":return e.jsx(fe,{formData:n});default:return null}};return e.jsxs("div",{className:"form-wizard",children:[e.jsxs("div",{className:"wizard-header",children:[e.jsx("h1",{className:"wizard-title",children:e.jsx("span",{className:"title-gradient",children:"📝 Đăng ký tài khoản"})}),e.jsx("p",{className:"wizard-subtitle",children:"Form Wizard với Complex State Management"})]}),e.jsxs("div",{className:"progress-section",children:[e.jsx("div",{className:"progress-bar",children:e.jsx("div",{className:"progress-fill",style:{width:`${k}%`}})}),e.jsxs("div",{className:"progress-text",children:[k,"% hoàn thành"]})]}),e.jsx("div",{className:"steps-indicator",children:E.map((c,p)=>e.jsxs("div",{className:`step-item ${p===a?"active":""} ${p<a?"completed":""}`,children:[e.jsx("div",{className:"step-circle",children:p<a?"✓":p+1}),e.jsx("div",{className:"step-label",children:pe[c]})]},c))}),e.jsx("div",{className:"step-content",children:P()}),!j&&a<E.length-1&&Object.keys(s).length>0&&e.jsxs("div",{className:"validation-summary",children:[e.jsx("h4",{children:"⚠️ Vui lòng hoàn thành các trường sau:"}),e.jsx("ul",{children:Object.entries(s).map(([c,p])=>e.jsx("li",{children:p},c))})]}),e.jsxs("div",{className:"wizard-navigation",children:[a>0&&e.jsx("button",{className:"btn-secondary",onClick:m,children:"← Quay lại"}),a<E.length-1?e.jsx("button",{className:"btn-primary",onClick:h,disabled:!j,children:"Tiếp tục →"}):e.jsx("button",{className:"btn-primary",onClick:x,disabled:!w,children:"✓ Hoàn tất"})]})]})}function ve({data:a,errors:t,touched:n,onUpdate:r}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"🔐 Thông tin tài khoản"}),e.jsxs("div",{className:"form-grid",children:[e.jsxs("div",{className:"form-group full-width",children:[e.jsxs("label",{className:"form-label",children:["Email ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"email",className:`form-input ${t.email?"error":""}`,value:a.email,onChange:s=>r("email",s.target.value),placeholder:"example@email.com"}),t.email&&e.jsx("div",{className:"error-message",children:t.email})]}),e.jsxs("div",{className:"form-group full-width",children:[e.jsxs("label",{className:"form-label",children:["Username ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",className:`form-input ${t.username?"error":""}`,value:a.username,onChange:s=>r("username",s.target.value),placeholder:"username123"}),t.username&&e.jsx("div",{className:"error-message",children:t.username}),e.jsx("div",{className:"form-hint",children:"Chỉ chữ, số và dấu gạch dưới"})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Mật khẩu ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"password",className:`form-input ${t.password?"error":""}`,value:a.password,onChange:s=>r("password",s.target.value),placeholder:"••••••••"}),t.password&&e.jsx("div",{className:"error-message",children:t.password}),e.jsx("div",{className:"form-hint",children:"Tối thiểu 6 ký tự, có chữ hoa, thường và số"})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Xác nhận mật khẩu ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"password",className:`form-input ${t.confirmPassword?"error":""}`,value:a.confirmPassword,onChange:s=>r("confirmPassword",s.target.value),placeholder:"••••••••"}),t.confirmPassword&&e.jsx("div",{className:"error-message",children:t.confirmPassword})]})]})]})}function ge({data:a,errors:t,touched:n,onUpdate:r}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"👤 Thông tin cá nhân"}),e.jsxs("div",{className:"form-grid",children:[e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Họ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",className:`form-input ${t.lastName?"error":""}`,value:a.lastName,onChange:s=>r("lastName",s.target.value),placeholder:"Nguyễn"}),t.lastName&&e.jsx("div",{className:"error-message",children:t.lastName})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Tên ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",className:`form-input ${t.firstName?"error":""}`,value:a.firstName,onChange:s=>r("firstName",s.target.value),placeholder:"Văn A"}),t.firstName&&e.jsx("div",{className:"error-message",children:t.firstName})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Ngày sinh ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"date",className:`form-input ${t.birthDate?"error":""}`,value:a.birthDate,onChange:s=>r("birthDate",s.target.value),max:new Date().toISOString().split("T")[0]}),t.birthDate&&e.jsx("div",{className:"error-message",children:t.birthDate})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Giới tính ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("select",{className:`form-input ${t.gender?"error":""}`,value:a.gender,onChange:s=>r("gender",s.target.value),children:U.map(s=>e.jsx("option",{value:s.value,children:s.label},s.value))}),t.gender&&e.jsx("div",{className:"error-message",children:t.gender})]}),e.jsxs("div",{className:"form-group full-width",children:[e.jsx("label",{className:"form-label",children:"Số điện thoại"}),e.jsx("input",{type:"tel",className:`form-input ${t.phone?"error":""}`,value:a.phone,onChange:s=>r("phone",s.target.value),placeholder:"0901234567"}),t.phone&&e.jsx("div",{className:"error-message",children:t.phone})]}),e.jsxs("div",{className:"form-group full-width",children:[e.jsx("label",{className:"form-label",children:"Địa chỉ"}),e.jsx("input",{type:"text",className:"form-input",value:a.address,onChange:s=>r("address",s.target.value),placeholder:"123 Đường ABC"})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Thành phố"}),e.jsx("input",{type:"text",className:"form-input",value:a.city,onChange:s=>r("city",s.target.value),placeholder:"Hồ Chí Minh"})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Mã bưu điện"}),e.jsx("input",{type:"text",className:`form-input ${t.zipCode?"error":""}`,value:a.zipCode,onChange:s=>r("zipCode",s.target.value),placeholder:"70000"}),t.zipCode&&e.jsx("div",{className:"error-message",children:t.zipCode})]})]})]})}function Ne({data:a,onUpdate:t,onUpdateNested:n}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"⚙️ Tùy chọn"}),e.jsxs("div",{className:"preferences-section",children:[e.jsxs("div",{className:"pref-group",children:[e.jsx("h3",{className:"pref-title",children:"📧 Thông báo"}),e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:a.notifications.email,onChange:r=>n("notifications","email",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"Email notifications"})]}),e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:a.notifications.sms,onChange:r=>n("notifications","sms",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"SMS notifications"})]}),e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:a.notifications.push,onChange:r=>n("notifications","push",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"Push notifications"})]})]}),e.jsxs("div",{className:"pref-group",children:[e.jsx("h3",{className:"pref-title",children:"🎨 Giao diện"}),e.jsxs("div",{className:"theme-selector",children:[e.jsxs("label",{className:`theme-option ${a.theme==="dark"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"theme",value:"dark",checked:a.theme==="dark",onChange:r=>t("theme",r.target.value)}),e.jsx("div",{className:"theme-preview dark",children:"🌙"}),e.jsx("span",{children:"Dark"})]}),e.jsxs("label",{className:`theme-option ${a.theme==="light"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"theme",value:"light",checked:a.theme==="light",onChange:r=>t("theme",r.target.value)}),e.jsx("div",{className:"theme-preview light",children:"☀️"}),e.jsx("span",{children:"Light"})]})]})]}),e.jsxs("div",{className:"pref-group",children:[e.jsx("h3",{className:"pref-title",children:"🌐 Ngôn ngữ"}),e.jsx("select",{className:"form-input",value:a.language,onChange:r=>t("language",r.target.value),children:V.map(r=>e.jsx("option",{value:r.value,children:r.label},r.value))})]}),e.jsx("div",{className:"pref-group",children:e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:a.newsletter,onChange:r=>t("newsletter",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"Đăng ký nhận bản tin qua email"})]})})]})]})}function fe({formData:a}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"✅ Xác nhận thông tin"}),e.jsxs("div",{className:"review-sections",children:[e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{className:"review-section-title",children:"🔐 Tài khoản"}),e.jsxs("div",{className:"review-items",children:[e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Email:"}),e.jsx("span",{className:"review-value",children:a.account.email})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Username:"}),e.jsx("span",{className:"review-value",children:a.account.username})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Mật khẩu:"}),e.jsx("span",{className:"review-value",children:"••••••••"})]})]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{className:"review-section-title",children:"👤 Thông tin cá nhân"}),e.jsxs("div",{className:"review-items",children:[e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Họ tên:"}),e.jsxs("span",{className:"review-value",children:[a.profile.lastName," ",a.profile.firstName]})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Ngày sinh:"}),e.jsx("span",{className:"review-value",children:new Date(a.profile.birthDate).toLocaleDateString("vi-VN")})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Giới tính:"}),e.jsx("span",{className:"review-value",children:U.find(t=>t.value===a.profile.gender)?.label})]}),a.profile.phone&&e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Số điện thoại:"}),e.jsx("span",{className:"review-value",children:a.profile.phone})]}),a.profile.address&&e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Địa chỉ:"}),e.jsxs("span",{className:"review-value",children:[a.profile.address,", ",a.profile.city," ",a.profile.zipCode]})]})]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{className:"review-section-title",children:"⚙️ Tùy chọn"}),e.jsxs("div",{className:"review-items",children:[e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Thông báo:"}),e.jsx("span",{className:"review-value",children:Object.entries(a.preferences.notifications).filter(([t,n])=>n).map(([t])=>t.toUpperCase()).join(", ")||"Không có"})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Giao diện:"}),e.jsx("span",{className:"review-value",children:a.preferences.theme==="dark"?"🌙 Dark":"☀️ Light"})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Ngôn ngữ:"}),e.jsx("span",{className:"review-value",children:V.find(t=>t.value===a.preferences.language)?.label})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Newsletter:"}),e.jsx("span",{className:"review-value",children:a.preferences.newsletter?"✓ Có":"✗ Không"})]})]})]})]}),e.jsx("div",{className:"review-notice",children:e.jsx("p",{children:"ℹ️ Vui lòng kiểm tra lại thông tin trước khi hoàn tất đăng ký. Bạn có thể quay lại để chỉnh sửa nếu cần."})})]})}function xe(){return e.jsxs(y,{children:[e.jsx(y.Header,{order:5,title:"Form Wizard với Complex State (Challenge)"}),e.jsx(y.Description,{children:`
+Thông tin đã được lưu.`)},[n]),M=()=>{switch(O[t]){case"account":return e.jsx(ve,{data:n.account,errors:a,touched:v,onUpdate:(p,y)=>I("account",p,y)});case"profile":return e.jsx(ge,{data:n.profile,errors:a,touched:v,onUpdate:(p,y)=>I("profile",p,y)});case"preferences":return e.jsx(Ne,{data:n.preferences,onUpdate:(p,y)=>I("preferences",p,y),onUpdateNested:(p,y,c)=>P("preferences",p,y,c)});case"review":return e.jsx(fe,{formData:n});default:return null}};return e.jsxs("div",{className:"form-wizard",children:[e.jsxs("div",{className:"wizard-header",children:[e.jsx("h1",{className:"wizard-title",children:e.jsx("span",{className:"title-gradient",children:"📝 Đăng ký tài khoản"})}),e.jsx("p",{className:"wizard-subtitle",children:"Form Wizard với Complex State Management"})]}),e.jsxs("div",{className:"progress-section",children:[e.jsx("div",{className:"progress-bar",children:e.jsx("div",{className:"progress-fill",style:{width:`${k}%`}})}),e.jsxs("div",{className:"progress-text",children:[k,"% hoàn thành"]})]}),e.jsx("div",{className:"steps-indicator",children:O.map((l,p)=>e.jsxs("div",{className:`step-item ${p===t?"active":""} ${p<t?"completed":""}`,children:[e.jsx("div",{className:"step-circle",children:p<t?"✓":p+1}),e.jsx("div",{className:"step-label",children:pe[l]})]},l))}),e.jsx("div",{className:"step-content",children:M()}),!C&&t<O.length-1&&Object.keys(a).length>0&&e.jsxs("div",{className:"validation-summary",children:[e.jsx("h4",{children:"⚠️ Vui lòng hoàn thành các trường sau:"}),e.jsx("ul",{children:Object.entries(a).map(([l,p])=>e.jsx("li",{children:p},l))})]}),e.jsxs("div",{className:"wizard-navigation",children:[t>0&&e.jsx("button",{className:"btn-secondary",onClick:m,children:"← Quay lại"}),t<O.length-1?e.jsx("button",{className:"btn-primary",onClick:h,disabled:!C,children:"Tiếp tục →"}):e.jsx("button",{className:"btn-primary",onClick:x,disabled:!w,children:"✓ Hoàn tất"})]})]})}function ve({data:t,errors:s,touched:n,onUpdate:r}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"🔐 Thông tin tài khoản"}),e.jsxs("div",{className:"form-grid",children:[e.jsxs("div",{className:"form-group full-width",children:[e.jsxs("label",{className:"form-label",children:["Email ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"email",className:`form-input ${s.email?"error":""}`,value:t.email,onChange:a=>r("email",a.target.value),placeholder:"example@email.com"}),s.email&&e.jsx("div",{className:"error-message",children:s.email})]}),e.jsxs("div",{className:"form-group full-width",children:[e.jsxs("label",{className:"form-label",children:["Username ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",className:`form-input ${s.username?"error":""}`,value:t.username,onChange:a=>r("username",a.target.value),placeholder:"username123"}),s.username&&e.jsx("div",{className:"error-message",children:s.username}),e.jsx("div",{className:"form-hint",children:"Chỉ chữ, số và dấu gạch dưới"})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Mật khẩu ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"password",className:`form-input ${s.password?"error":""}`,value:t.password,onChange:a=>r("password",a.target.value),placeholder:"••••••••"}),s.password&&e.jsx("div",{className:"error-message",children:s.password}),e.jsx("div",{className:"form-hint",children:"Tối thiểu 6 ký tự, có chữ hoa, thường và số"})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Xác nhận mật khẩu ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"password",className:`form-input ${s.confirmPassword?"error":""}`,value:t.confirmPassword,onChange:a=>r("confirmPassword",a.target.value),placeholder:"••••••••"}),s.confirmPassword&&e.jsx("div",{className:"error-message",children:s.confirmPassword})]})]})]})}function ge({data:t,errors:s,touched:n,onUpdate:r}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"👤 Thông tin cá nhân"}),e.jsxs("div",{className:"form-grid",children:[e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Họ ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",className:`form-input ${s.lastName?"error":""}`,value:t.lastName,onChange:a=>r("lastName",a.target.value),placeholder:"Nguyễn"}),s.lastName&&e.jsx("div",{className:"error-message",children:s.lastName})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Tên ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",className:`form-input ${s.firstName?"error":""}`,value:t.firstName,onChange:a=>r("firstName",a.target.value),placeholder:"Văn A"}),s.firstName&&e.jsx("div",{className:"error-message",children:s.firstName})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Ngày sinh ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"date",className:`form-input ${s.birthDate?"error":""}`,value:t.birthDate,onChange:a=>r("birthDate",a.target.value),max:new Date().toISOString().split("T")[0]}),s.birthDate&&e.jsx("div",{className:"error-message",children:s.birthDate})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Giới tính ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("select",{className:`form-input ${s.gender?"error":""}`,value:t.gender,onChange:a=>r("gender",a.target.value),children:z.map(a=>e.jsx("option",{value:a.value,children:a.label},a.value))}),s.gender&&e.jsx("div",{className:"error-message",children:s.gender})]}),e.jsxs("div",{className:"form-group full-width",children:[e.jsx("label",{className:"form-label",children:"Số điện thoại"}),e.jsx("input",{type:"tel",className:`form-input ${s.phone?"error":""}`,value:t.phone,onChange:a=>r("phone",a.target.value),placeholder:"0901234567"}),s.phone&&e.jsx("div",{className:"error-message",children:s.phone})]}),e.jsxs("div",{className:"form-group full-width",children:[e.jsx("label",{className:"form-label",children:"Địa chỉ"}),e.jsx("input",{type:"text",className:"form-input",value:t.address,onChange:a=>r("address",a.target.value),placeholder:"123 Đường ABC"})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Thành phố"}),e.jsx("input",{type:"text",className:"form-input",value:t.city,onChange:a=>r("city",a.target.value),placeholder:"Hồ Chí Minh"})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Mã bưu điện"}),e.jsx("input",{type:"text",className:`form-input ${s.zipCode?"error":""}`,value:t.zipCode,onChange:a=>r("zipCode",a.target.value),placeholder:"70000"}),s.zipCode&&e.jsx("div",{className:"error-message",children:s.zipCode})]})]})]})}function Ne({data:t,onUpdate:s,onUpdateNested:n}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"⚙️ Tùy chọn"}),e.jsxs("div",{className:"preferences-section",children:[e.jsxs("div",{className:"pref-group",children:[e.jsx("h3",{className:"pref-title",children:"📧 Thông báo"}),e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:t.notifications.email,onChange:r=>n("notifications","email",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"Email notifications"})]}),e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:t.notifications.sms,onChange:r=>n("notifications","sms",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"SMS notifications"})]}),e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:t.notifications.push,onChange:r=>n("notifications","push",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"Push notifications"})]})]}),e.jsxs("div",{className:"pref-group",children:[e.jsx("h3",{className:"pref-title",children:"🎨 Giao diện"}),e.jsxs("div",{className:"theme-selector",children:[e.jsxs("label",{className:`theme-option ${t.theme==="dark"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"theme",value:"dark",checked:t.theme==="dark",onChange:r=>s("theme",r.target.value)}),e.jsx("div",{className:"theme-preview dark",children:"🌙"}),e.jsx("span",{children:"Dark"})]}),e.jsxs("label",{className:`theme-option ${t.theme==="light"?"active":""}`,children:[e.jsx("input",{type:"radio",name:"theme",value:"light",checked:t.theme==="light",onChange:r=>s("theme",r.target.value)}),e.jsx("div",{className:"theme-preview light",children:"☀️"}),e.jsx("span",{children:"Light"})]})]})]}),e.jsxs("div",{className:"pref-group",children:[e.jsx("h3",{className:"pref-title",children:"🌐 Ngôn ngữ"}),e.jsx("select",{className:"form-input",value:t.language,onChange:r=>s("language",r.target.value),children:$.map(r=>e.jsx("option",{value:r.value,children:r.label},r.value))})]}),e.jsx("div",{className:"pref-group",children:e.jsxs("label",{className:"checkbox-label",children:[e.jsx("input",{type:"checkbox",checked:t.newsletter,onChange:r=>s("newsletter",r.target.checked)}),e.jsx("span",{className:"checkbox-custom"}),e.jsx("span",{children:"Đăng ký nhận bản tin qua email"})]})})]})]})}function fe({formData:t}){return e.jsxs("div",{className:"form-step",children:[e.jsx("h2",{className:"step-title",children:"✅ Xác nhận thông tin"}),e.jsxs("div",{className:"review-sections",children:[e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{className:"review-section-title",children:"🔐 Tài khoản"}),e.jsxs("div",{className:"review-items",children:[e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Email:"}),e.jsx("span",{className:"review-value",children:t.account.email})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Username:"}),e.jsx("span",{className:"review-value",children:t.account.username})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Mật khẩu:"}),e.jsx("span",{className:"review-value",children:"••••••••"})]})]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{className:"review-section-title",children:"👤 Thông tin cá nhân"}),e.jsxs("div",{className:"review-items",children:[e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Họ tên:"}),e.jsxs("span",{className:"review-value",children:[t.profile.lastName," ",t.profile.firstName]})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Ngày sinh:"}),e.jsx("span",{className:"review-value",children:new Date(t.profile.birthDate).toLocaleDateString("vi-VN")})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Giới tính:"}),e.jsx("span",{className:"review-value",children:z.find(s=>s.value===t.profile.gender)?.label})]}),t.profile.phone&&e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Số điện thoại:"}),e.jsx("span",{className:"review-value",children:t.profile.phone})]}),t.profile.address&&e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Địa chỉ:"}),e.jsxs("span",{className:"review-value",children:[t.profile.address,", ",t.profile.city," ",t.profile.zipCode]})]})]})]}),e.jsxs("div",{className:"review-section",children:[e.jsx("h3",{className:"review-section-title",children:"⚙️ Tùy chọn"}),e.jsxs("div",{className:"review-items",children:[e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Thông báo:"}),e.jsx("span",{className:"review-value",children:Object.entries(t.preferences.notifications).filter(([s,n])=>n).map(([s])=>s.toUpperCase()).join(", ")||"Không có"})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Giao diện:"}),e.jsx("span",{className:"review-value",children:t.preferences.theme==="dark"?"🌙 Dark":"☀️ Light"})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Ngôn ngữ:"}),e.jsx("span",{className:"review-value",children:$.find(s=>s.value===t.preferences.language)?.label})]}),e.jsxs("div",{className:"review-item",children:[e.jsx("span",{className:"review-label",children:"Newsletter:"}),e.jsx("span",{className:"review-value",children:t.preferences.newsletter?"✓ Có":"✗ Không"})]})]})]})]}),e.jsx("div",{className:"review-notice",children:e.jsx("p",{children:"ℹ️ Vui lòng kiểm tra lại thông tin trước khi hoàn tất đăng ký. Bạn có thể quay lại để chỉnh sửa nếu cần."})})]})}function be(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:5,title:"Form Wizard với Complex State (Challenge)"}),e.jsx(b.Description,{children:`
 // TODO: Multi-step form với validation và derived state
 
 const STEPS = ['account', 'profile', 'preferences', 'review'];
@@ -3043,7 +3043,7 @@ function FormWizard() {
   );
 }
 
-`}),e.jsx(y.Demo,{children:e.jsx(he,{})}),e.jsx(y.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(he,{})}),e.jsx(b.Code,{children:`
 import { useCallback, useMemo, useState } from "react";
 
 /**
@@ -3960,4 +3960,963 @@ function ReviewStep({ formData }) {
 export default FormWizard;
 
 
-`})]})}const L={1:K,2:Z,3:te,4:ue,5:xe},Ce=()=>e.jsxs("div",{className:"day-content",children:[e.jsxs("div",{className:"day-header",children:[e.jsxs("div",{className:"day-header-content",children:[e.jsx(G,{size:32,color:"#00D9FF"}),e.jsxs("div",{children:[e.jsx("h1",{className:"day-title",children:"Ngày 8"}),e.jsx("p",{className:"day-subtitle",children:"State Management Patterns"})]})]}),e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"🎯 Mục tiêu hôm nay"}),e.jsxs("ul",{children:[e.jsx("li",{children:"Lifting State Up - Chia sẻ state giữa components"}),e.jsx("li",{children:"Derived State - Tính toán từ state/props"}),e.jsx("li",{children:"State Batching trong React 18"}),e.jsx("li",{children:"State Colocation - Đặt state đúng chỗ"}),e.jsx("li",{children:"State normalization patterns"}),e.jsx("li",{children:"Optimizing re-renders"})]})]})]}),e.jsx("div",{className:"exercises-list",children:Object.keys(L).map(a=>{const t=L[a];return t?e.jsx(t,{},a):null})})]});export{Ce as default};
+`})]})}function xe(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:"#",title:"Home Work"}),e.jsx(b.Description,{children:`
+1. Social Media Feed
+// TODO: Implement feed với proper state management
+// Features:
+// - Posts với likes, comments, shares
+// - Normalized state (users, posts, comments)
+// - Like/unlike (optimistic update)
+// - Add comment
+// - Filter posts (following, recommended, trending)
+// - Infinite scroll
+// - Derived state: stats per post
+
+2. Kanban Board v2
+// TODO: Trello-like board
+// Features:
+// - Multiple boards
+// - Normalized state (boards, lists, cards)
+// - Drag & drop cards between lists
+// - Card details (description, checklist, due date)
+// - Search cards across all boards
+// - Filter by labels, assignee
+// - Statistics dashboard (derived state)
+
+3. E-learning Platform
+// TODO: Course management
+// Features:
+// - Courses, modules, lessons (normalized)
+// - Progress tracking per user
+// - Quizzes với scores
+// - Certificate generation (derived state)
+// - Leaderboard (derived state)
+// - Course completion % (derived state)
+
+4. Expense Splitter
+// TODO: Split expenses among friends
+// Features:
+// - Users, expenses, payments (normalized)
+// - Add expense với multiple payers
+// - Calculate who owes whom (derived state)
+// - Settle debts
+// - Export settlement summary
+// - Statistics per user
+
+5. Project Management Tool (Challenge)
+// TODO: Asana/Jira-like tool
+// Features:
+// - Projects, tasks, subtasks, comments
+// - Normalized state structure
+// - Task dependencies
+// - Timeline view (Gantt chart)
+// - Team members và assignments
+// - Workload per member (derived state)
+// - Project completion (derived state)
+// - Time tracking
+// - Export reports
+`}),e.jsx(b.Code,{children:`
+
+
+### **1. Social Media Feed**
+// Social Media Feed với Normalized State
+import React, { useState, useMemo, useCallback } from 'react';
+
+function SocialFeed() {
+  // ✅ Normalized state structure
+  const [state, setState] = useState({
+    users: {
+      1: { id: 1, name: 'John Doe', avatar: '👨' },
+      2: { id: 2, name: 'Jane Smith', avatar: '👩' },
+      3: { id: 3, name: 'Bob Wilson', avatar: '👴' }
+    },
+    posts: {
+      1: { 
+        id: 1, 
+        content: 'Learning React!', 
+        authorId: 1, 
+        likes: [2, 3], 
+        commentIds: [1, 2],
+        shares: 5,
+        timestamp: Date.now() - 3600000
+      },
+      2: { 
+        id: 2, 
+        content: 'State management patterns', 
+        authorId: 2, 
+        likes: [1], 
+        commentIds: [3],
+        shares: 2,
+        timestamp: Date.now() - 7200000
+      }
+    },
+    comments: {
+      1: { id: 1, postId: 1, authorId: 2, text: 'Great post!' },
+      2: { id: 2, postId: 1, authorId: 3, text: 'Thanks for sharing!' },
+      3: { id: 3, postId: 2, authorId: 1, text: 'Very helpful' }
+    },
+    postIds: [1, 2]
+  });
+
+  const [filter, setFilter] = useState('all'); // 'all' | 'following' | 'trending'
+  const [currentUserId] = useState(1);
+
+  // ✅ Derived state - Denormalize posts with details
+  const postsWithDetails = useMemo(() => {
+    return state.postIds.map(postId => {
+      const post = state.posts[postId];
+      const author = state.users[post.authorId];
+      const comments = post.commentIds.map(cId => ({
+        ...state.comments[cId],
+        author: state.users[state.comments[cId].authorId]
+      }));
+
+      return {
+        ...post,
+        author,
+        comments,
+        likeCount: post.likes.length,
+        isLiked: post.likes.includes(currentUserId)
+      };
+    });
+  }, [state, currentUserId]);
+
+  // ✅ Filtered posts
+  const filteredPosts = useMemo(() => {
+    switch (filter) {
+      case 'trending':
+        return postsWithDetails
+          .filter(p => p.likeCount > 1 || p.shares > 3)
+          .sort((a, b) => b.likeCount - a.likeCount);
+      case 'following':
+        return postsWithDetails.filter(p => p.authorId !== currentUserId);
+      default:
+        return postsWithDetails;
+    }
+  }, [postsWithDetails, filter, currentUserId]);
+
+  // Like/Unlike (Optimistic update)
+  const toggleLike = useCallback((postId) => {
+    setState(prev => {
+      const post = prev.posts[postId];
+      const isLiked = post.likes.includes(currentUserId);
+      
+      return {
+        ...prev,
+        posts: {
+          ...prev.posts,
+          [postId]: {
+            ...post,
+            likes: isLiked
+              ? post.likes.filter(id => id !== currentUserId)
+              : [...post.likes, currentUserId]
+          }
+        }
+      };
+    });
+  }, [currentUserId]);
+
+  // Add comment
+  const addComment = useCallback((postId, text) => {
+    const commentId = Date.now();
+    
+    setState(prev => ({
+      ...prev,
+      comments: {
+        ...prev.comments,
+        [commentId]: {
+          id: commentId,
+          postId,
+          authorId: currentUserId,
+          text
+        }
+      },
+      posts: {
+        ...prev.posts,
+        [postId]: {
+          ...prev.posts[postId],
+          commentIds: [...prev.posts[postId].commentIds, commentId]
+        }
+      }
+    }));
+  }, [currentUserId]);
+
+  return (
+    <div className="social-feed">
+      <h1>Social Feed</h1>
+
+      {/* Filter buttons */}
+      <div className="filters">
+        <button onClick={() => setFilter('all')}>All</button>
+        <button onClick={() => setFilter('following')}>Following</button>
+        <button onClick={() => setFilter('trending')}>Trending</button>
+      </div>
+
+      {/* Posts */}
+      {filteredPosts.map(post => (
+        <div key={post.id} className="post">
+          <div className="post-header">
+            <span>{post.author.avatar} {post.author.name}</span>
+            <small>{new Date(post.timestamp).toLocaleString()}</small>
+          </div>
+          
+          <p className="post-content">{post.content}</p>
+          
+          <div className="post-actions">
+            <button onClick={() => toggleLike(post.id)}>
+              {post.isLiked ? '❤️' : '🤍'} {post.likeCount}
+            </button>
+            <span>💬 {post.comments.length}</span>
+            <span>🔄 {post.shares}</span>
+          </div>
+
+          {/* Comments */}
+          <div className="comments">
+            {post.comments.map(comment => (
+              <div key={comment.id} className="comment">
+                <strong>{comment.author.avatar} {comment.author.name}:</strong>
+                <span>{comment.text}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Add comment */}
+          <input
+            placeholder="Add a comment..."
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' && e.target.value.trim()) {
+                addComment(post.id, e.target.value);
+                e.target.value = '';
+              }
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// KEY PATTERNS USED:
+// ✅ Normalized state (users, posts, comments)
+// ✅ Derived state với useMemo (denormalize, filter)
+// ✅ Optimistic updates (toggleLike)
+// ✅ State colocation pattern
+
+---
+
+### **2. Kanban Board v2**
+// Kanban Board với Normalized State
+import React, { useState, useMemo, useCallback } from 'react';
+
+function KanbanBoard() {
+  const [state, setState] = useState({
+    boards: {
+      1: { id: 1, name: 'Project Alpha', listIds: [1, 2, 3] }
+    },
+    lists: {
+      1: { id: 1, boardId: 1, name: 'To Do', cardIds: [1, 2] },
+      2: { id: 2, boardId: 1, name: 'In Progress', cardIds: [3] },
+      3: { id: 3, boardId: 1, name: 'Done', cardIds: [] }
+    },
+    cards: {
+      1: { 
+        id: 1, 
+        listId: 1, 
+        title: 'Design homepage', 
+        description: 'Create mockups',
+        labels: ['design', 'urgent'],
+        assignee: 'John',
+        dueDate: '2024-01-15'
+      },
+      2: { 
+        id: 2, 
+        listId: 1, 
+        title: 'API integration',
+        labels: ['backend'],
+        assignee: 'Jane'
+      },
+      3: { 
+        id: 3, 
+        listId: 2, 
+        title: 'Setup database',
+        labels: ['backend'],
+        assignee: 'John'
+      }
+    },
+    currentBoardId: 1
+  });
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterLabel, setFilterLabel] = useState('all');
+
+  // ✅ Derived state - All cards with search & filter
+  const filteredCards = useMemo(() => {
+    const allCards = Object.values(state.cards);
+    
+    return allCards.filter(card => {
+      const matchSearch = card.title.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchLabel = filterLabel === 'all' || card.labels?.includes(filterLabel);
+      return matchSearch && matchLabel;
+    });
+  }, [state.cards, searchQuery, filterLabel]);
+
+  // ✅ Derived state - Statistics
+  const stats = useMemo(() => {
+    const cards = Object.values(state.cards);
+    return {
+      total: cards.length,
+      todo: cards.filter(c => c.listId === 1).length,
+      inProgress: cards.filter(c => c.listId === 2).length,
+      done: cards.filter(c => c.listId === 3).length,
+      byLabel: cards.reduce((acc, card) => {
+        card.labels?.forEach(label => {
+          acc[label] = (acc[label] || 0) + 1;
+        });
+        return acc;
+      }, {})
+    };
+  }, [state.cards]);
+
+  // Move card between lists
+  const moveCard = useCallback((cardId, fromListId, toListId) => {
+    setState(prev => ({
+      ...prev,
+      cards: {
+        ...prev.cards,
+        [cardId]: {
+          ...prev.cards[cardId],
+          listId: toListId
+        }
+      },
+      lists: {
+        ...prev.lists,
+        [fromListId]: {
+          ...prev.lists[fromListId],
+          cardIds: prev.lists[fromListId].cardIds.filter(id => id !== cardId)
+        },
+        [toListId]: {
+          ...prev.lists[toListId],
+          cardIds: [...prev.lists[toListId].cardIds, cardId]
+        }
+      }
+    }));
+  }, []);
+
+  // Add card
+  const addCard = useCallback((listId, title) => {
+    const cardId = Date.now();
+    
+    setState(prev => ({
+      ...prev,
+      cards: {
+        ...prev.cards,
+        [cardId]: {
+          id: cardId,
+          listId,
+          title,
+          labels: [],
+          assignee: null
+        }
+      },
+      lists: {
+        ...prev.lists,
+        [listId]: {
+          ...prev.lists[listId],
+          cardIds: [...prev.lists[listId].cardIds, cardId]
+        }
+      }
+    }));
+  }, []);
+
+  const currentBoard = state.boards[state.currentBoardId];
+
+  return (
+    <div className="kanban-board">
+      <h1>{currentBoard.name}</h1>
+
+      {/* Search & Filter */}
+      <div className="controls">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search cards..."
+        />
+        <select value={filterLabel} onChange={(e) => setFilterLabel(e.target.value)}>
+          <option value="all">All Labels</option>
+          <option value="design">Design</option>
+          <option value="backend">Backend</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+
+      {/* Statistics */}
+      <div className="stats">
+        <p>Total: {stats.total}</p>
+        <p>To Do: {stats.todo}</p>
+        <p>In Progress: {stats.inProgress}</p>
+        <p>Done: {stats.done}</p>
+      </div>
+
+      {/* Lists */}
+      <div className="board-lists">
+        {currentBoard.listIds.map(listId => {
+          const list = state.lists[listId];
+          const cards = list.cardIds
+            .map(cId => state.cards[cId])
+            .filter(card => filteredCards.find(fc => fc.id === card.id));
+
+          return (
+            <div key={listId} className="list">
+              <h3>{list.name} ({cards.length})</h3>
+              
+              {cards.map(card => (
+                <div key={card.id} className="card" draggable>
+                  <h4>{card.title}</h4>
+                  {card.description && <p>{card.description}</p>}
+                  {card.labels && (
+                    <div className="labels">
+                      {card.labels.map(label => (
+                        <span key={label} className="label">{label}</span>
+                      ))}
+                    </div>
+                  )}
+                  {card.assignee && <span>👤 {card.assignee}</span>}
+                  {card.dueDate && <span>📅 {card.dueDate}</span>}
+                  
+                  {/* Move buttons */}
+                  {listId !== 2 && (
+                    <button onClick={() => moveCard(card.id, listId, 2)}>
+                      → In Progress
+                    </button>
+                  )}
+                  {listId !== 3 && (
+                    <button onClick={() => moveCard(card.id, listId, 3)}>
+                      → Done
+                    </button>
+                  )}
+                </div>
+              ))}
+
+              <button onClick={() => {
+                const title = prompt('Card title:');
+                if (title) addCard(listId, title);
+              }}>
+                + Add Card
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// KEY PATTERNS:
+// ✅ Normalized: boards → lists → cards
+// ✅ Derived state: filtered cards, statistics
+// ✅ Search & filter across all cards
+// ✅ Move cards between lists
+
+---
+
+### **3. E-learning Platform**
+// E-learning Platform với Progress Tracking
+import React, { useState, useMemo, useCallback } from 'react';
+
+function ELearningPlatform() {
+  const [state, setState] = useState({
+    courses: {
+      1: { 
+        id: 1, 
+        name: 'React Fundamentals', 
+        moduleIds: [1, 2],
+        quizId: 1
+      },
+      2: { 
+        id: 2, 
+        name: 'Advanced React', 
+        moduleIds: [3],
+        quizId: 2
+      }
+    },
+    modules: {
+      1: { id: 1, courseId: 1, name: 'Getting Started', lessonIds: [1, 2] },
+      2: { id: 2, courseId: 1, name: 'State Management', lessonIds: [3] },
+      3: { id: 3, courseId: 2, name: 'Performance', lessonIds: [4] }
+    },
+    lessons: {
+      1: { id: 1, moduleId: 1, name: 'What is React?', duration: 10 },
+      2: { id: 2, moduleId: 1, name: 'JSX Basics', duration: 15 },
+      3: { id: 3, moduleId: 2, name: 'useState Hook', duration: 20 },
+      4: { id: 4, moduleId: 3, name: 'React.memo', duration: 25 }
+    },
+    quizzes: {
+      1: { id: 1, courseId: 1, questions: 10, passingScore: 70 },
+      2: { id: 2, courseId: 2, questions: 15, passingScore: 80 }
+    },
+    // User progress
+    progress: {
+      completedLessons: [1, 2], // lesson IDs
+      quizScores: {
+        1: 85 // quiz 1: 85%
+      }
+    },
+    leaderboard: [
+      { userId: 1, name: 'John', points: 850 },
+      { userId: 2, name: 'Jane', points: 920 },
+      { userId: 3, name: 'Bob', points: 780 }
+    ]
+  });
+
+  const [currentCourseId, setCurrentCourseId] = useState(1);
+
+  // ✅ Derived: Course completion %
+  const courseProgress = useMemo(() => {
+    return Object.values(state.courses).map(course => {
+      const modules = course.moduleIds.map(mid => state.modules[mid]);
+      const allLessonIds = modules.flatMap(m => m.lessonIds);
+      const completedInCourse = allLessonIds.filter(lid => 
+        state.progress.completedLessons.includes(lid)
+      );
+      
+      const percentage = (completedInCourse.length / allLessonIds.length) * 100;
+      const quizPassed = state.progress.quizScores[course.quizId] >= 
+                         state.quizzes[course.quizId].passingScore;
+
+      return {
+        courseId: course.id,
+        courseName: course.name,
+        percentage: Math.round(percentage),
+        lessonsCompleted: completedInCourse.length,
+        totalLessons: allLessonIds.length,
+        quizScore: state.progress.quizScores[course.quizId],
+        quizPassed,
+        canGetCertificate: percentage === 100 && quizPassed
+      };
+    });
+  }, [state.courses, state.modules, state.progress, state.quizzes]);
+
+  // ✅ Derived: Leaderboard sorted
+  const sortedLeaderboard = useMemo(() => {
+    return [...state.leaderboard].sort((a, b) => b.points - a.points);
+  }, [state.leaderboard]);
+
+  // Complete lesson
+  const completeLesson = useCallback((lessonId) => {
+    setState(prev => ({
+      ...prev,
+      progress: {
+        ...prev.progress,
+        completedLessons: [...prev.progress.completedLessons, lessonId]
+      }
+    }));
+  }, []);
+
+  // Submit quiz score
+  const submitQuiz = useCallback((quizId, score) => {
+    setState(prev => ({
+      ...prev,
+      progress: {
+        ...prev.progress,
+        quizScores: {
+          ...prev.progress.quizScores,
+          [quizId]: score
+        }
+      }
+    }));
+  }, []);
+
+  const currentCourse = state.courses[currentCourseId];
+  const currentProgress = courseProgress.find(p => p.courseId === currentCourseId);
+
+  return (
+    <div className="elearning-platform">
+      <h1>📚 E-Learning Platform</h1>
+
+      {/* Course List */}
+      <div className="courses">
+        {Object.values(state.courses).map(course => {
+          const progress = courseProgress.find(p => p.courseId === course.id);
+          return (
+            <div 
+              key={course.id} 
+              className="course-card"
+              onClick={() => setCurrentCourseId(course.id)}
+            >
+              <h3>{course.name}</h3>
+              <div className="progress-bar">
+                <div style={{ width: \`\${progress.percentage}%\` }}>
+                  {progress.percentage}%
+                </div>
+              </div>
+              <p>{progress.lessonsCompleted}/{progress.totalLessons} lessons</p>
+              {progress.canGetCertificate && <span>🏆 Certificate Ready!</span>}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Current Course Detail */}
+      <div className="course-detail">
+        <h2>{currentCourse.name}</h2>
+        <p>Progress: {currentProgress.percentage}%</p>
+
+        {/* Modules & Lessons */}
+        {currentCourse.moduleIds.map(moduleId => {
+          const module = state.modules[moduleId];
+          return (
+            <div key={moduleId} className="module">
+              <h3>{module.name}</h3>
+              {module.lessonIds.map(lessonId => {
+                const lesson = state.lessons[lessonId];
+                const isCompleted = state.progress.completedLessons.includes(lessonId);
+                return (
+                  <div key={lessonId} className="lesson">
+                    <span>{isCompleted ? '✅' : '⭕'} {lesson.name}</span>
+                    <span>{lesson.duration} min</span>
+                    {!isCompleted && (
+                      <button onClick={() => completeLesson(lessonId)}>
+                        Complete
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+
+        {/* Quiz */}
+        <div className="quiz">
+          <h3>Final Quiz</h3>
+          {currentProgress.quizScore ? (
+            <p>
+              Score: {currentProgress.quizScore}% 
+              {currentProgress.quizPassed ? ' ✅ Passed' : ' ❌ Failed'}
+            </p>
+          ) : (
+            <button onClick={() => {
+              const score = Math.floor(Math.random() * 40) + 60;
+              submitQuiz(currentCourse.quizId, score);
+            }}>
+              Take Quiz
+            </button>
+          )}
+        </div>
+
+        {/* Certificate */}
+        {currentProgress.canGetCertificate && (
+          <div className="certificate">
+            <h3>🎓 Certificate Available!</h3>
+            <button>Download Certificate</button>
+          </div>
+        )}
+      </div>
+
+      {/* Leaderboard */}
+      <div className="leaderboard">
+        <h3>🏆 Leaderboard</h3>
+        {sortedLeaderboard.map((user, index) => (
+          <div key={user.userId} className="leaderboard-item">
+            <span>#{index + 1}</span>
+            <span>{user.name}</span>
+            <span>{user.points} pts</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// KEY PATTERNS:
+// ✅ Normalized: courses → modules → lessons
+// ✅ Derived: completion %, certificate eligibility
+// ✅ Progress tracking per user
+// ✅ Leaderboard sorting
+
+---
+
+### **4. Expense Splitter** + **5. Project Management (Tóm gọn)**
+
+// 4. Expense Splitter
+function ExpenseSplitter() {
+  const [state, setState] = useState({
+    users: {
+      1: { id: 1, name: 'John' },
+      2: { id: 2, name: 'Jane' },
+      3: { id: 3, name: 'Bob' }
+    },
+    expenses: {
+      1: { 
+        id: 1, 
+        description: 'Dinner', 
+        amount: 150000, 
+        paidBy: 1, 
+        splitBetween: [1, 2, 3] 
+      },
+      2: { 
+        id: 2, 
+        description: 'Taxi', 
+        amount: 50000, 
+        paidBy: 2, 
+        splitBetween: [1, 2] 
+      }
+    }
+  });
+
+  // ✅ DERIVED: Who owes whom (key calculation!)
+  const settlements = useMemo(() => {
+    const balances = {}; // { userId: balance }
+    
+    // Initialize
+    Object.keys(state.users).forEach(id => {
+      balances[id] = 0;
+    });
+
+    // Calculate balances
+    Object.values(state.expenses).forEach(expense => {
+      const perPerson = expense.amount / expense.splitBetween.length;
+      
+      // Payer gets credit
+      balances[expense.paidBy] += expense.amount;
+      
+      // Each person owes their share
+      expense.splitBetween.forEach(userId => {
+        balances[userId] -= perPerson;
+      });
+    });
+
+    // Generate settlements
+    const settlements = [];
+    const creditors = Object.entries(balances).filter(([_, bal]) => bal > 0);
+    const debtors = Object.entries(balances).filter(([_, bal]) => bal < 0);
+
+    debtors.forEach(([debtorId, debtAmount]) => {
+      creditors.forEach(([creditorId, creditAmount]) => {
+        if (creditAmount > 0 && debtAmount < 0) {
+          const amount = Math.min(creditAmount, -debtAmount);
+          settlements.push({
+            from: state.users[debtorId].name,
+            to: state.users[creditorId].name,
+            amount: Math.round(amount)
+          });
+          balances[creditorId] -= amount;
+          balances[debtorId] += amount;
+        }
+      });
+    });
+
+    return settlements;
+  }, [state.expenses, state.users]);
+
+  const addExpense = (description, amount, paidBy, splitBetween) => {
+    const id = Date.now();
+    setState(prev => ({
+      ...prev,
+      expenses: {
+        ...prev.expenses,
+        [id]: { id, description, amount, paidBy, splitBetween }
+      }
+    }));
+  };
+
+  return (
+    <div>
+      <h1>💰 Expense Splitter</h1>
+      
+      {/* Expenses */}
+      {Object.values(state.expenses).map(exp => (
+        <div key={exp.id}>
+          {exp.description}: {exp.amount.toLocaleString()}đ
+          (paid by {state.users[exp.paidBy].name})
+        </div>
+      ))}
+
+      {/* Settlements */}
+      <h3>Who Owes Whom:</h3>
+      {settlements.map((s, i) => (
+        <div key={i}>
+          {s.from} owes {s.to}: {s.amount.toLocaleString()}đ
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// 5. Project Management (Simplified)
+function ProjectManagement() {
+  const [state, setState] = useState({
+    projects: { 1: { id: 1, name: 'Website Redesign', taskIds: [1, 2, 3] } },
+    tasks: {
+      1: { id: 1, title: 'Design', assignee: 'John', hours: 20, completed: true },
+      2: { id: 2, title: 'Frontend', assignee: 'Jane', hours: 40, completed: false },
+      3: { id: 3, title: 'Backend', assignee: 'John', hours: 30, completed: false }
+    },
+    members: ['John', 'Jane', 'Bob']
+  });
+
+  // ✅ DERIVED: Workload per member
+  const workload = useMemo(() => {
+    const load = {};
+    
+    Object.values(state.tasks).forEach(task => {
+      if (!task.completed) {
+        load[task.assignee] = (load[task.assignee] || 0) + task.hours;
+      }
+    });
+
+    return load;
+  }, [state.tasks]);
+
+  // ✅ DERIVED: Project completion
+  const projectCompletion = useMemo(() => {
+    return Object.values(state.projects).map(project => {
+      const tasks = project.taskIds.map(id => state.tasks[id]);
+      const completed = tasks.filter(t => t.completed).length;
+      return {
+        projectId: project.id,
+        name: project.name,
+        percentage: Math.round((completed / tasks.length) * 100),
+        totalHours: tasks.reduce((sum, t) => sum + t.hours, 0)
+      };
+    });
+  }, [state.projects, state.tasks]);
+
+  return (
+    <div>
+      <h1>📊 Project Management</h1>
+      
+      {/* Project Progress */}
+      {projectCompletion.map(p => (
+        <div key={p.projectId}>
+          <h3>{p.name}</h3>
+          <progress value={p.percentage} max="100" />
+          <span>{p.percentage}%</span>
+          <p>Total: {p.totalHours}h</p>
+        </div>
+      ))}
+
+      {/* Workload */}
+      <h3>Team Workload:</h3>
+      {Object.entries(workload).map(([member, hours]) => (
+        <div key={member}>
+          {member}: {hours} hours remaining
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* 
+=== TÓM TẮT PATTERNS ĐÃ DÙNG ===
+
+1. NORMALIZED STATE:
+   - Flat structure: users, expenses, tasks
+   - Reference bằng IDs
+   - Dễ update, tránh nested hell
+
+2. DERIVED STATE với useMemo:
+   - ExpenseSplitter: settlements (who owes whom)
+   - ELearning: completion %, certificate eligibility
+   - Kanban: filtered cards, statistics
+   - Project: workload, completion %
+
+3. STATE COLOCATION:
+   - Filter/search state ở component dùng nó
+   - Modal state ở component modal
+   - Form state ở form component
+
+4. LIFTING STATE UP:
+   - Shared state lên parent
+   - Pass callbacks xuống children
+   - Single source of truth
+
+5. OPTIMIZATION:
+   - useMemo cho expensive calculations
+   - useCallback cho event handlers
+   - Tránh unnecessary re-renders
+
+KEY TAKEAWAY:
+- Normalize khi có relationships
+- Derive khi có thể calculate
+- Memoize khi expensive
+- Colocate khi có thể
+*/
+
+## 📝 Tổng kết Patterns đã dùng:
+
+### **1. Social Media Feed**
+- ✅ Normalized: users, posts, comments
+- ✅ Derived: denormalize, filter trending
+- ✅ Optimistic updates: like/unlike
+- ✅ Add comments với ID references
+
+### **2. Kanban Board**
+- ✅ Normalized: boards → lists → cards
+- ✅ Derived: filtered cards, statistics
+- ✅ Search & filter across all cards
+- ✅ Move cards: update both card.listId và list.cardIds
+
+### **3. E-Learning Platform**
+- ✅ Normalized: courses → modules → lessons
+- ✅ Derived: **completion %** (key calculation)
+- ✅ Certificate eligibility: 100% + quiz passed
+- ✅ Leaderboard sorting
+
+### **4. Expense Splitter**
+- ✅ Normalized: users, expenses
+- ✅ **Derived: settlements** (who owes whom) - complex calculation
+- ✅ Balance algorithm: credit - debit
+- ✅ Minimize transactions
+
+### **5. Project Management**
+- ✅ Normalized: projects, tasks
+- ✅ Derived: **workload per member**
+- ✅ Derived: **project completion %**
+- ✅ Filter incomplete tasks
+
+## 🎯 Key State Management Patterns:
+
+
+// 1. NORMALIZED STATE STRUCTURE
+{
+  entities: { 1: {...}, 2: {...} },  // byId
+  ids: [1, 2, 3]                      // allIds
+}
+
+// 2. DERIVED STATE (useMemo)
+const filtered = useMemo(() => {
+  return data.filter(...)
+}, [data, filters]);
+
+// 3. COMPLEX CALCULATIONS
+const settlements = useMemo(() => {
+  // Calculate balances
+  // Generate settlements
+  return results;
+}, [expenses, users]);
+
+// 4. UPDATE NORMALIZED STATE
+setState(prev => ({
+  ...prev,
+  entities: {
+    ...prev.entities,
+    [id]: { ...prev.entities[id], field: value }
+  }
+}));
+
+// 5. DENORMALIZE FOR RENDER
+const itemsWithDetails = ids.map(id => ({
+  ...entities[id],
+  relatedData: otherEntities[entities[id].relatedId]
+}));
+
+
+Tất cả đều follow principles:
+- **Normalize** khi có relationships
+- **Derive** thay vì duplicate
+- **useMemo** cho expensive calculations
+- **Single source of truth**
+
+`})]})}const F={1:K,2:J,3:se,4:ue,5:be},Se=()=>e.jsxs("div",{className:"day-content",children:[e.jsxs("div",{className:"day-header",children:[e.jsxs("div",{className:"day-header-content",children:[e.jsx(V,{size:32,color:"#00D9FF"}),e.jsxs("div",{children:[e.jsx("h1",{className:"day-title",children:"Ngày 8"}),e.jsx("p",{className:"day-subtitle",children:"State Management Patterns"})]})]}),e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"🎯 Mục tiêu hôm nay"}),e.jsxs("ul",{children:[e.jsx("li",{children:"Lifting State Up - Chia sẻ state giữa components"}),e.jsx("li",{children:"Derived State - Tính toán từ state/props"}),e.jsx("li",{children:"State Batching trong React 18"}),e.jsx("li",{children:"State Colocation - Đặt state đúng chỗ"}),e.jsx("li",{children:"State normalization patterns"}),e.jsx("li",{children:"Optimizing re-renders"})]})]})]}),e.jsx("div",{className:"exercises-list",children:Object.keys(F).map(t=>{const s=F[t];return s?e.jsx(s,{},t):null})}),e.jsx("div",{className:"exercises-list mt-1",children:e.jsx(xe,{})})]});export{Se as default};
