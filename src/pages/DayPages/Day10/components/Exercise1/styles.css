@@ -1,0 +1,194 @@
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 40px;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+  }
+
+  .demo-section {
+    text-align: center;
+  }
+
+  .demo-section h2 {
+    font-size: 20px;
+    color: #e4e4e7;
+    margin-bottom: 20px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+  }
+
+  .demo-button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #00D9FF 0%, #00A3CC 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .demo-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 217, 255, 0.3);
+  }
+
+  .demo-button:focus {
+    outline: 2px solid #00D9FF;
+    outline-offset: 2px;
+  }
+
+  /* Tooltip Styles */
+  .tooltip-wrapper {
+    display: inline-block;
+  }
+
+  .tooltip-trigger {
+    display: inline-block;
+    outline: none;
+  }
+
+  .tooltip {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #e4e4e7;
+    font-size: 14px;
+    max-width: 250px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    animation: tooltipFadeIn 0.2s ease-out;
+  }
+
+  @keyframes tooltipFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  .arrow-top {
+    border-width: 8px 8px 0 8px;
+    border-color: rgba(0, 217, 255, 0.3) transparent transparent transparent;
+  }
+
+  .arrow-bottom {
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent rgba(0, 217, 255, 0.3) transparent;
+  }
+
+  .arrow-left {
+    border-width: 8px 0 8px 8px;
+    border-color: transparent transparent transparent rgba(0, 217, 255, 0.3);
+  }
+
+  .arrow-right {
+    border-width: 8px 8px 8px 0;
+    border-color: transparent rgba(0, 217, 255, 0.3) transparent transparent;
+  }
+
+  /* Edge Cases Section */
+  .edge-cases {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+  }
+
+  .edge-cases h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .edge-cases p {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 40px;
+  }
+
+  .corners {
+    position: relative;
+    height: 400px;
+    border: 2px dashed #1e293b;
+    border-radius: 8px;
+  }
+
+  .corner {
+    position: absolute;
+  }
+
+  .top-left {
+    top: 20px;
+    left: 20px;
+  }
+
+  .top-right {
+    top: 20px;
+    right: 20px;
+  }
+
+  .bottom-left {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .bottom-right {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .app {
+      padding: 20px 16px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    .demo-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .corners {
+      height: 300px;
+    }
+  }

@@ -7,7 +7,7 @@ const ComingSoon = lazy(() => import("./components/ComingSoon"));
 const UIShowcase = lazy(() => import("./pages/UIShowcase"));
 
 const DAY_NUMBER = 30;
-const CURRENT_DAY = 9;
+const CURRENT_DAY = 10;
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
