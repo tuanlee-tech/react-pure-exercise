@@ -1,730 +1,1263 @@
-import{r as n,j as e,C as H}from"./index-BS3qSuky.js";/* empty css               */import{E as m}from"./ExerciseCard-mXl7boCG.js";const $=async a=>{await new Promise(i=>setTimeout(i,800));const l=["Sunny","Cloudy","Rainy","Stormy","Snowy","Foggy"],c={Sunny:"☀️",Cloudy:"☁️",Rainy:"🌧️",Stormy:"⛈️",Snowy:"🌨️",Foggy:"🌫️"},v=l[Math.floor(Math.random()*l.length)];return{city:a,temperature:Math.floor(Math.random()*35)+5,humidity:Math.floor(Math.random()*60)+30,windSpeed:Math.floor(Math.random()*30)+5,condition:v,icon:c[v],pressure:Math.floor(Math.random()*50)+980,visibility:Math.floor(Math.random()*10)+5,uvIndex:Math.floor(Math.random()*11),feelsLike:Math.floor(Math.random()*35)+5}};function W(){const[a,l]=n.useState("Hanoi"),[c,v]=n.useState("Hanoi"),[i,p]=n.useState(null),[r,b]=n.useState(!0),[N,g]=n.useState(null),[y,x]=n.useState(null),[S,u]=n.useState(!1),[h,C]=n.useState(30),j=async t=>{try{b(!0),g(null);const o=await $(t);p(o),x(new Date),b(!1)}catch(o){g("Failed to fetch weather data. Please try again."+o),b(!1)}};n.useEffect(()=>{j(a)},[a]),n.useEffect(()=>{if(!S)return;const t=h*1e3,o=setInterval(()=>{j(a)},t);return()=>clearInterval(o)},[S,h,a]);const I=t=>{t.preventDefault(),c.trim()&&l(c.trim())},A=()=>{j(a)},E=()=>{if(!y)return"";const o=Math.floor((new Date-y)/1e3);return o<60?`${o}s ago`:o<3600?`${Math.floor(o/60)}m ago`:y.toLocaleTimeString()};return e.jsx("div",{className:"weather-app",children:e.jsxs("div",{className:"weather-container",children:[e.jsx("div",{className:"weather-header",children:e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"header-title",children:"🌤️ Weather Dashboard"}),e.jsx("p",{className:"header-subtitle",children:"Real-time weather information with auto-refresh"})]})}),e.jsx("div",{className:"search-section",children:e.jsxs("form",{onSubmit:I,className:"search-form",children:[e.jsxs("div",{className:"search-input-wrapper",children:[e.jsx("span",{className:"search-icon",children:"🔍"}),e.jsx("input",{type:"text",value:c,onChange:t=>v(t.target.value),placeholder:"Enter city name...",className:"search-input"})]}),e.jsx("button",{type:"submit",className:"btn-search",disabled:r,children:"Search"})]})}),e.jsxs("div",{className:"controls-section",children:[e.jsxs("div",{className:"control-group",children:[e.jsx("div",{className:"control-item",children:e.jsxs("label",{className:"control-label",children:[e.jsx("input",{type:"checkbox",checked:S,onChange:t=>u(t.target.checked),className:"control-checkbox"}),e.jsx("span",{className:"checkbox-text",children:"Auto-refresh"})]})}),S&&e.jsxs("div",{className:"control-item",children:[e.jsx("label",{className:"control-label-text",children:"Interval:"}),e.jsxs("select",{value:h,onChange:t=>C(Number(t.target.value)),className:"control-select",children:[e.jsx("option",{value:30,children:"30 seconds"}),e.jsx("option",{value:60,children:"1 minute"}),e.jsx("option",{value:300,children:"5 minutes"})]})]}),e.jsxs("button",{onClick:A,disabled:r,className:"btn-refresh",children:[e.jsx("span",{className:"refresh-icon",children:"🔄"}),"Refresh"]})]}),y&&e.jsxs("div",{className:"last-updated",children:[e.jsx("span",{className:"clock-icon",children:"🕐"}),"Last updated: ",E()]})]}),e.jsxs("div",{className:"weather-content",children:[r&&!i&&e.jsxs("div",{className:"loading-state",children:[e.jsx("div",{className:"loading-spinner"}),e.jsx("p",{children:"Loading weather data..."})]}),N&&e.jsxs("div",{className:"error-state",children:[e.jsx("span",{className:"error-icon",children:"⚠️"}),e.jsx("p",{children:N}),e.jsx("button",{onClick:A,className:"btn-retry",children:"Try Again"})]}),i&&!N&&e.jsxs("div",{className:"weather-data",children:[e.jsxs("div",{className:"main-weather-card",children:[e.jsxs("div",{className:"city-header",children:[e.jsx("h2",{className:"city-name",children:i.city}),r&&e.jsx("div",{className:"updating-badge",children:"Updating..."})]}),e.jsxs("div",{className:"main-weather-content",children:[e.jsx("div",{className:"weather-icon-large",children:i.icon}),e.jsxs("div",{className:"temperature-display",children:[e.jsx("span",{className:"temp-value",children:i.temperature}),e.jsx("span",{className:"temp-unit",children:"°C"})]}),e.jsx("div",{className:"condition-text",children:i.condition}),e.jsxs("div",{className:"feels-like",children:["Feels like ",i.feelsLike,"°C"]})]})]}),e.jsxs("div",{className:"weather-grid",children:[e.jsxs("div",{className:"weather-stat-card",children:[e.jsx("div",{className:"stat-icon",children:"💧"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-label",children:"Humidity"}),e.jsxs("div",{className:"stat-value",children:[i.humidity,"%"]})]})]}),e.jsxs("div",{className:"weather-stat-card",children:[e.jsx("div",{className:"stat-icon",children:"💨"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-label",children:"Wind Speed"}),e.jsxs("div",{className:"stat-value",children:[i.windSpeed," km/h"]})]})]}),e.jsxs("div",{className:"weather-stat-card",children:[e.jsx("div",{className:"stat-icon",children:"🌡️"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-label",children:"Pressure"}),e.jsxs("div",{className:"stat-value",children:[i.pressure," hPa"]})]})]}),e.jsxs("div",{className:"weather-stat-card",children:[e.jsx("div",{className:"stat-icon",children:"👁️"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-label",children:"Visibility"}),e.jsxs("div",{className:"stat-value",children:[i.visibility," km"]})]})]}),e.jsxs("div",{className:"weather-stat-card",children:[e.jsx("div",{className:"stat-icon",children:"☀️"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-label",children:"UV Index"}),e.jsxs("div",{className:"stat-value",children:[i.uvIndex,"/10"]})]})]}),e.jsxs("div",{className:"weather-stat-card",children:[e.jsx("div",{className:"stat-icon",children:"🌡️"}),e.jsxs("div",{className:"stat-content",children:[e.jsx("div",{className:"stat-label",children:"Feels Like"}),e.jsxs("div",{className:"stat-value",children:[i.feelsLike,"°C"]})]})]})]}),S&&e.jsxs("div",{className:"auto-refresh-indicator",children:[e.jsx("div",{className:"pulse-dot"}),"Auto-refreshing every ",h,"s"]})]})]})]})})}function _(){return e.jsxs(m,{children:[e.jsx(m.Header,{order:1,title:"Weather Dashboard"}),e.jsx(m.Description,{children:`
-// TODO: Implement weather dashboard với auto-refresh
+import{r as a,j as e,C as _}from"./index-CFGxAEcP.js";/* empty css               */import{E as b}from"./ExerciseCard-BKN5Bnyj.js";import{B}from"./tooltip-B1yMRj4A.js";function L({children:s,content:d,placement:l="top",delay:v=300}){const[i,p]=a.useState(!1),[m,c]=a.useState(l),[u,r]=a.useState({top:0,left:0}),[N,y]=a.useState({top:0,left:0}),j=a.useRef(null),A=a.useRef(null),k=a.useRef(null),T=a.useRef(null);a.useLayoutEffect(()=>{if(!i||!j.current||!A.current)return;const t=j.current.getBoundingClientRect(),n=A.current.getBoundingClientRect(),x=window.innerWidth,w=window.innerHeight,C=10,S=8,o=D=>{let P=0,H=0,F=0,O=0;switch(D){case"top":P=t.top-n.height-C,H=t.left+(t.width-n.width)/2,F=n.height,O=n.width/2-S;break;case"bottom":P=t.bottom+C,H=t.left+(t.width-n.width)/2,F=-S,O=n.width/2-S;break;case"left":P=t.top+(t.height-n.height)/2,H=t.left-n.width-C,F=n.height/2-S,O=n.width;break;case"right":P=t.top+(t.height-n.height)/2,H=t.right+C,F=n.height/2-S,O=-S;break}return{top:P,left:H,arrowTop:F,arrowLeft:O}},g=D=>D.left<0||D.top<0||D.left+n.width>x||D.top+n.height>w;let h=o(l),M=l;if(g(h)){const D={top:["bottom","right","left"],bottom:["top","right","left"],left:["right","top","bottom"],right:["left","top","bottom"]};for(const P of D[l])if(h=o(P),!g(h)){M=P;break}}h.left<0&&(h.left=C),h.top<0&&(h.top=C),h.left+n.width>x&&(h.left=x-n.width-C),h.top+n.height>w&&(h.top=w-n.height-C),r({top:h.top,left:h.left}),y({top:h.arrowTop,left:h.arrowLeft}),c(M)},[i,l]);const R=()=>{T.current&&clearTimeout(T.current),k.current=setTimeout(()=>{p(!0)},v)},E=()=>{k.current&&clearTimeout(k.current),T.current=setTimeout(()=>{p(!1)},0)},I=()=>{p(!0)},f=()=>{p(!1)};return a.useEffect(()=>()=>{k.current&&clearTimeout(k.current),T.current&&clearTimeout(T.current)},[]),e.jsxs("div",{className:"tooltip-wrapper",children:[e.jsx("div",{ref:j,onMouseEnter:R,onMouseLeave:E,onFocus:I,onBlur:f,tabIndex:0,className:"tooltip-trigger",children:s}),i&&e.jsxs("div",{ref:A,className:`tooltip tooltip-${m}`,style:{position:"fixed",top:`${u.top}px`,left:`${u.left}px`,zIndex:9999},children:[d,e.jsx("div",{className:`tooltip-arrow arrow-${m}`,style:{top:`${N.top}px`,left:`${N.left}px`}})]})]})}function W(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:1,title:"Tooltip Component với useLayoutEffect"}),e.jsx(b.Description,{children:`
+// TODO: Implement tooltip với smart positioning
 
-function WeatherDashboard() {
-  // TODO: State
-  // - city (user input)
-  // - weather data
-  // - loading, error
-  // - lastUpdated timestamp
-  // - autoRefresh (boolean)
-  // - refreshInterval (30s, 1m, 5m)
+function Tooltip({ children, content, placement = 'top' }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const triggerRef = useRef(null);
+  const tooltipRef = useRef(null);
 
-  // TODO: Effects
-  // 1. Fetch weather khi city thay đổi
-  // 2. Auto-refresh nếu autoRefresh = true
-  // 3. Update lastUpdated
-  // 4. Cleanup intervals
+  // TODO: useLayoutEffect để position tooltip
+  // - Measure trigger và tooltip dimensions
+  // - Calculate position based on placement
+  // - Adjust nếu overflow viewport
+  // - Support placements: top, bottom, left, right
 
-  // TODO: Features
-  // - Search by city
-  // - Display: temp, humidity, wind speed, condition
-  // - Auto-refresh toggle
-  // - Refresh interval selector
-  // - Manual refresh button
-  // - Last updated time
-  // - Error handling
-  // - Loading state
-
-  return (
-    <div className="weather-dashboard">
-      {/* Your code */}
-    </div>
-  );
-}
-
-`}),e.jsx(m.Demo,{children:e.jsx(W,{})}),e.jsx(m.Code,{children:`
-import { useEffect, useState } from "react";
-
-// Mock Weather API
-const fetchWeatherData = async (city) => {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 800));
-
-  // Simulate random weather data
-  const conditions = ["Sunny", "Cloudy", "Rainy", "Stormy", "Snowy", "Foggy"];
-  const icons = {
-    Sunny: "☀️",
-    Cloudy: "☁️",
-    Rainy: "🌧️",
-    Stormy: "⛈️",
-    Snowy: "🌨️",
-    Foggy: "🌫️",
-  };
-
-  const condition = conditions[Math.floor(Math.random() * conditions.length)];
-
-  return {
-    city,
-    temperature: Math.floor(Math.random() * 35) + 5,
-    humidity: Math.floor(Math.random() * 60) + 30,
-    windSpeed: Math.floor(Math.random() * 30) + 5,
-    condition,
-    icon: icons[condition],
-    pressure: Math.floor(Math.random() * 50) + 980,
-    visibility: Math.floor(Math.random() * 10) + 5,
-    uvIndex: Math.floor(Math.random() * 11),
-    feelsLike: Math.floor(Math.random() * 35) + 5,
-  };
-};
-
-function WeatherDashboard() {
-  // State management
-  const [city, setCity] = useState("Hanoi");
-  const [inputCity, setInputCity] = useState("Hanoi");
-  const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
-  const [autoRefresh, setAutoRefresh] = useState(false);
-  const [refreshInterval, setRefreshInterval] = useState(30);
-
-  // Fetch weather data
-  const fetchWeather = async (cityName) => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const data = await fetchWeatherData(cityName);
-      setWeatherData(data);
-      setLastUpdated(new Date());
-      setLoading(false);
-    } catch (err) {
-      setError("Failed to fetch weather data. Please try again." + err);
-      setLoading(false);
-    }
-  };
-
-  // Initial fetch when city changes
-  useEffect(() => {
-    fetchWeather(city);
-  }, [city]);
-
-  // Auto-refresh logic
-  useEffect(() => {
-    if (!autoRefresh) return;
-
-    const intervalMs = refreshInterval * 1000;
-    const timer = setInterval(() => {
-      fetchWeather(city);
-    }, intervalMs);
-
-    return () => clearInterval(timer);
-  }, [autoRefresh, refreshInterval, city]);
-
-  // Handle search
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (inputCity.trim()) {
-      setCity(inputCity.trim());
-    }
-  };
-
-  // Manual refresh
-  const handleManualRefresh = () => {
-    fetchWeather(city);
-  };
-
-  // Format last updated time
-  const formatLastUpdated = () => {
-    if (!lastUpdated) return "";
-
-    const now = new Date();
-    const diff = Math.floor((now - lastUpdated) / 1000);
-
-    if (diff < 60) return \`\${diff}s ago\`;
-    if (diff < 3600) return \`\${Math.floor(diff / 60)}m ago\`;
-    return lastUpdated.toLocaleTimeString();
-  };
-
-  return (
-    <div className="weather-app">
-      <div className="weather-container">
-        {/* Header */}
-        <div className="weather-header">
-          <div className="header-content">
-            <h1 className="header-title">🌤️ Weather Dashboard</h1>
-            <p className="header-subtitle">
-              Real-time weather information with auto-refresh
-            </p>
-          </div>
-        </div>
-
-        {/* Search Section */}
-        <div className="search-section">
-          <form onSubmit={handleSearch} className="search-form">
-            <div className="search-input-wrapper">
-              <span className="search-icon">🔍</span>
-              <input
-                type="text"
-                value={inputCity}
-                onChange={(e) => setInputCity(e.target.value)}
-                placeholder="Enter city name..."
-                className="search-input"
-              />
-            </div>
-            <button type="submit" className="btn-search" disabled={loading}>
-              Search
-            </button>
-          </form>
-        </div>
-
-        {/* Controls Section */}
-        <div className="controls-section">
-          <div className="control-group">
-            <div className="control-item">
-              <label className="control-label">
-                <input
-                  type="checkbox"
-                  checked={autoRefresh}
-                  onChange={(e) => setAutoRefresh(e.target.checked)}
-                  className="control-checkbox"
-                />
-                <span className="checkbox-text">Auto-refresh</span>
-              </label>
-            </div>
-
-            {autoRefresh && (
-              <div className="control-item">
-                <label className="control-label-text">Interval:</label>
-                <select
-                  value={refreshInterval}
-                  onChange={(e) => setRefreshInterval(Number(e.target.value))}
-                  className="control-select"
-                >
-                  <option value={30}>30 seconds</option>
-                  <option value={60}>1 minute</option>
-                  <option value={300}>5 minutes</option>
-                </select>
-              </div>
-            )}
-
-            <button
-              onClick={handleManualRefresh}
-              disabled={loading}
-              className="btn-refresh"
-            >
-              <span className="refresh-icon">🔄</span>
-              Refresh
-            </button>
-          </div>
-
-          {lastUpdated && (
-            <div className="last-updated">
-              <span className="clock-icon">🕐</span>
-              Last updated: {formatLastUpdated()}
-            </div>
-          )}
-        </div>
-
-        {/* Weather Content */}
-        <div className="weather-content">
-          {loading && !weatherData && (
-            <div className="loading-state">
-              <div className="loading-spinner"></div>
-              <p>Loading weather data...</p>
-            </div>
-          )}
-
-          {error && (
-            <div className="error-state">
-              <span className="error-icon">⚠️</span>
-              <p>{error}</p>
-              <button onClick={handleManualRefresh} className="btn-retry">
-                Try Again
-              </button>
-            </div>
-          )}
-
-          {weatherData && !error && (
-            <div className="weather-data">
-              {/* Main Weather Card */}
-              <div className="main-weather-card">
-                <div className="city-header">
-                  <h2 className="city-name">{weatherData.city}</h2>
-                  {loading && <div className="updating-badge">Updating...</div>}
-                </div>
-
-                <div className="main-weather-content">
-                  <div className="weather-icon-large">{weatherData.icon}</div>
-                  <div className="temperature-display">
-                    <span className="temp-value">
-                      {weatherData.temperature}
-                    </span>
-                    <span className="temp-unit">°C</span>
-                  </div>
-                  <div className="condition-text">{weatherData.condition}</div>
-                  <div className="feels-like">
-                    Feels like {weatherData.feelsLike}°C
-                  </div>
-                </div>
-              </div>
-
-              {/* Weather Details Grid */}
-              <div className="weather-grid">
-                <div className="weather-stat-card">
-                  <div className="stat-icon">💧</div>
-                  <div className="stat-content">
-                    <div className="stat-label">Humidity</div>
-                    <div className="stat-value">{weatherData.humidity}%</div>
-                  </div>
-                </div>
-
-                <div className="weather-stat-card">
-                  <div className="stat-icon">💨</div>
-                  <div className="stat-content">
-                    <div className="stat-label">Wind Speed</div>
-                    <div className="stat-value">
-                      {weatherData.windSpeed} km/h
-                    </div>
-                  </div>
-                </div>
-
-                <div className="weather-stat-card">
-                  <div className="stat-icon">🌡️</div>
-                  <div className="stat-content">
-                    <div className="stat-label">Pressure</div>
-                    <div className="stat-value">{weatherData.pressure} hPa</div>
-                  </div>
-                </div>
-
-                <div className="weather-stat-card">
-                  <div className="stat-icon">👁️</div>
-                  <div className="stat-content">
-                    <div className="stat-label">Visibility</div>
-                    <div className="stat-value">
-                      {weatherData.visibility} km
-                    </div>
-                  </div>
-                </div>
-
-                <div className="weather-stat-card">
-                  <div className="stat-icon">☀️</div>
-                  <div className="stat-content">
-                    <div className="stat-label">UV Index</div>
-                    <div className="stat-value">{weatherData.uvIndex}/10</div>
-                  </div>
-                </div>
-
-                <div className="weather-stat-card">
-                  <div className="stat-icon">🌡️</div>
-                  <div className="stat-content">
-                    <div className="stat-label">Feels Like</div>
-                    <div className="stat-value">{weatherData.feelsLike}°C</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Auto-refresh indicator */}
-              {autoRefresh && (
-                <div className="auto-refresh-indicator">
-                  <div className="pulse-dot"></div>
-                  Auto-refreshing every {refreshInterval}s
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default WeatherDashboard;
-
-
----
-// ✅ Tính năng đã implement:
-// 🎯 Core Features:
-
-// Search by city - Tìm kiếm thời tiết theo tên thành phố
-// Real-time data - Hiển thị đầy đủ thông tin thời tiết (nhiệt độ, độ ẩm, tốc độ gió, áp suất, tầm nhìn, chỉ số UV)
-// Auto-refresh - Tự động cập nhật với checkbox toggle
-// Refresh interval - Chọn khoảng thời gian: 30s, 1m, 5m
-// Manual refresh - Nút refresh thủ công
-// Last updated - Hiển thị thời gian cập nhật cuối (relative time)
-
-// 🎨 UI/UX:
-
-// Loading states - Spinner animation khi đang tải
-// Error handling - Hiển thị lỗi với nút retry
-// Updating indicator - Badge hiển thị khi đang cập nhật
-// Auto-refresh indicator - Pulse animation khi auto-refresh bật
-// Responsive design - Tương thích mobile
-// Hover effects - Smooth transitions và lift effects
-// Glassmorphism - Background blur effect
-
-// 🔧 useEffect Usage:
-
-// Fetch weather khi city thay đổi - Dependencies: [city]
-// Auto-refresh interval - Dependencies: [autoRefresh, refreshInterval, city] với cleanup clearInterval
-// Debounce có thể thêm (hiện tại instant search)
-
-// 💡 Highlights:
-
-// Race condition handling - Mỗi fetch mới sẽ cancel request cũ
-// Stale data prevention - Always fetch fresh data
-// Memory leak prevention - Cleanup intervals properly
-// Optimized re-renders - Only necessary state updates
-// Relative time display - "5s ago", "2m ago" format
-// Visual feedback - Loading, updating, error states
-`})]})}const G=async(a,l=5)=>{await new Promise(r=>setTimeout(r,800));const c=30,v=(a-1)*l,i=v+l;if(v>=c)return{items:[],hasMore:!1};const p=[];for(let r=v;r<Math.min(i,c);r++)p.push({id:r+1,title:`Item #${r+1}`,description:`This is the description for item ${r+1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,image:`https://picsum.photos/id/${r+1}/400/300`,category:["Technology","Design","Business","Science","Art"][r%5],date:new Date(Date.now()-Math.random()*1e10).toLocaleDateString(),views:Math.floor(Math.random()*1e4),likes:Math.floor(Math.random()*1e3)});return{items:p,hasMore:i<c}};function Y(){const[a,l]=n.useState([]),[c,v]=n.useState(1),[i,p]=n.useState(!1),[r,b]=n.useState(!0),[N,g]=n.useState(null),y=n.useRef(null);n.useEffect(()=>{(async()=>{if(r)try{p(!0),g(null);const h=await G(c);l(C=>[...C,...h.items]),b(h.hasMore),p(!1)}catch(h){g("Failed to load items. Please try again."+h),p(!1)}})()},[c,r]),n.useEffect(()=>{const u=new IntersectionObserver(C=>{C[0].isIntersecting&&!i&&r&&v(j=>j+1)},{root:null,rootMargin:"100px",threshold:.1}),h=y.current;return h&&u.observe(h),()=>{h&&u.unobserve(h)}},[i,r]);const x=()=>{window.scrollTo({top:0,behavior:"smooth"})},S=()=>{l([]),v(1),b(!0),g(null),x()};return e.jsx("div",{className:"infinite-scroll-app",children:e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"header-title",children:"📜 Infinite Scroll"}),e.jsx("p",{className:"header-subtitle",children:"Automatically loads more items as you scroll down"})]}),e.jsxs("div",{className:"header-stats",children:[e.jsxs("div",{className:"stat-badge",children:[e.jsx("span",{className:"stat-label",children:"Loaded:"}),e.jsx("span",{className:"stat-value",children:a.length})]}),e.jsxs("div",{className:"stat-badge",children:[e.jsx("span",{className:"stat-label",children:"Page:"}),e.jsx("span",{className:"stat-value",children:c})]}),a.length>0&&e.jsx("button",{onClick:S,className:"btn-reset",children:"🔄 Reset"})]})]}),e.jsx("div",{className:"items-grid",children:a.map(u=>e.jsxs("div",{className:"item-card",children:[e.jsxs("div",{className:"item-image-wrapper",children:[e.jsx("img",{src:u.image,alt:u.title,className:"item-image",loading:"lazy"}),e.jsx("div",{className:"item-category",children:u.category})]}),e.jsxs("div",{className:"item-content",children:[e.jsx("h3",{className:"item-title",children:u.title}),e.jsx("p",{className:"item-description",children:u.description}),e.jsxs("div",{className:"item-meta",children:[e.jsxs("div",{className:"meta-item",children:[e.jsx("span",{className:"meta-icon",children:"📅"}),e.jsx("span",{className:"meta-text",children:u.date})]}),e.jsxs("div",{className:"meta-item",children:[e.jsx("span",{className:"meta-icon",children:"👁️"}),e.jsx("span",{className:"meta-text",children:u.views.toLocaleString()})]}),e.jsxs("div",{className:"meta-item",children:[e.jsx("span",{className:"meta-icon",children:"❤️"}),e.jsx("span",{className:"meta-text",children:u.likes.toLocaleString()})]})]})]})]},u.id))}),i&&e.jsxs("div",{className:"loading-state",children:[e.jsx("div",{className:"loading-spinner"}),e.jsx("p",{className:"loading-text",children:"Loading more items..."}),e.jsxs("p",{className:"loading-subtext",children:["Page ",c+1]})]}),N&&e.jsxs("div",{className:"error-state",children:[e.jsx("span",{className:"error-icon",children:"⚠️"}),e.jsx("p",{className:"error-text",children:N}),e.jsx("button",{onClick:()=>v(c),className:"btn-retry",children:"Try Again"})]}),!r&&a.length>0&&e.jsxs("div",{className:"end-message",children:[e.jsx("div",{className:"end-icon",children:"🎉"}),e.jsx("h3",{className:"end-title",children:"You've reached the end!"}),e.jsxs("p",{className:"end-text",children:["You've loaded all ",a.length," items"]}),e.jsx("button",{onClick:x,className:"btn-scroll-top",children:"⬆️ Back to Top"})]}),e.jsx("div",{ref:y,className:"observer-target"}),a.length>10&&e.jsx("button",{onClick:x,className:"floating-scroll-top",title:"Scroll to top",children:"⬆️"})]})})}function z(){return e.jsxs(m,{children:[e.jsx(m.Header,{order:2,title:"Infinite Scroll List"}),e.jsx(m.Description,{children:`
-// TODO: Implement infinite scroll
-
-function InfiniteScrollList() {
-  const [items, setItems] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const observerTarget = useRef(null);
-
-  // TODO: Effect để fetch data
-  useEffect(() => {
-    // Fetch items for current page
-    // Append to existing items
-    // Set hasMore based on response
-  }, [page]);
-
-  // TODO: Intersection Observer cho infinite scroll
-  useEffect(() => {
-    // Setup IntersectionObserver
-    // Khi user scroll đến bottom → load more (setPage)
-    // Cleanup observer
-  }, [loading, hasMore]);
+  // TODO: Show/hide on hover
+  // - Add mouseenter/mouseleave listeners
+  // - Delay show (300ms)
+  // - Instant hide
 
   // TODO: Features
-  // - Load 20 items per page
-  // - Show loading spinner khi fetch
-  // - "No more items" message khi hết
-  // - Smooth scrolling
-  // - Error handling
+  // - Arrow pointing to trigger
+  // - Fade in/out animation
+  // - Auto-adjust placement if no space
+  // - Support keyboard (focus/blur)
 
   return (
-    <div className="infinite-scroll-list">
-      {items.map((item,index) => (
-        <div key={item.id} className="item">
-          {/* Render item */}
-        </div>
-      ))}
-      
-      {loading && <div className="loading">Đang tải...</div>}
-      
-      {!hasMore && <div className="end-message">Hết rồi!</div>}
-      
-      {/* Observer target */}
-      <div ref={observerTarget} />
-    </div>
-  );
-}
-
-`}),e.jsx(m.Demo,{children:e.jsx(Y,{})}),e.jsx(m.Code,{children:`
-import { useEffect, useRef, useState } from "react";
-
-// Mock API to fetch items
-const fetchItems = async (page, perPage = 20) => {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 800));
-
-  // Simulate data with pagination
-  const totalItems = 100; // Total available items
-  const start = (page - 1) * perPage;
-  const end = start + perPage;
-
-  if (start >= totalItems) {
-    return { items: [], hasMore: false };
-  }
-
-  const items = [];
-  for (let i = start; i < Math.min(end, totalItems); i++) {
-    items.push({
-      id: i + 1,
-      title: \`Item #\${i + 1}\`,
-      description: \`This is the description for item \${
-        i + 1
-      }. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\`,
-      image: \`https://picsum.photos/id/\${i + 1}/400/300\`,
-      category: ["Technology", "Design", "Business", "Science", "Art"][i % 5],
-      date: new Date(
-        Date.now() - Math.random() * 10000000000
-      ).toLocaleDateString(),
-      views: Math.floor(Math.random() * 10000),
-      likes: Math.floor(Math.random() * 1000),
-    });
-  }
-
-  return {
-    items,
-    hasMore: end < totalItems,
-  };
-};
-
-function InfiniteScrollList() {
-  const [items, setItems] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [error, setError] = useState(null);
-  const observerTarget = useRef(null);
-
-  // Fetch data when page changes
-  useEffect(() => {
-    const loadItems = async () => {
-      if (!hasMore) return;
-
-      try {
-        setLoading(true);
-        setError(null);
-
-        const result = await fetchItems(page);
-
-        setItems((prevItems) => [...prevItems, ...result.items]);
-        setHasMore(result.hasMore);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to load items. Please try again." + err);
-        setLoading(false);
-      }
-    };
-
-    loadItems();
-  }, [page, hasMore]);
-
-  // Setup Intersection Observer for infinite scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // When the target element is visible and we're not loading
-        if (entries[0].isIntersecting && !loading && hasMore) {
-          setPage((prevPage) => prevPage + 1);
-        }
-      },
-      {
-        root: null, // viewport
-        rootMargin: "100px", // Start loading 100px before reaching the target
-        threshold: 0.1,
-      }
-    );
-
-    const currentTarget = observerTarget.current;
-
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-
-    // Cleanup
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    };
-  }, [loading, hasMore]);
-
-  // Scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  // Reset list
-  const handleReset = () => {
-    setItems([]);
-    setPage(1);
-    setHasMore(true);
-    setError(null);
-    scrollToTop();
-  };
-
-  return (
-    <div className="infinite-scroll-app">
-      <div className="app-container">
-        {/* Header */}
-        <div className="app-header">
-          <div className="header-content">
-            <h1 className="header-title">📜 Infinite Scroll</h1>
-            <p className="header-subtitle">
-              Automatically loads more items as you scroll down
-            </p>
-          </div>
-          <div className="header-stats">
-            <div className="stat-badge">
-              <span className="stat-label">Loaded:</span>
-              <span className="stat-value">{items.length}</span>
-            </div>
-            <div className="stat-badge">
-              <span className="stat-label">Page:</span>
-              <span className="stat-value">{page}</span>
-            </div>
-            {items.length > 0 && (
-              <button onClick={handleReset} className="btn-reset">
-                🔄 Reset
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Items Grid */}
-        <div className="items-grid">
-          {items.map((item) => (
-            <div key={item.id} className="item-card">
-              <div className="item-image-wrapper">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="item-image"
-                  loading="lazy"
-                />
-                <div className="item-category">{item.category}</div>
-              </div>
-
-              <div className="item-content">
-                <h3 className="item-title">{item.title}</h3>
-                <p className="item-description">{item.description}</p>
-
-                <div className="item-meta">
-                  <div className="meta-item">
-                    <span className="meta-icon">📅</span>
-                    <span className="meta-text">{item.date}</span>
-                  </div>
-                  <div className="meta-item">
-                    <span className="meta-icon">👁️</span>
-                    <span className="meta-text">
-                      {item.views.toLocaleString()}
-                    </span>
-                  </div>
-                  <div className="meta-item">
-                    <span className="meta-icon">❤️</span>
-                    <span className="meta-text">
-                      {item.likes.toLocaleString()}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Loading State */}
-        {loading && (
-          <div className="loading-state">
-            <div className="loading-spinner"></div>
-            <p className="loading-text">Loading more items...</p>
-            <p className="loading-subtext">Page {page + 1}</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && (
-          <div className="error-state">
-            <span className="error-icon">⚠️</span>
-            <p className="error-text">{error}</p>
-            <button onClick={() => setPage(page)} className="btn-retry">
-              Try Again
-            </button>
-          </div>
-        )}
-
-        {/* End Message */}
-        {!hasMore && items.length > 0 && (
-          <div className="end-message">
-            <div className="end-icon">🎉</div>
-            <h3 className="end-title">You've reached the end!</h3>
-            <p className="end-text">You've loaded all {items.length} items</p>
-            <button onClick={scrollToTop} className="btn-scroll-top">
-              ⬆️ Back to Top
-            </button>
-          </div>
-        )}
-
-        {/* Observer Target */}
-        <div ref={observerTarget} className="observer-target"></div>
-
-        {/* Scroll to Top Button (appears after scrolling) */}
-        {items.length > 10 && (
-          <button
-            onClick={scrollToTop}
-            className="floating-scroll-top"
-            title="Scroll to top"
-          >
-            ⬆️
-          </button>
-        )}
+    <div className="tooltip-wrapper">
+      <div
+        ref={triggerRef}
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+      >
+        {children}
       </div>
+
+      {isVisible && (
+        <div
+          ref={tooltipRef}
+          className="tooltip"
+          style={{
+            position: 'fixed',
+            top: position.top,
+            left: position.left
+          }}
+        >
+          {content}
+        </div>
+      )}
     </div>
   );
 }
 
-export default InfiniteScrollList;
+// Usage
+function App() {
+  return (
+    <div style={{ padding: '200px' }}>
+      <Tooltip content="This is a tooltip" placement="top">
+        <button>Hover me</button>
+      </Tooltip>
+    </div>
+  );
+}
 
----
-// ✅ Tính năng đã implement:
-// 🎯 Core Features:
+`}),e.jsx(b.Demo,{children:e.jsxs("div",{style:{padding:"200px"},children:[e.jsx("h1",{children:"🎈 Tooltip Component Demo"}),e.jsx("p",{className:"subtitle",children:"Hover or focus các elements để xem tooltips"}),e.jsxs("div",{className:"demo-grid",children:[e.jsxs("div",{className:"demo-section",children:[e.jsx("h2",{children:"Top Placement"}),e.jsx("div",{className:"button-group",children:e.jsx(L,{content:"This is a top tooltip! 🎯",placement:"top",children:e.jsx("button",{className:"demo-button",children:"Hover me (Top)"})})})]}),e.jsxs("div",{className:"demo-section",children:[e.jsx("h2",{children:"Bottom Placement"}),e.jsx("div",{className:"button-group",children:e.jsx(L,{content:"This is a bottom tooltip! 📍",placement:"bottom",children:e.jsx("button",{className:"demo-button",children:"Hover me (Bottom)"})})})]}),e.jsxs("div",{className:"demo-section",children:[e.jsx("h2",{children:"Left Placement"}),e.jsx("div",{className:"button-group",children:e.jsx(L,{content:"This is a left tooltip! ⬅️",placement:"left",children:e.jsx("button",{className:"demo-button",children:"Hover me (Left)"})})})]}),e.jsxs("div",{className:"demo-section",children:[e.jsx("h2",{children:"Right Placement"}),e.jsx("div",{className:"button-group",children:e.jsx(L,{content:"This is a right tooltip! ➡️",placement:"right",children:e.jsx("button",{className:"demo-button",children:"Hover me (Right)"})})})]}),e.jsxs("div",{className:"demo-section",children:[e.jsx("h2",{children:"Long Content"}),e.jsx("div",{className:"button-group",children:e.jsx(L,{content:"This is a very long tooltip content that demonstrates how the tooltip handles longer text and wrapping. It should still position correctly! 📝",placement:"top",children:e.jsx("button",{className:"demo-button",children:"Long Tooltip"})})})]}),e.jsxs("div",{className:"demo-section",children:[e.jsx("h2",{children:"No Delay"}),e.jsx("div",{className:"button-group",children:e.jsx(L,{content:"Instant tooltip! ⚡",placement:"top",delay:0,children:e.jsx("button",{className:"demo-button",children:"Instant Show"})})})]})]}),e.jsxs("div",{className:"edge-cases",children:[e.jsx("h2",{children:"Edge Cases (Auto-adjust placement)"}),e.jsx("p",{children:"These buttons are near viewport edges - tooltips will auto-adjust!"}),e.jsxs("div",{className:"corners",children:[e.jsx("div",{className:"corner top-left",children:e.jsx(L,{content:"Top-left corner 📐",placement:"bottom",children:e.jsx("button",{className:"demo-button",children:"Top Left"})})}),e.jsx("div",{className:"corner top-right",children:e.jsx(L,{content:"Top-right corner 📐",placement:"bottom",children:e.jsx("button",{className:"demo-button",children:"Top Right"})})}),e.jsx("div",{className:"corner bottom-left",children:e.jsx(L,{content:"Bottom-left corner 📐",placement:"top",children:e.jsx("button",{className:"demo-button",children:"Bottom Left"})})}),e.jsx("div",{className:"corner bottom-right",children:e.jsx(L,{content:"Bottom-right corner 📐",placement:"top",children:e.jsx("button",{className:"demo-button",children:"Bottom Right"})})})]})]})]})}),e.jsx(b.Code,{children:`
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 
-// Infinite Scroll - Tự động load thêm items khi scroll đến cuối
-// Intersection Observer API - Phát hiện khi user scroll đến target element
-// Pagination - Load 20 items mỗi page
-// Lazy Loading Images - Images load khi cần thiết
-// Total 100 items - Có điểm kết thúc rõ ràng
-
-// 🎨 UI/UX:
-
-// Sticky Header - Header dính ở top với stats (items loaded, page number)
-// Item Cards - Beautiful cards với image, title, description, metadata
-// Loading Spinner - Smooth loading animation khi fetch data
-// Error Handling - Error state với retry button
-// End Message - "You've reached the end!" với celebration icon
-// Floating Scroll Top - FAB button xuất hiện sau 10 items
-// Reset Button - Reset về trang đầu
-// Smooth Animations - Fade-in-up cho items mới
-
-// 🔧 useEffect Usage:
-
-// Fetch items khi page thay đổi:
-
-// jsxuseEffect(() => {
-//   // Load items for current page
-//   // Append to existing items
-// }, [page]);
-
-// Intersection Observer setup:
-
-// jsxuseEffect(() => {
-//   const observer = new IntersectionObserver((entries) => {
-//     if (entries[0].isIntersecting && !loading && hasMore) {
-//       setPage(prevPage => prevPage + 1);
-//     }
-//   }, { rootMargin: '100px' }); // Load 100px trước
+function Tooltip({ children, content, placement = 'top', delay = 300 }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [actualPlacement, setActualPlacement] = useState(placement);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [arrowPosition, setArrowPosition] = useState({ top: 0, left: 0 });
   
-//   // Cleanup observer
-//   return () => observer.unobserve(target);
-// }, [loading, hasMore]);
-// 💡 Highlights:
+  const triggerRef = useRef(null);
+  const tooltipRef = useRef(null);
+  const showTimeoutRef = useRef(null);
+  const hideTimeoutRef = useRef(null);
 
-// Race condition prevention - Check loading và hasMore trước khi load
-// Memory leak prevention - Proper cleanup của observer
-// Performance optimization - rootMargin 100px để preload
-// Smooth UX - Items append, không replace
-// Visual feedback - Loading, error, end states rõ ràng
-// Responsive design - Works great on mobile
+  // ✅ useLayoutEffect - Position tooltip TRƯỚC khi paint
+  useLayoutEffect(() => {
+    if (!isVisible || !triggerRef.current || !tooltipRef.current) return;
 
-// 📊 Data Flow:
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
-// User scroll xuống
-// Observer trigger khi target visible
-// setPage(page + 1)
-// useEffect fetch data
-// Append items vào list
-// Process lặp lại
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    const spacing = 10; // Gap between trigger và tooltip
+    const arrowSize = 8;
+
+    // Helper: Calculate position cho từng placement
+    const calculatePosition = (place) => {
+      let top = 0;
+      let left = 0;
+      let arrowTop = 0;
+      let arrowLeft = 0;
+
+      switch (place) {
+        case 'top':
+          top = triggerRect.top - tooltipRect.height - spacing;
+          left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+          arrowTop = tooltipRect.height;
+          arrowLeft = tooltipRect.width / 2 - arrowSize;
+          break;
+
+        case 'bottom':
+          top = triggerRect.bottom + spacing;
+          left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+          arrowTop = -arrowSize;
+          arrowLeft = tooltipRect.width / 2 - arrowSize;
+          break;
+
+        case 'left':
+          top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
+          left = triggerRect.left - tooltipRect.width - spacing;
+          arrowTop = tooltipRect.height / 2 - arrowSize;
+          arrowLeft = tooltipRect.width;
+          break;
+
+        case 'right':
+          top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
+          left = triggerRect.right + spacing;
+          arrowTop = tooltipRect.height / 2 - arrowSize;
+          arrowLeft = -arrowSize;
+          break;
+
+        default:
+          break;
+      }
+
+      return { top, left, arrowTop, arrowLeft };
+    };
+
+    // Helper: Check nếu position bị overflow
+    const isOverflowing = (pos) => {
+      return (
+        pos.left < 0 ||
+        pos.top < 0 ||
+        pos.left + tooltipRect.width > viewportWidth ||
+        pos.top + tooltipRect.height > viewportHeight
+      );
+    };
+
+    // Try placement ưu tiên
+    let pos = calculatePosition(placement);
+    let finalPlacement = placement;
+
+    // Nếu overflow, thử các placements khác
+    if (isOverflowing(pos)) {
+      const fallbackPlacements = {
+        top: ['bottom', 'right', 'left'],
+        bottom: ['top', 'right', 'left'],
+        left: ['right', 'top', 'bottom'],
+        right: ['left', 'top', 'bottom']
+      };
+
+      for (const fallback of fallbackPlacements[placement]) {
+        pos = calculatePosition(fallback);
+        if (!isOverflowing(pos)) {
+          finalPlacement = fallback;
+          break;
+        }
+      }
+    }
+
+    // Adjust nếu vẫn overflow (edge cases)
+    if (pos.left < 0) pos.left = spacing;
+    if (pos.top < 0) pos.top = spacing;
+    if (pos.left + tooltipRect.width > viewportWidth) {
+      pos.left = viewportWidth - tooltipRect.width - spacing;
+    }
+    if (pos.top + tooltipRect.height > viewportHeight) {
+      pos.top = viewportHeight - tooltipRect.height - spacing;
+    }
+
+    setPosition({ top: pos.top, left: pos.left });
+    setArrowPosition({ top: pos.arrowTop, left: pos.arrowLeft });
+    setActualPlacement(finalPlacement);
+  }, [isVisible, placement]);
+
+  // Show với delay
+  const handleMouseEnter = () => {
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+    }
+    
+    showTimeoutRef.current = setTimeout(() => {
+      setIsVisible(true);
+    }, delay);
+  };
+
+  // Hide ngay lập tức
+  const handleMouseLeave = () => {
+    if (showTimeoutRef.current) {
+      clearTimeout(showTimeoutRef.current);
+    }
+    
+    hideTimeoutRef.current = setTimeout(() => {
+      setIsVisible(false);
+    }, 0);
+  };
+
+  // Keyboard support
+  const handleFocus = () => {
+    setIsVisible(true);
+  };
+
+  const handleBlur = () => {
+    setIsVisible(false);
+  };
+
+  // Cleanup timeouts
+  useEffect(() => {
+    return () => {
+      if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
+      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <div className="tooltip-wrapper">
+      <div
+        ref={triggerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        tabIndex={0}
+        className="tooltip-trigger"
+      >
+        {children}
+      </div>
+
+      {isVisible && (
+        <div
+          ref={tooltipRef}
+          className={\`tooltip tooltip-\${actualPlacement}\`}
+          style={{
+            position: 'fixed',
+            top: \`\${position.top}px\`,
+            left: \`\${position.left}px\`,
+            zIndex: 9999
+          }}
+        >
+          {content}
+          <div
+            className={\`tooltip-arrow arrow-\${actualPlacement}\`}
+            style={{
+              top: \`\${arrowPosition.top}px\`,
+              left: \`\${arrowPosition.left}px\`
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Demo App
+function App() {
+  return (
+    <div className="app">
+      <h1>🎈 Tooltip Component Demo</h1>
+      <p className="subtitle">Hover or focus các elements để xem tooltips</p>
+
+      <div className="demo-grid">
+        {/* Top placements */}
+        <div className="demo-section">
+          <h2>Top Placement</h2>
+          <div className="button-group">
+            <Tooltip content="This is a top tooltip! 🎯" placement="top">
+              <button className="demo-button">Hover me (Top)</button>
+            </Tooltip>
+          </div>
+        </div>
+
+        {/* Bottom placements */}
+        <div className="demo-section">
+          <h2>Bottom Placement</h2>
+          <div className="button-group">
+            <Tooltip content="This is a bottom tooltip! 📍" placement="bottom">
+              <button className="demo-button">Hover me (Bottom)</button>
+            </Tooltip>
+          </div>
+        </div>
+
+        {/* Left placements */}
+        <div className="demo-section">
+          <h2>Left Placement</h2>
+          <div className="button-group">
+            <Tooltip content="This is a left tooltip! ⬅️" placement="left">
+              <button className="demo-button">Hover me (Left)</button>
+            </Tooltip>
+          </div>
+        </div>
+
+        {/* Right placements */}
+        <div className="demo-section">
+          <h2>Right Placement</h2>
+          <div className="button-group">
+            <Tooltip content="This is a right tooltip! ➡️" placement="right">
+              <button className="demo-button">Hover me (Right)</button>
+            </Tooltip>
+          </div>
+        </div>
+
+        {/* Long content */}
+        <div className="demo-section">
+          <h2>Long Content</h2>
+          <div className="button-group">
+            <Tooltip 
+              content="This is a very long tooltip content that demonstrates how the tooltip handles longer text and wrapping. It should still position correctly! 📝"
+              placement="top"
+            >
+              <button className="demo-button">Long Tooltip</button>
+            </Tooltip>
+          </div>
+        </div>
+
+        {/* Custom delay */}
+        <div className="demo-section">
+          <h2>No Delay</h2>
+          <div className="button-group">
+            <Tooltip content="Instant tooltip! ⚡" placement="top" delay={0}>
+              <button className="demo-button">Instant Show</button>
+            </Tooltip>
+          </div>
+        </div>
+      </div>
+
+      {/* Edge cases */}
+      <div className="edge-cases">
+        <h2>Edge Cases (Auto-adjust placement)</h2>
+        <p>These buttons are near viewport edges - tooltips will auto-adjust!</p>
+        
+        <div className="corners">
+          <div className="corner top-left">
+            <Tooltip content="Top-left corner 📐" placement="bottom">
+              <button className="demo-button">Top Left</button>
+            </Tooltip>
+          </div>
+
+          <div className="corner top-right">
+            <Tooltip content="Top-right corner 📐" placement="bottom">
+              <button className="demo-button">Top Right</button>
+            </Tooltip>
+          </div>
+
+          <div className="corner bottom-left">
+            <Tooltip content="Bottom-left corner 📐" placement="top">
+              <button className="demo-button">Bottom Left</button>
+            </Tooltip>
+          </div>
+
+          <div className="corner bottom-right">
+            <Tooltip content="Bottom-right corner 📐" placement="top">
+              <button className="demo-button">Bottom Right</button>
+            </Tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+// ✅ Tính năng đã implement:
+// 🎯 Core Features:
+
+// Smart Positioning với useLayoutEffect
+
+// Calculate position TRƯỚC khi browser paint
+// Không có flicker/jump
+// Support 4 placements: top, bottom, left, right
+
+
+// Collision Detection
+
+// Auto-detect overflow viewport
+// Fallback sang placement khác nếu không đủ chỗ
+// Edge adjustment cho các trường hợp đặc biệt
+
+
+// Arrow Positioning
+
+// Arrow tự động point về trigger
+// Position đúng cho mỗi placement
+// CSS border trick cho arrow
+
+
+// Delay Show/Hide
+
+// Configurable delay (default 300ms)
+// Show với delay để tránh flashing
+// Hide instant để responsive
+
+
+// Keyboard Support
+
+// Focus/blur events
+// tabIndex={0} cho accessibility
+
+
+
+// 🔧 useLayoutEffect Usage:
+// javascriptuseLayoutEffect(() => {
+//   if (!isVisible) return;
+  
+//   // 1. Measure trigger & tooltip dimensions
+//   const triggerRect = triggerRef.current.getBoundingClientRect();
+//   const tooltipRect = tooltipRef.current.getBoundingClientRect();
+  
+//   // 2. Calculate position
+//   let pos = calculatePosition(placement);
+  
+//   // 3. Check overflow
+//   if (isOverflowing(pos)) {
+//     // Try fallback placements
+//   }
+  
+//   // 4. Set position trước khi paint
+//   setPosition(pos);
+// }, [isVisible, placement]);
+
+// 💡 Key Patterns:
+// 1. Fallback Placements:
+// javascriptconst fallbackPlacements = {
+//   top: ['bottom', 'right', 'left'],
+//   bottom: ['top', 'right', 'left'],
+//   left: ['right', 'top', 'bottom'],
+//   right: ['left', 'top', 'bottom']
+// };
+
+// 2. Timeout Management:
+// javascript// Show với delay
+// showTimeoutRef.current = setTimeout(() => {
+//   setIsVisible(true);
+// }, delay);
+
+// // Cleanup trong useEffect
+// useEffect(() => {
+//   return () => {
+//     if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
+//   };
+// }, []);
+
+// 3. Arrow với CSS Border Trick:
+// css.arrow-top {
+//   border-width: 8px 8px 0 8px;
+//   border-color: color transparent transparent transparent;
+// }
+
+// 🎨 UI/UX:
+
+// Glassmorphism - backdrop-filter blur
+// Smooth animations - fadeIn 0.2s
+// Responsive - Works on mobile
+// Accessible - Keyboard support
+// Visual feedback - Hover states
 
 // 🎮 Test Features:
 
-// Scroll xuống để load thêm items
-// Click floating button để scroll lên top
-// Đợi load 100 items để thấy end message
-// Click Reset để restart
-// Xem smooth animations khi items load
-`})]})}const F=[{symbol:"AAPL",name:"Apple Inc.",price:150,change:0,history:[]},{symbol:"GOOGL",name:"Alphabet Inc.",price:2800,change:0,history:[]},{symbol:"MSFT",name:"Microsoft Corp.",price:300,change:0,history:[]},{symbol:"TSLA",name:"Tesla Inc.",price:700,change:0,history:[]},{symbol:"AMZN",name:"Amazon.com Inc.",price:3200,change:0,history:[]},{symbol:"META",name:"Meta Platforms",price:280,change:0,history:[]}];function V(){const[a,l]=n.useState(F),[c,v]=n.useState("AAPL"),[i,p]=n.useState([]),[r,b]=n.useState(!1),[N,g]=n.useState({}),[y,x]=n.useState(!1),[S,u]=n.useState(""),[h,C]=n.useState(""),[j,I]=n.useState("above"),A=n.useRef(0);n.useEffect(()=>(b(!0),()=>b(!1)),[]),n.useEffect(()=>{if(!r)return;const s=setInterval(()=>{l(d=>d.map(f=>{const T=(Math.random()-.5)*.1,P=f.price*T,R=Math.max(f.price+P,1),L=F.find(B=>B.symbol===f.symbol)?.price||f.price,O=(R-L)/L*100;return{...f,price:parseFloat(R.toFixed(2)),change:parseFloat(O.toFixed(2))}})),A.current+=1},2e3);return()=>clearInterval(s)},[r]),n.useEffect(()=>{const s=a.find(d=>d.symbol===c);s&&p(d=>[...d,{time:new Date().toLocaleTimeString(),price:s.price,timestamp:Date.now()}].slice(-20))},[a,c]),n.useEffect(()=>{a.forEach(s=>{const d=N[s.symbol];if(!d)return;(d.type==="above"&&s.price>=d.price||d.type==="below"&&s.price<=d.price)&&!d.triggered&&("Notification"in window&&Notification.permission==="granted"&&new Notification(`Stock Alert: ${s.symbol}`,{body:`Price ${d.type} $${d.price}. Current: $${s.price}`,icon:"📈"}),g(T=>({...T,[s.symbol]:{...d,triggered:!0}})),E(s.symbol,s.price,d))})},[a,N]);const E=(s,d,f)=>{console.log(`Alert triggered for ${s}: $${d} is ${f.type} $${f.price}`)},t=()=>{!S||!h||(g(s=>({...s,[S]:{price:parseFloat(h),type:j,triggered:!1}})),x(!1),u(""),C(""))},o=s=>{g(d=>{const f={...d};return delete f[s],f})},D=()=>{"Notification"in window&&Notification.permission==="default"&&Notification.requestPermission()},k=()=>i.length===0?0:Math.min(...i.map(s=>s.price)),M=()=>i.length===0?0:Math.max(...i.map(s=>s.price)),w=a.find(s=>s.symbol===c);return e.jsxs("div",{className:"stock-ticker-app",children:[e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-left",children:[e.jsx("h1",{className:"header-title",children:"📈 Live Stock Ticker"}),e.jsx("p",{className:"header-subtitle",children:"Real-time stock price updates"})]}),e.jsxs("div",{className:"header-right",children:[e.jsxs("div",{className:`connection-status ${r?"connected":"disconnected"}`,children:[e.jsx("span",{className:"status-dot"}),e.jsx("span",{className:"status-text",children:r?"Connected":"Disconnected"})]}),e.jsxs("div",{className:"update-count",children:["Updates: ",A.current]})]})]}),e.jsxs("div",{className:"content-grid",children:[e.jsxs("div",{className:"stock-list-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsx("h2",{className:"panel-title",children:"Stocks"}),e.jsx("button",{onClick:()=>x(!0),className:"btn-add-alert",title:"Add Price Alert",children:"🔔 Alert"})]}),e.jsx("div",{className:"stock-list",children:a.map(s=>{const d=c===s.symbol,f=N[s.symbol];return e.jsxs("div",{className:`stock-item ${d?"selected":""}`,onClick:()=>{v(s.symbol),p([{time:new Date().toLocaleTimeString(),price:s.price,timestamp:Date.now()}])},children:[e.jsxs("div",{className:"stock-item-left",children:[e.jsx("div",{className:"stock-symbol",children:s.symbol}),e.jsx("div",{className:"stock-name",children:s.name})]}),e.jsxs("div",{className:"stock-item-right",children:[e.jsxs("div",{className:"stock-price",children:["$",s.price.toFixed(2)]}),e.jsxs("div",{className:`stock-change ${s.change>=0?"positive":"negative"}`,children:[e.jsx("span",{className:"change-arrow",children:s.change>=0?"↑":"↓"}),Math.abs(s.change).toFixed(2),"%"]})]}),f&&e.jsx("div",{className:"alert-indicator",title:"Price alert set",children:"🔔"})]},s.symbol)})}),Object.keys(N).length>0&&e.jsxs("div",{className:"alerts-section",children:[e.jsx("h3",{className:"alerts-title",children:"Active Alerts"}),e.jsx("div",{className:"alerts-list",children:Object.entries(N).map(([s,d])=>e.jsxs("div",{className:"alert-item",children:[e.jsxs("div",{className:"alert-info",children:[e.jsx("span",{className:"alert-symbol",children:s}),e.jsxs("span",{className:"alert-condition",children:[d.type==="above"?"≥":"≤"," $",d.price]})]}),e.jsx("button",{onClick:()=>o(s),className:"btn-remove-alert",children:"✕"})]},s))})]})]}),e.jsxs("div",{className:"chart-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsxs("div",{children:[e.jsxs("h2",{className:"panel-title",children:[w?.name," (",c,")"]}),e.jsxs("div",{className:"current-price-display",children:[e.jsxs("span",{className:"price-large",children:["$",w?.price.toFixed(2)]}),e.jsxs("span",{className:`change-large ${w?.change>=0?"positive":"negative"}`,children:[w?.change>=0?"+":"",w?.change.toFixed(2),"%"]})]})]}),e.jsx("button",{onClick:D,className:"btn-notifications",title:"Enable notifications",children:"🔔 Enable Notifications"})]}),e.jsxs("div",{className:"chart-container",children:[i.length===0?e.jsxs("div",{className:"chart-empty",children:[e.jsx("div",{className:"empty-icon",children:"📊"}),e.jsx("p",{children:"Collecting price data..."})]}):e.jsxs("div",{className:"chart",children:[e.jsxs("div",{className:"chart-y-axis",children:[e.jsxs("div",{className:"y-label",children:["$",M().toFixed(2)]}),e.jsxs("div",{className:"y-label",children:["$",((M()+k())/2).toFixed(2)]}),e.jsxs("div",{className:"y-label",children:["$",k().toFixed(2)]})]}),e.jsx("div",{className:"chart-area",children:e.jsxs("svg",{className:"chart-svg",viewBox:"0 0 800 300",preserveAspectRatio:"none",children:[e.jsx("defs",{children:e.jsxs("linearGradient",{id:"gradient",x1:"0%",y1:"0%",x2:"0%",y2:"100%",children:[e.jsx("stop",{offset:"0%",stopColor:"rgba(0, 217, 255, 0.3)"}),e.jsx("stop",{offset:"100%",stopColor:"rgba(0, 217, 255, 0)"})]})}),e.jsx("polyline",{points:i.map((s,d)=>{const f=d/(i.length-1)*800,T=M()-k(),P=T===0?150:300-(s.price-k())/T*300;return`${f},${P}`}).join(" "),fill:"none",stroke:"url(#lineGradient)",strokeWidth:"3",strokeLinecap:"round",strokeLinejoin:"round"}),e.jsx("polygon",{points:["0,300",...i.map((s,d)=>{const f=d/(i.length-1)*800,T=M()-k(),P=T===0?150:300-(s.price-k())/T*300;return`${f},${P}`}),"800,300"].join(" "),fill:"url(#gradient)"}),e.jsx("defs",{children:e.jsxs("linearGradient",{id:"lineGradient",x1:"0%",y1:"0%",x2:"100%",y2:"0%",children:[e.jsx("stop",{offset:"0%",stopColor:"#00D9FF"}),e.jsx("stop",{offset:"100%",stopColor:"#00A3CC"})]})})]})})]}),e.jsxs("div",{className:"stats-grid",children:[e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"High"}),e.jsxs("div",{className:"stat-value",children:["$",M().toFixed(2)]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"Low"}),e.jsxs("div",{className:"stat-value",children:["$",k().toFixed(2)]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"Data Points"}),e.jsxs("div",{className:"stat-value",children:[i.length,"/20"]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"Last Update"}),e.jsx("div",{className:"stat-value",children:i[i.length-1]?.time||"--:--"})]})]})]})]})]})]}),y&&e.jsx("div",{className:"modal-overlay",onClick:()=>x(!1),children:e.jsxs("div",{className:"modal-content",onClick:s=>s.stopPropagation(),children:[e.jsxs("div",{className:"modal-header",children:[e.jsx("h3",{className:"modal-title",children:"Set Price Alert"}),e.jsx("button",{onClick:()=>x(!1),className:"modal-close",children:"✕"})]}),e.jsxs("div",{className:"modal-body",children:[e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Stock"}),e.jsxs("select",{value:S,onChange:s=>u(s.target.value),className:"form-select",children:[e.jsx("option",{value:"",children:"Select stock..."}),a.map(s=>e.jsxs("option",{value:s.symbol,children:[s.symbol," - ",s.name]},s.symbol))]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Alert Type"}),e.jsxs("div",{className:"radio-group",children:[e.jsxs("label",{className:"radio-label",children:[e.jsx("input",{type:"radio",value:"above",checked:j==="above",onChange:s=>I(s.target.value),className:"radio-input"}),e.jsx("span",{children:"Price goes above"})]}),e.jsxs("label",{className:"radio-label",children:[e.jsx("input",{type:"radio",value:"below",checked:j==="below",onChange:s=>I(s.target.value),className:"radio-input"}),e.jsx("span",{children:"Price goes below"})]})]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Target Price ($)"}),e.jsx("input",{type:"number",value:h,onChange:s=>C(s.target.value),placeholder:"0.00",step:"0.01",min:"0",className:"form-input"})]})]}),e.jsxs("div",{className:"modal-footer",children:[e.jsx("button",{onClick:()=>x(!1),className:"btn-secondary",children:"Cancel"}),e.jsx("button",{onClick:t,className:"btn-primary",disabled:!S||!h,children:"Set Alert"})]})]})})]})}function q(){return e.jsxs(m,{children:[e.jsx(m.Header,{order:3,title:"Live Stock Ticker"}),e.jsx(m.Description,{children:`
+// Hover buttons - Xem tooltips ở các placements
+// Edge cases - Buttons ở góc viewport tự động adjust
+// Long content - Tooltip wraps text properly
+// Keyboard - Tab và focus để trigger tooltips
+// No delay option - Instant tooltip
+
+// 🚀 Advantages of useLayoutEffect:
+
+// ✅ No flicker - Position calculated trước paint
+// ✅ Smooth appearance - User không thấy jump
+// ✅ Accurate measurements - DOM measurements chính xác
+// ✅ Sync updates - Position và state sync perfectly
+
+`})]})}function Y({fetchMore:s,hasMore:d,threshold:l=200}){const v=a.useRef(null),[i,p]=a.useState(!1);return a.useEffect(()=>{if(!d||i)return;const m=new IntersectionObserver(u=>{u[0].isIntersecting&&(p(!0),s().finally(()=>p(!1)))},{rootMargin:`${l}px`}),c=v.current;return c&&m.observe(c),()=>{c&&m.unobserve(c)}},[d,i,s,l]),{loaderRef:v,isFetching:i}}function G(s,d){let l=0;return(...v)=>{const i=Date.now();i-l>=d&&(l=i,s(...v))}}function z({items:s,itemHeight:d,containerHeight:l,overscan:v=3,dynamicHeight:i=!1}){const[p,m]=a.useState(0),c=a.useRef(null),u=a.useRef(new Map),r=a.useCallback(f=>i&&u.current.get(f)||d,[i,d]),N=a.useMemo(()=>{if(!i)return s.length*d;let f=0;for(let t=0;t<s.length;t++)f+=r(t);return f},[s.length,i,d,r]),y=a.useMemo(()=>{let f=0,t=0,n=0;for(let x=0;x<s.length;x++){const w=r(x);if(n+w>p){f=Math.max(0,x-v);break}n+=w}n=0;for(let x=0;x<s.length;x++)if(n+=r(x),n>p+l){t=Math.min(s.length-1,x+v);break}return t===0&&(t=s.length-1),{start:f,end:t}},[p,l,s.length,v,r]),j=a.useMemo(()=>{let f=0;for(let t=0;t<y.start;t++)f+=r(t);return f},[y.start,r]),A=a.useMemo(()=>s.slice(y.start,y.end+1).map((f,t)=>({item:f,index:y.start+t})),[s,y]),k=a.useCallback(G(f=>{m(f.target.scrollTop)},16),[]),T=a.useCallback((f,t)=>{i&&u.current.set(f,t)},[i]),R=a.useCallback(f=>{if(!c.current)return;let t=0;for(let n=0;n<f;n++)t+=r(n);c.current.scrollTop=t},[r]),E=a.useCallback(()=>{c.current&&(c.current.scrollTop=0)},[]),I=a.useCallback(()=>{c.current&&(c.current.scrollTop=N)},[N]);return{containerRef:c,visibleItems:A,totalHeight:N,offsetY:j,handleScroll:k,measureItem:T,scrollToIndex:R,scrollToTop:E,scrollToBottom:I,scrollTop:p}}function U({items:s,itemHeight:d=50,containerHeight:l=600,overscan:v=3,dynamicHeight:i=!1,renderItem:p,onFetchMore:m,hasMore:c=!1,loadingComponent:u=e.jsx("div",{children:"Loading more..."}),emptyComponent:r=e.jsx("div",{children:"No items"})}){const{containerRef:N,visibleItems:y,totalHeight:j,offsetY:A,handleScroll:k,measureItem:T,scrollToIndex:R,scrollToTop:E,scrollToBottom:I,scrollTop:f}=z({items:s,itemHeight:d,containerHeight:l,overscan:v,dynamicHeight:i}),{loaderRef:t,isFetching:n}=Y({fetchMore:m,hasMore:c,threshold:200}),x=f>l,w=a.useCallback((C,S)=>{if(C&&i){const o=C.getBoundingClientRect().height;T(S,o)}},[i,T]);return s.length===0?e.jsx("div",{style:{height:l,display:"flex",alignItems:"center",justifyContent:"center"},children:r}):e.jsxs("div",{style:{position:"relative"},children:[e.jsxs("div",{style:{marginBottom:"10px",display:"flex",gap:"10px"},children:[e.jsx(B,{onClick:E,children:"⬆️ Top"}),e.jsx(B,{onClick:I,children:"⬇️ Bottom"}),e.jsx(B,{onClick:()=>R(Math.floor(s.length/2)),children:"➡️ Middle"}),e.jsxs("span",{style:{marginLeft:"auto"},children:["Showing ",y.length," of ",s.length," items"]})]}),e.jsxs("div",{ref:N,style:{height:l,overflow:"auto",position:"relative",border:"1px solid #ccc",borderRadius:"4px"},onScroll:k,children:[e.jsx("div",{style:{height:j,position:"relative"},children:e.jsx("div",{style:{transform:`translateY(${A}px)`,position:"absolute",top:0,left:0,right:0},children:y.map(({item:C,index:S})=>e.jsx("div",{ref:o=>w(o,S),style:{minHeight:i?void 0:d,borderBottom:"1px solid #eee"},children:p(C,S)},S))})}),c&&e.jsx("div",{ref:t,style:{padding:"20px",textAlign:"center",position:"absolute",bottom:0,left:0,right:0},children:n?u:e.jsx("div",{style:{height:"1px"}})})]}),x&&e.jsx(B,{onClick:E,style:{position:"absolute",bottom:"20px",right:"20px",padding:"10px 15px",borderRadius:"50%",border:"none",background:"#007bff",color:"white",cursor:"pointer",boxShadow:"0 2px 8px rgba(0,0,0,0.2)",fontSize:"20px"},children:"⬆️"})]})}function K(){const[s,d]=a.useState(()=>Array.from({length:50},(c,u)=>({id:u,text:`Message ${u} — ${"Lorem ipsum dolor sit amet".split(" ").slice(0,u%8+1).join(" ")}`,sender:u%2===0?"me":"other",timestamp:new Date(Date.now()-(50-u)*6e4).toISOString()}))),[l,v]=a.useState(!0),i=a.useRef(!1),p=a.useCallback(async()=>{if(i.current||!l)return;i.current=!0,await new Promise(r=>setTimeout(r,800));const c=s[0].id,u=Array.from({length:30},(r,N)=>({id:c-N-1,text:`Older Message ${c-N-1}`,sender:(c-N-1)%3===0?"me":"other",timestamp:new Date(Date.now()-(100+N)*6e4).toISOString()})).reverse();d(r=>[...u,...r]),c<=30&&v(!1),i.current=!1},[s,l]),m=c=>e.jsx("div",{className:`message-wrapper ${c.sender}`,children:e.jsxs("div",{className:`message-bubble ${c.sender}`,children:[e.jsx("div",{children:c.text}),e.jsx("small",{children:new Date(c.timestamp).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})})]})});return e.jsxs("div",{className:"app-container",children:[e.jsx("h1",{className:"neon-title",children:"Chat with Bi-directional Virtual Scroll"}),e.jsx("p",{style:{textAlign:"center",color:"#94a3b8",marginBottom:"2rem"},children:"Scroll lên để tải tin nhắn cũ • Chỉ render ~25 tin nhắn dù có hàng nghìn tin"}),e.jsxs("div",{style:{position:"relative"},children:[l&&e.jsxs("div",{className:"loading-more",style:{padding:"16px",opacity:i.current?1:.5},children:[e.jsx("span",{className:"spinner",style:{width:18,height:18,marginRight:8}}),"Loading older messages..."]}),e.jsx(U,{items:s,itemHeight:80,containerHeight:600,dynamicHeight:!0,overscan:5,renderItem:m,onFetchMore:p,hasMore:l,loadingComponent:e.jsxs("div",{className:"loading-more",children:[e.jsx("span",{className:"spinner"})," Loading older messages..."]})})]}),e.jsxs("div",{style:{marginTop:"1rem",textAlign:"center",color:"#64748b",fontSize:"0.9rem"},children:["Total messages: ",s.length," (DOM nodes chỉ ~25)"]})]})}function q(){const[s,d]=a.useState(()=>Array.from({length:100},(v,i)=>({id:i,title:`Post ${i}`,content:`This is post ${i}. `.repeat(Math.floor(Math.random()*5)+1)}))),l=v=>e.jsxs("div",{style:{padding:"15px"},children:[e.jsx("h3",{style:{margin:"0 0 10px 0"},children:v.title}),e.jsx("p",{style:{margin:0,lineHeight:"1.6"},children:v.content})]});return e.jsxs("div",{style:{padding:"20px",maxWidth:"800px",margin:"0 auto"},children:[e.jsx("h1",{children:"Dynamic Height Virtual Scroll"}),e.jsx("p",{children:"Items have variable heights"}),e.jsx(U,{items:s,itemHeight:100,containerHeight:600,dynamicHeight:!0,overscan:3,renderItem:l,hasMore:!1})]})}function Q(){const[s,d]=a.useState(()=>Array.from({length:50},(u,r)=>({id:r,title:`Item ${r}`,description:`Description for item ${r}`,timestamp:new Date(Date.now()-r*6e4).toISOString()}))),[l,v]=a.useState(!0),[i,p]=a.useState(1),m=async()=>{console.log("Fetching more items..."),await new Promise(r=>setTimeout(r,1e3));const u=Array.from({length:20},(r,N)=>{const y=s.length+N;return{id:y,title:`Item ${y}`,description:`Description for item ${y}`,timestamp:new Date(Date.now()-y*6e4).toISOString()}});d(r=>[...r,...u]),p(r=>r+1),i>=5&&v(!1)},c=(u,r)=>e.jsx("div",{style:{padding:"15px"},children:e.jsxs("div",{style:{display:"flex",alignItems:"center",gap:"10px"},children:[e.jsx("div",{style:{width:"40px",height:"40px",borderRadius:"50%",background:`hsl(${r*30%360}, 70%, 60%)`,display:"flex",alignItems:"center",justifyContent:"center",color:"white",fontWeight:"bold"},children:r}),e.jsxs("div",{style:{flex:1},children:[e.jsx("h4",{style:{margin:0},children:u.title}),e.jsx("p",{style:{margin:"5px 0",color:"#666",fontSize:"14px"},children:u.description}),e.jsx("small",{style:{color:"#999"},children:new Date(u.timestamp).toLocaleString()})]})]})});return e.jsxs("div",{style:{padding:"20px",maxWidth:"800px",margin:"0 auto"},children:[e.jsx("h1",{children:"Infinite Scroll + Virtual Scrolling Demo"}),e.jsxs("p",{children:["🔄 ",s.length," items loaded",l?" (scroll down for more)":" (all loaded)"]}),e.jsx(U,{items:s,itemHeight:80,containerHeight:600,overscan:5,renderItem:c,onFetchMore:m,hasMore:l,loadingComponent:e.jsxs("div",{style:{display:"flex",alignItems:"center",gap:"10px"},children:[e.jsx("div",{className:"spinner"}),"Loading more items..."]}),emptyComponent:e.jsx("div",{children:"No items to display"})})]})}function X(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:2,title:"Virtual Scroll List"}),e.jsx(b.Description,{children:`
+// TODO: Implement virtual scrolling cho large lists
+
+function VirtualList({ items, itemHeight, containerHeight }) {
+  const [scrollTop, setScrollTop] = useState(0);
+  const containerRef = useRef(null);
+
+  // TODO: Calculate visible range
+  // - Dựa vào scrollTop và containerHeight
+  // - Add buffer (overscan) để smooth scrolling
+  // - Only render visible items
+
+  // TODO: useLayoutEffect để sync scroll
+  // - Update scrollTop on scroll
+  // - Throttle scroll handler
+
+  // TODO: Features
+  // - Support variable item heights
+  // - Scroll to index
+  // - Scroll to top/bottom
+  // - Loading indicator
+  // - Empty state
+
+  const visibleStart = Math.floor(scrollTop / itemHeight);
+  const visibleEnd = Math.ceil((scrollTop + containerHeight) / itemHeight);
+
+  const visibleItems = items.slice(visibleStart, visibleEnd);
+  const totalHeight = items.length * itemHeight;
+  const offsetY = visibleStart * itemHeight;
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        height: containerHeight,
+        overflow: 'auto',
+        position: 'relative'
+      }}
+      onScroll={(e) => setScrollTop(e.target.scrollTop)}
+    >
+      <div style={{ height: totalHeight, position: 'relative' }}>
+        <div style={{ transform: \`translateY(\${offsetY}px)\` }}>
+          {visibleItems.map((item, index) => (
+            <div
+              key={visibleStart + index}
+              style={{ height: itemHeight }}
+              className="list-item"
+            >
+              Item {visibleStart + index}: {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Usage
+function App() {
+  const items = Array.from({ length: 10000 }, (_, i) => \`Item \${i}\`);
+
+  return (
+    <VirtualList
+      items={items}
+      itemHeight={50}
+      containerHeight={400}
+    />
+  );
+}
+
+`}),e.jsx(b.Demo,{children:e.jsxs("div",{className:"app-container",children:[e.jsx("h1",{className:"neon-title",children:"Virtual Scroll Demo Showcase"}),e.jsxs("section",{className:"demo-section",children:[e.jsx("h2",{className:"section-title",children:"Infinite Scroll Demo"}),e.jsx(Q,{})]}),e.jsxs("section",{className:"demo-section",children:[e.jsx("h2",{className:"section-title",children:"Dynamic Height Demo"}),e.jsx(q,{})]}),e.jsxs("section",{className:"demo-section",children:[e.jsx("h2",{className:"section-title",children:"Chat Scroll Demo"}),e.jsx(K,{})]})]})}),e.jsx(b.Code,{children:`
+
+src/
+├── hooks/
+│   ├── useInfiniteScroll.js
+│   ├── useVirtualScroll.js
+│   └── index.js
+│
+├── utils/
+│   ├── throttle.js
+│   └── index.js
+│
+├── components/
+│   ├── VirtualScrollList.jsx
+│   ├── InfiniteScrollDemo.jsx
+│   ├── DynamicHeightDemo.jsx
+│   └── ChatScrollDemo.jsx
+│
+└── App.jsx
+
+
+// // 1️⃣ useInfiniteScroll Hook | hooks/useInfiniteScroll.js
+// export function useInfiniteScroll({ fetchMore, hasMore, threshold = 200 }) {
+//   const loaderRef = useRef(null);
+//   const [isFetching, setIsFetching] = useState(false);
+
+//   useEffect(() => {
+//     if (!hasMore || isFetching) return;
+
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         const target = entries[0];
+//         if (target.isIntersecting) {
+//           setIsFetching(true);
+//           fetchMore().finally(() => setIsFetching(false));
+//         }
+//       },
+//       { rootMargin: \`\${threshold}px\` }
+//     );
+
+//     const currentLoader = loaderRef.current;
+//     if (currentLoader) {
+//       observer.observe(currentLoader);
+//     }
+
+//     return () => {
+//       if (currentLoader) {
+//         observer.unobserve(currentLoader);
+//       }
+//     };
+//   }, [hasMore, isFetching, fetchMore, threshold]);
+
+//   return { loaderRef, isFetching };
+// }
+
+// // 2️⃣ useVirtualScroll Hook  | hooks/useVirtualScroll.js - Core virtual scrolling logic
+// export function useVirtualScroll({
+//   items,
+//   itemHeight,
+//   containerHeight,
+//   overscan = 3,
+//   dynamicHeight = false,
+// }) {
+//   const [scrollTop, setScrollTop] = useState(0);
+//   const containerRef = useRef(null);
+//   const itemHeightsRef = useRef(new Map()); // For dynamic heights
+
+//   // Calculate item height (static or dynamic)
+//   const getItemHeight = useCallback(
+//     (index) => {
+//       if (!dynamicHeight) return itemHeight;
+//       return itemHeightsRef.current.get(index) || itemHeight;
+//     },
+//     [dynamicHeight, itemHeight]
+//   );
+
+//   // Calculate total height
+//   const totalHeight = useMemo(() => {
+//     if (!dynamicHeight) return items.length * itemHeight;
+
+//     let height = 0;
+//     for (let i = 0; i < items.length; i++) {
+//       height += getItemHeight(i);
+//     }
+//     return height;
+//   }, [items.length, dynamicHeight, itemHeight, getItemHeight]);
+
+//   // Calculate visible range
+//   const visibleRange = useMemo(() => {
+//     let start = 0;
+//     let end = 0;
+//     let accumulatedHeight = 0;
+
+//     // Find start index
+//     for (let i = 0; i < items.length; i++) {
+//       const height = getItemHeight(i);
+//       if (accumulatedHeight + height > scrollTop) {
+//         start = Math.max(0, i - overscan);
+//         break;
+//       }
+//       accumulatedHeight += height;
+//     }
+
+//     // Find end index
+//     accumulatedHeight = 0;
+//     for (let i = 0; i < items.length; i++) {
+//       accumulatedHeight += getItemHeight(i);
+//       if (accumulatedHeight > scrollTop + containerHeight) {
+//         end = Math.min(items.length - 1, i + overscan);
+//         break;
+//       }
+//     }
+
+//     if (end === 0) end = items.length - 1;
+
+//     return { start, end };
+//   }, [scrollTop, containerHeight, items.length, overscan, getItemHeight]);
+
+//   // Calculate offset for visible items
+//   const offsetY = useMemo(() => {
+//     let offset = 0;
+//     for (let i = 0; i < visibleRange.start; i++) {
+//       offset += getItemHeight(i);
+//     }
+//     return offset;
+//   }, [visibleRange.start, getItemHeight]);
+
+//   // Get visible items
+//   const visibleItems = useMemo(() => {
+//     return items
+//       .slice(visibleRange.start, visibleRange.end + 1)
+//       .map((item, index) => ({
+//         item,
+//         index: visibleRange.start + index,
+//       }));
+//   }, [items, visibleRange]);
+
+//   // Throttled scroll handler
+//   const handleScroll = useCallback(
+//     throttle((e) => {
+//       setScrollTop(e.target.scrollTop);
+//     }, 16), // ~60fps
+//     []
+//   );
+
+//   // Measure item height (for dynamic heights)
+//   const measureItem = useCallback(
+//     (index, height) => {
+//       if (dynamicHeight) {
+//         itemHeightsRef.current.set(index, height);
+//       }
+//     },
+//     [dynamicHeight]
+//   );
+
+//   // Scroll to specific index
+//   const scrollToIndex = useCallback(
+//     (index) => {
+//       if (!containerRef.current) return;
+
+//       let offset = 0;
+//       for (let i = 0; i < index; i++) {
+//         offset += getItemHeight(i);
+//       }
+
+//       containerRef.current.scrollTop = offset;
+//     },
+//     [getItemHeight]
+//   );
+
+//   // Scroll to top
+//   const scrollToTop = useCallback(() => {
+//     if (containerRef.current) {
+//       containerRef.current.scrollTop = 0;
+//     }
+//   }, []);
+
+//   // Scroll to bottom
+//   const scrollToBottom = useCallback(() => {
+//     if (containerRef.current) {
+//       containerRef.current.scrollTop = totalHeight;
+//     }
+//   }, [totalHeight]);
+
+//   return {
+//     containerRef,
+//     visibleItems,
+//     totalHeight,
+//     offsetY,
+//     handleScroll,
+//     measureItem,
+//     scrollToIndex,
+//     scrollToTop,
+//     scrollToBottom,
+//     scrollTop,
+//   };
+// }
+
+// // Helper: Throttle function
+// export function throttle(func, delay) {
+//   let lastCall = 0;
+//   return function (...args) {
+//     const now = Date.now();
+//     if (now - lastCall >= delay) {
+//       lastCall = now;
+//       func(...args);
+//     }
+//   };
+// }
+
+// 3️⃣ VirtualScrollList Component
+// export function VirtualScrollList({
+//   items,
+//   itemHeight = 50,
+//   containerHeight = 600,
+//   overscan = 3,
+//   dynamicHeight = false,
+//   renderItem,
+//   onFetchMore,
+//   hasMore = false,
+//   loadingComponent = <div>Loading more...</div>,
+//   emptyComponent = <div>No items</div>,
+// }) {
+//   const {
+//     containerRef,
+//     visibleItems,
+//     totalHeight,
+//     offsetY,
+//     handleScroll,
+//     measureItem,
+//     scrollToIndex,
+//     scrollToTop,
+//     scrollToBottom,
+//     scrollTop,
+//   } = useVirtualScroll({
+//     items,
+//     itemHeight,
+//     containerHeight,
+//     overscan,
+//     dynamicHeight,
+//   });
+
+//   const { loaderRef, isFetching } = useInfiniteScroll({
+//     fetchMore: onFetchMore,
+//     hasMore,
+//     threshold: 200,
+//   });
+
+//   // Show scroll to top button when scrolled down
+//   const showScrollTop = scrollTop > containerHeight;
+
+//   // Measure item height (for dynamic heights)
+//   const itemRef = useCallback(
+//     (node, index) => {
+//       if (node && dynamicHeight) {
+//         const height = node.getBoundingClientRect().height;
+//         measureItem(index, height);
+//       }
+//     },
+//     [dynamicHeight, measureItem]
+//   );
+
+//   if (items.length === 0) {
+//     return (
+//       <div
+//         style={{
+//           height: containerHeight,
+//           display: "flex",
+//           alignItems: "center",
+//           justifyContent: "center",
+//         }}
+//       >
+//         {emptyComponent}
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div style={{ position: "relative" }}>
+//       {/* Scroll Controls */}
+//       <div style={{ marginBottom: "10px", display: "flex", gap: "10px" }}>
+//         <button onClick={scrollToTop}>⬆️ Top</button>
+//         <button onClick={scrollToBottom}>⬇️ Bottom</button>
+//         <button onClick={() => scrollToIndex(Math.floor(items.length / 2))}>
+//           ➡️ Middle
+//         </button>
+//         <span style={{ marginLeft: "auto" }}>
+//           Showing {visibleItems.length} of {items.length} items
+//         </span>
+//       </div>
+
+//       {/* Virtual Scroll Container */}
+//       <div
+//         ref={containerRef}
+//         style={{
+//           height: containerHeight,
+//           overflow: "auto",
+//           position: "relative",
+//           border: "1px solid #ccc",
+//           borderRadius: "4px",
+//         }}
+//         onScroll={handleScroll}
+//       >
+//         {/* Spacer for total height */}
+//         <div style={{ height: totalHeight, position: "relative" }}>
+//           {/* Visible items */}
+//           <div
+//             style={{
+//               transform: \`translateY(\${offsetY}px)\`,
+//               position: "absolute",
+//               top: 0,
+//               left: 0,
+//               right: 0,
+//             }}
+//           >
+//             {visibleItems.map(({ item, index }) => (
+//               <div
+//                 key={index}
+//                 ref={(node) => itemRef(node, index)}
+//                 style={{
+//                   minHeight: !dynamicHeight ? itemHeight : undefined,
+//                   borderBottom: "1px solid #eee",
+//                 }}
+//               >
+//                 {renderItem(item, index)}
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         {/* Infinite scroll loader */}
+//         {hasMore && (
+//           <div
+//             ref={loaderRef}
+//             style={{
+//               padding: "20px",
+//               textAlign: "center",
+//               position: "absolute",
+//               bottom: 0,
+//               left: 0,
+//               right: 0,
+//             }}
+//           >
+//             {isFetching ? loadingComponent : <div style={{ height: "1px" }} />}
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Scroll to top button */}
+//       {showScrollTop && (
+//         <button
+//           onClick={scrollToTop}
+//           style={{
+//             position: "absolute",
+//             bottom: "20px",
+//             right: "20px",
+//             padding: "10px 15px",
+//             borderRadius: "50%",
+//             border: "none",
+//             background: "#007bff",
+//             color: "white",
+//             cursor: "pointer",
+//             boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+//             fontSize: "20px",
+//           }}
+//         >
+//           ⬆️
+//         </button>
+//       )}
+//     </div>
+//   );
+// }
+
+// // 4️⃣ Demo App với Infinite Scroll
+// export function InfiniteScrollDemo() {
+//   const [items, setItems] = useState(() =>
+//     Array.from({ length: 50 }, (_, i) => ({
+//       id: i,
+//       title: \`Item \${i}\`,
+//       description: \`Description for item \${i}\`,
+//       timestamp: new Date(Date.now() - i * 60000).toISOString(),
+//     }))
+//   );
+
+//   const [hasMore, setHasMore] = useState(true);
+//   const [page, setPage] = useState(1);
+
+//   // Simulate API call
+//   const fetchMore = async () => {
+//     console.log("Fetching more items...");
+
+//     // Simulate network delay
+//     await new Promise((resolve) => setTimeout(resolve, 1000));
+
+//     const newItems = Array.from({ length: 20 }, (_, i) => {
+//       const id = items.length + i;
+//       return {
+//         id,
+//         title: \`Item \${id}\`,
+//         description: \`Description for item \${id}\`,
+//         timestamp: new Date(Date.now() - id * 60000).toISOString(),
+//       };
+//     });
+
+//     setItems((prev) => [...prev, ...newItems]);
+//     setPage((p) => p + 1);
+
+//     // Stop after 5 pages
+//     if (page >= 5) {
+//       setHasMore(false);
+//     }
+//   };
+
+//   const renderItem = (item, index) => (
+//     <div style={{ padding: "15px" }}>
+//       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+//         <div
+//           style={{
+//             width: "40px",
+//             height: "40px",
+//             borderRadius: "50%",
+//             background: \`hsl(\${(index * 30) % 360}, 70%, 60%)\`,
+//             display: "flex",
+//             alignItems: "center",
+//             justifyContent: "center",
+//             color: "white",
+//             fontWeight: "bold",
+//           }}
+//         >
+//           {index}
+//         </div>
+//         <div style={{ flex: 1 }}>
+//           <h4 style={{ margin: 0 }}>{item.title}</h4>
+//           <p style={{ margin: "5px 0", color: "#666", fontSize: "14px" }}>
+//             {item.description}
+//           </p>
+//           <small style={{ color: "#999" }}>
+//             {new Date(item.timestamp).toLocaleString()}
+//           </small>
+//         </div>
+//       </div>
+//     </div>
+//   );
+
+//   return (
+//     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+//       <h1>Infinite Scroll + Virtual Scrolling Demo</h1>
+//       <p>
+//         🔄 {items.length} items loaded
+//         {hasMore ? " (scroll down for more)" : " (all loaded)"}
+//       </p>
+
+//       <VirtualScrollList
+//         items={items}
+//         itemHeight={80}
+//         containerHeight={600}
+//         overscan={5}
+//         renderItem={renderItem}
+//         onFetchMore={fetchMore}
+//         hasMore={hasMore}
+//         loadingComponent={
+//           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+//             <div className="spinner" />
+//             Loading more items...
+//           </div>
+//         }
+//         emptyComponent={<div>No items to display</div>}
+//       />
+//     </div>
+//   );
+// }
+
+// // 5️⃣ Dynamic Height Variant
+// export function DynamicHeightDemo() {
+//   const [items, _] = useState(() =>
+//     Array.from({ length: 100 }, (_, i) => ({
+//       id: i,
+//       title: \`Post \${i}\`,
+//       content: \`This is post \${i}. \`.repeat(Math.floor(Math.random() * 5) + 1),
+//     }))
+//   );
+
+//   const renderItem = (item) => (
+//     <div style={{ padding: "15px", background: "white" }}>
+//       <h3 style={{ margin: "0 0 10px 0" }}>{item.title}</h3>
+//       <p style={{ margin: 0, lineHeight: "1.6" }}>{item.content}</p>
+//     </div>
+//   );
+
+//   return (
+//     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+//       <h1>Dynamic Height Virtual Scroll</h1>
+//       <p>Items have variable heights</p>
+
+//       <VirtualScrollList
+//         items={items}
+//         itemHeight={100} // Initial estimate
+//         containerHeight={600}
+//         dynamicHeight={true}
+//         overscan={3}
+//         renderItem={renderItem}
+//         hasMore={false}
+//       />
+//     </div>
+//   );
+// }
+
+// // 6️⃣ Bi-directional Scrolling (Chat-like)
+// src/components/ChatScrollDemo.jsx
+import { useCallback, useRef, useState } from "react";
+import VirtualScrollList from "./VirtualScrollList";
+
+export default function ChatScrollDemo() {
+  const [messages, setMessages] = useState(() =>
+    Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      text: \`Message \${i} — \${"Lorem ipsum dolor sit amet"
+        .split(" ")
+        .slice(0, (i % 8) + 1)
+        .join(" ")}\`,
+      sender: i % 2 === 0 ? "me" : "other",
+      timestamp: new Date(Date.now() - (50 - i) * 60000).toISOString(),
+    }))
+  );
+
+  const [hasOlder, setHasOlder] = useState(true);
+  const isLoadingOlder = useRef(false);
+
+  // Load older messages khi scroll lên đầu
+  const loadOlder = useCallback(async () => {
+    if (isLoadingOlder.current || !hasOlder) return;
+    isLoadingOlder.current = true;
+
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    const oldestId = messages[0].id;
+    const newBatch = Array.from({ length: 30 }, (_, i) => ({
+      id: oldestId - i - 1,
+      text: \`Older Message \${oldestId - i - 1}\`,
+      sender: (oldestId - i - 1) % 3 === 0 ? "me" : "other",
+      timestamp: new Date(Date.now() - (100 + i) * 60000).toISOString(),
+    })).reverse();
+
+    setMessages((prev) => [...newBatch, ...prev]);
+
+    if (oldestId <= 30) {
+      setHasOlder(false);
+    }
+
+    isLoadingOlder.current = false;
+  }, [messages, hasOlder]);
+
+  // Render từng tin nhắn
+  const renderMessage = (message) => (
+    <div className={\`message-wrapper \${message.sender}\`}>
+      <div className={\`message-bubble \${message.sender}\`}>
+        <div>{message.text}</div>
+        <small>
+          {new Date(message.timestamp).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </small>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="app-container">
+      <h1 className="neon-title">Chat with Bi-directional Virtual Scroll</h1>
+      <p
+        style={{ textAlign: "center", color: "#94a3b8", marginBottom: "2rem" }}
+      >
+        Scroll lên để tải tin nhắn cũ • Chỉ render ~25 tin nhắn dù có hàng nghìn
+        tin
+      </p>
+
+      <div style={{ position: "relative" }}>
+        {/* Loading indicator ở đầu */}
+        {hasOlder && (
+          <div
+            className="loading-more"
+            style={{
+              padding: "16px",
+              opacity: isLoadingOlder.current ? 1 : 0.5,
+            }}
+          >
+            <span
+              className="spinner"
+              style={{ width: 18, height: 18, marginRight: 8 }}
+            />
+            Loading older messages...
+          </div>
+        )}
+
+        <VirtualScrollList
+          items={messages}
+          itemHeight={80} // Ước lượng chiều cao trung bình
+          containerHeight={600}
+          dynamicHeight={true} // Bật đo thực tế (rất mượt với tin nhắn)
+          overscan={5}
+          renderItem={renderMessage}
+          onFetchMore={loadOlder} // Khi scroll lên gần đầu → load older
+          hasMore={hasOlder}
+          loadingComponent={
+            <div className="loading-more">
+              <span className="spinner" /> Loading older messages...
+            </div>
+          }
+        />
+      </div>
+
+      <div
+        style={{
+          marginTop: "1rem",
+          textAlign: "center",
+          color: "#64748b",
+          fontSize: "0.9rem",
+        }}
+      >
+        Total messages: {messages.length} (DOM nodes chỉ ~25)
+      </div>
+    </div>
+  );
+}
+
+
+// ==========================================
+// 📝 KEY PATTERNS USED
+// ==========================================
+
+/*
+=== VIRTUAL SCROLLING PATTERNS ===
+
+1. CORE CONCEPT:
+   - Only render visible items
+   - Calculate visible range based on scrollTop
+   - Use overscan for smooth scrolling
+   - Maintain total height with spacer
+
+2. LAYOUT EFFECT USAGE:
+   - Measure item heights dynamically
+   - Maintain scroll position on updates
+   - Sync DOM before paint
+
+3. INFINITE SCROLL INTEGRATION:
+   - IntersectionObserver for trigger
+   - Fetch more when near bottom
+   - Loading states
+
+4. OPTIMIZATIONS:
+   - Throttle scroll handler (16ms = 60fps)
+   - useMemo for expensive calculations
+   - useCallback for stable references
+   - Ref for non-reactive values
+
+5. DYNAMIC HEIGHTS:
+   - Measure rendered items
+   - Store heights in Map
+   - Recalculate offsets
+
+6. BI-DIRECTIONAL SCROLLING:
+   - Load older items on scroll up
+   - Maintain scroll position with useLayoutEffect
+   - Track scroll height changes
+
+7. FEATURES IMPLEMENTED:
+   ✅ Virtual scrolling (performance)
+   ✅ Infinite scroll (load more)
+   ✅ Dynamic item heights
+   ✅ Scroll to index/top/bottom
+   ✅ Overscan for smooth scrolling
+   ✅ Loading indicators
+   ✅ Empty states
+   ✅ Throttled scroll
+   ✅ Bi-directional (chat-like)
+   ✅ Scroll position restoration
+
+=== PERFORMANCE METRICS ===
+
+Without Virtual Scrolling:
+- 10,000 items = 10,000 DOM nodes
+- Memory: ~50MB
+- Scroll FPS: ~15-20
+
+With Virtual Scrolling:
+- 10,000 items = ~15 visible DOM nodes
+- Memory: ~5MB
+- Scroll FPS: ~60
+
+=== USE CASES ===
+
+1. Long lists (thousands of items)
+2. Chat applications (messages)
+3. Social feeds (posts)
+4. Data tables (rows)
+5. File explorers (directories)
+6. Search results
+7. Any scrollable list with many items
+
+=== KEY TAKEAWAYS ===
+
+- Virtual scrolling = massive performance boost
+- useLayoutEffect for smooth updates
+- Intersection Observer for infinite scroll
+- Throttle scroll events
+- Dynamic heights need measurement
+- Bi-directional requires careful position management
+- Always provide loading/empty states
+*/
+
+`})]})}const $=[{symbol:"AAPL",name:"Apple Inc.",price:150,change:0,history:[]},{symbol:"GOOGL",name:"Alphabet Inc.",price:2800,change:0,history:[]},{symbol:"MSFT",name:"Microsoft Corp.",price:300,change:0,history:[]},{symbol:"TSLA",name:"Tesla Inc.",price:700,change:0,history:[]},{symbol:"AMZN",name:"Amazon.com Inc.",price:3200,change:0,history:[]},{symbol:"META",name:"Meta Platforms",price:280,change:0,history:[]}];function J(){const[s,d]=a.useState($),[l,v]=a.useState("AAPL"),[i,p]=a.useState([]),[m,c]=a.useState(!1),[u,r]=a.useState({}),[N,y]=a.useState(!1),[j,A]=a.useState(""),[k,T]=a.useState(""),[R,E]=a.useState("above"),I=a.useRef(0);a.useEffect(()=>(c(!0),()=>c(!1)),[]),a.useEffect(()=>{if(!m)return;const o=setInterval(()=>{d(g=>g.map(h=>{const M=(Math.random()-.5)*.1,D=h.price*M,P=Math.max(h.price+D,1),H=$.find(O=>O.symbol===h.symbol)?.price||h.price,F=(P-H)/H*100;return{...h,price:parseFloat(P.toFixed(2)),change:parseFloat(F.toFixed(2))}})),I.current+=1},2e3);return()=>clearInterval(o)},[m]),a.useEffect(()=>{const o=s.find(g=>g.symbol===l);o&&p(g=>[...g,{time:new Date().toLocaleTimeString(),price:o.price,timestamp:Date.now()}].slice(-20))},[s,l]),a.useEffect(()=>{s.forEach(o=>{const g=u[o.symbol];if(!g)return;(g.type==="above"&&o.price>=g.price||g.type==="below"&&o.price<=g.price)&&!g.triggered&&("Notification"in window&&Notification.permission==="granted"&&new Notification(`Stock Alert: ${o.symbol}`,{body:`Price ${g.type} $${g.price}. Current: $${o.price}`,icon:"📈"}),r(M=>({...M,[o.symbol]:{...g,triggered:!0}})),f(o.symbol,o.price,g))})},[s,u]);const f=(o,g,h)=>{console.log(`Alert triggered for ${o}: $${g} is ${h.type} $${h.price}`)},t=()=>{!j||!k||(r(o=>({...o,[j]:{price:parseFloat(k),type:R,triggered:!1}})),y(!1),A(""),T(""))},n=o=>{r(g=>{const h={...g};return delete h[o],h})},x=()=>{"Notification"in window&&Notification.permission==="default"&&Notification.requestPermission()},w=()=>i.length===0?0:Math.min(...i.map(o=>o.price)),C=()=>i.length===0?0:Math.max(...i.map(o=>o.price)),S=s.find(o=>o.symbol===l);return e.jsxs("div",{className:"stock-ticker-app",children:[e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-left",children:[e.jsx("h1",{className:"header-title",children:"📈 Live Stock Ticker"}),e.jsx("p",{className:"header-subtitle",children:"Real-time stock price updates"})]}),e.jsxs("div",{className:"header-right",children:[e.jsxs("div",{className:`connection-status ${m?"connected":"disconnected"}`,children:[e.jsx("span",{className:"status-dot"}),e.jsx("span",{className:"status-text",children:m?"Connected":"Disconnected"})]}),e.jsxs("div",{className:"update-count",children:["Updates: ",I.current]})]})]}),e.jsxs("div",{className:"content-grid",children:[e.jsxs("div",{className:"stock-list-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsx("h2",{className:"panel-title",children:"Stocks"}),e.jsx("button",{onClick:()=>y(!0),className:"btn-add-alert",title:"Add Price Alert",children:"🔔 Alert"})]}),e.jsx("div",{className:"stock-list",children:s.map(o=>{const g=l===o.symbol,h=u[o.symbol];return e.jsxs("div",{className:`stock-item ${g?"selected":""}`,onClick:()=>{v(o.symbol),p([{time:new Date().toLocaleTimeString(),price:o.price,timestamp:Date.now()}])},children:[e.jsxs("div",{className:"stock-item-left",children:[e.jsx("div",{className:"stock-symbol",children:o.symbol}),e.jsx("div",{className:"stock-name",children:o.name})]}),e.jsxs("div",{className:"stock-item-right",children:[e.jsxs("div",{className:"stock-price",children:["$",o.price.toFixed(2)]}),e.jsxs("div",{className:`stock-change ${o.change>=0?"positive":"negative"}`,children:[e.jsx("span",{className:"change-arrow",children:o.change>=0?"↑":"↓"}),Math.abs(o.change).toFixed(2),"%"]})]}),h&&e.jsx("div",{className:"alert-indicator",title:"Price alert set",children:"🔔"})]},o.symbol)})}),Object.keys(u).length>0&&e.jsxs("div",{className:"alerts-section",children:[e.jsx("h3",{className:"alerts-title",children:"Active Alerts"}),e.jsx("div",{className:"alerts-list",children:Object.entries(u).map(([o,g])=>e.jsxs("div",{className:"alert-item",children:[e.jsxs("div",{className:"alert-info",children:[e.jsx("span",{className:"alert-symbol",children:o}),e.jsxs("span",{className:"alert-condition",children:[g.type==="above"?"≥":"≤"," $",g.price]})]}),e.jsx("button",{onClick:()=>n(o),className:"btn-remove-alert",children:"✕"})]},o))})]})]}),e.jsxs("div",{className:"chart-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsxs("div",{children:[e.jsxs("h2",{className:"panel-title",children:[S?.name," (",l,")"]}),e.jsxs("div",{className:"current-price-display",children:[e.jsxs("span",{className:"price-large",children:["$",S?.price.toFixed(2)]}),e.jsxs("span",{className:`change-large ${S?.change>=0?"positive":"negative"}`,children:[S?.change>=0?"+":"",S?.change.toFixed(2),"%"]})]})]}),e.jsx("button",{onClick:x,className:"btn-notifications",title:"Enable notifications",children:"🔔 Enable Notifications"})]}),e.jsxs("div",{className:"chart-container",children:[i.length===0?e.jsxs("div",{className:"chart-empty",children:[e.jsx("div",{className:"empty-icon",children:"📊"}),e.jsx("p",{children:"Collecting price data..."})]}):e.jsxs("div",{className:"chart",children:[e.jsxs("div",{className:"chart-y-axis",children:[e.jsxs("div",{className:"y-label",children:["$",C().toFixed(2)]}),e.jsxs("div",{className:"y-label",children:["$",((C()+w())/2).toFixed(2)]}),e.jsxs("div",{className:"y-label",children:["$",w().toFixed(2)]})]}),e.jsx("div",{className:"chart-area",children:e.jsxs("svg",{className:"chart-svg",viewBox:"0 0 800 300",preserveAspectRatio:"none",children:[e.jsx("defs",{children:e.jsxs("linearGradient",{id:"gradient",x1:"0%",y1:"0%",x2:"0%",y2:"100%",children:[e.jsx("stop",{offset:"0%",stopColor:"rgba(0, 217, 255, 0.3)"}),e.jsx("stop",{offset:"100%",stopColor:"rgba(0, 217, 255, 0)"})]})}),e.jsx("polyline",{points:i.map((o,g)=>{const h=g/(i.length-1)*800,M=C()-w(),D=M===0?150:300-(o.price-w())/M*300;return`${h},${D}`}).join(" "),fill:"none",stroke:"url(#lineGradient)",strokeWidth:"3",strokeLinecap:"round",strokeLinejoin:"round"}),e.jsx("polygon",{points:["0,300",...i.map((o,g)=>{const h=g/(i.length-1)*800,M=C()-w(),D=M===0?150:300-(o.price-w())/M*300;return`${h},${D}`}),"800,300"].join(" "),fill:"url(#gradient)"}),e.jsx("defs",{children:e.jsxs("linearGradient",{id:"lineGradient",x1:"0%",y1:"0%",x2:"100%",y2:"0%",children:[e.jsx("stop",{offset:"0%",stopColor:"#00D9FF"}),e.jsx("stop",{offset:"100%",stopColor:"#00A3CC"})]})})]})})]}),e.jsxs("div",{className:"stats-grid",children:[e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"High"}),e.jsxs("div",{className:"stat-value",children:["$",C().toFixed(2)]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"Low"}),e.jsxs("div",{className:"stat-value",children:["$",w().toFixed(2)]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"Data Points"}),e.jsxs("div",{className:"stat-value",children:[i.length,"/20"]})]}),e.jsxs("div",{className:"stat-card",children:[e.jsx("div",{className:"stat-label",children:"Last Update"}),e.jsx("div",{className:"stat-value",children:i[i.length-1]?.time||"--:--"})]})]})]})]})]})]}),N&&e.jsx("div",{className:"modal-overlay",onClick:()=>y(!1),children:e.jsxs("div",{className:"modal-content",onClick:o=>o.stopPropagation(),children:[e.jsxs("div",{className:"modal-header",children:[e.jsx("h3",{className:"modal-title",children:"Set Price Alert"}),e.jsx("button",{onClick:()=>y(!1),className:"modal-close",children:"✕"})]}),e.jsxs("div",{className:"modal-body",children:[e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Stock"}),e.jsxs("select",{value:j,onChange:o=>A(o.target.value),className:"form-select",children:[e.jsx("option",{value:"",children:"Select stock..."}),s.map(o=>e.jsxs("option",{value:o.symbol,children:[o.symbol," - ",o.name]},o.symbol))]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Alert Type"}),e.jsxs("div",{className:"radio-group",children:[e.jsxs("label",{className:"radio-label",children:[e.jsx("input",{type:"radio",value:"above",checked:R==="above",onChange:o=>E(o.target.value),className:"radio-input"}),e.jsx("span",{children:"Price goes above"})]}),e.jsxs("label",{className:"radio-label",children:[e.jsx("input",{type:"radio",value:"below",checked:R==="below",onChange:o=>E(o.target.value),className:"radio-input"}),e.jsx("span",{children:"Price goes below"})]})]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Target Price ($)"}),e.jsx("input",{type:"number",value:k,onChange:o=>T(o.target.value),placeholder:"0.00",step:"0.01",min:"0",className:"form-input"})]})]}),e.jsxs("div",{className:"modal-footer",children:[e.jsx("button",{onClick:()=>y(!1),className:"btn-secondary",children:"Cancel"}),e.jsx("button",{onClick:t,className:"btn-primary",disabled:!j||!k,children:"Set Alert"})]})]})})]})}function Z(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:3,title:"Live Stock Ticker"}),e.jsx(b.Description,{children:`
 // TODO: Implement real-time stock price updates
 
 function StockTicker() {
@@ -795,7 +1328,7 @@ function StockTicker() {
   );
 }
 
-`}),e.jsx(m.Demo,{children:e.jsx(V,{})}),e.jsx(m.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(J,{})}),e.jsx(b.Code,{children:`
 import { useEffect, useRef, useState } from "react";
 
 // Initial stock data
@@ -1450,7 +1983,7 @@ export default StockTicker;
 // jsx// Scale price to chart coordinates
 // const priceRange = maxPrice - minPrice;
 // const y = 300 - ((price - minPrice) / priceRange) * 300;
-`})]})}function K(){const[a,l]=n.useState({title:"",content:"",tags:[],category:""}),[c,v]=n.useState(""),[i,p]=n.useState("saved"),[r,b]=n.useState(null),[N,g]=n.useState(null),[y,x]=n.useState(!1);n.useEffect(()=>{try{const t=localStorage.getItem("draft"),o=localStorage.getItem("draft-timestamp");t&&(l(JSON.parse(t)),o&&b(new Date(o)))}catch(t){console.error("Failed to load draft:",t)}},[]);const S=n.useCallback(async()=>{try{p("saving"),g(null),await new Promise(t=>setTimeout(t,500)),localStorage.setItem("draft",JSON.stringify(a)),localStorage.setItem("draft-timestamp",new Date().toISOString()),p("saved"),b(new Date)}catch(t){g("Failed to save draft"+t),p("unsaved")}},[a]);n.useEffect(()=>{(a.title||a.content||a.tags.length>0||a.category)&&p("unsaved");const t=setTimeout(()=>{i==="unsaved"&&S()},2e3);return()=>clearTimeout(t)},[a,i,S]),n.useEffect(()=>{const t=o=>{if(i==="unsaved"||i==="saving")return o.preventDefault(),o.returnValue="You have unsaved changes. Are you sure you want to leave?",o.returnValue};return window.addEventListener("beforeunload",t),()=>window.removeEventListener("beforeunload",t)},[i]);const u=(t,o)=>{l(D=>({...D,[t]:o}))},h=()=>{const t=c.trim();t&&!a.tags.includes(t)&&(l(o=>({...o,tags:[...o.tags,t]})),v(""))},C=t=>{l(o=>({...o,tags:o.tags.filter(D=>D!==t)}))},j=async t=>{if(t.preventDefault(),!a.title.trim()||!a.content.trim()){g("Title and content are required");return}try{p("saving"),g(null),await new Promise(o=>setTimeout(o,1e3)),localStorage.removeItem("draft"),localStorage.removeItem("draft-timestamp"),x(!0),setTimeout(()=>{l({title:"",content:"",tags:[],category:""}),p("saved"),b(null),x(!1)},2e3)}catch(o){g("Failed to publish post "+o),p("unsaved")}},I=()=>{window.confirm("Are you sure you want to clear this draft?")&&(l({title:"",content:"",tags:[],category:""}),localStorage.removeItem("draft"),localStorage.removeItem("draft-timestamp"),p("saved"),b(null))},A=t=>t.length,E=t=>t.trim().split(/\s+/).filter(Boolean).length;return e.jsxs("div",{className:"auto-save-app",children:[e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"header-title",children:"📝 Auto-Save Form"}),e.jsx("p",{className:"header-subtitle",children:"Your work is automatically saved as you type"})]}),e.jsxs("div",{className:"save-status-bar",children:[i==="saved"&&r&&e.jsxs("div",{className:"status-saved",children:[e.jsx("span",{className:"status-icon",children:"✓"}),e.jsxs("span",{className:"status-text",children:["Saved at ",r.toLocaleTimeString()]})]}),i==="saving"&&e.jsxs("div",{className:"status-saving",children:[e.jsx("div",{className:"saving-spinner"}),e.jsx("span",{className:"status-text",children:"Saving..."})]}),i==="unsaved"&&e.jsxs("div",{className:"status-unsaved",children:[e.jsx("span",{className:"status-icon",children:"●"}),e.jsx("span",{className:"status-text",children:"Unsaved changes"})]}),N&&e.jsxs("div",{className:"status-error",children:[e.jsx("span",{className:"status-icon",children:"❌"}),e.jsx("span",{className:"status-text",children:N})]})]})]}),e.jsxs("div",{className:"form-container",children:[e.jsxs("div",{className:"form-main",children:[e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Title ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:a.title,onChange:t=>u("title",t.target.value),placeholder:"Enter your post title...",className:"form-input form-title-input"}),e.jsxs("div",{className:"input-hint",children:[A(a.title)," characters"]})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Content ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("textarea",{value:a.content,onChange:t=>u("content",t.target.value),placeholder:"Write your content here...",rows:15,className:"form-textarea"}),e.jsxs("div",{className:"textarea-stats",children:[e.jsxs("span",{children:[E(a.content)," words"]}),e.jsx("span",{children:"•"}),e.jsxs("span",{children:[A(a.content)," characters"]})]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Category"}),e.jsxs("select",{value:a.category,onChange:t=>u("category",t.target.value),className:"form-select",children:[e.jsx("option",{value:"",children:"Choose a category..."}),e.jsx("option",{value:"tech",children:"Technology"}),e.jsx("option",{value:"design",children:"Design"}),e.jsx("option",{value:"business",children:"Business"}),e.jsx("option",{value:"lifestyle",children:"Lifestyle"}),e.jsx("option",{value:"travel",children:"Travel"}),e.jsx("option",{value:"food",children:"Food"}),e.jsx("option",{value:"health",children:"Health"}),e.jsx("option",{value:"other",children:"Other"})]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Tags"}),e.jsxs("div",{className:"tags-input-wrapper",children:[e.jsx("input",{type:"text",value:c,onChange:t=>v(t.target.value),onKeyPress:t=>{t.key==="Enter"&&(t.preventDefault(),h())},placeholder:"Type a tag and press Enter...",className:"form-input"}),e.jsx("button",{onClick:h,className:"btn-add-tag",type:"button",children:"Add Tag"})]}),a.tags.length>0&&e.jsx("div",{className:"tags-list",children:a.tags.map((t,o)=>e.jsxs("div",{className:"tag-item",children:[e.jsx("span",{className:"tag-text",children:t}),e.jsx("button",{onClick:()=>C(t),className:"tag-remove",type:"button",children:"✕"})]},o))})]}),e.jsxs("div",{className:"form-actions",children:[e.jsx("button",{onClick:I,className:"btn-secondary",type:"button",disabled:i==="saving",children:"Clear Draft"}),e.jsx("button",{onClick:j,className:"btn-primary",type:"button",disabled:i==="saving"||!a.title.trim()||!a.content.trim(),children:i==="saving"?"Publishing...":"Publish Post"})]})]}),e.jsxs("div",{className:"form-sidebar",children:[e.jsxs("div",{className:"info-card",children:[e.jsx("h3",{className:"info-title",children:"💡 Auto-Save Info"}),e.jsxs("div",{className:"info-content",children:[e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"⚡"}),e.jsx("p",{children:"Your work is automatically saved every 2 seconds"})]}),e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"💾"}),e.jsx("p",{children:"Drafts are stored locally in your browser"})]}),e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"🔒"}),e.jsx("p",{children:"You'll be warned before leaving with unsaved changes"})]}),e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"🎨"}),e.jsx("p",{children:"Use tags to organize your posts"})]})]})]}),e.jsxs("div",{className:"info-card",children:[e.jsx("h3",{className:"info-title",children:"📊 Writing Stats"}),e.jsxs("div",{className:"stats-grid",children:[e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:E(a.content)}),e.jsx("div",{className:"stat-label",children:"Words"})]}),e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:A(a.content)}),e.jsx("div",{className:"stat-label",children:"Characters"})]}),e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:a.tags.length}),e.jsx("div",{className:"stat-label",children:"Tags"})]}),e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:a.category?"✓":"–"}),e.jsx("div",{className:"stat-label",children:"Category"})]})]})]}),r&&e.jsxs("div",{className:"info-card",children:[e.jsx("h3",{className:"info-title",children:"🕐 Last Saved"}),e.jsxs("div",{className:"last-saved-details",children:[e.jsx("p",{className:"saved-time",children:r.toLocaleTimeString()}),e.jsx("p",{className:"saved-date",children:r.toLocaleDateString()})]})]})]})]})]}),y&&e.jsx("div",{className:"modal-overlay",children:e.jsxs("div",{className:"modal-content success-modal",children:[e.jsx("div",{className:"success-icon",children:"🎉"}),e.jsx("h2",{className:"success-title",children:"Published Successfully!"}),e.jsx("p",{className:"success-text",children:"Your post has been published and draft cleared."})]})})]})}function X(){return e.jsxs(m,{children:[e.jsx(m.Header,{order:4,title:"Form Auto-Save"}),e.jsx(m.Description,{children:`
+`})]})}function ee(){const[s,d]=a.useState({title:"",content:"",tags:[],category:""}),[l,v]=a.useState(""),[i,p]=a.useState("saved"),[m,c]=a.useState(null),[u,r]=a.useState(null),[N,y]=a.useState(!1);a.useEffect(()=>{try{const t=localStorage.getItem("draft"),n=localStorage.getItem("draft-timestamp");t&&(d(JSON.parse(t)),n&&c(new Date(n)))}catch(t){console.error("Failed to load draft:",t)}},[]);const j=a.useCallback(async()=>{try{p("saving"),r(null),await new Promise(t=>setTimeout(t,500)),localStorage.setItem("draft",JSON.stringify(s)),localStorage.setItem("draft-timestamp",new Date().toISOString()),p("saved"),c(new Date)}catch(t){r("Failed to save draft"+t),p("unsaved")}},[s]);a.useEffect(()=>{(s.title||s.content||s.tags.length>0||s.category)&&p("unsaved");const t=setTimeout(()=>{i==="unsaved"&&j()},2e3);return()=>clearTimeout(t)},[s,i,j]),a.useEffect(()=>{const t=n=>{if(i==="unsaved"||i==="saving")return n.preventDefault(),n.returnValue="You have unsaved changes. Are you sure you want to leave?",n.returnValue};return window.addEventListener("beforeunload",t),()=>window.removeEventListener("beforeunload",t)},[i]);const A=(t,n)=>{d(x=>({...x,[t]:n}))},k=()=>{const t=l.trim();t&&!s.tags.includes(t)&&(d(n=>({...n,tags:[...n.tags,t]})),v(""))},T=t=>{d(n=>({...n,tags:n.tags.filter(x=>x!==t)}))},R=async t=>{if(t.preventDefault(),!s.title.trim()||!s.content.trim()){r("Title and content are required");return}try{p("saving"),r(null),await new Promise(n=>setTimeout(n,1e3)),localStorage.removeItem("draft"),localStorage.removeItem("draft-timestamp"),y(!0),setTimeout(()=>{d({title:"",content:"",tags:[],category:""}),p("saved"),c(null),y(!1)},2e3)}catch(n){r("Failed to publish post "+n),p("unsaved")}},E=()=>{window.confirm("Are you sure you want to clear this draft?")&&(d({title:"",content:"",tags:[],category:""}),localStorage.removeItem("draft"),localStorage.removeItem("draft-timestamp"),p("saved"),c(null))},I=t=>t.length,f=t=>t.trim().split(/\s+/).filter(Boolean).length;return e.jsxs("div",{className:"auto-save-app",children:[e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"header-title",children:"📝 Auto-Save Form"}),e.jsx("p",{className:"header-subtitle",children:"Your work is automatically saved as you type"})]}),e.jsxs("div",{className:"save-status-bar",children:[i==="saved"&&m&&e.jsxs("div",{className:"status-saved",children:[e.jsx("span",{className:"status-icon",children:"✓"}),e.jsxs("span",{className:"status-text",children:["Saved at ",m.toLocaleTimeString()]})]}),i==="saving"&&e.jsxs("div",{className:"status-saving",children:[e.jsx("div",{className:"saving-spinner"}),e.jsx("span",{className:"status-text",children:"Saving..."})]}),i==="unsaved"&&e.jsxs("div",{className:"status-unsaved",children:[e.jsx("span",{className:"status-icon",children:"●"}),e.jsx("span",{className:"status-text",children:"Unsaved changes"})]}),u&&e.jsxs("div",{className:"status-error",children:[e.jsx("span",{className:"status-icon",children:"❌"}),e.jsx("span",{className:"status-text",children:u})]})]})]}),e.jsxs("div",{className:"form-container",children:[e.jsxs("div",{className:"form-main",children:[e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Title ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("input",{type:"text",value:s.title,onChange:t=>A("title",t.target.value),placeholder:"Enter your post title...",className:"form-input form-title-input"}),e.jsxs("div",{className:"input-hint",children:[I(s.title)," characters"]})]}),e.jsxs("div",{className:"form-group",children:[e.jsxs("label",{className:"form-label",children:["Content ",e.jsx("span",{className:"required",children:"*"})]}),e.jsx("textarea",{value:s.content,onChange:t=>A("content",t.target.value),placeholder:"Write your content here...",rows:15,className:"form-textarea"}),e.jsxs("div",{className:"textarea-stats",children:[e.jsxs("span",{children:[f(s.content)," words"]}),e.jsx("span",{children:"•"}),e.jsxs("span",{children:[I(s.content)," characters"]})]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Category"}),e.jsxs("select",{value:s.category,onChange:t=>A("category",t.target.value),className:"form-select",children:[e.jsx("option",{value:"",children:"Choose a category..."}),e.jsx("option",{value:"tech",children:"Technology"}),e.jsx("option",{value:"design",children:"Design"}),e.jsx("option",{value:"business",children:"Business"}),e.jsx("option",{value:"lifestyle",children:"Lifestyle"}),e.jsx("option",{value:"travel",children:"Travel"}),e.jsx("option",{value:"food",children:"Food"}),e.jsx("option",{value:"health",children:"Health"}),e.jsx("option",{value:"other",children:"Other"})]})]}),e.jsxs("div",{className:"form-group",children:[e.jsx("label",{className:"form-label",children:"Tags"}),e.jsxs("div",{className:"tags-input-wrapper",children:[e.jsx("input",{type:"text",value:l,onChange:t=>v(t.target.value),onKeyPress:t=>{t.key==="Enter"&&(t.preventDefault(),k())},placeholder:"Type a tag and press Enter...",className:"form-input"}),e.jsx("button",{onClick:k,className:"btn-add-tag",type:"button",children:"Add Tag"})]}),s.tags.length>0&&e.jsx("div",{className:"tags-list",children:s.tags.map((t,n)=>e.jsxs("div",{className:"tag-item",children:[e.jsx("span",{className:"tag-text",children:t}),e.jsx("button",{onClick:()=>T(t),className:"tag-remove",type:"button",children:"✕"})]},n))})]}),e.jsxs("div",{className:"form-actions",children:[e.jsx("button",{onClick:E,className:"btn-secondary",type:"button",disabled:i==="saving",children:"Clear Draft"}),e.jsx("button",{onClick:R,className:"btn-primary",type:"button",disabled:i==="saving"||!s.title.trim()||!s.content.trim(),children:i==="saving"?"Publishing...":"Publish Post"})]})]}),e.jsxs("div",{className:"form-sidebar",children:[e.jsxs("div",{className:"info-card",children:[e.jsx("h3",{className:"info-title",children:"💡 Auto-Save Info"}),e.jsxs("div",{className:"info-content",children:[e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"⚡"}),e.jsx("p",{children:"Your work is automatically saved every 2 seconds"})]}),e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"💾"}),e.jsx("p",{children:"Drafts are stored locally in your browser"})]}),e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"🔒"}),e.jsx("p",{children:"You'll be warned before leaving with unsaved changes"})]}),e.jsxs("div",{className:"info-item",children:[e.jsx("span",{className:"info-icon",children:"🎨"}),e.jsx("p",{children:"Use tags to organize your posts"})]})]})]}),e.jsxs("div",{className:"info-card",children:[e.jsx("h3",{className:"info-title",children:"📊 Writing Stats"}),e.jsxs("div",{className:"stats-grid",children:[e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:f(s.content)}),e.jsx("div",{className:"stat-label",children:"Words"})]}),e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:I(s.content)}),e.jsx("div",{className:"stat-label",children:"Characters"})]}),e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:s.tags.length}),e.jsx("div",{className:"stat-label",children:"Tags"})]}),e.jsxs("div",{className:"stat-box",children:[e.jsx("div",{className:"stat-value",children:s.category?"✓":"–"}),e.jsx("div",{className:"stat-label",children:"Category"})]})]})]}),m&&e.jsxs("div",{className:"info-card",children:[e.jsx("h3",{className:"info-title",children:"🕐 Last Saved"}),e.jsxs("div",{className:"last-saved-details",children:[e.jsx("p",{className:"saved-time",children:m.toLocaleTimeString()}),e.jsx("p",{className:"saved-date",children:m.toLocaleDateString()})]})]})]})]})]}),N&&e.jsx("div",{className:"modal-overlay",children:e.jsxs("div",{className:"modal-content success-modal",children:[e.jsx("div",{className:"success-icon",children:"🎉"}),e.jsx("h2",{className:"success-title",children:"Published Successfully!"}),e.jsx("p",{className:"success-text",children:"Your post has been published and draft cleared."})]})})]})}function te(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:4,title:"Form Auto-Save"}),e.jsx(b.Description,{children:`
 // TODO: Implement auto-save form
 
 function AutoSaveForm() {
@@ -1577,7 +2110,7 @@ function AutoSaveForm() {
   );
 }
 
-`}),e.jsx(m.Demo,{children:e.jsx(K,{})}),e.jsx(m.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(ee,{})}),e.jsx(b.Code,{children:`
 import { useCallback, useEffect, useState } from "react";
 
 function AutoSaveForm() {
@@ -2107,7 +2640,7 @@ export default AutoSaveForm;
 // Browser APIs - beforeunload event
 // LocalStorage - Persistent storage
 
-`})]})}function Q(){const[a,l]=n.useState(0),[c,v]=n.useState([]),[i,p]=n.useState(1),[r]=n.useState(()=>`tab-${Date.now()}-${Math.random().toString(36).slice(2,9)}`),[b,N]=n.useState(""),[g]=n.useState(()=>{const t=["#00D9FF","#22c55e","#f59e0b","#ec4899","#8b5cf6","#ef4444"];return t[Math.floor(Math.random()*t.length)]}),y=n.useRef(null),x=n.useRef(null);n.useEffect(()=>{const t=new BroadcastChannel("app-sync");return y.current=t,t.onmessage=o=>{const{type:D,payload:k,senderId:M}=o.data;if(M!==r)switch(D){case"COUNT_UPDATE":l(k);break;case"MESSAGE_ADD":v(w=>w.some(s=>s.id===k.id)?w:[...w,k]);break;case"TAB_OPENED":p(w=>w+1),t.postMessage({type:"STATE_SYNC",payload:{count:a,messages:c},senderId:r});break;case"TAB_CLOSED":p(w=>Math.max(1,w-1));break;case"STATE_SYNC":c.length===0&&(l(k.count),v(k.messages));break;case"MESSAGES_CLEAR":v([]);break;case"COUNT_RESET":l(0);break}},t.postMessage({type:"TAB_OPENED",senderId:r}),()=>{t.postMessage({type:"TAB_CLOSED",senderId:r}),t.close()}},[r]),n.useEffect(()=>{if(a===0)return;const t=y.current;t&&t.postMessage({type:"COUNT_UPDATE",payload:a,senderId:r})},[a,r]),n.useEffect(()=>{x.current?.scrollIntoView({behavior:"smooth"})},[c]);const S=()=>{l(t=>t+1)},u=()=>{l(t=>t-1)},h=()=>{l(0);const t=y.current;t&&t.postMessage({type:"COUNT_RESET",senderId:r})},C=()=>{const t=b.trim();if(!t)return;const o={id:`${Date.now()}-${Math.random()}`,text:t,timestamp:new Date().toISOString(),tabId:r,tabColor:g};v(k=>[...k,o]),N("");const D=y.current;D&&D.postMessage({type:"MESSAGE_ADD",payload:o,senderId:r})},j=()=>{v([]);const t=y.current;t&&t.postMessage({type:"MESSAGES_CLEAR",senderId:r})},I=t=>{t.key==="Enter"&&!t.shiftKey&&(t.preventDefault(),C())},A=t=>new Date(t).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit",second:"2-digit"}),E=t=>t===r?"You":t.split("-")[1].slice(0,6);return e.jsx("div",{className:"multi-tab-app",children:e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"header-title",children:"🔄 Multi-Tab Sync"}),e.jsx("p",{className:"header-subtitle",children:"Real-time synchronization across browser tabs using BroadcastChannel API"})]}),e.jsxs("div",{className:"tab-info-card",children:[e.jsxs("div",{className:"tab-badge",style:{borderColor:g},children:[e.jsx("div",{className:"tab-color-dot",style:{background:g}}),e.jsxs("div",{className:"tab-details",children:[e.jsx("div",{className:"tab-label",children:"Your Tab ID"}),e.jsx("div",{className:"tab-id",children:r})]})]}),e.jsxs("div",{className:"active-tabs-badge",children:[e.jsx("div",{className:"badge-icon",children:"👥"}),e.jsxs("div",{className:"badge-content",children:[e.jsx("div",{className:"badge-label",children:"Active Tabs"}),e.jsx("div",{className:"badge-value",children:i})]})]})]})]}),e.jsxs("div",{className:"info-banner",children:[e.jsx("span",{className:"info-icon",children:"💡"}),e.jsx("span",{className:"info-text",children:"Open multiple tabs of this app to see real-time synchronization in action!"})]}),e.jsxs("div",{className:"content-grid",children:[e.jsxs("div",{className:"counter-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsx("h2",{className:"panel-title",children:"📊 Shared Counter"}),e.jsxs("div",{className:"sync-indicator",children:[e.jsx("div",{className:"pulse-dot"}),e.jsx("span",{children:"Synced"})]})]}),e.jsxs("div",{className:"counter-display",children:[e.jsx("div",{className:"counter-value",children:a}),e.jsx("div",{className:"counter-label",children:"Current Count"})]}),e.jsxs("div",{className:"counter-controls",children:[e.jsxs("button",{onClick:u,className:"btn-counter btn-decrement",children:[e.jsx("span",{className:"btn-icon",children:"−"}),e.jsx("span",{className:"btn-text",children:"Decrease"})]}),e.jsxs("button",{onClick:S,className:"btn-counter btn-increment",children:[e.jsx("span",{className:"btn-icon",children:"+"}),e.jsx("span",{className:"btn-text",children:"Increase"})]})]}),e.jsx("button",{onClick:h,className:"btn-reset",children:"🔄 Reset Counter"}),e.jsx("div",{className:"counter-info",children:e.jsx("p",{children:"The counter is synchronized across all open tabs. Try changing it in any tab!"})})]}),e.jsxs("div",{className:"messages-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsx("h2",{className:"panel-title",children:"💬 Shared Messages"}),e.jsx("button",{onClick:j,className:"btn-clear-messages",children:"🗑️ Clear"})]}),e.jsx("div",{className:"messages-container",children:c.length===0?e.jsxs("div",{className:"messages-empty",children:[e.jsx("div",{className:"empty-icon",children:"💭"}),e.jsx("p",{className:"empty-text",children:"No messages yet"}),e.jsx("p",{className:"empty-subtext",children:"Send a message to start the conversation"})]}):e.jsxs("div",{className:"messages-list",children:[c.map(t=>{const o=t.tabId===r;return e.jsxs("div",{className:`message-item ${o?"own":"other"}`,children:[e.jsxs("div",{className:"message-header",children:[e.jsxs("div",{className:"message-sender",children:[e.jsx("div",{className:"sender-dot",style:{background:t.tabColor}}),e.jsx("span",{className:"sender-name",children:E(t.tabId)})]}),e.jsx("span",{className:"message-time",children:A(t.timestamp)})]}),e.jsx("div",{className:"message-text",children:t.text})]},t.id)}),e.jsx("div",{ref:x})]})}),e.jsxs("div",{className:"message-input-area",children:[e.jsx("input",{type:"text",value:b,onChange:t=>N(t.target.value),onKeyPress:I,placeholder:"Type a message and press Enter...",className:"message-input"}),e.jsx("button",{onClick:C,className:"btn-send",disabled:!b.trim(),children:e.jsx("span",{className:"send-icon",children:"📤"})})]}),e.jsx("div",{className:"messages-info",children:e.jsx("p",{children:"Messages are synced across all tabs in real-time"})})]})]}),e.jsxs("div",{className:"how-it-works",children:[e.jsx("h3",{className:"section-title",children:"🔧 How It Works"}),e.jsxs("div",{className:"features-grid",children:[e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"📡"}),e.jsx("h4",{className:"feature-title",children:"BroadcastChannel API"}),e.jsx("p",{className:"feature-text",children:"Uses browser's BroadcastChannel API to communicate between tabs in the same origin"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"⚡"}),e.jsx("h4",{className:"feature-title",children:"Real-time Sync"}),e.jsx("p",{className:"feature-text",children:"Changes in any tab are instantly broadcasted to all other open tabs"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🎨"}),e.jsx("h4",{className:"feature-title",children:"Unique Tab Identity"}),e.jsx("p",{className:"feature-text",children:"Each tab has a unique ID and color for easy identification"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🔄"}),e.jsx("h4",{className:"feature-title",children:"State Management"}),e.jsx("p",{className:"feature-text",children:"New tabs automatically receive current state from existing tabs"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🧹"}),e.jsx("h4",{className:"feature-title",children:"Cleanup"}),e.jsx("p",{className:"feature-text",children:"Properly closes channels and notifies other tabs when a tab is closed"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🎯"}),e.jsx("h4",{className:"feature-title",children:"No Duplicates"}),e.jsx("p",{className:"feature-text",children:"Smart message handling prevents duplicate messages and infinite loops"})]})]})]})]})})}function J(){return e.jsxs(m,{children:[e.jsx(m.Header,{order:5,title:"Multi-Tab Sync (Challenge)"}),e.jsx(m.Description,{children:`
+`})]})}function se(){const[s,d]=a.useState(0),[l,v]=a.useState([]),[i,p]=a.useState(1),[m]=a.useState(()=>`tab-${Date.now()}-${Math.random().toString(36).slice(2,9)}`),[c,u]=a.useState(""),[r]=a.useState(()=>{const t=["#00D9FF","#22c55e","#f59e0b","#ec4899","#8b5cf6","#ef4444"];return t[Math.floor(Math.random()*t.length)]}),N=a.useRef(null),y=a.useRef(null);a.useEffect(()=>{const t=new BroadcastChannel("app-sync");return N.current=t,t.onmessage=n=>{const{type:x,payload:w,senderId:C}=n.data;if(C!==m)switch(x){case"COUNT_UPDATE":d(w);break;case"MESSAGE_ADD":v(S=>S.some(o=>o.id===w.id)?S:[...S,w]);break;case"TAB_OPENED":p(S=>S+1),t.postMessage({type:"STATE_SYNC",payload:{count:s,messages:l},senderId:m});break;case"TAB_CLOSED":p(S=>Math.max(1,S-1));break;case"STATE_SYNC":l.length===0&&(d(w.count),v(w.messages));break;case"MESSAGES_CLEAR":v([]);break;case"COUNT_RESET":d(0);break}},t.postMessage({type:"TAB_OPENED",senderId:m}),()=>{t.postMessage({type:"TAB_CLOSED",senderId:m}),t.close()}},[m]),a.useEffect(()=>{if(s===0)return;const t=N.current;t&&t.postMessage({type:"COUNT_UPDATE",payload:s,senderId:m})},[s,m]),a.useEffect(()=>{y.current?.scrollIntoView({behavior:"smooth"})},[l]);const j=()=>{d(t=>t+1)},A=()=>{d(t=>t-1)},k=()=>{d(0);const t=N.current;t&&t.postMessage({type:"COUNT_RESET",senderId:m})},T=()=>{const t=c.trim();if(!t)return;const n={id:`${Date.now()}-${Math.random()}`,text:t,timestamp:new Date().toISOString(),tabId:m,tabColor:r};v(w=>[...w,n]),u("");const x=N.current;x&&x.postMessage({type:"MESSAGE_ADD",payload:n,senderId:m})},R=()=>{v([]);const t=N.current;t&&t.postMessage({type:"MESSAGES_CLEAR",senderId:m})},E=t=>{t.key==="Enter"&&!t.shiftKey&&(t.preventDefault(),T())},I=t=>new Date(t).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit",second:"2-digit"}),f=t=>t===m?"You":t.split("-")[1].slice(0,6);return e.jsx("div",{className:"multi-tab-app",children:e.jsxs("div",{className:"app-container",children:[e.jsxs("div",{className:"app-header",children:[e.jsxs("div",{className:"header-content",children:[e.jsx("h1",{className:"header-title",children:"🔄 Multi-Tab Sync"}),e.jsx("p",{className:"header-subtitle",children:"Real-time synchronization across browser tabs using BroadcastChannel API"})]}),e.jsxs("div",{className:"tab-info-card",children:[e.jsxs("div",{className:"tab-badge",style:{borderColor:r},children:[e.jsx("div",{className:"tab-color-dot",style:{background:r}}),e.jsxs("div",{className:"tab-details",children:[e.jsx("div",{className:"tab-label",children:"Your Tab ID"}),e.jsx("div",{className:"tab-id",children:m})]})]}),e.jsxs("div",{className:"active-tabs-badge",children:[e.jsx("div",{className:"badge-icon",children:"👥"}),e.jsxs("div",{className:"badge-content",children:[e.jsx("div",{className:"badge-label",children:"Active Tabs"}),e.jsx("div",{className:"badge-value",children:i})]})]})]})]}),e.jsxs("div",{className:"info-banner",children:[e.jsx("span",{className:"info-icon",children:"💡"}),e.jsx("span",{className:"info-text",children:"Open multiple tabs of this app to see real-time synchronization in action!"})]}),e.jsxs("div",{className:"content-grid",children:[e.jsxs("div",{className:"counter-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsx("h2",{className:"panel-title",children:"📊 Shared Counter"}),e.jsxs("div",{className:"sync-indicator",children:[e.jsx("div",{className:"pulse-dot"}),e.jsx("span",{children:"Synced"})]})]}),e.jsxs("div",{className:"counter-display",children:[e.jsx("div",{className:"counter-value",children:s}),e.jsx("div",{className:"counter-label",children:"Current Count"})]}),e.jsxs("div",{className:"counter-controls",children:[e.jsxs("button",{onClick:A,className:"btn-counter btn-decrement",children:[e.jsx("span",{className:"btn-icon",children:"−"}),e.jsx("span",{className:"btn-text",children:"Decrease"})]}),e.jsxs("button",{onClick:j,className:"btn-counter btn-increment",children:[e.jsx("span",{className:"btn-icon",children:"+"}),e.jsx("span",{className:"btn-text",children:"Increase"})]})]}),e.jsx("button",{onClick:k,className:"btn-reset",children:"🔄 Reset Counter"}),e.jsx("div",{className:"counter-info",children:e.jsx("p",{children:"The counter is synchronized across all open tabs. Try changing it in any tab!"})})]}),e.jsxs("div",{className:"messages-panel",children:[e.jsxs("div",{className:"panel-header",children:[e.jsx("h2",{className:"panel-title",children:"💬 Shared Messages"}),e.jsx("button",{onClick:R,className:"btn-clear-messages",children:"🗑️ Clear"})]}),e.jsx("div",{className:"messages-container",children:l.length===0?e.jsxs("div",{className:"messages-empty",children:[e.jsx("div",{className:"empty-icon",children:"💭"}),e.jsx("p",{className:"empty-text",children:"No messages yet"}),e.jsx("p",{className:"empty-subtext",children:"Send a message to start the conversation"})]}):e.jsxs("div",{className:"messages-list",children:[l.map(t=>{const n=t.tabId===m;return e.jsxs("div",{className:`message-item ${n?"own":"other"}`,children:[e.jsxs("div",{className:"message-header",children:[e.jsxs("div",{className:"message-sender",children:[e.jsx("div",{className:"sender-dot",style:{background:t.tabColor}}),e.jsx("span",{className:"sender-name",children:f(t.tabId)})]}),e.jsx("span",{className:"message-time",children:I(t.timestamp)})]}),e.jsx("div",{className:"message-text",children:t.text})]},t.id)}),e.jsx("div",{ref:y})]})}),e.jsxs("div",{className:"message-input-area",children:[e.jsx("input",{type:"text",value:c,onChange:t=>u(t.target.value),onKeyPress:E,placeholder:"Type a message and press Enter...",className:"message-input"}),e.jsx("button",{onClick:T,className:"btn-send",disabled:!c.trim(),children:e.jsx("span",{className:"send-icon",children:"📤"})})]}),e.jsx("div",{className:"messages-info",children:e.jsx("p",{children:"Messages are synced across all tabs in real-time"})})]})]}),e.jsxs("div",{className:"how-it-works",children:[e.jsx("h3",{className:"section-title",children:"🔧 How It Works"}),e.jsxs("div",{className:"features-grid",children:[e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"📡"}),e.jsx("h4",{className:"feature-title",children:"BroadcastChannel API"}),e.jsx("p",{className:"feature-text",children:"Uses browser's BroadcastChannel API to communicate between tabs in the same origin"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"⚡"}),e.jsx("h4",{className:"feature-title",children:"Real-time Sync"}),e.jsx("p",{className:"feature-text",children:"Changes in any tab are instantly broadcasted to all other open tabs"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🎨"}),e.jsx("h4",{className:"feature-title",children:"Unique Tab Identity"}),e.jsx("p",{className:"feature-text",children:"Each tab has a unique ID and color for easy identification"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🔄"}),e.jsx("h4",{className:"feature-title",children:"State Management"}),e.jsx("p",{className:"feature-text",children:"New tabs automatically receive current state from existing tabs"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🧹"}),e.jsx("h4",{className:"feature-title",children:"Cleanup"}),e.jsx("p",{className:"feature-text",children:"Properly closes channels and notifies other tabs when a tab is closed"})]}),e.jsxs("div",{className:"feature-card",children:[e.jsx("div",{className:"feature-icon",children:"🎯"}),e.jsx("h4",{className:"feature-title",children:"No Duplicates"}),e.jsx("p",{className:"feature-text",children:"Smart message handling prevents duplicate messages and infinite loops"})]})]})]})]})})}function ae(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:5,title:"Multi-Tab Sync (Challenge)"}),e.jsx(b.Description,{children:`
 // TODO: Sync state across browser tabs
 
 function MultiTabSyncApp() {
@@ -2271,7 +2804,7 @@ function MultiTabSyncApp() {
   );
 }
 
-`}),e.jsx(m.Demo,{children:e.jsx(Q,{})}),e.jsx(m.Code,{children:`
+`}),e.jsx(b.Demo,{children:e.jsx(se,{})}),e.jsx(b.Code,{children:`
 import { useEffect, useRef, useState } from "react";
 
 function MultiTabSyncApp() {
@@ -2850,7 +3383,7 @@ export default MultiTabSyncApp;
 // Supported - All modern browsers (not IE11)
 
 
-`})]})}function Z(){return e.jsxs(m,{children:[e.jsx(m.Header,{order:"#",title:"Home Work"}),e.jsx(m.Description,{children:`
+`})]})}function oe(){return e.jsxs(b,{children:[e.jsx(b.Header,{order:"#",title:"Home Work"}),e.jsx(b.Description,{children:`
 
 1. News Feed với Auto-Refresh
 // Features:
@@ -2906,7 +3439,7 @@ export default MultiTabSyncApp;
 // - Bulk actions
 
 
-`}),e.jsx(m.Code,{children:`
+`}),e.jsx(b.Code,{children:`
 
 
 ### **1. News Feed với Auto-Refresh**
@@ -3795,4 +4328,4 @@ useEffect(() => {
   localStorage.setItem('key', JSON.stringify(data));
 }, [data]);
 
-`})]})}const U={1:_,2:z,3:q,4:X,5:J},ae=()=>e.jsxs("div",{className:"day-content",children:[e.jsxs("div",{className:"day-header",children:[e.jsxs("div",{className:"day-header-content",children:[e.jsx(H,{size:32,color:"#00D9FF"}),e.jsxs("div",{children:[e.jsx("h1",{className:"day-title",children:"Ngày 9"}),e.jsx("p",{className:"day-subtitle",children:"useEffect & Side Effects"})]})]}),e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"🎯 Mục tiêu hôm nay"}),e.jsxs("ul",{children:[e.jsx("li",{children:"Hiểu sâu về useEffect và side effects"}),e.jsx("li",{children:"Dependencies array và rules"}),e.jsx("li",{children:"Cleanup functions"}),e.jsx("li",{children:"Common patterns: data fetching, subscriptions, timers"}),e.jsx("li",{children:"useLayoutEffect vs useEffect"}),e.jsx("li",{children:"Avoiding infinite loops và race conditions"}),e.jsx("li",{children:"Best practices"})]})]})]}),e.jsx("div",{className:"exercises-list",children:Object.keys(U).map(a=>{const l=U[a];return l?e.jsx(l,{},a):null})}),e.jsx("div",{className:"summary-day",children:e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"Tổng kết Ngày 9"}),e.jsxs("ul",{children:[e.jsx("li",{children:"✅ Exercise 1: Weather Dashboard - Auto-refresh, debouncing"}),e.jsx("li",{children:"✅ Exercise 2: Infinite Scroll - Intersection Observer"}),e.jsx("li",{children:"✅ Exercise 3: Stock Ticker - Real-time updates, price alerts"}),e.jsx("li",{children:"✅ Exercise 4: Auto-Save Form - Debouncing, localStorage"}),e.jsx("li",{children:"✅ Exercise 5: Multi-Tab Sync - BroadcastChannel API"})]}),e.jsx("br",{}),e.jsx("h2",{children:" Bạn đã master được:"}),e.jsxs("ul",{children:[e.jsx("li",{children:"useEffect dependencies"}),e.jsx("li",{children:"Cleanup functions"}),e.jsx("li",{children:"Debouncing patterns"}),e.jsx("li",{children:"Real-time updates"}),e.jsx("li",{children:"Browser APIs"}),e.jsx("li",{children:"Race condition handling"}),e.jsx("li",{children:"Memory leak prevention"})]})]})}),e.jsx("div",{className:"exercises-list mt-1",children:e.jsx(Z,{})})]});export{ae as default};
+`})]})}const V={1:W,2:X,3:Z,4:te,5:ae},ce=()=>e.jsxs("div",{className:"day-content",children:[e.jsxs("div",{className:"day-header",children:[e.jsxs("div",{className:"day-header-content",children:[e.jsx(_,{size:32,color:"#00D9FF"}),e.jsxs("div",{children:[e.jsx("h1",{className:"day-title",children:"Ngày 10"}),e.jsx("p",{className:"day-subtitle",children:"Advanced Effects & Best Practices"})]})]}),e.jsxs("section",{className:"lesson-goal",children:[e.jsx("h2",{children:"🎯 Mục tiêu hôm nay"}),e.jsxs("ul",{children:[e.jsx("li",{children:"useLayoutEffect deep dive"}),e.jsx("li",{children:"useInsertionEffect (React 18+)"}),e.jsx("li",{children:"Effect best practices và anti-patterns"}),e.jsx("li",{children:"Custom hooks với effects"}),e.jsx("li",{children:"Optimization techniques"}),e.jsx("li",{children:"When NOT to use effects"}),e.jsx("li",{children:"Testing effects"})]})]})]}),e.jsx("div",{className:"exercises-list",children:Object.keys(V).map(s=>{const d=V[s];return d?e.jsx(d,{},s):null})}),e.jsx("div",{className:"exercises-list mt-1",children:e.jsx(oe,{})})]});export{ce as default};
