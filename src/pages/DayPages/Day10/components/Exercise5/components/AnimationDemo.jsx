@@ -1,198 +1,3 @@
-import ExerciseCard from "../../../../../components/ExerciseCard";
-import AnimationDemo from "./components/AnimationDemo";
-
-import "./styles.css";
-export default function Exercise5() {
-  return (
-    <ExerciseCard>
-      <ExerciseCard.Header
-        order={5}
-        title="Advanced Animation System (Challenge)"
-      />
-
-      <ExerciseCard.Description>
-        {`
-// TODO: useAnimation hook với timeline control
-
-function useAnimation(duration = 1000, easing = 'linear') {
-  const [progress, setProgress] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const startTimeRef = useRef(null);
-  const rafRef = useRef(null);
-
-  // TODO: Easing functions
-  const easingFunctions = {
-    linear: (t) => t,
-    easeIn: (t) => t * t,
-    easeOut: (t) => t * (2 - t),
-    easeInOut: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
-  };
-
-  // TODO: Animation loop với useLayoutEffect
-  useLayoutEffect(() => {
-    if (!isPlaying) return;
-
-    const animate = (timestamp) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
-
-      const elapsed = timestamp - startTimeRef.current;
-      const rawProgress = Math.min(elapsed / duration, 1);
-      const easedProgress = easingFunctions[easing](rawProgress);
-
-      setProgress(easedProgress);
-
-      if (rawProgress < 1) {
-        rafRef.current = requestAnimationFrame(animate);
-      } else {
-        setIsPlaying(false);
-        startTimeRef.current = null;
-      }
-    };
-
-    rafRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, [isPlaying, duration, easing]);
-
-  const play = () => {
-    setIsPlaying(true);
-    setProgress(0);
-    startTimeRef.current = null;
-  };
-
-  const pause = () => setIsPlaying(false);
-  const reset = () => {
-    setIsPlaying(false);
-    setProgress(0);
-    startTimeRef.current = null;
-  };
-
-  return { progress, isPlaying, play, pause, reset };
-}
-
-// TODO: useSpring hook cho physics-based animations
-function useSpring(target, config = {}) {
-  const { stiffness = 100, damping = 10, mass = 1 } = config;
-  const [value, setValue] = useState(target);
-  const velocity = useRef(0);
-
-  useLayoutEffect(() => {
-    let rafId;
-    let lastTime = performance.now();
-
-    const animate = (time) => {
-      const deltaTime = (time - lastTime) / 1000;
-      lastTime = time;
-
-      const spring = stiffness * (target - value);
-      const damper = damping * velocity.current;
-      const acceleration = (spring - damper) / mass;
-
-      velocity.current += acceleration * deltaTime;
-      const newValue = value + velocity.current * deltaTime;
-
-      setValue(newValue);
-
-      // Continue if not settled
-      if (Math.abs(target - newValue) > 0.01 || Math.abs(velocity.current) > 0.01) {
-        rafId = requestAnimationFrame(animate);
-      } else {
-        setValue(target);
-        velocity.current = 0;
-      }
-    };
-
-    rafId = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(rafId);
-  }, [target, stiffness, damping, mass]);
-
-  return value;
-}
-
-// Demo Component
-function AnimationDemo() {
-  const [targetX, setTargetX] = useState(0);
-  const springX = useSpring(targetX, {
-    stiffness: 100,
-    damping: 15
-  });
-
-  const fadeAnimation = useAnimation(2000, 'easeInOut');
-  const scaleAnimation = useAnimation(1000, 'easeOut');
-
-  return (
-    <div className="animation-demo">
-      <h1>Animation System</h1>
-
-      {/* Spring Animation */}
-      <div className="spring-demo">
-        <h2>Spring Physics</h2>
-        <button onClick={() => setTargetX(targetX === 0 ? 300 : 0)}>
-          Toggle Position
-        </button>
-        <div
-          className="animated-box"
-          style={{
-            transform: \`translateX(\${springX}px)\`,
-            width: 50,
-            height: 50,
-            background: 'blue'
-          }}
-        />
-      </div>
-
-      {/* Timeline Animation */}
-      <div className="timeline-demo">
-        <h2>Timeline Animation</h2>
-        <button onClick={fadeAnimation.play}>Play Fade</button>
-        <button onClick={fadeAnimation.pause}>Pause</button>
-        <button onClick={fadeAnimation.reset}>Reset</button>
-        <div
-          className="animated-box"
-          style={{
-            opacity: fadeAnimation.progress,
-            width: 100,
-            height: 100,
-            background: 'red'
-          }}
-        />
-        <p>Progress: {(fadeAnimation.progress * 100).toFixed(0)}%</p>
-      </div>
-
-      {/* Scale Animation */}
-      <div className="scale-demo">
-        <h2>Scale Animation</h2>
-        <button onClick={scaleAnimation.play}>Play Scale</button>
-        <div
-          className="animated-box"
-          style={{
-            transform: \`scale(\${scaleAnimation.progress})\`,
-            width: 100,
-            height: 100,
-            background: 'green'
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-`}
-      </ExerciseCard.Description>
-
-      <ExerciseCard.Demo>
-        <AnimationDemo />
-      </ExerciseCard.Demo>
-
-      <ExerciseCard.Code>
-        {`
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // ==========================================
@@ -521,7 +326,7 @@ function TimelineDemo() {
       <div className="progress-bar">
         <div
           className="progress-fill"
-          style={{ width: \`\${animation.progress * 100}%\` }}
+          style={{ width: `${animation.progress * 100}%` }}
         />
       </div>
 
@@ -529,9 +334,9 @@ function TimelineDemo() {
         <div
           className="animated-box"
           style={{
-            transform: \`translateX(\${animation.progress * 300}px) scale(\${
+            transform: `translateX(${animation.progress * 300}px) scale(${
               0.5 + animation.progress * 0.5
-            })\`,
+            })`,
             opacity: animation.progress,
           }}
         >
@@ -596,7 +401,7 @@ function SpringDemo() {
         <div
           className="animated-box spring-box"
           style={{
-            transform: \`translateX(\${springValue}px)\`,
+            transform: `translateX(${springValue}px)`,
           }}
         >
           🎾
@@ -643,9 +448,9 @@ function StaggerDemo() {
         {items.map((item, index) => (
           <div
             key={item}
-            className={\`stagger-item \${
+            className={`stagger-item ${
               index <= stagger.activeIndex ? "active" : ""
-            }\`}
+            }`}
           >
             {index + 1}
           </div>
@@ -668,9 +473,9 @@ function GestureDemo() {
 
       <div className="gesture-area">
         <div
-          className={\`draggable-box \${gesture.isDragging ? "dragging" : ""}\`}
+          className={`draggable-box ${gesture.isDragging ? "dragging" : ""}`}
           style={{
-            transform: \`translate(\${gesture.position.x}px, \${gesture.position.y}px)\`,
+            transform: `translate(${gesture.position.x}px, ${gesture.position.y}px)`,
           }}
           onPointerDown={gesture.handlePointerDown}
         >
@@ -707,9 +512,3 @@ function AnimationDemo() {
 }
 
 export default AnimationDemo;
-
-`}
-      </ExerciseCard.Code>
-    </ExerciseCard>
-  );
-}

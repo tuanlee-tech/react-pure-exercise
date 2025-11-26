@@ -1,137 +1,154 @@
+import { useState } from "react";
 import ExerciseCard from "../../../../../components/ExerciseCard";
-import AutoSaveForm from "./components/AutoSaveForm";
 
+import DraggableList from "./components/DraggableList";
 import "./styles.css";
 export default function Exercise4() {
+  const [verticalItems, setVerticalItems] = useState([
+    { id: 1, text: "First Item", icon: "🥇" },
+    { id: 2, text: "Second Item", icon: "🥈" },
+    { id: 3, text: "Third Item", icon: "🥉" },
+    { id: 4, text: "Fourth Item", icon: "4️⃣" },
+    { id: 5, text: "Fifth Item", icon: "5️⃣" },
+  ]);
+
+  const [horizontalItems, setHorizontalItems] = useState([
+    { id: 11, text: "React", icon: "⚛️" },
+    { id: 12, text: "Vue", icon: "💚" },
+    { id: 13, text: "Angular", icon: "🅰️" },
+    { id: 14, text: "Svelte", icon: "🔥" },
+  ]);
+
+  const [todoItems, setTodoItems] = useState([
+    { id: 21, text: "Design mockups", icon: "🎨", disabled: false },
+    { id: 22, text: "Write documentation", icon: "📝", disabled: false },
+    { id: 23, text: "Pinned Item", icon: "📌", disabled: true },
+    { id: 24, text: "Code review", icon: "👀", disabled: false },
+    { id: 25, text: "Deploy to production", icon: "🚀", disabled: false },
+  ]);
+
+  const [kanbanColumns, setKanbanColumns] = useState({
+    todo: [
+      { id: 31, text: "Create landing page" },
+      { id: 32, text: "Setup analytics" },
+    ],
+    inProgress: [{ id: 33, text: "API integration" }],
+    done: [
+      { id: 34, text: "Database setup" },
+      { id: 35, text: "Authentication" },
+    ],
+  });
+
+  const resetAll = () => {
+    setVerticalItems([
+      { id: 1, text: "First Item", icon: "🥇" },
+      { id: 2, text: "Second Item", icon: "🥈" },
+      { id: 3, text: "Third Item", icon: "🥉" },
+      { id: 4, text: "Fourth Item", icon: "4️⃣" },
+      { id: 5, text: "Fifth Item", icon: "5️⃣" },
+    ]);
+    setHorizontalItems([
+      { id: 11, text: "React", icon: "⚛️" },
+      { id: 12, text: "Vue", icon: "💚" },
+      { id: 13, text: "Angular", icon: "🅰️" },
+      { id: 14, text: "Svelte", icon: "🔥" },
+    ]);
+  };
+
   return (
     <ExerciseCard>
-      <ExerciseCard.Header order={4} title="Form Auto-Save" />
+      <ExerciseCard.Header
+        order={4}
+        title="Drag and Drop với useLayoutEffect"
+      />
 
       <ExerciseCard.Description>
         {`
-// TODO: Implement auto-save form
+// TODO: Implement draggable items
 
-function AutoSaveForm() {
-  const [formData, setFormData] = useState({
-    title: '',
-    content: '',
-    tags: [],
-    category: ''
-  });
+function DraggableList({ items, onReorder }) {
+  const [draggingIndex, setDraggingIndex] = useState(null);
+  const [dragOverIndex, setDragOverIndex] = useState(null);
 
-  const [saveStatus, setSaveStatus] = useState('saved'); // 'saved' | 'saving' | 'unsaved'
-  const [lastSaved, setLastSaved] = useState(null);
-  const [savingError, setSavingError] = useState(null);
+  // TODO: Drag handlers
+  // - onDragStart: set draggingIndex
+  // - onDragOver: calculate dragOverIndex, show preview
+  // - onDrop: reorder items, call onReorder
+  // - onDragEnd: cleanup
 
-  // TODO: Effects
-  // 1. Load draft from localStorage on mount
-  // 2. Debounced auto-save (2 seconds after user stops typing)
-  // 3. Save to localStorage
-  // 4. Show save status
-  // 5. Handle save errors
+  // TODO: useLayoutEffect để update positions smoothly
+  // - Measure item positions
+  // - Animate during drag
 
-  // Load draft on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('draft');
-    if (saved) {
-      setFormData(JSON.parse(saved));
-      setLastSaved(new Date(localStorage.getItem('draft-timestamp')));
-    }
-  }, []);
+  // TODO: Features
+  // - Visual feedback (ghost element)
+  // - Smooth animations
+  // - Touch support
+  // - Horizontal/vertical modes
+  // - Disabled items
+  // - Handle constraints
 
-  // Debounced auto-save
-  useEffect(() => {
-    // Set status to 'unsaved' immediately when data changes
-    setSaveStatus('unsaved');
-
-    // Debounce save
-    const timer = setTimeout(() => {
-      // TODO: Save to localStorage
-      // Set status to 'saving'
-      // Simulate API call
-      // Set status to 'saved'
-      // Update lastSaved
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [formData]);
-
-  // Warn before leaving with unsaved changes
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (saveStatus === 'unsaved' || saveStatus === 'saving') {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [saveStatus]);
-
-  const updateField = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleDragStart = (index) => (e) => {
+    setDraggingIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
   };
 
-  const handleSubmit = async (e) => {
+  const handleDragOver = (index) => (e) => {
     e.preventDefault();
-    // TODO: Final submit
-    // Clear draft from localStorage
+    if (index !== draggingIndex) {
+      setDragOverIndex(index);
+    }
+  };
+
+  const handleDrop = (index) => (e) => {
+    e.preventDefault();
+    
+    if (draggingIndex === null || draggingIndex === index) return;
+
+    const newItems = [...items];
+    const [removed] = newItems.splice(draggingIndex, 1);
+    newItems.splice(index, 0, removed);
+
+    onReorder(newItems);
+    setDraggingIndex(null);
+    setDragOverIndex(null);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="auto-save-form">
-      <h1>Tạo bài viết</h1>
-
-      <div className="save-status">
-        {saveStatus === 'saved' && (
-          <span className="status-saved">
-            ✓ Đã lưu {lastSaved && \`lúc \${lastSaved.toLocaleTimeString()}\`}
-          </span>
-        )}
-        {saveStatus === 'saving' && (
-          <span className="status-saving">💾 Đang lưu...</span>
-        )}
-        {saveStatus === 'unsaved' && (
-          <span className="status-unsaved">● Chưa lưu</span>
-        )}
-        {savingError && (
-          <span className="status-error">❌ Lỗi: {savingError}</span>
-        )}
-      </div>
-
-      <div>
-        <label>Tiêu đề:</label>
-        <input
-          value={formData.title}
-          onChange={(e) => updateField('title', e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Nội dung:</label>
-        <textarea
-          value={formData.content}
-          onChange={(e) => updateField('content', e.target.value)}
-          rows={10}
-        />
-      </div>
-
-      <div>
-        <label>Category:</label>
-        <select
-          value={formData.category}
-          onChange={(e) => updateField('category', e.target.value)}
+    <div className="draggable-list">
+      {items.map((item, index) => (
+        <div
+          key={item.id}
+          draggable
+          onDragStart={handleDragStart(index)}
+          onDragOver={handleDragOver(index)}
+          onDrop={handleDrop(index)}
+          className={\`draggable-item \${
+            index === draggingIndex ? 'dragging' : ''
+          } \${index === dragOverIndex ? 'drag-over' : ''}\`}
         >
-          <option value="">Chọn category</option>
-          <option value="tech">Tech</option>
-          <option value="lifestyle">Lifestyle</option>
-          <option value="travel">Travel</option>
-        </select>
-      </div>
+          <span className="drag-handle">☰</span>
+          {item.text}
+        </div>
+      ))}
+    </div>
+  );
+}
 
-      <button type="submit">Xuất bản</button>
-    </form>
+// Usage
+function App() {
+  const [items, setItems] = useState([
+    { id: 1, text: 'Item 1' },
+    { id: 2, text: 'Item 2' },
+    { id: 3, text: 'Item 3' },
+    { id: 4, text: 'Item 4' }
+  ]);
+
+  return (
+    <div>
+      <h1>Draggable List</h1>
+      <DraggableList items={items} onReorder={setItems} />
+    </div>
   );
 }
 
@@ -139,539 +156,326 @@ function AutoSaveForm() {
       </ExerciseCard.Description>
 
       <ExerciseCard.Demo>
-        <AutoSaveForm />
+        <div className="app">
+          <h1>🎯 Drag & Drop Component</h1>
+          <p className="subtitle">Smooth drag and drop with useLayoutEffect</p>
+
+          <button onClick={resetAll} className="reset-btn">
+            🔄 Reset All
+          </button>
+
+          {/* Vertical List */}
+          <div className="demo-section">
+            <h2>📋 Vertical List</h2>
+            <p className="demo-description">Standard vertical drag and drop</p>
+            <DraggableList
+              items={verticalItems}
+              onReorder={setVerticalItems}
+              orientation="vertical"
+            />
+            <div className="item-order">
+              Order: {verticalItems.map((item) => item.icon).join(" → ")}
+            </div>
+          </div>
+
+          {/* Horizontal List */}
+          <div className="demo-section">
+            <h2>➡️ Horizontal List</h2>
+            <p className="demo-description">
+              Horizontal orientation with frameworks
+            </p>
+            <DraggableList
+              items={horizontalItems}
+              onReorder={setHorizontalItems}
+              orientation="horizontal"
+            />
+            <div className="item-order">
+              Order: {horizontalItems.map((item) => item.text).join(" → ")}
+            </div>
+          </div>
+
+          {/* Disabled Items */}
+          <div className="demo-section">
+            <h2>🔒 With Disabled Items</h2>
+            <p className="demo-description">
+              Some items are locked and cannot be moved
+            </p>
+            <DraggableList
+              items={todoItems}
+              onReorder={setTodoItems}
+              orientation="vertical"
+            />
+          </div>
+
+          {/* Kanban Board */}
+          <div className="demo-section">
+            <h2>📊 Kanban Board (Simple)</h2>
+            <p className="demo-description">Multiple independent lists</p>
+            <div className="kanban-board">
+              <div className="kanban-column">
+                <h3>📝 To Do</h3>
+                <DraggableList
+                  items={kanbanColumns.todo}
+                  onReorder={(newItems) =>
+                    setKanbanColumns((prev) => ({ ...prev, todo: newItems }))
+                  }
+                  orientation="vertical"
+                />
+              </div>
+              <div className="kanban-column">
+                <h3>⚡ In Progress</h3>
+                <DraggableList
+                  items={kanbanColumns.inProgress}
+                  onReorder={(newItems) =>
+                    setKanbanColumns((prev) => ({
+                      ...prev,
+                      inProgress: newItems,
+                    }))
+                  }
+                  orientation="vertical"
+                />
+              </div>
+              <div className="kanban-column">
+                <h3>✅ Done</h3>
+                <DraggableList
+                  items={kanbanColumns.done}
+                  onReorder={(newItems) =>
+                    setKanbanColumns((prev) => ({ ...prev, done: newItems }))
+                  }
+                  orientation="vertical"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </ExerciseCard.Demo>
 
       <ExerciseCard.Code>
         {`
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-function AutoSaveForm() {
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-    tags: [],
-    category: "",
-  });
+export default function DraggableList({
+  items: initialItems,
+  onReorder,
+  orientation = "vertical",
+}) {
+  const [items, setItems] = useState(initialItems);
+  const [draggingIndex, setDraggingIndex] = useState(null);
+  const [dragOverIndex, setDragOverIndex] = useState(null);
+  const [positions, setPositions] = useState({});
+  const [ghostPosition, setGhostPosition] = useState({ x: 0, y: 0 });
+  const itemRefs = useRef({});
+  const containerRef = useRef(null);
+  const draggedElementRef = useRef(null);
 
-  const [tagInput, setTagInput] = useState("");
-  const [saveStatus, setSaveStatus] = useState("saved"); // 'saved' | 'saving' | 'unsaved'
-  const [lastSaved, setLastSaved] = useState(null);
-  const [savingError, setSavingError] = useState(null);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  console.log("positions :", positions);
+  console.log("ghostPosition :", ghostPosition);
 
-  // Load draft from localStorage on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("draft");
-      const timestamp = localStorage.getItem("draft-timestamp");
+  // ✅ useLayoutEffect - Measure positions trước khi paint
+  useLayoutEffect(() => {
+    const newPositions = {};
 
-      if (saved) {
-        setFormData(JSON.parse(saved));
-        if (timestamp) {
-          setLastSaved(new Date(timestamp));
-        }
+    Object.keys(itemRefs.current).forEach((key) => {
+      const element = itemRefs.current[key];
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        newPositions[key] = {
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+        };
       }
-    } catch (error) {
-      console.error("Failed to load draft:", error);
-    }
-  }, []);
+    });
 
-  // Save draft function
-  const saveDraft = useCallback(async () => {
-    try {
-      setSaveStatus("saving");
-      setSavingError(null);
+    setPositions(newPositions);
+  }, [items, setPositions]);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // Save to localStorage
-      localStorage.setItem("draft", JSON.stringify(formData));
-      localStorage.setItem("draft-timestamp", new Date().toISOString());
-
-      setSaveStatus("saved");
-      setLastSaved(new Date());
-    } catch (error) {
-      setSavingError("Failed to save draft" + error);
-      setSaveStatus("unsaved");
-    }
-  }, [formData]);
-
-  // Debounced auto-save
+  // Update items khi prop thay đổi
   useEffect(() => {
-    // Set status to 'unsaved' immediately when data changes
-    if (
-      formData.title ||
-      formData.content ||
-      formData.tags.length > 0 ||
-      formData.category
-    ) {
-      setSaveStatus("unsaved");
-    }
+    setItems(initialItems);
+  }, [initialItems]);
 
-    // Debounce save (2 seconds after user stops typing)
-    const timer = setTimeout(() => {
-      if (saveStatus === "unsaved") {
-        saveDraft();
-      }
-    }, 2000);
+  // Drag Start
+  const handleDragStart = (index) => (e) => {
+    setDraggingIndex(index);
+    draggedElementRef.current = e.currentTarget;
 
-    return () => clearTimeout(timer);
-  }, [formData, saveStatus, saveDraft]);
+    // Set ghost image
+    e.dataTransfer.effectAllowed = "move";
 
-  // Warn before leaving with unsaved changes
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (saveStatus === "unsaved" || saveStatus === "saving") {
-        e.preventDefault();
-        e.returnValue =
-          "You have unsaved changes. Are you sure you want to leave?";
-        return e.returnValue;
-      }
-    };
+    // Create custom ghost image
+    const ghost = e.currentTarget.cloneNode(true);
+    ghost.style.opacity = "0.5";
+    ghost.style.position = "absolute";
+    ghost.style.top = "-9999px";
+    document.body.appendChild(ghost);
+    e.dataTransfer.setDragImage(
+      ghost,
+      e.currentTarget.offsetWidth / 2,
+      e.currentTarget.offsetHeight / 2
+    );
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [saveStatus]);
-
-  const updateField = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    // Cleanup ghost
+    setTimeout(() => document.body.removeChild(ghost), 0);
   };
 
-  const addTag = () => {
-    const tag = tagInput.trim();
-    if (tag && !formData.tags.includes(tag)) {
-      setFormData((prev) => ({
-        ...prev,
-        tags: [...prev.tags, tag],
-      }));
-      setTagInput("");
-    }
-  };
-
-  const removeTag = (tagToRemove) => {
-    setFormData((prev) => ({
-      ...prev,
-      tags: prev.tags.filter((tag) => tag !== tagToRemove),
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  // Drag Over
+  const handleDragOver = (index) => (e) => {
     e.preventDefault();
 
-    if (!formData.title.trim() || !formData.content.trim()) {
-      setSavingError("Title and content are required");
+    if (index === draggingIndex) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const isVertical = orientation === "vertical";
+    const mousePos = isVertical ? e.clientY : e.clientX;
+    const elementStart = isVertical ? rect.top : rect.left;
+    const elementSize = isVertical ? rect.height : rect.width;
+    const middle = elementStart + elementSize / 2;
+
+    // Determine insert position
+    if (draggingIndex < index) {
+      // Dragging down/right
+      if (mousePos > middle) {
+        setDragOverIndex(index);
+      }
+    } else {
+      // Dragging up/left
+      if (mousePos < middle) {
+        setDragOverIndex(index);
+      }
+    }
+
+    // Update ghost position
+    setGhostPosition({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  };
+
+  // Drop
+  const handleDrop = (index) => (e) => {
+    e.preventDefault();
+
+    if (draggingIndex === null || draggingIndex === index) {
+      cleanup();
       return;
     }
 
-    try {
-      setSaveStatus("saving");
-      setSavingError(null);
+    // Calculate final drop position
+    const finalIndex = dragOverIndex !== null ? dragOverIndex : index;
 
-      // Simulate API call for publishing
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (draggingIndex === finalIndex) {
+      cleanup();
+      return;
+    }
 
-      // Clear draft from localStorage
-      localStorage.removeItem("draft");
-      localStorage.removeItem("draft-timestamp");
+    // Reorder items
+    const newItems = [...items];
+    const [removed] = newItems.splice(draggingIndex, 1);
+    newItems.splice(finalIndex, 0, removed);
 
-      // Show success modal
-      setShowSuccessModal(true);
+    setItems(newItems);
 
-      // Reset form after 2 seconds
-      setTimeout(() => {
-        setFormData({
-          title: "",
-          content: "",
-          tags: [],
-          category: "",
-        });
-        setSaveStatus("saved");
-        setLastSaved(null);
-        setShowSuccessModal(false);
-      }, 2000);
-    } catch (error) {
-      setSavingError("Failed to publish post " + error);
-      setSaveStatus("unsaved");
+    // Notify parent
+    if (onReorder) {
+      onReorder(newItems);
+    }
+
+    cleanup();
+  };
+
+  // Drag End
+  const handleDragEnd = () => {
+    cleanup();
+  };
+
+  const cleanup = () => {
+    setDraggingIndex(null);
+    setDragOverIndex(null);
+    draggedElementRef.current = null;
+  };
+
+  // Touch support (bonus)
+  const handleTouchStart = (index) => (e) => {
+    setDraggingIndex(index);
+    const touch = e.touches[0];
+    setGhostPosition({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    setGhostPosition({ x: touch.clientX, y: touch.clientY });
+
+    // Find element under touch
+    const element = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (element && element.dataset.index) {
+      const index = parseInt(element.dataset.index);
+      if (index !== draggingIndex) {
+        setDragOverIndex(index);
+      }
     }
   };
 
-  const clearDraft = () => {
-    if (window.confirm("Are you sure you want to clear this draft?")) {
-      setFormData({
-        title: "",
-        content: "",
-        tags: [],
-        category: "",
-      });
-      localStorage.removeItem("draft");
-      localStorage.removeItem("draft-timestamp");
-      setSaveStatus("saved");
-      setLastSaved(null);
-    }
-  };
+  const handleTouchEnd = () => {
+    if (
+      draggingIndex !== null &&
+      dragOverIndex !== null &&
+      draggingIndex !== dragOverIndex
+    ) {
+      const newItems = [...items];
+      const [removed] = newItems.splice(draggingIndex, 1);
+      newItems.splice(dragOverIndex, 0, removed);
+      setItems(newItems);
 
-  const getCharCount = (text) => text.length;
-  const getWordCount = (text) =>
-    text.trim().split(/\\s+/).filter(Boolean).length;
+      if (onReorder) {
+        onReorder(newItems);
+      }
+    }
+    cleanup();
+  };
 
   return (
-    <div className="auto-save-app">
-      <div className="app-container">
-        {/* Header */}
-        <div className="app-header">
-          <div className="header-content">
-            <h1 className="header-title">📝 Auto-Save Form</h1>
-            <p className="header-subtitle">
-              Your work is automatically saved as you type
-            </p>
-          </div>
+    <div ref={containerRef} className={\`draggable-list \${orientation}\`}>
+      {items.map((item, index) => {
+        const isDragging = index === draggingIndex;
+        const isDragOver = index === dragOverIndex;
+        const isDisabled = item.disabled;
 
-          {/* Save Status */}
-          <div className="save-status-bar">
-            {saveStatus === "saved" && lastSaved && (
-              <div className="status-saved">
-                <span className="status-icon">✓</span>
-                <span className="status-text">
-                  Saved at {lastSaved.toLocaleTimeString()}
-                </span>
-              </div>
-            )}
-            {saveStatus === "saving" && (
-              <div className="status-saving">
-                <div className="saving-spinner"></div>
-                <span className="status-text">Saving...</span>
-              </div>
-            )}
-            {saveStatus === "unsaved" && (
-              <div className="status-unsaved">
-                <span className="status-icon">●</span>
-                <span className="status-text">Unsaved changes</span>
-              </div>
-            )}
-            {savingError && (
-              <div className="status-error">
-                <span className="status-icon">❌</span>
-                <span className="status-text">{savingError}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Form */}
-        <div className="form-container">
-          <div className="form-main">
-            {/* Title */}
-            <div className="form-group">
-              <label className="form-label">
-                Title <span className="required">*</span>
-              </label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => updateField("title", e.target.value)}
-                placeholder="Enter your post title..."
-                className="form-input form-title-input"
-              />
-              <div className="input-hint">
-                {getCharCount(formData.title)} characters
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="form-group">
-              <label className="form-label">
-                Content <span className="required">*</span>
-              </label>
-              <textarea
-                value={formData.content}
-                onChange={(e) => updateField("content", e.target.value)}
-                placeholder="Write your content here..."
-                rows={15}
-                className="form-textarea"
-              />
-              <div className="textarea-stats">
-                <span>{getWordCount(formData.content)} words</span>
-                <span>•</span>
-                <span>{getCharCount(formData.content)} characters</span>
-              </div>
-            </div>
-
-            {/* Category */}
-            <div className="form-group">
-              <label className="form-label">Category</label>
-              <select
-                value={formData.category}
-                onChange={(e) => updateField("category", e.target.value)}
-                className="form-select"
-              >
-                <option value="">Choose a category...</option>
-                <option value="tech">Technology</option>
-                <option value="design">Design</option>
-                <option value="business">Business</option>
-                <option value="lifestyle">Lifestyle</option>
-                <option value="travel">Travel</option>
-                <option value="food">Food</option>
-                <option value="health">Health</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            {/* Tags */}
-            <div className="form-group">
-              <label className="form-label">Tags</label>
-              <div className="tags-input-wrapper">
-                <input
-                  type="text"
-                  value={tagInput}
-                  onChange={(e) => setTagInput(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      addTag();
-                    }
-                  }}
-                  placeholder="Type a tag and press Enter..."
-                  className="form-input"
-                />
-                <button onClick={addTag} className="btn-add-tag" type="button">
-                  Add Tag
-                </button>
-              </div>
-
-              {formData.tags.length > 0 && (
-                <div className="tags-list">
-                  {formData.tags.map((tag, index) => (
-                    <div key={index} className="tag-item">
-                      <span className="tag-text">{tag}</span>
-                      <button
-                        onClick={() => removeTag(tag)}
-                        className="tag-remove"
-                        type="button"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Form Actions */}
-            <div className="form-actions">
-              <button
-                onClick={clearDraft}
-                className="btn-secondary"
-                type="button"
-                disabled={saveStatus === "saving"}
-              >
-                Clear Draft
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="btn-primary"
-                type="button"
-                disabled={
-                  saveStatus === "saving" ||
-                  !formData.title.trim() ||
-                  !formData.content.trim()
-                }
-              >
-                {saveStatus === "saving" ? "Publishing..." : "Publish Post"}
-              </button>
+        return (
+          <div
+            key={item.id}
+            ref={(el) => (itemRefs.current[item.id] = el)}
+            data-index={index}
+            draggable={!isDisabled}
+            onDragStart={!isDisabled ? handleDragStart(index) : undefined}
+            onDragOver={!isDisabled ? handleDragOver(index) : undefined}
+            onDrop={!isDisabled ? handleDrop(index) : undefined}
+            onDragEnd={handleDragEnd}
+            onTouchStart={!isDisabled ? handleTouchStart(index) : undefined}
+            onTouchMove={!isDisabled ? handleTouchMove : undefined}
+            onTouchEnd={!isDisabled ? handleTouchEnd : undefined}
+            className={\`draggable-item \${isDragging ? "dragging" : ""} \${
+              isDragOver ? "drag-over" : ""
+            } \${isDisabled ? "disabled" : ""}\`}
+            style={{
+              opacity: isDragging ? 0.5 : 1,
+              cursor: isDisabled ? "not-allowed" : "grab",
+            }}
+          >
+            <span className="drag-handle">☰</span>
+            <div className="item-content">
+              {item.icon && <span className="item-icon">{item.icon}</span>}
+              <span className="item-text">{item.text}</span>
+              {isDisabled && <span className="disabled-badge">🔒</span>}
             </div>
           </div>
-
-          {/* Sidebar Info */}
-          <div className="form-sidebar">
-            <div className="info-card">
-              <h3 className="info-title">💡 Auto-Save Info</h3>
-              <div className="info-content">
-                <div className="info-item">
-                  <span className="info-icon">⚡</span>
-                  <p>Your work is automatically saved every 2 seconds</p>
-                </div>
-                <div className="info-item">
-                  <span className="info-icon">💾</span>
-                  <p>Drafts are stored locally in your browser</p>
-                </div>
-                <div className="info-item">
-                  <span className="info-icon">🔒</span>
-                  <p>You'll be warned before leaving with unsaved changes</p>
-                </div>
-                <div className="info-item">
-                  <span className="info-icon">🎨</span>
-                  <p>Use tags to organize your posts</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="info-card">
-              <h3 className="info-title">📊 Writing Stats</h3>
-              <div className="stats-grid">
-                <div className="stat-box">
-                  <div className="stat-value">
-                    {getWordCount(formData.content)}
-                  </div>
-                  <div className="stat-label">Words</div>
-                </div>
-                <div className="stat-box">
-                  <div className="stat-value">
-                    {getCharCount(formData.content)}
-                  </div>
-                  <div className="stat-label">Characters</div>
-                </div>
-                <div className="stat-box">
-                  <div className="stat-value">{formData.tags.length}</div>
-                  <div className="stat-label">Tags</div>
-                </div>
-                <div className="stat-box">
-                  <div className="stat-value">
-                    {formData.category ? "✓" : "–"}
-                  </div>
-                  <div className="stat-label">Category</div>
-                </div>
-              </div>
-            </div>
-
-            {lastSaved && (
-              <div className="info-card">
-                <h3 className="info-title">🕐 Last Saved</h3>
-                <div className="last-saved-details">
-                  <p className="saved-time">{lastSaved.toLocaleTimeString()}</p>
-                  <p className="saved-date">{lastSaved.toLocaleDateString()}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Success Modal */}
-      {showSuccessModal && (
-        <div className="modal-overlay">
-          <div className="modal-content success-modal">
-            <div className="success-icon">🎉</div>
-            <h2 className="success-title">Published Successfully!</h2>
-            <p className="success-text">
-              Your post has been published and draft cleared.
-            </p>
-          </div>
-        </div>
-      )}
+        );
+      })}
     </div>
   );
 }
-
-export default AutoSaveForm;
-
----
-
-// ✅ Tính năng đã implement:
-// 🎯 Core Features:
-
-// Auto-save draft - Tự động lưu sau 2s khi user ngừng typing
-// LocalStorage persistence - Lưu draft và timestamp
-// Load draft on mount - Tự động load draft khi mở lại
-// Save status indicator - Saved, Saving, Unsaved, Error states
-// Before unload warning - Cảnh báo trước khi rời trang với unsaved changes
-// Form validation - Required fields check
-// Success feedback - Modal animation khi publish thành công
-
-// 📝 Form Fields:
-
-// Title - Required, character count
-// Content - Required, word & character count, 15 rows textarea
-// Category - Select dropdown với 8 options
-// Tags - Add/remove tags, Enter key support, duplicate prevention
-// Clear Draft - Button để clear toàn bộ form
-
-// 🎨 UI/UX:
-
-// Real-time statistics - Words, characters, tags count
-// Save status bar - Prominent status display ở header
-// Info sidebar - Auto-save tips và writing stats
-// Last saved time - Display với date & time
-// Character/word counters - Live updates
-// Smooth animations - Status transitions, modal
-// Form validation feedback - Disable publish button nếu thiếu required fields
-
-// 🔧 useEffect Usage:
-
-// Load draft on mount:
-
-// useEffect(() => {
-//   const saved = localStorage.getItem('draft');
-//   if (saved) {
-//     setFormData(JSON.parse(saved));
-//     setLastSaved(new Date(timestamp));
-//   }
-// }, []); // Chỉ chạy 1 lần khi mount
-
-// Debounced auto-save (KEY FEATURE):
-
-// useEffect(() => {
-//   // Mark as unsaved immediately
-//   setSaveStatus('unsaved');
-  
-//   // Debounce 2 seconds
-//   const timer = setTimeout(() => {
-//     saveDraft(); // Save to localStorage
-//   }, 2000);
-  
-//   return () => clearTimeout(timer); // ✅ Cleanup
-// }, [formData]); // Chạy khi formData thay đổi
-
-// Before unload warning:
-
-// useEffect(() => {
-//   const handleBeforeUnload = (e) => {
-//     if (saveStatus === 'unsaved' || saveStatus === 'saving') {
-//       e.preventDefault();
-//       e.returnValue = 'You have unsaved changes';
-//     }
-//   };
-  
-//   window.addEventListener('beforeunload', handleBeforeUnload);
-//   return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-// }, [saveStatus]);
-// 
-
-// ### 💡 Highlights:
-// - **Debounce pattern** - Chỉ save sau 2s không có thay đổi
-// - **Immediate feedback** - Status chuyển "unsaved" ngay lập tức
-// - **Error handling** - Try-catch cho localStorage operations
-// - **Memory leak prevention** - Cleanup timers properly
-// - **Race condition free** - Clear timer trước khi set timer mới
-// - **User-friendly** - Không spam save requests
-// - **Data persistence** - Draft survive browser refresh
-
-// ### 🎮 Test Features:
-// 1. **Type in any field** - Xem status chuyển "unsaved" → "saving" → "saved"
-// 2. **Wait 2 seconds** - Auto-save triggers
-// 3. **Refresh page** - Draft được load lại
-// 4. **Try to close tab** - Browser warning xuất hiện
-// 5. **Add/remove tags** - Enter key hoặc button
-// 6. **Click Publish** - Success modal + clear draft
-// 7. **Click Clear Draft** - Confirmation + reset form
-
-// ### 📊 Data Flow:
-// User types → setSaveStatus('unsaved')
-//             ↓
-// Wait 2 seconds (debounce)
-//             ↓
-// saveDraft() → Save to localStorage
-//             ↓
-// setSaveStatus('saved') + setLastSaved(now)
-// 🚀 Advanced Patterns Used:
-
-// Debouncing - Delay execution until user stops typing
-// Optimistic UI - Show "saving" immediately
-// Error recovery - Try-catch with error messages
-// Cleanup functions - Proper timer cleanup
-// Browser APIs - beforeunload event
-// LocalStorage - Persistent storage
 
 `}
       </ExerciseCard.Code>

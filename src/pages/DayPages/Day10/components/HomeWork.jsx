@@ -8,58 +8,52 @@ export default function HomeWork() {
       <ExerciseCard.Description>
         {`
 
-1. News Feed với Auto-Refresh
-// Features:
-// - Fetch news articles
-// - Auto-refresh every 60s
-// - Pull-to-refresh
-// - Mark as read (localStorage)
-// - Filter by category
-// - Search articles
-// - Pagination
+1. Advanced Tooltip System
+Smart positioning với collision detection
+Multiple placements
+Delay show/hide
+Portal rendering
+Arrow positioning
+Touch support
 
-2. Pomodoro Timer
-// Features:
-// - 25min work / 5min break
-// - Audio notification
-// - Pause/resume
-// - Skip break
-// - Session history
-// - Statistics (daily, weekly)
-// - Auto-start next session
+2. Infinite Scroll với Virtual Scrolling
+Render chỉ visible items
+Smooth scrolling
+Dynamic item heights
+Bi-directional scrolling
+Scroll restoration
+Loading states
 
-3. Live Notification Center
-// Features:
-// - Real-time notifications (simulated)
-// - Mark as read
-// - Delete notification
-// - Filter by type
-// - Sound on new notification
-// - Browser notification API
-// - Persist unread count
+3. Custom Hooks Library
+useAsync (async operations)
+useThrottle
+useDebounce
+usePrevious
+useToggle
+useLocalStorage
+useSessionStorage
+useCopyToClipboard
+useIdle
+useTimeout
 
-4. Collaborative Whiteboard
-// Features:
-// - Draw on canvas
-// - Sync drawing across tabs (BroadcastChannel)
-// - Multiple colors and brush sizes
-// - Undo/redo
-// - Clear canvas
-// - Save/load drawings
-// - Show active users
+4. Animation Framework
+Timeline control (play, pause, reverse)
+Easing functions
+Spring physics
+Stagger animations
+Sequence animations
+Gesture-based animations
 
-5. Advanced Data Table (Challenge)
-// Features:
-// - Server-side pagination
-// - Sorting (multi-column)
-// - Filtering (multiple filters)
-// - Search with debounce
-// - Column visibility toggle
-// - Export to CSV
-// - Infinite scroll mode
-// - Virtual scrolling for large datasets
-// - Row selection
-// - Bulk actions
+5. Advanced Form System (Challenge)
+Field-level validation
+Async validation
+Dependent fields
+Dynamic fields (add/remove)
+Multi-step with progress
+Auto-save drafts
+Undo/redo
+File uploads với progress
+
 
 
 `}
@@ -68,891 +62,1134 @@ export default function HomeWork() {
       <ExerciseCard.Code>
         {`
 
+// ==========================================
+// 1️⃣ ADVANCED TOOLTIP SYSTEM
+// Cốt lõi: useLayoutEffect + Portal + Collision Detection
+// ==========================================
 
-### **1. News Feed với Auto-Refresh**
-// News Feed với Auto-Refresh
+// Hook: useTooltip với smart positioning
+function useTooltip({ placement = 'top', delay = 300, offset = 10 }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [actualPlacement, setActualPlacement] = useState(placement);
+  
+  const triggerRef = useRef(null);
+  const tooltipRef = useRef(null);
+  const timeoutRef = useRef(null);
 
-import React, { useState, useEffect, useRef } from 'react';
-export default function NewsFeed() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [autoRefresh, setAutoRefresh] = useState(true);
-  const [readArticles, setReadArticles] = useState(() => {
-    const saved = localStorage.getItem('read-articles');
-    return saved ? JSON.parse(saved) : [];
-  });
+  // useLayoutEffect - Calculate position BEFORE paint
+  useLayoutEffect(() => {
+    if (!isVisible || !triggerRef.current || !tooltipRef.current) return;
 
-  const pullRef = useRef(null);
-  const startY = useRef(0);
-  const pulling = useRef(false);
-  const [pullDistance, setPullDistance] = useState(0);
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
-  const fetchArticles = async () => {
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const mockArticles = Array.from({ length: 10 }, (_, i) => ({
-      id: Date.now() + i,
-      title: \`Breaking News \${i + 1}\`,
-      description: 'Lorem ipsum dolor sit amet...',
-      category: ['tech', 'sports', 'politics'][i % 3],
-      timestamp: new Date().toISOString(),
-      image: \`https://picsum.photos/seed/\${Date.now() + i}/400/200\`,
-    }));
-
-    setArticles(mockArticles);
-    setLoading(false);
-  };
-
-  // Initial fetch
-  useEffect(() => {
-    fetchArticles();
-  }, [category]);
-
-  // Auto Refresh
-  useEffect(() => {
-    if (!autoRefresh) return;
-    const interval = setInterval(fetchArticles, 60000);
-    return () => clearInterval(interval);
-  }, [autoRefresh, category]);
-
-  // Save read articles
-  useEffect(() => {
-    localStorage.setItem('read-articles', JSON.stringify(readArticles));
-  }, [readArticles]);
-
-  const markAsRead = (id) => {
-    setReadArticles((prev) => [...prev, id]);
-  };
-
-  // Pull-to-refresh listeners
-  useEffect(() => {
-    const el = pullRef.current;
-    if (!el) return;
-
-    const onTouchStart = (e) => {
-      if (el.scrollTop === 0) {
-        startY.current = e.touches[0].clientY;
-        pulling.current = true;
+    // Placement calculations
+    const placements = {
+      top: {
+        top: triggerRect.top - tooltipRect.height - offset,
+        left: triggerRect.left + (triggerRect.width - tooltipRect.width) / 2
+      },
+      bottom: {
+        top: triggerRect.bottom + offset,
+        left: triggerRect.left + (triggerRect.width - tooltipRect.width) / 2
+      },
+      left: {
+        top: triggerRect.top + (triggerRect.height - tooltipRect.height) / 2,
+        left: triggerRect.left - tooltipRect.width - offset
+      },
+      right: {
+        top: triggerRect.top + (triggerRect.height - tooltipRect.height) / 2,
+        left: triggerRect.right + offset
       }
     };
 
-    const onTouchMove = (e) => {
-      if (!pulling.current) return;
+    let finalPlacement = placement;
+    let pos = placements[placement];
 
-      const delta = e.touches[0].clientY - startY.current;
-      if (delta > 0) {
-        setPullDistance(delta > 120 ? 120 : delta);
-      }
+    // COLLISION DETECTION - Auto-adjust if overflow
+    const viewport = {
+      width: window.innerWidth,
+      height: window.innerHeight
     };
 
-    const onTouchEnd = () => {
-      if (pullDistance > 80) fetchArticles();
-      pulling.current = false;
-      setPullDistance(0);
-    };
+    // Check boundaries & fallback
+    if (pos.top < 0) finalPlacement = 'bottom';
+    else if (pos.top + tooltipRect.height > viewport.height) finalPlacement = 'top';
+    else if (pos.left < 0) finalPlacement = 'right';
+    else if (pos.left + tooltipRect.width > viewport.width) finalPlacement = 'left';
 
-    el.addEventListener('touchstart', onTouchStart);
-    el.addEventListener('touchmove', onTouchMove);
-    el.addEventListener('touchend', onTouchEnd);
+    pos = placements[finalPlacement];
 
-    return () => {
-      el.removeEventListener('touchstart', onTouchStart);
-      el.removeEventListener('touchmove', onTouchMove);
-      el.removeEventListener('touchend', onTouchEnd);
-    };
-  }, [pullDistance]);
+    // Clamp to viewport
+    pos.left = Math.max(10, Math.min(pos.left, viewport.width - tooltipRect.width - 10));
+    pos.top = Math.max(10, Math.min(pos.top, viewport.height - tooltipRect.height - 10));
 
-  const filteredArticles = articles.filter((article) => {
-    const matchCategory = category === 'all' || article.category === category;
-    const matchSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchCategory && matchSearch;
-  });
+    setPosition(pos);
+    setActualPlacement(finalPlacement);
+  }, [isVisible, placement, offset]);
+
+  // Delayed show
+  const show = useCallback(() => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setIsVisible(true), delay);
+  }, [delay]);
+
+  // Instant hide
+  const hide = useCallback(() => {
+    clearTimeout(timeoutRef.current);
+    setIsVisible(false);
+  }, []);
+
+  // Touch support
+  const handleTouch = useCallback(() => {
+    if (isVisible) hide();
+    else show();
+  }, [isVisible, show, hide]);
+
+  return {
+    triggerRef,
+    tooltipRef,
+    isVisible,
+    position,
+    actualPlacement,
+    show,
+    hide,
+    handleTouch
+  };
+}
+
+// Tooltip Component với Portal
+function Tooltip({ children, content, placement = 'top' }) {
+  const {
+    triggerRef,
+    tooltipRef,
+    isVisible,
+    position,
+    actualPlacement,
+    show,
+    hide,
+    handleTouch
+  } = useTooltip({ placement, delay: 300 });
 
   return (
-    <div
-      ref={pullRef}
-      className="news-feed"
-      style={{ overflowY: 'auto', height: '100vh' }}
-    >
-      {/* Pull to refresh indicator */}
+    <>
       <div
-        style={{
-          height: pullDistance,
-          background: '#e0f7fa',
-          textAlign: 'center',
-          transition: pulling.current ? 'none' : '0.2s',
-        }}
+        ref={triggerRef}
+        onMouseEnter={show}
+        onMouseLeave={hide}
+        onTouchStart={handleTouch}
+        onFocus={show}
+        onBlur={hide}
       >
-        {pullDistance > 40 ? '↻ Release to refresh' : '↓ Pull to refresh'}
+        {children}
       </div>
 
-      {/* Controls */}
-      <div className="controls">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search articles..."
-        />
-
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="all">All</option>
-          <option value="tech">Tech</option>
-          <option value="sports">Sports</option>
-          <option value="politics">Politics</option>
-        </select>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={autoRefresh}
-            onChange={(e) => setAutoRefresh(e.target.checked)}
-          />
-          Auto-refresh (60s)
-        </label>
-
-        <button onClick={fetchArticles}>Refresh Now</button>
-      </div>
-
-      {/* Articles */}
-      {loading && <div>Loading...</div>}
-
-      <div className="articles-grid">
-        {filteredArticles.map((article) => (
-          <div
-            key={article.id}
-            className={\`article-card \${readArticles.includes(article.id) ? 'read' : ''}\`}
-            onClick={() => markAsRead(article.id)}
-          >
-            <img src={article.image} alt={article.title} />
-            <h3>{article.title}</h3>
-            <p>{article.description}</p>
-            <span className="category">{article.category}</span>
-            {readArticles.includes(article.id) && <span className="read-badge">✓ Read</span>}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-### **2. Pomodoro Timer**
-// Pomodoro Timer
-import React, { useState, useEffect, useRef } from 'react';
-
-export default function PomodoroTimer() {
-  const [minutes, setMinutes] = useState(25);
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const [isWorkSession, setIsWorkSession] = useState(true);
-  const [sessions, setSessions] = useState([]);
-
-  const audioRef = useRef(null);
-
-  // Tạo audio 1 lần
-  useEffect(() => {
-    audioRef.current = new Audio(
-      "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0YRAAAAAA//8AAP//AAD//wAA//8AAP//AAD//wAA"
-    );
-  }, []);
-
-  // Timer logic
-  useEffect(() => {
-    if (!isActive) return;
-
-    const interval = setInterval(() => {
-      if (seconds === 0) {
-        if (minutes === 0) {
-          // Play sound
-          if (audioRef.current) {
-            audioRef.current.currentTime = 0;
-            audioRef.current.play().catch((e) => console.log("Audio blocked:", e));
-          }
-
-          const session = {
-            type: isWorkSession ? "Work" : "Break",
-            completedAt: new Date().toISOString(),
-          };
-          setSessions((prev) => [...prev, session]);
-
-          // Switch session
-          if (isWorkSession) {
-            setMinutes(5);
-            setIsWorkSession(false);
-          } else {
-            setMinutes(25);
-            setIsWorkSession(true);
-          }
-          setSeconds(0);
-          setIsActive(false);
-        } else {
-          setMinutes((m) => m - 1);
-          setSeconds(59);
-        }
-      } else {
-        setSeconds((s) => s - 1);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [isActive, minutes, seconds, isWorkSession]);
-
-  // Unblock audio bằng thao tác người dùng
-  const toggleTimer = () => {
-    if (!isActive && audioRef.current) {
-      audioRef.current.play()
-        .then(() => {
-          audioRef.current.pause();
-          audioRef.current.currentTime = 0;
-        })
-        .catch(() => {});
-    }
-
-    setIsActive(!isActive);
-  };
-
-  const resetTimer = () => {
-    setIsActive(false);
-    setMinutes(25);
-    setSeconds(0);
-    setIsWorkSession(true);
-  };
-
-  const skipBreak = () => {
-    setMinutes(25);
-    setSeconds(0);
-    setIsWorkSession(true);
-    setIsActive(false);
-  };
-
-  return (
-    <div className="pomodoro">
-      <h1>{isWorkSession ? "🍅 Work Time" : "☕ Break Time"}</h1>
-
-      <div className="timer-display">
-        {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
-      </div>
-
-      <div className="controls">
-        <button onClick={toggleTimer}>{isActive ? "⏸️ Pause" : "▶️ Start"}</button>
-        <button onClick={resetTimer}>🔄 Reset</button>
-        {!isWorkSession && <button onClick={skipBreak}>⏭️ Skip Break</button>}
-      </div>
-
-      <div className="session-history">
-        <h3>Sessions Today: {sessions.length}</h3>
-        {sessions.map((session, i) => (
-          <div key={i}>
-            {session.type} - {new Date(session.completedAt).toLocaleTimeString()}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-### **3. Live Notification Center**
-// Live Notification Center
-
-
-function NotificationCenter() {
-  const [notifications, setNotifications] = useState([]);
-  const [filter, setFilter] = useState('all');
-  const [unreadCount, setUnreadCount] = useState(0);
-
-  // Simulate real-time notifications
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const types = ['info', 'success', 'warning', 'error'];
-      const newNotif = {
-        id: Date.now(),
-        type: types[Math.floor(Math.random() * types.length)],
-        title: 'New Notification',
-        message: 'This is a real-time notification',
-        timestamp: new Date().toISOString(),
-        read: false
-      };
-
-      setNotifications(prev => [newNotif, ...prev]);
-      setUnreadCount(prev => prev + 1);
-
-      // Play sound
-      const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZF...');
-      audio.play().catch(() => {});
-
-      // Browser notification
-      if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification(newNotif.title, {
-          body: newNotif.message,
-          icon: '🔔'
-        });
-      }
-    }, 10000); // Every 10 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Request notification permission on mount
-  useEffect(() => {
-    if ('Notification' in window && Notification.permission === 'default') {
-      Notification.requestPermission();
-    }
-  }, []);
-
-  // Persist unread count
-  useEffect(() => {
-    localStorage.setItem('unread-count', unreadCount);
-    document.title = unreadCount > 0 ? \`(\${unreadCount}) Notifications\` : 'Notifications';
-  }, [unreadCount]);
-
-  const markAsRead = (id) => {
-    setNotifications(prev =>
-      prev.map(n => n.id === id ? { ...n, read: true } : n)
-    );
-    setUnreadCount(prev => Math.max(0, prev - 1));
-  };
-
-  const deleteNotification = (id) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
-  };
-
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-    setUnreadCount(0);
-  };
-
-  const filteredNotifications = notifications.filter(n => {
-    if (filter === 'unread') return !n.read;
-    if (filter === 'all') return true;
-    return n.type === filter;
-  });
-
-  return (
-    <div className="notification-center">
-      <div className="header">
-        <h1>🔔 Notifications ({unreadCount})</h1>
-        <button onClick={markAllAsRead}>Mark All Read</button>
-      </div>
-
-      <div className="filters">
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('unread')}>Unread</button>
-        <button onClick={() => setFilter('info')}>Info</button>
-        <button onClick={() => setFilter('success')}>Success</button>
-        <button onClick={() => setFilter('warning')}>Warning</button>
-        <button onClick={() => setFilter('error')}>Error</button>
-      </div>
-
-      <div className="notifications-list">
-        {filteredNotifications.map(notif => (
-          <div
-            key={notif.id}
-            className={\`notif-card \${notif.type} \${notif.read ? 'read' : 'unread'}\`}
-          >
-            <div className="notif-content">
-              <h3>{notif.title}</h3>
-              <p>{notif.message}</p>
-              <small>{new Date(notif.timestamp).toLocaleString()}</small>
-            </div>
-            <div className="notif-actions">
-              {!notif.read && (
-                <button onClick={() => markAsRead(notif.id)}>✓</button>
-              )}
-              <button onClick={() => deleteNotification(notif.id)}>🗑️</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-### **4. Collaborative Whiteboard**
-// Collaborative Whiteboard
-import React, { useState, useEffect, useRef } from 'react';
-
-function CollaborativeWhiteboard() {
-  const canvasRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [color, setColor] = useState('#00D9FF');
-  const [brushSize, setBrushSize] = useState(3);
-  const [drawingHistory, setDrawingHistory] = useState([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
-  const [activeUsers, setActiveUsers] = useState(1);
-  const channelRef = useRef(null);
-
-  // Initialize BroadcastChannel
-  useEffect(() => {
-    const channel = new BroadcastChannel('whiteboard-sync');
-    channelRef.current = channel;
-
-    channel.onmessage = (event) => {
-      const { type, payload } = event.data;
-
-      if (type === 'DRAW') {
-        drawLine(payload.x0, payload.y0, payload.x1, payload.y1, payload.color, payload.size);
-      } else if (type === 'CLEAR') {
-        clearCanvas();
-      } else if (type === 'USER_JOINED') {
-        setActiveUsers(prev => prev + 1);
-      } else if (type === 'USER_LEFT') {
-        setActiveUsers(prev => Math.max(1, prev - 1));
-      }
-    };
-
-    channel.postMessage({ type: 'USER_JOINED' });
-
-    return () => {
-      channel.postMessage({ type: 'USER_LEFT' });
-      channel.close();
-    };
-  }, []);
-
-  // Drawing functions
-  const drawLine = (x0, y0, x1, y1, strokeColor, strokeSize) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    
-    ctx.beginPath();
-    ctx.moveTo(x0, y0);
-    ctx.lineTo(x1, y1);
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = strokeSize;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-  };
-
-  const handleMouseDown = (e) => {
-    setIsDrawing(true);
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    lastPoint.current = { x, y };
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDrawing) return;
-    
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    drawLine(lastPoint.current.x, lastPoint.current.y, x, y, color, brushSize);
-    
-    // Broadcast to other tabs
-    channelRef.current.postMessage({
-      type: 'DRAW',
-      payload: {
-        x0: lastPoint.current.x,
-        y0: lastPoint.current.y,
-        x1: x,
-        y1: y,
-        color,
-        size: brushSize
-      }
-    });
-    
-    lastPoint.current = { x, y };
-  };
-
-  const handleMouseUp = () => {
-    if (isDrawing) {
-      saveToHistory();
-    }
-    setIsDrawing(false);
-  };
-
-  const lastPoint = useRef({ x: 0, y: 0 });
-
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  };
-
-  const handleClear = () => {
-    clearCanvas();
-    channelRef.current.postMessage({ type: 'CLEAR' });
-    setDrawingHistory([]);
-    setHistoryIndex(-1);
-  };
-
-  const saveToHistory = () => {
-    const canvas = canvasRef.current;
-    const imageData = canvas.toDataURL();
-    setDrawingHistory(prev => [...prev.slice(0, historyIndex + 1), imageData]);
-    setHistoryIndex(prev => prev + 1);
-  };
-
-  const undo = () => {
-    if (historyIndex > 0) {
-      const newIndex = historyIndex - 1;
-      setHistoryIndex(newIndex);
-      loadFromHistory(drawingHistory[newIndex]);
-    } else {
-      clearCanvas();
-      setHistoryIndex(-1);
-    }
-  };
-
-  const redo = () => {
-    if (historyIndex < drawingHistory.length - 1) {
-      const newIndex = historyIndex + 1;
-      setHistoryIndex(newIndex);
-      loadFromHistory(drawingHistory[newIndex]);
-    }
-  };
-
-  const loadFromHistory = (dataUrl) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0);
-    };
-    img.src = dataUrl;
-  };
-
-  const saveDrawing = () => {
-    const canvas = canvasRef.current;
-    const dataUrl = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.download = \`whiteboard-\${Date.now()}.png\`;
-    link.href = dataUrl;
-    link.click();
-  };
-
-  return (
-    <div className="whiteboard">
-      <div className="toolbar">
-        <h2>👥 Active Users: {activeUsers}</h2>
-        
-        <div className="color-picker">
-          {['#00D9FF', '#22c55e', '#f59e0b', '#ec4899', '#ef4444', '#000000'].map(c => (
-            <button
-              key={c}
-              style={{ background: c }}
-              className={color === c ? 'active' : ''}
-              onClick={() => setColor(c)}
-            />
-          ))}
-        </div>
-
-        <label>
-          Brush Size: {brushSize}
-          <input
-            type="range"
-            min="1"
-            max="20"
-            value={brushSize}
-            onChange={(e) => setBrushSize(Number(e.target.value))}
-          />
-        </label>
-
-        <button onClick={undo} disabled={historyIndex <= 0}>↶ Undo</button>
-        <button onClick={redo} disabled={historyIndex >= drawingHistory.length - 1}>↷ Redo</button>
-        <button onClick={handleClear}>🗑️ Clear</button>
-        <button onClick={saveDrawing}>💾 Save</button>
-      </div>
-
-      <canvas
-        ref={canvasRef}
-        width={1200}
-        height={600}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        style={{ border: '1px solid #1e293b', cursor: 'crosshair' }}
-      />
-    </div>
-  );
-}
-### **5. Advanced Data Table (Challenge)**
-// Advanced Data Table
-import React, { useState, useEffect } from 'react';
-
-function AdvancedDataTable() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
-  const [filters, setFilters] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedSearch, setDebouncedSearch] = useState('');
-  const [selectedRows, setSelectedRows] = useState([]);
-  const [visibleColumns, setVisibleColumns] = useState({
-    id: true,
-    name: true,
-    email: true,
-    status: true,
-    date: true
-  });
-
-  // Debounce search
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearch(searchQuery);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
-
-  // Fetch data (server-side pagination)
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      const mockData = Array.from({ length: 20 }, (_, i) => ({
-        id: (page - 1) * 20 + i + 1,
-        name: \`User \${(page - 1) * 20 + i + 1}\`,
-        email: \`user\${(page - 1) * 20 + i + 1}@example.com\`,
-        status: ['active', 'inactive', 'pending'][i % 3],
-        date: new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString()
-      }));
-      
-      setData(mockData);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [page, debouncedSearch, sortConfig, filters]);
-
-  // Sorting
-  const handleSort = (key) => {
-    setSortConfig({
-      key,
-      direction: sortConfig.key === key && sortConfig.direction === 'asc' ? 'desc' : 'asc'
-    });
-  };
-
-  // Row selection
-  const toggleRowSelection = (id) => {
-    setSelectedRows(prev =>
-      prev.includes(id) ? prev.filter(rowId => rowId !== id) : [...prev, id]
-    );
-  };
-
-  const toggleAllRows = () => {
-    if (selectedRows.length === data.length) {
-      setSelectedRows([]);
-    } else {
-      setSelectedRows(data.map(row => row.id));
-    }
-  };
-
-  // Export to CSV
-  const exportToCSV = () => {
-    const headers = Object.keys(visibleColumns).filter(col => visibleColumns[col]);
-    const csvData = [
-      headers.join(','),
-      ...data.map(row => headers.map(h => row[h]).join(','))
-    ].join('\n');
-
-    const blob = new Blob([csvData], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = \`data-\${Date.now()}.csv\`;
-    link.click();
-  };
-
-  // Bulk actions
-  const bulkDelete = () => {
-    if (confirm(\`Delete \${selectedRows.length} items?\`)) {
-      setData(prev => prev.filter(row => !selectedRows.includes(row.id)));
-      setSelectedRows([]);
-    }
-  };
-
-  return (
-    <div className="data-table">
-      {/* Controls */}
-      <div className="controls">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search... (debounced)"
-        />
-
-        <select onChange={(e) => setFilters({ ...filters, status: e.target.value })}>
-          <option value="">All Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-          <option value="pending">Pending</option>
-        </select>
-
-        <button onClick={exportToCSV}>📥 Export CSV</button>
-
-        {selectedRows.length > 0 && (
-          <button onClick={bulkDelete} style={{ background: '#ef4444' }}>
-            🗑️ Delete ({selectedRows.length})
-          </button>
-        )}
-
-        {/* Column Visibility */}
-        <div className="column-toggle">
-          {Object.keys(visibleColumns).map(col => (
-            <label key={col}>
-              <input
-                type="checkbox"
-                checked={visibleColumns[col]}
-                onChange={(e) => setVisibleColumns({ ...visibleColumns, [col]: e.target.checked })}
-              />
-              {col}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Table */}
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  checked={selectedRows.length === data.length}
-                  onChange={toggleAllRows}
-                />
-              </th>
-              {visibleColumns.id && (
-                <th onClick={() => handleSort('id')}>
-                  ID {sortConfig.key === 'id' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                </th>
-              )}
-              {visibleColumns.name && (
-                <th onClick={() => handleSort('name')}>
-                  Name {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                </th>
-              )}
-              {visibleColumns.email && <th>Email</th>}
-              {visibleColumns.status && <th>Status</th>}
-              {visibleColumns.date && <th>Date</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(row => (
-              <tr key={row.id} className={selectedRows.includes(row.id) ? 'selected' : ''}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.includes(row.id)}
-                    onChange={() => toggleRowSelection(row.id)}
-                  />
-                </td>
-                {visibleColumns.id && <td>{row.id}</td>}
-                {visibleColumns.name && <td>{row.name}</td>}
-                {visibleColumns.email && <td>{row.email}</td>}
-                {visibleColumns.status && (
-                  <td>
-                    <span className={\`badge \${row.status}\`}>{row.status}</span>
-                  </td>
-                )}
-                {visibleColumns.date && <td>{row.date}</td>}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {isVisible && ReactDOM.createPortal(
+        <div
+          ref={tooltipRef}
+          className={\`tooltip tooltip-\${actualPlacement}\`}
+          style={{
+            position: 'fixed',
+            top: \`\${position.top}px\`,
+            left: \`\${position.left}px\`,
+            zIndex: 9999,
+            background: 'rgba(0,0,0,0.8)',
+            color: 'white',
+            padding: '8px 12px',
+            borderRadius: '4px',
+            fontSize: '14px',
+            pointerEvents: 'none',
+            animation: 'fadeIn 0.2s'
+          }}
+        >
+          {content}
+          {/* Arrow */}
+          <div className={\`tooltip-arrow tooltip-arrow-\${actualPlacement}\`} />
+        </div>,
+        document.body
       )}
-
-      {/* Pagination */}
-      <div className="pagination">
-        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
-          Previous
-        </button>
-        <span>Page {page} of {totalPages}</span>
-        <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}>
-          Next
-        </button>
-      </div>
-    </div>
+    </>
   );
 }
 
-/* 
-KEY EFFECTS USED:
-1. Debounce search - useEffect with setTimeout cleanup
-2. Fetch data - useEffect with page, search, sort, filters dependencies
-3. Auto-cleanup - Return cleanup functions for all timers
+// ==========================================
+// 2️⃣ INFINITE SCROLL + VIRTUAL SCROLLING
+// ĐÃ GIẢI Ở TRÊN - Key patterns:
+// ==========================================
+/*
+- useLayoutEffect: Measure heights, restore scroll position
+- IntersectionObserver: Infinite scroll trigger
+- Throttle: Scroll performance (16ms = 60fps)
+- Dynamic heights: Map to store measured heights
+- Bi-directional: Load older + maintain position
 */
 
-## 📝 Tổng kết các patterns chính:
+// ==========================================
+// 3️⃣ CUSTOM HOOKS LIBRARY
+// Cốt lõi: Reusable effect patterns
+// ==========================================
 
-### **1. News Feed** 
-- ✅ Auto-refresh: \`setInterval()\` với cleanup
-- ✅ LocalStorage: Load/save read articles
-- ✅ Filter: Category + search
-- ✅ Dependencies: \`[autoRefresh, category]\`
+// useAsync - Handle async operations
+function useAsync(asyncFunction, immediate = true) {
+  const [status, setStatus] = useState('idle'); // idle | pending | success | error
+  const [value, setValue] = useState(null);
+  const [error, setError] = useState(null);
 
-### **2. Pomodoro Timer**
-- ✅ Countdown timer: \`setInterval()\` decrement
-- ✅ Session switching: Work ↔ Break
-- ✅ Audio notification: Play sound khi hết giờ
-- ✅ Session history: Track completed sessions
-- ✅ Cleanup: \`clearInterval()\` khi unmount
+  const execute = useCallback(async (...params) => {
+    setStatus('pending');
+    setValue(null);
+    setError(null);
 
-### **3. Notification Center**
-- ✅ Real-time notifs: \`setInterval()\` tạo notification mới
-- ✅ Browser Notification API: Native notifications
-- ✅ Filter: All, unread, by type
-- ✅ Unread count: Update document.title
-- ✅ Mark read/delete: State management
+    try {
+      const response = await asyncFunction(...params);
+      setValue(response);
+      setStatus('success');
+      return response;
+    } catch (error) {
+      setError(error);
+      setStatus('error');
+      throw error;
+    }
+  }, [asyncFunction]);
 
-### **4. Whiteboard**
-- ✅ Canvas drawing: Mouse events + Canvas API
-- ✅ BroadcastChannel: Sync drawing across tabs
-- ✅ Undo/Redo: History stack với dataURL
-- ✅ Color picker: Multiple colors
-- ✅ Save: Export canvas to PNG
+  useEffect(() => {
+    if (immediate) {
+      execute();
+    }
+  }, [execute, immediate]);
 
-### **5. Data Table**
-- ✅ Server-side pagination: Fetch với page dependency
-- ✅ Debounced search: \`setTimeout()\` với cleanup
-- ✅ Sorting: Multi-column với direction
-- ✅ Row selection: Checkbox + bulk actions
-- ✅ Column visibility: Toggle columns
-- ✅ Export CSV: Blob download
+  return { execute, status, value, error, isLoading: status === 'pending' };
+}
 
-## 🎯 Key useEffect Patterns Đã Dùng:
+// useThrottle - Throttle value updates
+function useThrottle(value, delay = 500) {
+  const [throttledValue, setThrottledValue] = useState(value);
+  const lastRan = useRef(Date.now());
 
-\`\`\`javascript
-// 1. Auto-refresh với interval
-useEffect(() => {
-  const interval = setInterval(() => {...}, 60000);
-  return () => clearInterval(interval);
-}, [deps]);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (Date.now() - lastRan.current >= delay) {
+        setThrottledValue(value);
+        lastRan.current = Date.now();
+      }
+    }, delay - (Date.now() - lastRan.current));
 
-// 2. Debounce
-useEffect(() => {
-  const timer = setTimeout(() => {...}, 500);
-  return () => clearTimeout(timer);
-}, [value]);
+    return () => clearTimeout(handler);
+  }, [value, delay]);
 
-// 3. BroadcastChannel
-useEffect(() => {
-  const channel = new BroadcastChannel('name');
-  channel.onmessage = (e) => {...};
-  return () => channel.close();
-}, []);
+  return throttledValue;
+}
 
-// 4. Fetch with dependencies
-useEffect(() => {
-  fetchData();
-}, [page, search, filters]);
+// useDebounce - Debounce value updates
+function useDebounce(value, delay = 500) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
-// 5. LocalStorage sync
-useEffect(() => {
-  localStorage.setItem('key', JSON.stringify(data));
-}, [data]);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// usePrevious - Get previous value
+function usePrevious(value) {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}
+
+// useToggle - Boolean state helper
+function useToggle(initialValue = false) {
+  const [value, setValue] = useState(initialValue);
+
+  const toggle = useCallback(() => setValue(v => !v), []);
+  const setTrue = useCallback(() => setValue(true), []);
+  const setFalse = useCallback(() => setValue(false), []);
+
+  return [value, { toggle, setTrue, setFalse, setValue }];
+}
+
+// useLocalStorage - Sync with localStorage
+function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(error);
+      return initialValue;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error(error);
+    }
+  }, [key, value]);
+
+  // Listen to changes in other tabs
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === key && e.newValue) {
+        setValue(JSON.parse(e.newValue));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [key]);
+
+  return [value, setValue];
+}
+
+// useSessionStorage - Same as localStorage but sessionStorage
+function useSessionStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const item = window.sessionStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.sessionStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error(error);
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+// useCopyToClipboard - Copy text to clipboard
+function useCopyToClipboard() {
+  const [copiedText, setCopiedText] = useState(null);
+
+  const copy = useCallback(async (text) => {
+    if (!navigator?.clipboard) {
+      console.warn('Clipboard not supported');
+      return false;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedText(text);
+      return true;
+    } catch (error) {
+      console.error('Copy failed:', error);
+      setCopiedText(null);
+      return false;
+    }
+  }, []);
+
+  return [copiedText, copy];
+}
+
+// useIdle - Detect user idle state
+function useIdle(timeout = 60000) {
+  const [isIdle, setIsIdle] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+
+    const handleActivity = () => {
+      setIsIdle(false);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setIsIdle(true), timeout);
+    };
+
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+    
+    events.forEach(event => 
+      document.addEventListener(event, handleActivity, true)
+    );
+
+    timeoutId = setTimeout(() => setIsIdle(true), timeout);
+
+    return () => {
+      events.forEach(event => 
+        document.removeEventListener(event, handleActivity, true)
+      );
+      clearTimeout(timeoutId);
+    };
+  }, [timeout]);
+
+  return isIdle;
+}
+
+// useTimeout - Declarative setTimeout
+function useTimeout(callback, delay) {
+  const savedCallback = useRef(callback);
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    if (delay === null) return;
+
+    const id = setTimeout(() => savedCallback.current(), delay);
+    return () => clearTimeout(id);
+  }, [delay]);
+}
+
+// ==========================================
+// 4️⃣ ANIMATION FRAMEWORK
+// Cốt lõi: requestAnimationFrame + useLayoutEffect
+// ==========================================
+
+// useAnimation - Timeline control
+function useAnimation({ duration = 1000, easing = 'linear', autoPlay = false }) {
+  const [progress, setProgress] = useState(0);
+  const [state, setState] = useState('idle'); // idle | playing | paused | finished
+
+  const startTimeRef = useRef(null);
+  const pausedTimeRef = useRef(0);
+  const rafRef = useRef(null);
+
+  // Easing functions
+  const easings = {
+    linear: t => t,
+    easeIn: t => t * t,
+    easeOut: t => t * (2 - t),
+    easeInOut: t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+    easeInCubic: t => t * t * t,
+    easeOutCubic: t => (--t) * t * t + 1,
+    elastic: t => {
+      const p = 0.3;
+      return Math.pow(2, -10 * t) * Math.sin((t - p / 4) * (2 * Math.PI) / p) + 1;
+    }
+  };
+
+  const easingFn = easings[easing] || easings.linear;
+
+  // Animation loop
+  useLayoutEffect(() => {
+    if (state !== 'playing') return;
+
+    const animate = (timestamp) => {
+      if (!startTimeRef.current) {
+        startTimeRef.current = timestamp - pausedTimeRef.current;
+      }
+
+      const elapsed = timestamp - startTimeRef.current;
+      const rawProgress = Math.min(elapsed / duration, 1);
+      const easedProgress = easingFn(rawProgress);
+
+      setProgress(easedProgress);
+
+      if (rawProgress < 1) {
+        rafRef.current = requestAnimationFrame(animate);
+      } else {
+        setState('finished');
+        startTimeRef.current = null;
+        pausedTimeRef.current = 0;
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [state, duration, easingFn]);
+
+  const play = useCallback(() => {
+    setState('playing');
+  }, []);
+
+  const pause = useCallback(() => {
+    if (state === 'playing') {
+      setState('paused');
+      pausedTimeRef.current = progress * duration;
+    }
+  }, [state, progress, duration]);
+
+  const reverse = useCallback(() => {
+    setProgress(1 - progress);
+    setState('playing');
+  }, [progress]);
+
+  const reset = useCallback(() => {
+    setState('idle');
+    setProgress(0);
+    startTimeRef.current = null;
+    pausedTimeRef.current = 0;
+  }, []);
+
+  useEffect(() => {
+    if (autoPlay) play();
+  }, [autoPlay, play]);
+
+  return { progress, state, play, pause, reverse, reset };
+}
+
+// useSpring - Physics-based animation
+function useSpring(targetValue, config = {}) {
+  const { stiffness = 170, damping = 26, mass = 1, precision = 0.01 } = config;
+  
+  const [value, setValue] = useState(targetValue);
+  const velocity = useRef(0);
+  const rafRef = useRef(null);
+
+  useLayoutEffect(() => {
+    let lastTime = performance.now();
+
+    const animate = (time) => {
+      const deltaTime = Math.min((time - lastTime) / 1000, 0.064); // Cap at 64ms
+      lastTime = time;
+
+      const springForce = -stiffness * (value - targetValue);
+      const dampingForce = -damping * velocity.current;
+      const acceleration = (springForce + dampingForce) / mass;
+
+      velocity.current += acceleration * deltaTime;
+      const newValue = value + velocity.current * deltaTime;
+
+      setValue(newValue);
+
+      // Continue if not settled
+      const isMoving = Math.abs(velocity.current) > precision;
+      const isDisplaced = Math.abs(targetValue - newValue) > precision;
+
+      if (isMoving || isDisplaced) {
+        rafRef.current = requestAnimationFrame(animate);
+      } else {
+        setValue(targetValue);
+        velocity.current = 0;
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [targetValue, stiffness, damping, mass, precision, value]);
+
+  return value;
+}
+
+// useStagger - Stagger animations
+function useStagger(count, delay = 100) {
+  const [activeIndexes, setActiveIndexes] = useState(new Set());
+
+  const trigger = useCallback(() => {
+    setActiveIndexes(new Set());
+    
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        setActiveIndexes(prev => new Set([...prev, i]));
+      }, i * delay);
+    }
+  }, [count, delay]);
+
+  return { activeIndexes, trigger };
+}
+
+// useGesture - Gesture-based animations (simplified)
+function useGesture(ref) {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  
+  const startPos = useRef({ x: 0, y: 0 });
+  const offset = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const handleStart = (e) => {
+      setIsDragging(true);
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      
+      startPos.current = {
+        x: clientX - offset.current.x,
+        y: clientY - offset.current.y
+      };
+    };
+
+    const handleMove = (e) => {
+      if (!isDragging) return;
+      
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      const newPos = {
+        x: clientX - startPos.current.x,
+        y: clientY - startPos.current.y
+      };
+
+      offset.current = newPos;
+      setPosition(newPos);
+    };
+
+    const handleEnd = () => {
+      setIsDragging(false);
+    };
+
+    element.addEventListener('mousedown', handleStart);
+    element.addEventListener('touchstart', handleStart);
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('touchmove', handleMove);
+    window.addEventListener('mouseup', handleEnd);
+    window.addEventListener('touchend', handleEnd);
+
+    return () => {
+      element.removeEventListener('mousedown', handleStart);
+      element.removeEventListener('touchstart', handleStart);
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('touchmove', handleMove);
+      window.removeEventListener('mouseup', handleEnd);
+      window.removeEventListener('touchend', handleEnd);
+    };
+  }, [ref, isDragging]);
+
+  return { position, isDragging };
+}
+
+// ==========================================
+// 5️⃣ ADVANCED FORM SYSTEM (CHALLENGE)
+// Cốt lõi: useReducer + Complex validation + Auto-save
+// ==========================================
+
+// Form Actions
+const FORM_ACTIONS = {
+  SET_FIELD: 'SET_FIELD',
+  SET_ERRORS: 'SET_ERRORS',
+  SET_TOUCHED: 'SET_TOUCHED',
+  SET_SUBMITTING: 'SET_SUBMITTING',
+  ADD_FIELD: 'ADD_FIELD',
+  REMOVE_FIELD: 'REMOVE_FIELD',
+  RESET: 'RESET',
+  UNDO: 'UNDO',
+  REDO: 'REDO',
+  SAVE_SNAPSHOT: 'SAVE_SNAPSHOT'
+};
+
+// Form Reducer
+function formReducer(state, action) {
+  switch (action.type) {
+    case FORM_ACTIONS.SET_FIELD:
+      return {
+        ...state,
+        values: {
+          ...state.values,
+          [action.payload.name]: action.payload.value
+        },
+        errors: {
+          ...state.errors,
+          [action.payload.name]: null
+        },
+        touched: {
+          ...state.touched,
+          [action.payload.name]: true
+        }
+      };
+
+    case FORM_ACTIONS.SET_ERRORS:
+      return { ...state, errors: action.payload };
+
+    case FORM_ACTIONS.SET_SUBMITTING:
+      return { ...state, isSubmitting: action.payload };
+
+    case FORM_ACTIONS.ADD_FIELD:
+      return {
+        ...state,
+        values: {
+          ...state.values,
+          [action.payload.name]: action.payload.value
+        }
+      };
+
+    case FORM_ACTIONS.REMOVE_FIELD:
+      const { [action.payload]: removed, ...restValues } = state.values;
+      return { ...state, values: restValues };
+
+    case FORM_ACTIONS.SAVE_SNAPSHOT:
+      return {
+        ...state,
+        history: [...state.history, state.values],
+        historyIndex: state.history.length
+      };
+
+    case FORM_ACTIONS.UNDO:
+      if (state.historyIndex > 0) {
+        const prevIndex = state.historyIndex - 1;
+        return {
+          ...state,
+          values: state.history[prevIndex],
+          historyIndex: prevIndex
+        };
+      }
+      return state;
+
+    case FORM_ACTIONS.REDO:
+      if (state.historyIndex < state.history.length - 1) {
+        const nextIndex = state.historyIndex + 1;
+        return {
+          ...state,
+          values: state.history[nextIndex],
+          historyIndex: nextIndex
+        };
+      }
+      return state;
+
+    case FORM_ACTIONS.RESET:
+      return action.payload || initialFormState;
+
+    default:
+      return state;
+  }
+}
+
+// useAdvancedForm Hook
+function useAdvancedForm({
+  initialValues,
+  validate,
+  asyncValidate,
+  onSubmit,
+  autoSave = false,
+  autoSaveDelay = 2000
+}) {
+  const initialFormState = {
+    values: initialValues,
+    errors: {},
+    touched: {},
+    isSubmitting: false,
+    history: [initialValues],
+    historyIndex: 0
+  };
+
+  const [state, dispatch] = useReducer(formReducer, initialFormState);
+  const [validating, setValidating] = useState({});
+
+  // Auto-save
+  const debouncedValues = useDebounce(state.values, autoSaveDelay);
+  
+  useEffect(() => {
+    if (autoSave && state.historyIndex > 0) {
+      localStorage.setItem('form-draft', JSON.stringify(debouncedValues));
+      console.log('Form auto-saved');
+    }
+  }, [debouncedValues, autoSave, state.historyIndex]);
+
+  // Field-level validation
+  const validateField = useCallback(async (name, value) => {
+    // Sync validation
+    if (validate) {
+      const errors = validate({ ...state.values, [name]: value });
+      if (errors[name]) {
+        dispatch({ type: FORM_ACTIONS.SET_ERRORS, payload: { ...state.errors, [name]: errors[name] } });
+        return false;
+      }
+    }
+
+    // Async validation
+    if (asyncValidate && asyncValidate[name]) {
+      setValidating(prev => ({ ...prev, [name]: true }));
+      
+      try {
+        const error = await asyncValidate[name](value);
+        dispatch({ type: FORM_ACTIONS.SET_ERRORS, payload: { ...state.errors, [name]: error } });
+        return !error;
+      } finally {
+        setValidating(prev => ({ ...prev, [name]: false }));
+      }
+    }
+
+    return true;
+  }, [state.values, state.errors, validate, asyncValidate]);
+
+  // Set field value
+  const setFieldValue = useCallback((name, value) => {
+    dispatch({
+      type: FORM_ACTIONS.SET_FIELD,
+      payload: { name, value }
+    });
+
+    // Save snapshot for undo/redo
+    dispatch({ type: FORM_ACTIONS.SAVE_SNAPSHOT });
+
+    // Validate on change
+    validateField(name, value);
+  }, [validateField]);
+
+  // Handle submit
+  const handleSubmit = useCallback(async (e) => {
+    if (e) e.preventDefault();
+
+    // Validate all fields
+    if (validate) {
+      const errors = validate(state.values);
+      if (Object.keys(errors).length > 0) {
+        dispatch({ type: FORM_ACTIONS.SET_ERRORS, payload: errors });
+        return;
+      }
+    }
+
+    dispatch({ type: FORM_ACTIONS.SET_SUBMITTING, payload: true });
+
+    try {
+      await onSubmit(state.values);
+    } catch (error) {
+      dispatch({ type: FORM_ACTIONS.SET_ERRORS, payload: { submit: error.message } });
+    } finally {
+      dispatch({ type: FORM_ACTIONS.SET_SUBMITTING, payload: false });
+    }
+  }, [state.values, validate, onSubmit]);
+
+  // Dynamic fields
+  const addField = useCallback((name, value) => {
+    dispatch({ type: FORM_ACTIONS.ADD_FIELD, payload: { name, value } });
+  }, []);
+
+  const removeField = useCallback((name) => {
+    dispatch({ type: FORM_ACTIONS.REMOVE_FIELD, payload: name });
+  }, []);
+
+  // Undo/Redo
+  const undo = useCallback(() => {
+    dispatch({ type: FORM_ACTIONS.UNDO });
+  }, []);
+
+  const redo = useCallback(() => {
+    dispatch({ type: FORM_ACTIONS.REDO });
+  }, []);
+
+  const canUndo = state.historyIndex > 0;
+  const canRedo = state.historyIndex < state.history.length - 1;
+
+  return {
+    values: state.values,
+    errors: state.errors,
+    touched: state.touched,
+    isSubmitting: state.isSubmitting,
+    validating,
+    setFieldValue,
+    handleSubmit,
+    addField,
+    removeField,
+    undo,
+    redo,
+    canUndo,
+    canRedo
+  };
+}
+
+// Demo: Multi-step Form với File Upload
+function AdvancedFormDemo() {
+  const [step, setStep] = useState(1);
+  const [uploadProgress, setUploadProgress] = useState({});
+
+  const validate = (values) => {
+    const errors = {};
+    
+    if (step === 1) {
+      if (!values.email) errors.email = 'Required';
+      else if (!/\\S+@\\S+\\.\\S+/.test(values.email)) errors.email = 'Invalid email';
+      
+      if (!values.password) errors.password = 'Required';
+      else if (values.password.length < 6) errors.password = 'Min 6 characters';
+    }
+
+    if (step === 2) {
+      if (!values.firstName) errors.firstName = 'Required';
+      if (!values.lastName) errors.lastName = 'Required';
+    }
+
+    return errors;
+  };
+
+  // Async validation
+  const asyncValidate = {
+    email: async (value) => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (value === 'taken@example.com') {
+        return 'Email already taken';
+      }
+      return null;
+    }
+  };
+
+  const form = useAdvancedForm({
+    initialValues: {
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      skills: ['']
+    },
+    validate,
+    asyncValidate,
+    onSubmit: async (values) => {
+      console.log('Submitting:', values);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      alert('Form submitted!');
+    },
+    autoSave: true,
+    autoSaveDelay: 2000
+  });
+
+  // File upload simulation
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const uploadId = Date.now();
+    setUploadProgress(prev => ({ ...prev, [uploadId]: 0 }));
+
+    // Simulate upload
+    const interval = setInterval(() => {
+      setUploadProgress(prev => {
+        const progress = prev[uploadId] + 10;
+        if (progress >= 100) {
+          clearInterval(interval);
+          form.setFieldValue('avatar', file.name);
+          return { ...prev, [uploadId]: 100 };
+        }
+        return { ...prev, [uploadId]: progress };
+      });
+    }, 200);
+  };
+
+  return (
+    <div style={{ maxWidth: '600px', margin: '50px auto', padding: '20px' }}>
+      <h1>Advanced Form Demo</h1>
+
+      {/* Progress */}
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '30px' }}>
+        {[1, 2, 3].map(s => (
+          <div
+            key={s}
+            style={{
+              flex: 1,
+              height: '4px',
+              background: s <= step ? '#007bff' : '#ddd',
+              borderRadius: '2px'
+            }}
+          />
+        ))}
+      </div>
+
+      <form onSubmit={form.handleSubmit}>
+        {/* Step 1: Account */}
+        {step === 1 && (
+          <div>
+            <h2>Step 1: Account</h2>
+            
+            <div style={{ marginBottom: '15px' }}>
+              <label>Email {form.validating.email && '(validating...)'}</label>
+              <input
+                type="email"
+                value={form.values.email}
+                onChange={(e) => form.setFieldValue('email', e.target.value)}
+              />
+              {form.errors.email && <span style={{color: 'red'}}>{form.errors.email}</span>}
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label>Password</label>
+              <input
+                type="password"
+                value={form.values.password}
+                onChange={(e) => form.setFieldValue('password', e.target.value)}
+              />
+              {form.errors.password && <span style={{color: 'red'}}>{form.errors.password}</span>}
+            </div>
+
+            <button type="button" onClick={() => setStep(2)}>Next</button>
+          </div>
+        )}
+
+        {/* Step 2: Profile */}
+        {step === 2 && (
+          <div>
+            <h2>Step 2: Profile</h2>
+            
+            <div style={{ marginBottom: '15px' }}>
+              <label>First Name</label>
+              <input
+                value={form.values.firstName}
+                onChange={(e) => form.setFieldValue('firstName', e.target.value)}
+              />
+              {form.errors.firstName && <span style={{color: 'red'}}>{form.errors.firstName}</span>}
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label>Last Name</label>
+              <input
+                value={form.values.lastName}
+                onChange={(e) => form.setFieldValue('lastName', e.target.value)}
+              />
+              {form.errors.lastName && <span style={{color: 'red'}}>{form.errors.lastName}</span>}
+            </div>
+
+            {/* Dynamic Fields */}
+            <div style={{ marginBottom: '15px' }}>
+              <h3>Skills</h3>
+              {form.values.skills.map((skill, index) => (
+                <div key={index} style={{ display: 'flex', gap: '10px', marginBottom: '5px' }}>
+                  <input
+                    value={skill}
+                    onChange={(e) => {
+                      const newSkills = [...form.values.skills];
+                      newSkills[index] = e.target.value;
+                      form.setFieldValue('skills', newSkills);
+                    }}
+                    placeholder="Enter skill"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newSkills = form.values.skills.filter((_, i) => i !== index);
+                      form.setFieldValue('skills', newSkills);
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() => form.setFieldValue('skills', [...form.values.skills, ''])}
+              >
+                + Add Skill
+              </button>
+            </div>
+
+            <button type="button" onClick={() => setStep(1)}>Back</button>
+            <button type="button" onClick={() => setStep(3)}>Next</button>
+          </div>
+        )}
+
+        {/* Step 3: Review & Upload */}
+        {step === 3 && (
+          <div>
+            <h2>Step 3: Review</h2>
+            
+            {/* File Upload */}
+            <div style={{ marginBottom: '20px' }}>
+              <label>Profile Picture</label>
+              <input type="file" onChange={handleFileUpload} accept="image/*" />
+              {Object.entries(uploadProgress).map(([id, progress]) => (
+                <div key={id}>
+                  <progress value={progress} max="100" style={{ width: '100%' }} />
+                  <span>{progress}%</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Review Data */}
+            <div style={{ background: '#f5f5f5', padding: '15px', borderRadius: '4px' }}>
+              <h3>Review Your Information</h3>
+              <p><strong>Email:</strong> {form.values.email}</p>
+              <p><strong>Name:</strong> {form.values.firstName} {form.values.lastName}</p>
+              <p><strong>Skills:</strong> {form.values.skills.filter(Boolean).join(', ')}</p>
+              {form.values.avatar && <p><strong>Avatar:</strong> {form.values.avatar}</p>}
+            </div>
+
+            {/* Undo/Redo */}
+            <div style={{ margin: '20px 0', display: 'flex', gap: '10px' }}>
+              <button type="button" onClick={form.undo} disabled={!form.canUndo}>
+                ↶ Undo
+              </button>
+              <button type="button" onClick={form.redo} disabled={!form.canRedo}>
+                ↷ Redo
+              </button>
+            </div>
+
+            <button type="button" onClick={() => setStep(2)}>Back</button>
+            <button type="submit" disabled={form.isSubmitting}>
+              {form.isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+        )}
+      </form>
+
+      {/* Auto-save indicator */}
+      <p style={{ marginTop: '20px', color: '#666', fontSize: '14px' }}>
+        💾 Form is auto-saving...
+      </p>
+    </div>
+  );
+}
+
+// ==========================================
+// 📝 TÓM TẮT KEY PATTERNS
+// ==========================================
+
+/*
+=== 1. TOOLTIP SYSTEM ===
+✅ useLayoutEffect: Position BEFORE paint (no flicker)
+✅ Collision detection: Auto-adjust placement
+✅ Portal: Render outside parent DOM
+✅ Delayed show: Better UX
+✅ Touch support: Mobile-friendly
+
+=== 2. VIRTUAL SCROLLING ===
+✅ Only render visible items (performance)
+✅ useLayoutEffect: Measure & restore scroll
+✅ IntersectionObserver: Infinite scroll
+✅ Throttle: Smooth 60fps scrolling
+✅ Dynamic heights: Measure on render
+
+=== 3. CUSTOM HOOKS ===
+✅ useAsync: Centralize async logic
+✅ useDebounce/Throttle: Performance optimization
+✅ useLocalStorage: Persistent state
+✅ usePrevious: Compare changes
+✅ useIdle: User activity tracking
+
+=== 4. ANIMATION FRAMEWORK ===
+✅ useLayoutEffect: Sync animations
+✅ requestAnimationFrame: 60fps smooth
+✅ Easing functions: Natural motion
+✅ Spring physics: Realistic feel
+✅ Gesture support: Interactive animations
+
+=== 5. ADVANCED FORM ===
+✅ useReducer: Complex state management
+✅ Field-level validation: Better UX
+✅ Async validation: Server checks
+✅ Auto-save: Drafts with debounce
+✅ Undo/Redo: History management
+✅ Dynamic fields: Add/remove on fly
+✅ Multi-step: Progress tracking
+✅ File upload: Progress feedback
+
+=== CORE PRINCIPLES ===
+1. useLayoutEffect = Sync DOM operations
+2. useEffect = Async side effects
+3. Custom hooks = Reusable logic
+4. Memoization = Performance
+5. Refs = Non-reactive values
+6. Cleanup = Memory management
+
+=== PERFORMANCE TIPS ===
+- Virtual scroll: 1000+ items
+- Debounce: Search, auto-save
+- Throttle: Scroll, resize events
+- Memoize: Expensive calculations
+- useLayoutEffect: Only when needed
+- RAF: Smooth animations
+*/
+
 
 `}
       </ExerciseCard.Code>
